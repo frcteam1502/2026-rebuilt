@@ -1,0 +1,68 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightStartToBackRight"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Elevator to L4"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.75
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Unload Coral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Elevator to Load"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "BackRightToRightStation"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Load Coral"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake To Climb"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
