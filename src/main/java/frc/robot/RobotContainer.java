@@ -76,7 +76,8 @@ public class RobotContainer {
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
 
-    Driver.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).whileFalse(new InstantCommand(intake::setIntakeOff));
+    Driver.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeIn)).whileFalse(new InstantCommand(intake::setIntakeOff));
+    Driver.Controller.rightTrigger().whileTrue(new InstantCommand(intake::setIntakeOut)).whileFalse(new InstantCommand(intake::setIntakeOff));
 
 
     

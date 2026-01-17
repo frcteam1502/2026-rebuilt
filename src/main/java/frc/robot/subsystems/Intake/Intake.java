@@ -20,8 +20,12 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setIntakeOn(){
+  public void setIntakeIn(){
     intakeMotor.set(1.0);
+  }
+
+  public void setIntakeOut(){
+    intakeMotor.set(-1.0);
   }
 
   public void setIntakeOff(){
