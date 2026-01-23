@@ -4,14 +4,26 @@
 
 package frc.robot.subsystems.Climber;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
+  private final Solenoid climberSolenoid = ClimberCfg.CLIMBER_SOLENOID;
+
   public Climber() {}
+    
+
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
+  }
+  public void setClimberOut(){
+    climberSolenoid.set(true);
+  }
+  public void setClimberIn(){
+    climberSolenoid.set(false);
   }
 }
