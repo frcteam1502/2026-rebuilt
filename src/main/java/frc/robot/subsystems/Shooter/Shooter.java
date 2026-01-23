@@ -32,7 +32,21 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterFollowerEncoderConfig = new EncoderConfig();
   private final SparkFlexConfig shooterFollowerConfig = new SparkFlexConfig();
 
-  
+  private final EncoderConfig shooterHoodEncoderConfig = new EncoderConfig();
+  private final ClosedLoopConfig shooterHoodPIDFConfig = new ClosedLoopConfig();
+  private final FeedForwardConfig shooterHoodFFConfig = new FeedForwardConfig();
+  private final SparkFlexConfig shooterHoodConfig = new SparkFlexConfig();
+
+  private final EncoderConfig shooterFeedEncoderConfig = new EncoderConfig();
+  private final SparkFlexConfig shooterFeedConfig = new SparkFlexConfig();
+
+  private final EncoderConfig shooterIndexerEncoderConfig = new EncoderConfig();
+  private final SparkFlexConfig shooterIndexerConfig = new SparkFlexConfig();
+
+  private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
+  private final ClosedLoopConfig shooterTurretPIDFConfig = new ClosedLoopConfig();
+  private final FeedForwardConfig shooterTurretFFConfig = new FeedForwardConfig();
+  private final SparkFlexConfig shooterTurretConfig = new SparkFlexConfig();
 
   public Shooter() {}
 
