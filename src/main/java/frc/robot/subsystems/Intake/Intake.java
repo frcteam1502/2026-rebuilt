@@ -6,14 +6,22 @@ package frc.robot.subsystems.Intake;
 
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel;
+import com.revrobotics.spark.config.SparkFlexConfig;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
-  private final SparkFlex intakeMotor = new SparkFlex(3, SparkLowLevel.MotorType.kBrushless);
-  
-  public Intake() {}
+  private final SparkFlex intakeMotor = IntakeCfg.INTAKE_MOTOR;
+  private final SparkFlexConfig intakeMotorConfig = new SparkFlexConfig();
+  private final Solenoid hopperSolenoid = IntakeCfg.INTAKE_SOLENOID;
+
+  public Intake() {
+    intakeMotorConfig.inverted(IntakeCfg.INTAKE_MOTOR_REVERSED);
+    intakeMotorConfig.idleMode(IntakeCfg.INTAKE_MOTOR_IDLE_MODE);
+    intakeMotorConfig.smartCurrentLimit(IntakeCfg.INTAKE_MOTOR_CURRENT_LIMIT);
+  }
 
   @Override
   public void periodic() {
@@ -30,5 +38,13 @@ public class Intake extends SubsystemBase {
 
   public void setIntakeOff(){
     intakeMotor.set(0);
+  }
+
+  public void setHopperOut(){
+    hopperSolenoid.set(true);
+  }
+
+   public void setHopperIn(){
+    hopperSolenoid.set(false);
   }
 }
