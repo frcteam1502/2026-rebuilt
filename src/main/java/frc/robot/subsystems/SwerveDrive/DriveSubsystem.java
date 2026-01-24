@@ -87,20 +87,18 @@ public class DriveSubsystem extends SubsystemBase{
 
   private int limelightFiducialID = -1;
 
-  Command reefPath = null;
-  Command coralStationPath = null;
-
+  
   //Create a SysIdRoutine object for characterizing the drive
-  private final SysIdRoutine sysIdRoutine = 
+  private final SysIdRoutine sysIdLinear = 
   new SysIdRoutine(
     //Create a new SysID Congig with default ramp rate (0.1 V/s), step (7V), and time out values
     new SysIdRoutine.Config(), 
     new SysIdRoutine.Mechanism(
       voltage -> {
-        frontLeft.setSysIDVoltage(voltage);
-        frontRight.setSysIDVoltage(voltage);
-        backLeft.setSysIDVoltage(voltage);
-        backRight.setSysIDVoltage(voltage);},
+        frontLeft.setSysIDVoltage(voltage, 0);
+        frontRight.setSysIDVoltage(voltage, 0);
+        backLeft.setSysIDVoltage(voltage, 0);
+        backRight.setSysIDVoltage(voltage, 0);},
       // Tell SysId how to record a frame of data for each motor on the mechanism being
       // characterized.
       log -> {
@@ -128,13 +126,59 @@ public class DriveSubsystem extends SubsystemBase{
       // Tell SysId to make generated commands require this subsystem, suffix test state in
       // WPILog with this subsystem's name ("drive")
       this));
-  
-  public Command sysIdQuasistatic(SysIdRoutine.Direction direction){
-    return sysIdRoutine.quasistatic(direction);
+  //Create a SysIdRoutine object for characterizing the drive
+  private final SysIdRoutine sysIdAngular = 
+  new SysIdRoutine(
+    //Create a new SysID Congig with default ramp rate (0.1 V/s), step (7V), and time out values
+    new SysIdRoutine.Config(), 
+    new SysIdRoutine.Mechanism(
+      voltage -> {
+        frontLeft.setSysIDVoltage((voltage), -(Math.PI/4));
+        frontRight.setSysIDVoltage(voltage, (Math.PI/4));
+        backLeft.setSysIDVoltage(voltage, (Math.PI/4));
+        backRight.setSysIDVoltage(voltage, -(Math.PI/4));},
+      // Tell SysId how to record a frame of data for each motor on the mechanism being
+      // characterized.
+      log -> {
+        //Log a frame for the frontLeft Motor
+        log.motor("drive-frontLeft")
+          .voltage(frontLeft.getDriveMotorVoltage())
+          .linearPosition(frontLeft.getLinearPositionMeters())
+          .linearVelocity(frontLeft.getModuleVelocityMetersPerSec());
+        //Log a frame for the frontRight Motor
+        log.motor("drive-frontRight")
+          .voltage(frontRight.getDriveMotorVoltage())
+          .linearPosition(frontRight.getLinearPositionMeters())
+          .linearVelocity(frontRight.getModuleVelocityMetersPerSec());
+        //Log a frame for the backLeft Motor
+        log.motor("drive-backLeft")
+          .voltage(backLeft.getDriveMotorVoltage())
+          .linearPosition(backLeft.getLinearPositionMeters())
+          .linearVelocity(backLeft.getModuleVelocityMetersPerSec());
+        //Log a frame for the backRight Motor
+        log.motor("drive-backRight")
+          .voltage(backRight.getDriveMotorVoltage())
+          .linearPosition(backRight.getLinearPositionMeters())
+          .linearVelocity(backRight.getModuleVelocityMetersPerSec());
+      },
+      // Tell SysId to make generated commands require this subsystem, suffix test state in
+      // WPILog with this subsystem's name ("drive")
+      this));
+
+  public Command sysIdLinearQuasistatic(SysIdRoutine.Direction direction){
+    return sysIdLinear.quasistatic(direction);
   }
 
-  public Command sysIdDynamic(SysIdRoutine.Direction direction){
-    return sysIdRoutine.dynamic(direction);
+  public Command sysIdLinearDynamic(SysIdRoutine.Direction direction){
+    return sysIdLinear.dynamic(direction);
+  }
+
+  public Command sysIdAngularQuasistatic(SysIdRoutine.Direction direction){
+    return sysIdAngular.quasistatic(direction);
+  }
+
+  public Command sysIdAngularDynamic(SysIdRoutine.Direction direction){
+    return sysIdAngular.dynamic(direction);
   }
 
   public DriveSubsystem() {

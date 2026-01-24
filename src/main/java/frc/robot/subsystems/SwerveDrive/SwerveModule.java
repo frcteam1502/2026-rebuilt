@@ -189,12 +189,12 @@ public class SwerveModule{
     return commandedAngle;
   }
 
-  public void setSysIDVoltage(Voltage volts){
+  public void setSysIDVoltage(Voltage volts, double turnTarget){
     //Set drive motor open-loop voltage
     driveMotor.setVoltage(volts.magnitude());
     
     // Calculate the turning motor output from the turning PID controller.  For SysID, all motors should be facing "forward"
-    final double turnOutput = turningPIDController.calculate(getAbsPositionZeroed(), 0);
+    final double turnOutput = turningPIDController.calculate(getAbsPositionZeroed(), turnTarget);
     turningMotor.setVoltage(turnOutput);
   }
 

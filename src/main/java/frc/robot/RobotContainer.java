@@ -75,10 +75,15 @@ public class RobotContainer {
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
 
     //SysID stuff - comment out on competition build!
-    Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));
-    Driver.Controller.a().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kReverse));
-    Driver.Controller.b().whileTrue(driveSubsystem.sysIdDynamic(Direction.kForward));
-    Driver.Controller.x().whileTrue(driveSubsystem.sysIdDynamic(Direction.kReverse));
+    Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
+    Driver.Controller.a().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kReverse));
+    Driver.Controller.b().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kForward));
+    Driver.Controller.x().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kReverse));
+
+    /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdAngularQuasistatic(Direction.kForward));
+    Driver.Controller.a().whileTrue(driveSubsystem.sysIdAngularQuasistatic(Direction.kReverse));
+    Driver.Controller.b().whileTrue(driveSubsystem.sysIdAngularDynamic(Direction.kForward));
+    Driver.Controller.x().whileTrue(driveSubsystem.sysIdAngularDynamic(Direction.kReverse));*/
 
     /* sample code
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
