@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.ResetGyro;
@@ -33,7 +32,6 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
-  public final Intake intake = new Intake();
 
   private final SendableChooser<Command> autoChooser; 
 
@@ -76,11 +74,6 @@ public class RobotContainer {
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
 
-    Driver.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeIn)).whileFalse(new InstantCommand(intake::setIntakeOff));
-    Driver.Controller.rightTrigger().whileTrue(new InstantCommand(intake::setIntakeOut)).whileFalse(new InstantCommand(intake::setIntakeOff));
-
-
-    
     //SysID stuff - comment out on competition build!
     /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));
     Driver.Controller.a().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kReverse));
