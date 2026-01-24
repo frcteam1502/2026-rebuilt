@@ -81,7 +81,10 @@ public class Shooter extends SubsystemBase {
   //Turret motor - WPI position control
   private final SparkFlexConfig shooterTurretConfig = new SparkFlexConfig();
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
-  
+
+  private double shooterSetSpeed = 0.0;
+  private double turretSetAngle = 0.0;
+  private double hoodSetAngle = 0.0;
 
   public Shooter() {
     configShooterMotors();
@@ -94,7 +97,9 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  
+    updateHoodAngleSetPoint();
+    updateShooterSetPoint();
+    updateTurretAngleSetPoint();
   }
   private void configShooterMotors() {
     //Config the encoders
@@ -255,6 +260,44 @@ private void configTurretMotor() {
   }
   public void getTurretVel(){
     turretEncoder.getVelocity();
+  }
+  
+  public double getTurretAbsPositionZeroed() {
+    //CANcoders in Phoenix return rotations 0 to 1
+    var angle = turretAbsEncoder.getAbsolutePosition();
+    return angle.getValueAsDouble()*2.0*Math.PI;
+  }
+
+  public double getHoodAbsPositionZeroed() {
+    //CANcoders in Phoenix return rotations 0 to 1
+    var angle = hoodAbsEncoder.getAbsolutePosition();
+    return angle.getValueAsDouble()*2.0*Math.PI;
+  }
+
+  public void setShooterSpeed(double speed){
+    shooterSetSpeed = speed;
+  }
+
+  public void setTurretAngle(double angle){
+    turretSetAngle = angle;
+  }
+
+  public void setHoodAngle(double angle){
+    hoodSetAngle = angle;
+  }
+
+  public void updateShooterSetPoint(){
+    shooterPIDController.setSetpoint(shooterSetSpeed, SparkFlex.ControlType.kVelocity);
+  }
+
+  public void updateHoodAngleSetPoint(){
+    var hoodCommand = hoodPIDController.calculate(getHoodAbsPositionZeroed(), hoodSetAngle);
+    hoodMotor.setVoltage(hoodCommand);
+  }
+
+  public void updateTurretAngleSetPoint(){
+    var turretCommand = turretPIDController.calculate(getTurretAbsPositionZeroed(), turretSetAngle);
+    turretMotor.setVoltage(turretCommand);
   }
   
 }
