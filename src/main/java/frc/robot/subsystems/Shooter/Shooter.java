@@ -214,4 +214,48 @@ private void configTurretMotor() {
     //Write to the SparkFlex
     feedMotor.configure(shooterFeedConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
+
+  public void getShooterLeadPos(){
+    shooterLeadEncoder.getPosition();
+  }
+   public void getShooterLeadVel(){
+    shooterLeadEncoder.getVelocity();
+  }
+
+  public void getShooterFollowPos(){
+    shooterFollowerEncoder.getPosition();
+  }
+  public void getShooterFollowVel(){
+    shooterFollowerEncoder.getVelocity();
+  }
+  
+
+  public void getIndexPos(){
+    indexerEncoder.getPosition();
+  }
+   public void getIndexVel(){
+    indexerEncoder.getVelocity();
+  }
+  public void setIndexSpeed(double speed){
+    indexerMotor.set(speed);
+  }
+
+  public void getFeedPos(){
+    feedEncoder.getPosition();
+  }
+  public void getFeedVel(){
+    feedEncoder.getVelocity();
+  }
+  public void setFeedSpeed(double speed){
+    feedMotor.set(speed);
+  }
+
+  public void getTurretPos(){
+    turretEncoder.getPosition();
+  }
+  public void getTurretVel(){
+    turretEncoder.getVelocity();
+  }
+  
 }
+
