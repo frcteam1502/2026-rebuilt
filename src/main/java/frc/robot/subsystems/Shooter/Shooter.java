@@ -16,6 +16,7 @@ import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.EncoderConfig;
 import com.revrobotics.spark.config.FeedForwardConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
@@ -66,8 +67,8 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterFollowerEncoderConfig = new EncoderConfig();
 
   //Hood motor config - WPI position control 
-  private final SparkFlexConfig shooterHoodConfig = new SparkFlexConfig();
-  private final FeedForwardConfig shooterHoodFFConfig = new FeedForwardConfig();
+  private final SparkMaxConfig shooterHoodConfig = new SparkMaxConfig();
+  private final EncoderConfig shooterHoodEncoderConfig = new EncoderConfig();
   
   //Feed motor - open loop
   private final EncoderConfig shooterFeedEncoderConfig = new EncoderConfig();
@@ -79,7 +80,7 @@ public class Shooter extends SubsystemBase {
 
   //Turret motor - WPI position control
   private final SparkFlexConfig shooterTurretConfig = new SparkFlexConfig();
-  private final FeedForwardConfig shooterTurretFFConfig = new FeedForwardConfig();
+  private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   
 
   public Shooter() {
@@ -145,15 +146,16 @@ public class Shooter extends SubsystemBase {
 
   //Hood Motor COnfig
   private void configHoodMotor() {
-    //Config SparkFlex
-    shooterHoodConfig.inverted(ShooterCfg.SHOOTER_HOOD_INVERTED);
-    shooterHoodConfig.idleMode(ShooterCfg.SHOOTER_HOOD_IDLE_MODE);
-    shooterHoodConfig.smartCurrentLimit(ShooterCfg.SHOOTER_HOOD_CURRENT_LIMIT);
+    //Config the encoders
+    shooterHoodEncoderConfig.positionConversionFactor(ShooterCfg.HOOD_ENC_POS_CONFIG);
+    shooterHoodEncoderConfig.velocityConversionFactor(ShooterCfg.HOOD_ENC_VEL_CONFIG);
 
-    //Config FF values
-    shooterHoodFFConfig.kV(ShooterCfg.SHOOTER_HOOD_KV);
-    shooterHoodFFConfig.kA(ShooterCfg.SHOOTER_HOOD_KA);
-    shooterHoodFFConfig.kS(ShooterCfg.SHOOTER_HOOD_KS);
+    //Config SparkFlex
+    shooterHoodConfig.inverted(ShooterCfg.HOOD_INVERTED);
+    shooterHoodConfig.idleMode(ShooterCfg.HOOD_IDLE_MODE);
+    shooterHoodConfig.smartCurrentLimit(ShooterCfg.HOOD_CURRENT_LIMIT);
+
+    shooterHoodConfig.apply(shooterHoodEncoderConfig);
 
     //Write to the SparkFlex
     hoodMotor.configure(shooterHoodConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -161,15 +163,17 @@ public class Shooter extends SubsystemBase {
 
   //Turret motor config
 private void configTurretMotor() {
-    //Config SparkFlex
-    shooterTurretConfig.inverted(ShooterCfg.SHOOTER_TURRET_INVERTED);
-    shooterTurretConfig.idleMode(ShooterCfg.SHOOTER_TURRET_IDLE_MODE);
-    shooterTurretConfig.smartCurrentLimit(ShooterCfg.SHOOTER_TURRET_CURRENT_LIMIT);
+ //Config the encoders
+    shooterTurretEncoderConfig.positionConversionFactor(ShooterCfg.TURRET_ENC_POS_CONFIG);
+    shooterTurretEncoderConfig.velocityConversionFactor(ShooterCfg.TURRET_ENC_VEL_CONFIG);
 
-    //Config FF values
-    shooterTurretFFConfig.kV(ShooterCfg.SHOOTER_TURRET_KV);
-    shooterTurretFFConfig.kA(ShooterCfg.SHOOTER_TURRET_KA);
-    shooterTurretFFConfig.kS(ShooterCfg.SHOOTER_TURRET_KS);
+
+    //Config SparkFlex
+    shooterTurretConfig.inverted(ShooterCfg.TURRET_INVERTED);
+    shooterTurretConfig.idleMode(ShooterCfg.TURRET_IDLE_MODE);
+    shooterTurretConfig.smartCurrentLimit(ShooterCfg.TURRET_CURRENT_LIMIT);
+
+    shooterTurretConfig.apply(shooterTurretEncoderConfig);
 
     //Write to the SparkFlex
     turretMotor.configure(shooterTurretConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -187,6 +191,8 @@ private void configTurretMotor() {
     shooterIndexerConfig.idleMode(ShooterCfg.INDEXER_IDLE_MODE);
     shooterIndexerConfig.smartCurrentLimit(ShooterCfg.INDEXER_CURRENT_LIMIT);
 
+    shooterIndexerConfig.apply(shooterIndexerEncoderConfig);
+
     //Write to the SparkFlex
     indexerMotor.configure(shooterIndexerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
@@ -202,6 +208,8 @@ private void configTurretMotor() {
     shooterFeedConfig.inverted(ShooterCfg.FEED_INVERTED);
     shooterFeedConfig.idleMode(ShooterCfg.FEED_IDLE_MODE);
     shooterFeedConfig.smartCurrentLimit(ShooterCfg.FEED_CURRENT_LIMIT);
+
+    shooterFeedConfig.apply(shooterFeedEncoderConfig);
 
     //Write to the SparkFlex
     feedMotor.configure(shooterFeedConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);

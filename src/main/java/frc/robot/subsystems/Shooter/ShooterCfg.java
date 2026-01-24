@@ -64,21 +64,23 @@ public class ShooterCfg {
     public static final IdleMode INDEXER_IDLE_MODE = IdleMode.kCoast;
     public static final int INDEXER_CURRENT_LIMIT = 40;
    
-    public static final boolean SHOOTER_HOOD_INVERTED = false;
-    public static final IdleMode SHOOTER_HOOD_IDLE_MODE = IdleMode.kCoast;
-    public static final int SHOOTER_HOOD_CURRENT_LIMIT = 40;
-    public static final double SHOOTER_HOOD_ENC_POS_CONFIG = 1;
-    public static final double SHOOTER_HOOD_ENC_VEL_CONFIG = 1;
-    public static final double SHOOTER_HOOD_KV = 0;
-    public static final double SHOOTER_HOOD_KS = 0;
-    public static final double SHOOTER_HOOD_KA = 0;
+    public static final boolean HOOD_INVERTED = false;
+    public static final IdleMode HOOD_IDLE_MODE = IdleMode.kCoast;
+    public static final int HOOD_CURRENT_LIMIT = 40;
+    public static final double HOOD_ENC_POS_CONFIG = 1;
+    public static final double HOOD_ENC_VEL_CONFIG = 1;
+    public static final double HOOD_KV = 0;
+    public static final double HOOD_KS = 0;
+    public static final double HOOD_KA = 0;
     
-    public static final boolean SHOOTER_TURRET_INVERTED = false;
-    public static final IdleMode SHOOTER_TURRET_IDLE_MODE = IdleMode.kCoast;
-    public static final int SHOOTER_TURRET_CURRENT_LIMIT = 40;
-    public static final double SHOOTER_TURRET_KV = 0;
-    public static final double SHOOTER_TURRET_KA = 0;
-    public static final double SHOOTER_TURRET_KS = 0;
+    public static final boolean TURRET_INVERTED = false;
+    public static final IdleMode TURRET_IDLE_MODE = IdleMode.kCoast;
+    public static final int TURRET_CURRENT_LIMIT = 40;
+    public static final double TURRET_KV = 0;
+    public static final double TURRET_KA = 0;
+    public static final double TURRET_KS = 0;
+    public static final double TURRET_ENC_POS_CONFIG = 1;
+    public static final double TURRET_ENC_VEL_CONFIG = 1;
     
 
     
