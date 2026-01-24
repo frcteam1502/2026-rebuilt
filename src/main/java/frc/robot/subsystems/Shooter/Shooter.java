@@ -32,12 +32,16 @@ public class Shooter extends SubsystemBase {
 
   //RelativeEncoder for all motors
   RelativeEncoder shooterLeadEncoder;
-  //TODO - Create RelativeEncoder for all motors
+  RelativeEncoder shooterFollowerEncoder;
+  RelativeEncoder hoodEncoder;
+  RelativeEncoder feedEncoder;
+  RelativeEncoder turretEncoder;
+  RelativeEncoder indexerEncoder;
 
   //CANCoder objects for turret and hood encoders
   private final CANcoder turretAbsEncoder = ShooterCfg.TURRET_ABS_ENCODER;
-  //TODO - Create CANcoder for hood absolute encoder
-
+  private final CANcoder hoodAbsEncoder = ShooterCfg.HOOD_ABS_ENCODER;
+  
   //REV PIDF control objects
   SparkClosedLoopController shooterPIDController;
 
@@ -45,8 +49,11 @@ public class Shooter extends SubsystemBase {
   private final PIDController turretPIDController = new PIDController(ShooterCfg.TURRET_P_GAIN,
                                                                       ShooterCfg.TURRET_I_GAIN,
                                                                       ShooterCfg.TURRET_D_GAIN);
+  
+  private final PIDController hoodPIDController = new PIDController(ShooterCfg.HOOD_P_GAIN,
+                                                                      ShooterCfg.HOOD_I_GAIN,
+                                                                      ShooterCfg.HOOD_D_GAIN);  
 
-  //TODO - Creat WPI PID for hood
 
   //Shooter lead motor config - REV closed loop speed control
   private final SparkFlexConfig shooterLeadConfig = new SparkFlexConfig();
@@ -130,5 +137,66 @@ public class Shooter extends SubsystemBase {
 
     //Write to the SparkFlex
     followerShooterMotor.configure(shooterFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+  }
+
+  //Hood Motor COnfig
+  private void configHoodMotor() {
+    //Config the encoders
+    shooterLeadEncoder = leadShooterMotor.getEncoder();
+    shooterLeadEncoderConfig.positionConversionFactor(ShooterCfg.SHOOTER_ENC_POS_CONFIG);
+    shooterLeadEncoderConfig.velocityConversionFactor(ShooterCfg.SHOOTER_ENC_VEL_CONFIG);
+
+    //Config PID values
+    shooterPIDController = leadShooterMotor.getClosedLoopController();
+    shooterLeadPIDFConfig.p(ShooterCfg.SHOOTER_P_GAIN);
+    shooterLeadPIDFConfig.i(ShooterCfg.SHOOTER_I_GAIN);
+    shooterLeadPIDFConfig.d(ShooterCfg.SHOOTER_D_GAIN);
+
+    //Config FF values
+    shooterLeadFFConfig.kV(ShooterCfg.SHOOTER_KV);
+    shooterLeadFFConfig.kA(ShooterCfg.SHOOTER_KA);
+    shooterLeadFFConfig.kS(ShooterCfg.SHOOTER_KS);
+    
+    shooterLeadPIDFConfig.apply(shooterLeadFFConfig);
+
+    //Config SparkFlex
+    shooterLeadConfig.inverted(ShooterCfg.SHOOTER_LEAD_INVERTED);
+    shooterLeadConfig.idleMode(ShooterCfg.SHOOTER_IDLE_MODE);
+    shooterLeadConfig.smartCurrentLimit(ShooterCfg.SHOOTER_CURRENT_LIMIT);
+
+    //Apply Encoder and Closed Loop Configs to the SparkFlexCfg
+    shooterLeadConfig.apply(shooterLeadEncoderConfig);
+    shooterLeadConfig.apply(shooterLeadPIDFConfig);
+
+    //Write to the SparkFlex
+    leadShooterMotor.configure(shooterLeadConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+  
+  }
+
+  //Index Motor Config
+  private void configIndexMotor() {
+    //Config the encoders
+    indexerEncoder = feedMotor.getEncoder();
+    shooterIndexerEncoderConfig.positionConversionFactor(ShooterCfg.INDEXER_ENC_POS_CONFIG);
+    shooterIndexerEncoderConfig.velocityConversionFactor(ShooterCfg.INDEXER_ENC_VEL_CONFIG);
+
+    //Config SparkFlex
+    shooterIndexerConfig.inverted(ShooterCfg.INDEXER_INVERTED);
+    shooterIndexerConfig.idleMode(ShooterCfg.INDEXER_IDLE_MODE);
+    shooterIndexerConfig.smartCurrentLimit(ShooterCfg.INDEXER_CURRENT_LIMIT);
+  }
+  
+  //Feed Motor
+  private void configFeedMotor() {
+    //Config the encoders
+    feedEncoder = feedMotor.getEncoder();
+    shooterFeedEncoderConfig.positionConversionFactor(ShooterCfg.FEED_ENC_POS_CONFIG);
+    shooterFeedEncoderConfig.velocityConversionFactor(ShooterCfg.FEED_ENC_VEL_CONFIG);
+
+    //Config SparkFlex
+    shooterFeedConfig.inverted(ShooterCfg.FEED_INVERTED);
+    shooterFeedConfig.idleMode(ShooterCfg.FEED_IDLE_MODE);
+    shooterFeedConfig.smartCurrentLimit(ShooterCfg.FEED_CURRENT_LIMIT);
   }
 }
