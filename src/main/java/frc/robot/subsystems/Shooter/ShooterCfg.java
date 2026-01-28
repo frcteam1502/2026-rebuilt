@@ -86,6 +86,10 @@ public class ShooterCfg {
     public static final double TURRET_ENC_POS_CONFIG = 1;
     public static final double TURRET_ENC_VEL_CONFIG = 1;
     
+    public static final double SPEED_TOLERENCE = 100;
+    public static final double FEED_SPEED = 1;
+    public static final double INDEX_SPEED = 1;
+    
 
     
 }

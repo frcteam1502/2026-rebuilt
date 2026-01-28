@@ -86,6 +86,16 @@ public class Shooter extends SubsystemBase {
   private double turretSetAngle = 0.0;
   private double hoodSetAngle = 0.0;
 
+  private enum ShooterState{
+    OFF,
+    WAIT,
+    READY,
+    SHOOTING;
+  }
+
+  private ShooterState shooterState = ShooterState.OFF;
+   
+
   public Shooter() {
     configShooterMotors();
     configFeedMotor();
@@ -100,6 +110,7 @@ public class Shooter extends SubsystemBase {
     updateHoodAngleSetPoint();
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
+    updateShooterState();
   }
   private void configShooterMotors() {
     //Config the encoders
@@ -220,46 +231,46 @@ private void configTurretMotor() {
     feedMotor.configure(shooterFeedConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  public void getShooterLeadPos(){
-    shooterLeadEncoder.getPosition();
+  public double getShooterLeadPos(){
+    return shooterLeadEncoder.getPosition();
   }
-   public void getShooterLeadVel(){
-    shooterLeadEncoder.getVelocity();
+   public double getShooterLeadVel(){
+    return shooterLeadEncoder.getVelocity();
   }
 
-  public void getShooterFollowPos(){
-    shooterFollowerEncoder.getPosition();
+  public double getShooterFollowPos(){
+    return shooterFollowerEncoder.getPosition();
   }
-  public void getShooterFollowVel(){
-    shooterFollowerEncoder.getVelocity();
+  public double getShooterFollowVel(){
+    return shooterFollowerEncoder.getVelocity();
   }
   
 
-  public void getIndexPos(){
-    indexerEncoder.getPosition();
+  public double getIndexPos(){
+    return indexerEncoder.getPosition();
   }
-   public void getIndexVel(){
-    indexerEncoder.getVelocity();
+   public double getIndexVel(){
+    return indexerEncoder.getVelocity();
   }
   public void setIndexSpeed(double speed){
     indexerMotor.set(speed);
   }
 
-  public void getFeedPos(){
-    feedEncoder.getPosition();
+  public double getFeedPos(){
+    return feedEncoder.getPosition();
   }
-  public void getFeedVel(){
-    feedEncoder.getVelocity();
+  public double getFeedVel(){
+    return feedEncoder.getVelocity();
   }
   public void setFeedSpeed(double speed){
     feedMotor.set(speed);
   }
 
-  public void getTurretPos(){
-    turretEncoder.getPosition();
+  public double getTurretPos(){
+    return turretEncoder.getPosition();
   }
-  public void getTurretVel(){
-    turretEncoder.getVelocity();
+  public double getTurretVel(){
+    return turretEncoder.getVelocity();
   }
   
   public double getTurretAbsPositionZeroed() {
@@ -299,6 +310,55 @@ private void configTurretMotor() {
     var turretCommand = turretPIDController.calculate(getTurretAbsPositionZeroed(), turretSetAngle);
     turretMotor.setVoltage(turretCommand);
   }
-  
+  private void updateShooterState(){
+    switch(shooterState){
+      case OFF:
+        //DO NOTHING
+        break;
+      case WAIT:
+        shooterSetSpeed = lookupShooterSpeed();
+        if((getShooterLeadVel()>=(shooterSetSpeed-ShooterCfg.SPEED_TOLERENCE))&&
+          ((getShooterLeadVel()<=(shooterSetSpeed+ShooterCfg.SPEED_TOLERENCE)))){
+            shooterState = ShooterState.READY;
+        }else{
+          //DO NOTHING
+        }
+        break;
+      case READY:
+        shooterSetSpeed = lookupShooterSpeed();
+        if((getShooterLeadVel()<=(shooterSetSpeed-ShooterCfg.SPEED_TOLERENCE))||
+          ((getShooterLeadVel()>=(shooterSetSpeed+ShooterCfg.SPEED_TOLERENCE)))){
+            shooterState = ShooterState.WAIT;
+        }else{
+          //DO NOTHING
+        }
+        break;
+      case SHOOTING:
+        shooterSetSpeed = lookupShooterSpeed();
+        //DO NOTHING
+      break;
+    } 
+  }
+  private void setShooterWaitCycleOn(){
+    shooterState = ShooterState.WAIT;
+    setIndexSpeed(0);
+    setFeedSpeed(0);
+    shooterSetSpeed = lookupShooterSpeed();
+  }
+  private void setShooterOn(){
+    shooterState = ShooterState.SHOOTING;
+    setIndexSpeed(ShooterCfg.INDEX_SPEED);
+    setFeedSpeed(ShooterCfg.FEED_SPEED);
+  }
+  private void setShooterOff(){
+    shooterState = ShooterState.OFF;
+    shooterSetSpeed = 0;
+    setIndexSpeed(0);
+    setFeedSpeed(0);
+  }
+  private double lookupShooterSpeed(){
+    //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
+    return 0;
+  }
 }
 
