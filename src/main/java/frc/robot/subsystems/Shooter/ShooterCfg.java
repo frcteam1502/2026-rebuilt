@@ -1,6 +1,7 @@
 package frc.robot.subsystems.Shooter;
 
 import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
@@ -17,6 +18,7 @@ public class ShooterCfg {
 
     //CAN encoder IDs
     public static final int TURRET_ABS_ENCODER_ID = 13;
+    public static final int HOOD_ABS_ENCODER_ID = 14;
 
     public static final SparkFlex LEAD_SHOOTER_MOTOR = new SparkFlex(LEAD_SHOOTER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkFlex FOLLOWER_SHOOTER_MOTOR = new SparkFlex(FOLLOWER_SHOOTER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
@@ -25,7 +27,15 @@ public class ShooterCfg {
     public static final SparkFlex INDEXER_MOTOR = new SparkFlex(INDEXER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkMax TURRET_MOTOR = new SparkMax(TURRET_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final CANcoder TURRET_ABS_ENCODER = new CANcoder(TURRET_ABS_ENCODER_ID);
-    
+    public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
+
+    //CanCoder Configuration 
+    public static final double TURRET_ABS_ENCODER_OFFSET = -0.066;
+    public static final double HOOD_ABS_ENCODER_OFFSET = 0;
+    public static final SensorDirectionValue TURRET_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
+    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.CounterClockwise_Positive;
+    public static final double DISCONTINUITY_POINT = 1;
+
     //PIDF Gains
     public static final double SHOOTER_P_GAIN = 0;
     public static final double SHOOTER_I_GAIN = 0;
@@ -66,7 +76,6 @@ public class ShooterCfg {
     public static final int INDEXER_CURRENT_LIMIT = 40;
    
     //Hood
-    public static final CANcoder HOOD_ABS_ENCODER = null;
     public static final boolean HOOD_INVERTED = false;
     public static final IdleMode HOOD_IDLE_MODE = IdleMode.kCoast;
     public static final int HOOD_CURRENT_LIMIT = 40;
@@ -89,6 +98,7 @@ public class ShooterCfg {
     public static final double SPEED_TOLERENCE = 100;
     public static final double FEED_SPEED = 1;
     public static final double INDEX_SPEED = 1;
+    public static final double TURRET_TOLERANCE = 0;
     
 
     
