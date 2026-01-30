@@ -36,12 +36,6 @@ public class SwerveModule{
                                                             SwerveModuleCfg.MODULE_TURN_PID_CONTROLLER_P, 
                                                             SwerveModuleCfg.MODULE_TURN_PID_CONTROLLER_I, 
                                                             SwerveModuleCfg.MODULE_TURN_PID_CONTROLLER_D);
-
-  private final SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(
-                                                            SwerveModuleCfg.DRIVE_MOTOR_KS,
-                                                            SwerveModuleCfg.DRIVE_MOTOR_KV,
-                                                            SwerveModuleCfg.DRIVE_MOTOR_KA);
-  
   
   private double commandedSpeed;
   private double commandedAngle;
@@ -66,9 +60,9 @@ public class SwerveModule{
   
     //Setup drive motor feedforward  
     FeedForwardConfig driveFFConfig = new FeedForwardConfig();
-    driveFFConfig.kV(2.0286);
-    driveFFConfig.kA(0.24283);
-    driveFFConfig.kS(0.18994);
+    driveFFConfig.kV(ChassisMotorCfg.DRIVE_MOTOR_KV[moduleId]);
+    driveFFConfig.kA(ChassisMotorCfg.DRIVE_MOTOR_KA[moduleId]);
+    driveFFConfig.kS(ChassisMotorCfg.DRIVE_MOTOR_KS[moduleId]);
 
     drivePIDF_Config.apply(driveFFConfig);
 
@@ -195,12 +189,12 @@ public class SwerveModule{
     return commandedAngle;
   }
 
-  public void setSysIDVoltage(Voltage volts){
+  public void setSysIDVoltage(Voltage volts, double turnTarget){
     //Set drive motor open-loop voltage
     driveMotor.setVoltage(volts.magnitude());
     
     // Calculate the turning motor output from the turning PID controller.  For SysID, all motors should be facing "forward"
-    final double turnOutput = turningPIDController.calculate(getAbsPositionZeroed(), 0);
+    final double turnOutput = turningPIDController.calculate(getAbsPositionZeroed(), turnTarget);
     turningMotor.setVoltage(turnOutput);
   }
 
