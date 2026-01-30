@@ -19,8 +19,8 @@ public class PhotonCameraCfg{
 	public static final double LEFT_APRILTAG_CAM_ZPOS_METERS = 0.207;//"Up" from center, in meters
 	
 	public static final double LEFT_APRILTAG_CAM_ROLL_DEG	= 0;
-	public static final double LEFT_APRILTAG_CAM_PITCH_DEG	= 0;
-	public static final double LEFT_APRILTAG_CAM_YAW_DEG	= 0;
+	public static final double LEFT_APRILTAG_CAM_PITCH_DEG	= 15;
+	public static final double LEFT_APRILTAG_CAM_YAW_DEG	= 115;
 	
 	public static final Transform3d LEFT_APRILTAG_CAM_TRANSFORM = new Transform3d(
 					new Translation3d(LEFT_APRILTAG_CAM_XPOS_METERS,
@@ -37,8 +37,8 @@ public class PhotonCameraCfg{
 	public static final double RIGHT_APRILTAG_CAM_ZPOS_METERS = 0.207;//"Up" from center, in meters
 	
 	public static final double RIGHT_APRILTAG_CAM_ROLL_DEG	= 0;
-	public static final double RIGHT_APRILTAG_CAM_PITCH_DEG	= 0;
-	public static final double RIGHT_APRILTAG_CAM_YAW_DEG	= 0;
+	public static final double RIGHT_APRILTAG_CAM_PITCH_DEG	= 15;
+	public static final double RIGHT_APRILTAG_CAM_YAW_DEG	= -115;
 
 	public static final Transform3d RIGHT_APRILTAG_CAM_TRANSFORM = new Transform3d(
 					new Translation3d(RIGHT_APRILTAG_CAM_XPOS_METERS,
