@@ -41,9 +41,9 @@ public class ShooterCfg {
     public static final double SHOOTER_I_GAIN = 0;
     public static final double SHOOTER_D_GAIN = 0;
 
-    public static final double TURRET_P_GAIN = 0;
+    public static final double TURRET_P_GAIN = 10;
     public static final double TURRET_I_GAIN = 0;
-    public static final double TURRET_D_GAIN = 0;
+    public static final double TURRET_D_GAIN = 0.001;
 
     public static final double HOOD_P_GAIN = 0;
     public static final double HOOD_I_GAIN = 0;
@@ -86,7 +86,7 @@ public class ShooterCfg {
     public static final double HOOD_KA = 0;
     
     //Turret
-    public static final boolean TURRET_INVERTED = false;
+    public static final boolean TURRET_INVERTED = true;
     public static final IdleMode TURRET_IDLE_MODE = IdleMode.kCoast;
     public static final int TURRET_CURRENT_LIMIT = 40;
     public static final double TURRET_KV = 0;

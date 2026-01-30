@@ -123,7 +123,7 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
     updateHoodAngleSetPoint();
     updateShooterSetPoint();
-    //updateTurretAngleSetPoint();
+    updateTurretAngleSetPoint();
     updateShooterState();
     updateTurretState();
     updateDashboard();
@@ -302,10 +302,26 @@ private void configTurretMotor() {
     return turretEncoder.getVelocity();
   }
   
+  public void setTurretForward(){
+    turretMotor.set(1);
+  }
+  public void setTurretReverse(){
+    turretMotor.set(-1);
+  }
+  public void setTurretOff(){
+    turretMotor.set(0);
+  }
+  
   public double getTurretAbsPositionZeroed() {
     //CANcoders in Phoenix return rotations 0 to 1
     var angle = turretAbsEncoder.getAbsolutePosition();
     return angle.getValueAsDouble()*2.0*Math.PI;
+  }
+
+  public double getTurretAbsVelocity() {
+    //CANcoders in Phoenix return rotations 0 to 1
+    var velocity = turretAbsEncoder.getVelocity();
+    return velocity.getValueAsDouble()*2.0*Math.PI;
   }
 
   public double getHoodAbsPositionZeroed() {
@@ -328,6 +344,8 @@ private void configTurretMotor() {
 
   private void updateDashboard(){
     SmartDashboard.putNumber("Turret Angle", getTurretAbsPositionZeroed());
+    SmartDashboard.putNumber("Turret Velocity", getTurretAbsVelocity());
+    SmartDashboard.putNumber("Turret Motor Command", turretMotor.getAppliedOutput());
   }
 
   public void updateShooterSetPoint(){
