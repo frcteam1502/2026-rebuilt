@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems.Shooter;
 
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
@@ -20,7 +21,11 @@ import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -69,6 +74,7 @@ public class Shooter extends SubsystemBase {
   //Hood motor config - WPI position control 
   private final SparkMaxConfig shooterHoodConfig = new SparkMaxConfig();
   private final EncoderConfig shooterHoodEncoderConfig = new EncoderConfig();
+  private final CANcoderConfiguration hoodCANcoderConfig = new CANcoderConfiguration();
   
   //Feed motor - open loop
   private final EncoderConfig shooterFeedEncoderConfig = new EncoderConfig();
@@ -79,11 +85,12 @@ public class Shooter extends SubsystemBase {
   private final SparkFlexConfig shooterIndexerConfig = new SparkFlexConfig();
 
   //Turret motor - WPI position control
-  private final SparkFlexConfig shooterTurretConfig = new SparkFlexConfig();
+  private final SparkMaxConfig shooterTurretConfig = new SparkMaxConfig();
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
+  private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
   private double shooterSetSpeed = 0.0;
-  private double turretSetAngle = 0.0;
+  private double turretSetAngle = Math.toRadians(180.0);
   private double hoodSetAngle = 0.0;
 
   private enum ShooterState{
@@ -93,8 +100,15 @@ public class Shooter extends SubsystemBase {
     SHOOTING;
   }
 
+  private enum TurretState{
+    INACTIVE,
+    MOVE_TO_TARGET,
+    ON_TARGET;
+  }
+
   private ShooterState shooterState = ShooterState.OFF;
    
+  private TurretState turretState = TurretState.INACTIVE;
 
   public Shooter() {
     configShooterMotors();
@@ -111,6 +125,8 @@ public class Shooter extends SubsystemBase {
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
     updateShooterState();
+    updateTurretState();
+    updateDashboard();
   }
   private void configShooterMotors() {
     //Config the encoders
@@ -175,6 +191,13 @@ public class Shooter extends SubsystemBase {
 
     //Write to the SparkFlex
     hoodMotor.configure(shooterHoodConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    //Set absolute encoder magnet configuration
+    hoodCANcoderConfig.MagnetSensor.MagnetOffset = -ShooterCfg.HOOD_ABS_ENCODER_OFFSET;
+    hoodCANcoderConfig.MagnetSensor.SensorDirection = ShooterCfg.HOOD_CAN_CODER_DIRECTION;
+    hoodCANcoderConfig.MagnetSensor.AbsoluteSensorDiscontinuityPoint = ShooterCfg.DISCONTINUITY_POINT;
+    hoodAbsEncoder.getConfigurator().apply(hoodCANcoderConfig);
+
   }
 
   //Turret motor config
@@ -193,6 +216,12 @@ private void configTurretMotor() {
 
     //Write to the SparkFlex
     turretMotor.configure(shooterTurretConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+    //Set absolute encoder magnet configuration
+    turretCANcoderConfig.MagnetSensor.MagnetOffset = -ShooterCfg.TURRET_ABS_ENCODER_OFFSET;
+    turretCANcoderConfig.MagnetSensor.SensorDirection = ShooterCfg.TURRET_CAN_CODER_DIRECTION;
+    turretCANcoderConfig.MagnetSensor.AbsoluteSensorDiscontinuityPoint = ShooterCfg.DISCONTINUITY_POINT;
+    turretAbsEncoder.getConfigurator().apply(turretCANcoderConfig);
   }
 
   //Index Motor Config
@@ -273,10 +302,26 @@ private void configTurretMotor() {
     return turretEncoder.getVelocity();
   }
   
+  public void setTurretForward(){
+    turretMotor.set(1);
+  }
+  public void setTurretReverse(){
+    turretMotor.set(-1);
+  }
+  public void setTurretOff(){
+    turretMotor.set(0);
+  }
+  
   public double getTurretAbsPositionZeroed() {
     //CANcoders in Phoenix return rotations 0 to 1
     var angle = turretAbsEncoder.getAbsolutePosition();
     return angle.getValueAsDouble()*2.0*Math.PI;
+  }
+
+  public double getTurretAbsVelocity() {
+    //CANcoders in Phoenix return rotations 0 to 1
+    var velocity = turretAbsEncoder.getVelocity();
+    return velocity.getValueAsDouble()*2.0*Math.PI;
   }
 
   public double getHoodAbsPositionZeroed() {
@@ -295,6 +340,12 @@ private void configTurretMotor() {
 
   public void setHoodAngle(double angle){
     hoodSetAngle = angle;
+  }
+
+  private void updateDashboard(){
+    SmartDashboard.putNumber("Turret Angle", getTurretAbsPositionZeroed());
+    SmartDashboard.putNumber("Turret Velocity", getTurretAbsVelocity());
+    SmartDashboard.putNumber("Turret Motor Command", turretMotor.getAppliedOutput());
   }
 
   public void updateShooterSetPoint(){
@@ -339,6 +390,7 @@ private void configTurretMotor() {
       break;
     } 
   }
+
   private void setShooterWaitCycleOn(){
     shooterState = ShooterState.WAIT;
     setIndexSpeed(0);
@@ -356,6 +408,38 @@ private void configTurretMotor() {
     setIndexSpeed(0);
     setFeedSpeed(0);
   }
+
+  private void updateTurretState(){
+    switch(turretState){
+      case INACTIVE:
+        //Do nothing here
+        break;
+      case MOVE_TO_TARGET:
+        if((getTurretAbsPositionZeroed()>=(turretSetAngle-ShooterCfg.TURRET_TOLERANCE)&&
+            getTurretAbsPositionZeroed()<=(turretSetAngle+ShooterCfg.TURRET_TOLERANCE))){
+          turretState = TurretState.ON_TARGET;
+        } else{
+          //Do nothing
+        } 
+        break;
+      case ON_TARGET:
+        if((getTurretAbsPositionZeroed()<=(turretSetAngle-ShooterCfg.TURRET_TOLERANCE)||
+            getTurretAbsPositionZeroed()>=(turretSetAngle+ShooterCfg.TURRET_TOLERANCE))){
+          turretState = TurretState.MOVE_TO_TARGET;
+        } else{
+          //Do nothing
+        } 
+    }
+  }
+
+  private void setAutoAimOn(){
+    turretState = TurretState.MOVE_TO_TARGET;
+  }
+
+  private void setAutoAimOff(){
+    turretState = TurretState.INACTIVE;
+  }
+
   private double lookupShooterSpeed(){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
     return 0;

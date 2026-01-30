@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.PowerManagement.MockDetector;
+import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
@@ -33,7 +34,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
-  public final Intake intake = new Intake();
+  public final Shooter shooter = new Shooter();
 
   private final SendableChooser<Command> autoChooser; 
 
@@ -76,8 +77,8 @@ public class RobotContainer {
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
 
-    Driver.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeIn)).whileFalse(new InstantCommand(intake::setIntakeOff));
-    Driver.Controller.rightTrigger().whileTrue(new InstantCommand(intake::setIntakeOut)).whileFalse(new InstantCommand(intake::setIntakeOff));
+    //Driver.Controller.leftTrigger().whileTrue(new InstantCommand(shooter::setTurretForward)).whileFalse(new InstantCommand(shooter::setTurretOff));
+    //Driver.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setTurretReverse)).whileFalse(new InstantCommand(shooter::setTurretOff));
 
 
     
