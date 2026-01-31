@@ -58,7 +58,15 @@ public class PhotonVisionCamera {
     private final PhotonPoseEstimator photonEstimator;
     private Matrix<N3, N1> curStdDevs;
     private double lastTimestamp;
+    private int numNewTargets = 0;
+    private double resultAmbiguity = -1.0;
+    private double resultDistance = -1.0;
     private Optional<EstimatedRobotPose> estimatedGlobalPose;
+
+    private boolean isAnyTargetFound = false;
+    private boolean isAnyValidTargetFound = false;
+    private boolean isNewResult = false;
+
 
 
     public PhotonVisionCamera(String cameraName, Transform3d robotToCam) {
@@ -86,12 +94,25 @@ public class PhotonVisionCamera {
     public Optional<EstimatedRobotPose> processCamera(Pose2d referencePose){
         //Clear Estimated Pose in case no valid pose is found
         estimatedGlobalPose = Optional.empty();
+        isAnyValidTargetFound = false;
+        isAnyTargetFound = false;
+        isNewResult = false;
+        numNewTargets = 0;
+        resultAmbiguity = -2.0;
+        resultDistance = -1.0;
+
         //Read all results from the camera.
-        PhotonPipelineResult pipelineResult = camera.getLatestResult(); 
+        PhotonPipelineResult pipelineResult = camera.getLatestResult();
+
+        isAnyTargetFound = pipelineResult.hasTargets();
+
         //Pass in the reference pose for the robot
         photonEstimator.setReferencePose(referencePose);
         //Return if no new results were received
         if(pipelineResult.getTimestampSeconds() == lastTimestamp) return estimatedGlobalPose;
+
+        isNewResult = true;
+
         //Find the targets too inaccurate to be used. 
         LinkedList<PhotonTrackedTarget> toRemove = new LinkedList<PhotonTrackedTarget>();
         for(int i=0; i<pipelineResult.targets.size(); i++){
@@ -110,9 +131,10 @@ public class PhotonVisionCamera {
         //Return if the list of targets is non-existant or invalid
         if(!pipelineResult.hasTargets()) return estimatedGlobalPose;
 
+        isAnyValidTargetFound = true;
+
         var calculatedPose = photonEstimator.update(pipelineResult);
         
-        boolean useResult = false;
         if(calculatedPose.isPresent()){
             //Make sure the estimated pose is on the field
             if((calculatedPose.get().estimatedPose.getX() >= 0.0) && 
@@ -209,5 +231,17 @@ public class PhotonVisionCamera {
      */
     public Matrix<N3, N1> getEstimationStdDevs() {
         return curStdDevs;
+    }
+
+    public boolean doesCameraHaveAnyTargets(){
+        return isAnyTargetFound;
+    }
+
+    public boolean doesCameraHaveAnyValidTargets(){
+        return isAnyValidTargetFound;
+    }
+
+    public boolean doesCameraHaveNewTargets(){
+        return isNewResult;
     }
 }

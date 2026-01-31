@@ -82,6 +82,9 @@ public class DriveSubsystem extends SubsystemBase{
   private Pose2d estimatedPose = new Pose2d();
   private Pose2d targetPose = new Pose2d();
 
+  private boolean isLeftCameraPosePresent = false;
+  private boolean isRightCameraPosePresent = false;
+
   //Create a SysIdRoutine object for characterizing the drive
   private final SysIdRoutine sysIdLinear = 
   new SysIdRoutine(
@@ -282,7 +285,7 @@ public class DriveSubsystem extends SubsystemBase{
 
   private void updatePhotonVisionPose(){
     var leftPoseEstimate = leftPhotonCamera.processCamera(getEstimatedPose2d());
-    
+
     if(leftPoseEstimate.isPresent()){
       photonLeftPose = leftPoseEstimate.get().estimatedPose.toPose2d();
       var timestampLeft = leftPoseEstimate.get().timestampSeconds;
@@ -334,6 +337,15 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("TargetPose X", targetPose.getX());
     SmartDashboard.putNumber("TargetPose Y", targetPose.getY());
     SmartDashboard.putNumber("TargetPose Rotation", targetPose.getRotation().getDegrees());
+
+    SmartDashboard.putBoolean("Left Camera Pose Present", isLeftCameraPosePresent);
+    SmartDashboard.putBoolean("Right Camera Pose Present", isRightCameraPosePresent);
+    SmartDashboard.putBoolean("Left Any Found", leftPhotonCamera.doesCameraHaveAnyTargets());
+    SmartDashboard.putBoolean("Left Any New", leftPhotonCamera.doesCameraHaveNewTargets());
+    SmartDashboard.putBoolean("Left Any Valid", leftPhotonCamera.doesCameraHaveAnyValidTargets());
+    SmartDashboard.putBoolean("Right Any Found", rightPhotonCamera.doesCameraHaveAnyTargets());
+    SmartDashboard.putBoolean("Right Any New", rightPhotonCamera.doesCameraHaveNewTargets());
+    SmartDashboard.putBoolean("Right Any Valid", rightPhotonCamera.doesCameraHaveAnyValidTargets());
   }
 
     private void registerLoggerObjects(){

@@ -49,7 +49,7 @@ public class PhotonCameraCfg{
 								   Math.toRadians(RIGHT_APRILTAG_CAM_YAW_DEG)));
 
 	//Minimum abiguity to trust the pose (i.e. anything greater than this number discard)
-	public static final double MINIMUM_TARGET_AMBIGUITY = 0.25; 
+	public static final double MINIMUM_TARGET_AMBIGUITY = 1; 
 
 	// The standard deviations of our vision estimated poses, which affect correction rate
     // (Fake values. Experiment and determine estimation noise on an actual robot.)
@@ -58,7 +58,7 @@ public class PhotonCameraCfg{
 	
 	public static final AprilTagFields FIELD_VERSION = AprilTagFields.kDefaultField;
 	public static final AprilTagFieldLayout FIELD_TAG_LAYOUT = AprilTagFieldLayout.loadField(FIELD_VERSION);
-	public static final double DISTANCE_THRESHOLD_M = 5;
+	public static final double DISTANCE_THRESHOLD_M = 20;
 
 
 }
