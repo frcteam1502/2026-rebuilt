@@ -7,6 +7,8 @@ import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.math.geometry.Translation2d;
+
 public class ShooterCfg {
     //Shooter Motor Config
     public static final int LEAD_SHOOTER_MOTOR_ID = 1;
@@ -100,6 +102,12 @@ public class ShooterCfg {
     public static final double INDEX_SPEED = 1;
     public static final double TURRET_TOLERANCE = 0;
     
-
+    //Target Translations
+    public static final Translation2d RED_HUB_TARGET_POSE = new Translation2d(11.91,4.03);
+    public static final Translation2d BLUE_HUB_TARGET_POSE = new Translation2d(4.54,4.03);
+    public static final Translation2d RED_LEFT = new Translation2d(12.5,5.65);
+    public static final Translation2d RED_RIGHT = new Translation2d(12.5,2.5);
+    public static final Translation2d BLUE_LEFT = new Translation2d(4,5.65);
+    public static final Translation2d BLUE_RIGHT = new Translation2d(4,2.5);
     
 }

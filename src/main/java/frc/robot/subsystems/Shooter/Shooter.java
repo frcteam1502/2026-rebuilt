@@ -20,10 +20,14 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
+import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 
@@ -92,6 +96,7 @@ public class Shooter extends SubsystemBase {
   private double shooterSetSpeed = 0.0;
   private double turretSetAngle = Math.toRadians(180.0);
   private double hoodSetAngle = 0.0;
+  private Translation2d targetTranslation = new Translation2d(0,0);
 
   private enum ShooterState{
     OFF,
@@ -109,9 +114,12 @@ public class Shooter extends SubsystemBase {
 
   private ShooterState shooterState = ShooterState.WAIT;
    
-  private TurretState turretState = TurretState.INACTIVE;
+  private TurretState turretState = TurretState.MOVE_TO_TARGET;
 
-  public Shooter() {
+  private DriveSubsystem drive;
+
+  public Shooter(DriveSubsystem drive) {
+    this.drive = drive;
     configShooterMotors();
     configFeedMotor();
     configHoodMotor();
@@ -436,16 +444,18 @@ private void configTurretMotor() {
         //Do nothing here
         break;
       case MOVE_TO_TARGET:
-        if((getTurretAbsPositionZeroed()>=(turretSetAngle-ShooterCfg.TURRET_TOLERANCE)&&
-            getTurretAbsPositionZeroed()<=(turretSetAngle+ShooterCfg.TURRET_TOLERANCE))){
+        targetTranslation = calculateTargetPosition();
+        turretSetAngle = calculateTargetAngle(targetTranslation);
+        if(turretPIDController.atSetpoint()){
           turretState = TurretState.ON_TARGET;
         } else{
           //Do nothing
         } 
         break;
       case ON_TARGET:
-        if((getTurretAbsPositionZeroed()<=(turretSetAngle-ShooterCfg.TURRET_TOLERANCE)||
-            getTurretAbsPositionZeroed()>=(turretSetAngle+ShooterCfg.TURRET_TOLERANCE))){
+        targetTranslation = calculateTargetPosition();
+        turretSetAngle = calculateTargetAngle(targetTranslation);
+        if(!turretPIDController.atSetpoint()){
           turretState = TurretState.MOVE_TO_TARGET;
         } else{
           //Do nothing
@@ -468,6 +478,40 @@ private void configTurretMotor() {
   private double lookupHoodAngle(){
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     return 0;
+  }
+
+  private double calculateTargetAngle(Translation2d targetPose){
+    return drive.getDistanceAngleToPoint(targetPose).getAngle().getRadians();
+  }
+
+  private double calculateTargetDistance(Translation2d targetPose){
+    return drive.getDistanceAngleToPoint(targetPose).getX();
+  }
+
+  private Translation2d calculateTargetPosition(){
+    var alliance = DriverStation.getAlliance();
+    var robotPose = drive.getEstimatedPose2d();
+    if (alliance.isPresent()){
+      if(alliance.get() == DriverStation.Alliance.Red){
+        if(robotPose.getX() > 12.5){
+          return ShooterCfg.RED_HUB_TARGET_POSE;
+        }else if(robotPose.getY() >= 4.03){
+          return ShooterCfg.RED_LEFT;
+        }else{
+          return ShooterCfg.RED_RIGHT;
+        }
+      }else{
+        if(robotPose.getX() < 4.54){
+          return ShooterCfg.BLUE_HUB_TARGET_POSE;
+        }else if(robotPose.getY() >= 4.03){
+          return ShooterCfg.BLUE_LEFT;
+        }else{
+          return ShooterCfg.BLUE_RIGHT;
+        }
+      }
+    }else{
+      return ShooterCfg.BLUE_LEFT;
+    }
   }
 }
 
