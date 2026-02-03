@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import frc.robot.subsystems.Climber.Climber;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
@@ -35,6 +36,8 @@ public class RobotContainer {
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Shooter shooter = new Shooter();
+  public final Intake intake = new Intake();
+  public final Climber climber = new Climber();
 
   private final SendableChooser<Command> autoChooser; 
 
@@ -53,9 +56,22 @@ public class RobotContainer {
 
     //Register named commands. Must register all commands we want Pathplanner to execute.
     NamedCommands.registerCommand("Stop Drive Motors", new StopDriveMotors(driveSubsystem));
+   
+    NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
+    NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
+
+    NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
+    NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
+    NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeIn));
+    NamedCommands.registerCommand("intakeOut", new InstantCommand(intake::setIntakeOut));
+    //TODO set shooter Named Command
+
+
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
     //e.g new PathPlannerAuto("MiddleAutoAMPFinal");
+
+    new PathPlannerAuto("LeftCenterGrab");
     
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
