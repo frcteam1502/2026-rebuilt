@@ -97,7 +97,8 @@ public class Shooter extends SubsystemBase {
     OFF,
     WAIT,
     READY,
-    SHOOTING;
+    SHOOTING,
+    RECOVERY;
   }
 
   private enum TurretState{
@@ -106,7 +107,7 @@ public class Shooter extends SubsystemBase {
     ON_TARGET;
   }
 
-  private ShooterState shooterState = ShooterState.OFF;
+  private ShooterState shooterState = ShooterState.WAIT;
    
   private TurretState turretState = TurretState.INACTIVE;
 
@@ -368,8 +369,9 @@ private void configTurretMotor() {
         break;
       case WAIT:
         shooterSetSpeed = lookupShooterSpeed();
-        if((getShooterLeadVel()>=(shooterSetSpeed-ShooterCfg.SPEED_TOLERENCE))&&
-          ((getShooterLeadVel()<=(shooterSetSpeed+ShooterCfg.SPEED_TOLERENCE)))){
+        hoodSetAngle = lookupHoodAngle();
+        if((shooterPIDController.isAtSetpoint())&&
+           (hoodPIDController.atSetpoint())){
             shooterState = ShooterState.READY;
         }else{
           //DO NOTHING
@@ -377,8 +379,9 @@ private void configTurretMotor() {
         break;
       case READY:
         shooterSetSpeed = lookupShooterSpeed();
-        if((getShooterLeadVel()<=(shooterSetSpeed-ShooterCfg.SPEED_TOLERENCE))||
-          ((getShooterLeadVel()>=(shooterSetSpeed+ShooterCfg.SPEED_TOLERENCE)))){
+        hoodSetAngle = lookupHoodAngle();
+        if((!shooterPIDController.isAtSetpoint())||
+           (!hoodPIDController.atSetpoint())){
             shooterState = ShooterState.WAIT;
         }else{
           //DO NOTHING
@@ -386,16 +389,34 @@ private void configTurretMotor() {
         break;
       case SHOOTING:
         shooterSetSpeed = lookupShooterSpeed();
+        hoodSetAngle = lookupHoodAngle();
+        if((!shooterPIDController.isAtSetpoint())||
+           (!hoodPIDController.atSetpoint())){
+            shooterState = ShooterState.RECOVERY;
+        }else{
+          //DO NOTHING
+        }
         //DO NOTHING
+      break;
+      case RECOVERY:
+        shooterSetSpeed = lookupShooterSpeed();
+        hoodSetAngle = lookupHoodAngle();
+        if((shooterPIDController.isAtSetpoint())&&
+           (hoodPIDController.atSetpoint())){
+            shooterState = ShooterState.SHOOTING;
+        }else{
+          //DO NOTHING
+        }
       break;
     } 
   }
 
-  private void setShooterWaitCycleOn(){
+  private void setShooterToWait(){
     shooterState = ShooterState.WAIT;
     setIndexSpeed(0);
     setFeedSpeed(0);
     shooterSetSpeed = lookupShooterSpeed();
+    hoodSetAngle = lookupHoodAngle();
   }
   private void setShooterOn(){
     shooterState = ShooterState.SHOOTING;
@@ -442,6 +463,10 @@ private void configTurretMotor() {
 
   private double lookupShooterSpeed(){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
+    return 0;
+  }
+  private double lookupHoodAngle(){
+    //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     return 0;
   }
 }
