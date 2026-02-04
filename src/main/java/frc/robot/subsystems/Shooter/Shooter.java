@@ -355,6 +355,13 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Turret Angle", getTurretAbsPositionZeroed());
     SmartDashboard.putNumber("Turret Velocity", getTurretAbsVelocity());
     SmartDashboard.putNumber("Turret Motor Command", turretMotor.getAppliedOutput());
+    SmartDashboard.putString("Turret State", turretState.toString());
+    SmartDashboard.putNumber("Turret Set Angle", turretSetAngle);
+    SmartDashboard.putBoolean("Is Turret At Set Point", turretPIDController.atSetpoint());
+    SmartDashboard.putNumber("Target Translation X", targetTranslation.getX());
+    SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
+    SmartDashboard.putNumber("Angle to Target", calculateTargetAngle(targetTranslation));
+    SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
   }
 
   public void updateShooterSetPoint(){
@@ -481,7 +488,15 @@ private void configTurretMotor() {
   }
 
   private double calculateTargetAngle(Translation2d targetPose){
-    return drive.getDistanceAngleToPoint(targetPose).getAngle().getRadians();
+    var angle = drive.getDistanceAngleToPoint(targetPose).getY();
+    if (angle<ShooterCfg.TURRET_MIN_ANGLE){
+      angle = ShooterCfg.TURRET_MIN_ANGLE;
+    }else if (angle>ShooterCfg.TURRET_MAX_ANGLE){
+      angle = ShooterCfg.TURRET_MAX_ANGLE;
+    }else{
+
+    }
+    return angle;
   }
 
   private double calculateTargetDistance(Translation2d targetPose){

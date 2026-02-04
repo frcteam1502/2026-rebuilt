@@ -109,5 +109,8 @@ public class ShooterCfg {
     public static final Translation2d RED_RIGHT = new Translation2d(12.5,2.5);
     public static final Translation2d BLUE_LEFT = new Translation2d(4,5.65);
     public static final Translation2d BLUE_RIGHT = new Translation2d(4,2.5);
+
+    public static final double TURRET_MAX_ANGLE = (Math.PI/2)*3;
+    public static final double TURRET_MIN_ANGLE = (Math.PI/2);
     
 }
