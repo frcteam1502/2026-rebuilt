@@ -38,6 +38,7 @@ public class RobotContainer {
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
 
+
   private final SendableChooser<Command> autoChooser; 
 
   /* sample
@@ -60,9 +61,11 @@ public class RobotContainer {
     NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
 
     NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
+    NamedCommands.registerCommand("retractIntake", new InstantCommand(intake::setHopperIn));
     NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
     NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeIn));
     NamedCommands.registerCommand("intakeOut", new InstantCommand(intake::setIntakeOut));
+
     //TODO set shooter Named Command
 
 
@@ -71,6 +74,8 @@ public class RobotContainer {
     //e.g new PathPlannerAuto("MiddleAutoAMPFinal");
 
     new PathPlannerAuto("LeftCenterGrab");
+    new PathPlannerAuto("RightCenterGrab");
+    new PathPlannerAuto("CenterStart");
     
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
