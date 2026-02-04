@@ -383,7 +383,7 @@ private void configTurretMotor() {
         //DO NOTHING
         break;
       case WAIT:
-        shooterSetSpeed = lookupShooterSpeed();
+        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle();
         if((shooterPIDController.isAtSetpoint())&&
            (hoodPIDController.atSetpoint())){
@@ -393,7 +393,7 @@ private void configTurretMotor() {
         }
         break;
       case READY:
-        shooterSetSpeed = lookupShooterSpeed();
+        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle();
         if((!shooterPIDController.isAtSetpoint())||
            (!hoodPIDController.atSetpoint())){
@@ -403,7 +403,7 @@ private void configTurretMotor() {
         }
         break;
       case SHOOTING:
-        shooterSetSpeed = lookupShooterSpeed();
+        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle();
         if((!shooterPIDController.isAtSetpoint())||
            (!hoodPIDController.atSetpoint())){
@@ -414,7 +414,7 @@ private void configTurretMotor() {
         //DO NOTHING
       break;
       case RECOVERY:
-        shooterSetSpeed = lookupShooterSpeed();
+        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle();
         if((shooterPIDController.isAtSetpoint())&&
            (hoodPIDController.atSetpoint())){
@@ -430,7 +430,7 @@ private void configTurretMotor() {
     shooterState = ShooterState.WAIT;
     setIndexSpeed(0);
     setFeedSpeed(0);
-    shooterSetSpeed = lookupShooterSpeed();
+    shooterSetSpeed = lookupShooterSpeed(targetTranslation);
     hoodSetAngle = lookupHoodAngle();
   }
   private void setShooterOn(){
@@ -478,9 +478,10 @@ private void configTurretMotor() {
     turretState = TurretState.INACTIVE;
   }
 
-  private double lookupShooterSpeed(){
+  private double lookupShooterSpeed(Translation2d targetPose){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
-    return 0;
+    var distance = calculateTargetDistance(targetPose); 
+    return ShooterLookup.LOOKUP[(int)distance][0];
   }
   private double lookupHoodAngle(){
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
