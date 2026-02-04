@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.9442820512820527,
-        "y": 5.721089743589744
+        "x": 3.5928786612914516,
+        "y": 3.5903600965363998
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.432641025641027,
-        "y": 4.849448717948718
+        "x": 3.4998530202715834,
+        "y": 2.9042959939674344
       },
       "isLocked": false,
-      "linkedName": "EndCenterGrab2"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.4675000000000014,
-        "y": 4.662923076923078
+        "x": 0.7814358974416722,
+        "y": 0.6628205128156504
       },
       "prevControl": {
-        "x": 1.9326282051282067,
-        "y": 5.2327051282051285
+        "x": 1.0488846153903901,
+        "y": 1.0000384615335998
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "EndCenterStart1"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.42706130231653
+    "rotation": -179.2461516673059
   },
   "reversed": false,
-  "folder": "CenterGrabLeft",
+  "folder": "CenterStart",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 135.0
+    "velocity": 0.0,
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }
