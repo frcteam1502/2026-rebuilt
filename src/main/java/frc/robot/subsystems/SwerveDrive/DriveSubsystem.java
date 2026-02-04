@@ -4,6 +4,9 @@ import frc.robot.Logger;
 import frc.robot.subsystems.Vision.PhotonCameraCfg;
 import frc.robot.subsystems.Vision.PhotonVisionCamera;
 
+import org.ejml.simple.SimpleMatrix;
+import org.photonvision.EstimatedRobotPose;
+
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.RobotConfig;
@@ -84,6 +87,9 @@ public class DriveSubsystem extends SubsystemBase{
 
   private boolean isLeftCameraPosePresent = false;
   private boolean isRightCameraPosePresent = false;
+
+  //Debug
+  private double angleRadians = 0;
 
   //Create a SysIdRoutine object for characterizing the drive
   private final SysIdRoutine sysIdLinear = 
@@ -346,6 +352,8 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putBoolean("Right Any Found", rightPhotonCamera.doesCameraHaveAnyTargets());
     SmartDashboard.putBoolean("Right Any New", rightPhotonCamera.doesCameraHaveNewTargets());
     SmartDashboard.putBoolean("Right Any Valid", rightPhotonCamera.doesCameraHaveAnyValidTargets());
+
+    SmartDashboard.putNumber("Target Angle", angleRadians);
   }
 
     private void registerLoggerObjects(){
@@ -455,8 +463,24 @@ public class DriveSubsystem extends SubsystemBase{
   public Translation2d getDistanceAngleToPoint(Translation2d targetPoint){
     //Returns Translation2d with distance and angle to target point
     Translation2d currentPosition = new Translation2d(getEstimatedPose2d().getX(), getEstimatedPose2d().getY());
+
+    double x1 = currentPosition.getX();
+    double y1 = currentPosition.getY();
+    double x2 = targetPoint.getX();
+    double y2 = targetPoint.getY();
+
+    double delta_y = y2 - y1;
+    double delta_x = x2 - x1;
+
+    angleRadians = Math.atan2(delta_y, delta_x);
+    
+    angleRadians = angleRadians - estimatedPose.getRotation().getRadians();
+
+    if(angleRadians<0){
+      angleRadians = (Math.PI*2) + angleRadians;
+    }
   
-    return new Translation2d(currentPosition.getDistance(targetPoint), currentPosition.getAngle().getRotations());
+    return new Translation2d(currentPosition.getDistance(targetPoint), angleRadians);
   }
 
   public void resetGyro(double angle) {

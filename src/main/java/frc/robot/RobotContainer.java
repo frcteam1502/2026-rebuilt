@@ -37,6 +37,7 @@ public class RobotContainer {
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
+  public final Shooter shooter = new Shooter(driveSubsystem);
 
   private final SendableChooser<Command> autoChooser; 
 
