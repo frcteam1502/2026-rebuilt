@@ -16,40 +16,56 @@
     },
     {
       "anchor": {
-        "x": 6.979269230769233,
-        "y": 0.6395641025641032
+        "x": 6.525769230769232,
+        "y": 0.5349102564102577
       },
       "prevControl": {
-        "x": 6.618794871794875,
-        "y": 0.5465384615384608
+        "x": 5.932730769230772,
+        "y": 0.4070000000000003
       },
       "nextControl": {
-        "x": 7.5768576880327405,
-        "y": 0.7937804786321081
+        "x": 7.1500133628144775,
+        "y": 0.6695511476357042
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.6071923076923085,
-        "y": 2.3605384615384617
+        "x": 7.653705128205129,
+        "y": 1.7209871794871798
       },
       "prevControl": {
-        "x": 7.6071923076923085,
-        "y": 3.3340626118067997
+        "x": 7.63263909426616,
+        "y": 1.183803314043475
+      },
+      "nextControl": {
+        "x": 7.676961538461539,
+        "y": 2.3140256410256415
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.653705128205129,
+        "y": 2.662871794871795
+      },
+      "prevControl": {
+        "x": 7.653705128205129,
+        "y": 3.6363959451401313
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndCenterGrab1"
+      "linkedName": "EndCenterGrab1Right"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 1.4455958549222772,
-      "maxWaypointRelativePos": 2.0,
+      "minWaypointRelativePos": 1.9,
+      "maxWaypointRelativePos": 3.0,
       "constraints": {
         "maxVelocity": 3.0,
         "maxAcceleration": 11.8,
@@ -75,7 +91,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "CenterGrabRight",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0
