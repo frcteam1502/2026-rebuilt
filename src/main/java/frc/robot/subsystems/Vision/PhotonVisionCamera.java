@@ -37,6 +37,8 @@ import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -58,9 +60,6 @@ public class PhotonVisionCamera {
     private final PhotonPoseEstimator photonEstimator;
     private Matrix<N3, N1> curStdDevs;
     private double lastTimestamp;
-    private int numNewTargets = 0;
-    private double resultAmbiguity = -1.0;
-    private double resultDistance = -1.0;
     private Optional<EstimatedRobotPose> estimatedGlobalPose;
 
     private boolean isAnyTargetFound = false;
@@ -97,20 +96,20 @@ public class PhotonVisionCamera {
         isAnyValidTargetFound = false;
         isAnyTargetFound = false;
         isNewResult = false;
-        numNewTargets = 0;
-        resultAmbiguity = -2.0;
-        resultDistance = -1.0;
 
         //Read all results from the camera.
         PhotonPipelineResult pipelineResult = camera.getLatestResult();
-
+        
+        //Log if any targets are present
         isAnyTargetFound = pipelineResult.hasTargets();
-
+        
         //Pass in the reference pose for the robot
         photonEstimator.setReferencePose(referencePose);
+        
         //Return if no new results were received
         if(pipelineResult.getTimestampSeconds() == lastTimestamp) return estimatedGlobalPose;
-
+        
+        //If we get here then the timestamps are new
         isNewResult = true;
 
         //Find the targets too inaccurate to be used. 
@@ -131,6 +130,7 @@ public class PhotonVisionCamera {
         //Return if the list of targets is non-existant or invalid
         if(!pipelineResult.hasTargets()) return estimatedGlobalPose;
 
+        //If we get here then at least one target was valid based on ambiguity and distance thresholds
         isAnyValidTargetFound = true;
 
         var calculatedPose = photonEstimator.update(pipelineResult);
@@ -148,6 +148,31 @@ public class PhotonVisionCamera {
                }
         };
         return estimatedGlobalPose;
+    }
+
+    public List<PhotonTrackedTarget> getPipelineTargets(){
+        //Returns a list of tracked targets from the last camera result
+        //Read a list of lists containing the results of all images processed since the last time this was called
+        List<PhotonPipelineResult> pipelineResults = camera.getAllUnreadResults();
+        List<PhotonTrackedTarget> pipelineTargets;
+
+        //Check to see if any camera results were read, if not return empty list
+        if(pipelineResults.isEmpty()) return pipelineTargets;
+
+        //At least one result was read, get the most recent result
+        var result = pipelineResults.get(pipelineResults.size()-1);
+        
+        if(result.hasTargets()){
+            //Last pipeline result has at least one target
+            for(var target:result.getTargets()){
+                //For each target, check if ambiguity is less than a threshold
+                if(target.getPoseAmbiguity() <= PhotonCameraCfg.MINIMUM_TARGET_AMBIGUITY){
+                    //Passed level of certainty so add it to the list
+                    pipelineTargets.add(target);
+                }
+            }
+        }
+        return pipelineTargets;
     }
     /**
      * The latest estimated robot pose on the field from vision data. This may be empty. This should
