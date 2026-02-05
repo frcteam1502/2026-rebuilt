@@ -481,7 +481,8 @@ private void configTurretMotor() {
   private double lookupShooterSpeed(Translation2d targetPose){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
     var distance = calculateTargetDistance(targetPose); 
-    return ShooterLookup.LOOKUP[(int)distance][0];
+    //return ShooterLookup.LOOKUP[(int)distance][0];
+    return 0; //CL - Was causing array out of bounds need to debug
   }
   private double lookupHoodAngle(){
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
