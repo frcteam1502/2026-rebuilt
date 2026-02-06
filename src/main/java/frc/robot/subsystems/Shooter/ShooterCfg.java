@@ -25,7 +25,7 @@ public class ShooterCfg {
     public static final SparkFlex LEAD_SHOOTER_MOTOR = new SparkFlex(LEAD_SHOOTER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkFlex FOLLOWER_SHOOTER_MOTOR = new SparkFlex(FOLLOWER_SHOOTER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkMax HOOD_MOTOR = new SparkMax(HOOD_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
-    public static final SparkFlex FEED_MOTOR = new SparkFlex(FEED_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
+    public static final SparkMax FEED_MOTOR = new SparkMax(FEED_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkFlex INDEXER_MOTOR = new SparkFlex(INDEXER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkMax TURRET_MOTOR = new SparkMax(TURRET_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final CANcoder TURRET_ABS_ENCODER = new CANcoder(TURRET_ABS_ENCODER_ID);
@@ -103,14 +103,15 @@ public class ShooterCfg {
     public static final double TURRET_TOLERANCE = 0;
     
     //Target Translations
-    public static final Translation2d RED_HUB_TARGET_POSE = new Translation2d(11.91,4.03);
-    public static final Translation2d BLUE_HUB_TARGET_POSE = new Translation2d(4.54,4.03);
+    public static final Translation2d RED_HUB_TARGET_POSE = new Translation2d(11.91,4);
+    public static final Translation2d BLUE_HUB_TARGET_POSE = new Translation2d(4.54,4);
     public static final Translation2d RED_LEFT = new Translation2d(12.5,5.65);
     public static final Translation2d RED_RIGHT = new Translation2d(12.5,2.5);
     public static final Translation2d BLUE_LEFT = new Translation2d(4,5.65);
     public static final Translation2d BLUE_RIGHT = new Translation2d(4,2.5);
+    public static final Translation2d RED_TRENCHES = new Translation2d(11.9, 4);
+    public static final Translation2d BLUE_TRENCHES = new Translation2d(5.8, 4);
 
     public static final double TURRET_MAX_ANGLE = (Math.PI/2)*3;
-    public static final double TURRET_MIN_ANGLE = (Math.PI/2);
-    
+    public static final double TURRET_MIN_ANGLE = (Math.PI/2);   
 }

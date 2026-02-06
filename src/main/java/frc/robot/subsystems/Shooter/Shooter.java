@@ -36,7 +36,7 @@ public class Shooter extends SubsystemBase {
   private final SparkFlex leadShooterMotor = ShooterCfg.LEAD_SHOOTER_MOTOR;
   private final SparkFlex followerShooterMotor = ShooterCfg.FOLLOWER_SHOOTER_MOTOR;
   private final SparkMax hoodMotor = ShooterCfg.HOOD_MOTOR;
-  private final SparkFlex feedMotor = ShooterCfg.FEED_MOTOR;
+  private final SparkMax feedMotor = ShooterCfg.FEED_MOTOR;
   private final SparkFlex indexerMotor = ShooterCfg.INDEXER_MOTOR;
   private final SparkMax turretMotor = ShooterCfg.TURRET_MOTOR;
 
@@ -362,6 +362,8 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
     SmartDashboard.putNumber("Angle to Target", calculateTargetAngle(targetTranslation));
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
+    SmartDashboard.putNumber("Shooter Speed", lookupShooterSpeed(targetTranslation));
+    SmartDashboard.putNumber("Hood Angle", lookupHoodAngle(targetTranslation));
   }
 
   public void updateShooterSetPoint(){
@@ -384,7 +386,7 @@ private void configTurretMotor() {
         break;
       case WAIT:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle();
+        hoodSetAngle = lookupHoodAngle(targetTranslation);
         if((shooterPIDController.isAtSetpoint())&&
            (hoodPIDController.atSetpoint())){
             shooterState = ShooterState.READY;
@@ -394,7 +396,7 @@ private void configTurretMotor() {
         break;
       case READY:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle();
+        hoodSetAngle = lookupHoodAngle(targetTranslation);
         if((!shooterPIDController.isAtSetpoint())||
            (!hoodPIDController.atSetpoint())){
             shooterState = ShooterState.WAIT;
@@ -404,7 +406,7 @@ private void configTurretMotor() {
         break;
       case SHOOTING:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle();
+        hoodSetAngle = lookupHoodAngle(targetTranslation);
         if((!shooterPIDController.isAtSetpoint())||
            (!hoodPIDController.atSetpoint())){
             shooterState = ShooterState.RECOVERY;
@@ -415,7 +417,7 @@ private void configTurretMotor() {
       break;
       case RECOVERY:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle();
+        hoodSetAngle = lookupHoodAngle(targetTranslation);
         if((shooterPIDController.isAtSetpoint())&&
            (hoodPIDController.atSetpoint())){
             shooterState = ShooterState.SHOOTING;
@@ -431,7 +433,7 @@ private void configTurretMotor() {
     setIndexSpeed(0);
     setFeedSpeed(0);
     shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-    hoodSetAngle = lookupHoodAngle();
+    hoodSetAngle = lookupHoodAngle(targetTranslation);
   }
   private void setShooterOn(){
     shooterState = ShooterState.SHOOTING;
@@ -481,12 +483,22 @@ private void configTurretMotor() {
   private double lookupShooterSpeed(Translation2d targetPose){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
     var distance = calculateTargetDistance(targetPose); 
-    //return ShooterLookup.LOOKUP[(int)distance][0];
-    return 0; //CL - Was causing array out of bounds need to debug
+    return ShooterLookup.LOOKUP[(int)(2*distance)][0];
+    //CL - Was causing array out of bounds need to debug
   }
-  private double lookupHoodAngle(){
+  private double lookupHoodAngle(Translation2d targetPose){
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
-    return 0;
+    var distance = calculateTargetDistance(targetPose);
+    var robotPose = drive.getEstimatedPose2d();
+    if((robotPose.getX() > 11.3)&&
+      (robotPose.getX() < 12.5)){
+        return 10;
+      }else if((robotPose.getX() > 4)&&
+      (robotPose.getX() < 5.2)){
+        return 10;
+      }else{
+        return ShooterLookup.LOOKUP[(int)(2*distance)][1];
+      }
   }
 
   private double calculateTargetAngle(Translation2d targetPose){
@@ -510,7 +522,7 @@ private void configTurretMotor() {
     var robotPose = drive.getEstimatedPose2d();
     if (alliance.isPresent()){
       if(alliance.get() == DriverStation.Alliance.Red){
-        if(robotPose.getX() > 12.5){
+        if(robotPose.getX() >= 12.5){
           return ShooterCfg.RED_HUB_TARGET_POSE;
         }else if(robotPose.getY() >= 4.03){
           return ShooterCfg.RED_LEFT;
@@ -518,7 +530,7 @@ private void configTurretMotor() {
           return ShooterCfg.RED_RIGHT;
         }
       }else{
-        if(robotPose.getX() < 4.54){
+        if(robotPose.getX() <= 4.54){
           return ShooterCfg.BLUE_HUB_TARGET_POSE;
         }else if(robotPose.getY() >= 4.03){
           return ShooterCfg.BLUE_LEFT;
