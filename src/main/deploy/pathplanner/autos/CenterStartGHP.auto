@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterStart1"
+                  "pathName": "CenterStart1Hp"
                 }
               },
               {
@@ -19,18 +19,11 @@
                 "data": {
                   "name": "extendIntake"
                 }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
+              },
               {
-                "type": "path",
+                "type": "named",
                 "data": {
-                  "pathName": "CenterStart2"
+                  "name": "intakeOn"
                 }
               },
               {
@@ -43,9 +36,45 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 5.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shoot"
+          }
+        },
+        {
           "type": "path",
           "data": {
-            "pathName": "CenterStart3"
+            "pathName": "CenterStartGHP2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CenterStartGHP3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CenterStartGround2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CenterStartGround3"
           }
         },
         {

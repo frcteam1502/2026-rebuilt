@@ -5,7 +5,12 @@
   "pathFolders": [
     "CenterGrabLeft",
     "CenterGrabRight",
-    "CenterStart"
+    "CenterStartGHP",
+    "CenterStartGround",
+    "CenterStartHp",
+    "LeftCenterShoot",
+    "GetOutOfTheWay",
+    "RightCenterShoot"
   ],
   "autoFolders": [],
   "defaultMaxVel": 5.5,
@@ -33,6 +38,7 @@
   "bumperOffsetX": 0.0889,
   "bumperOffsetY": 0.0,
   "robotFeatures": [
-    "{\"name\":\"Rectangle\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.66,\"y\":0.0},\"size\":{\"width\":0.635,\"length\":0.229},\"borderRadius\":0.001,\"strokeWidth\":0.02,\"filled\":false}}"
+    "{\"name\":\"Intake\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.66,\"y\":0.0},\"size\":{\"width\":0.635,\"length\":0.229},\"borderRadius\":0.001,\"strokeWidth\":0.02,\"filled\":false}}",
+    "{\"name\":\"Climber\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.017,\"y\":0.372},\"size\":{\"width\":0.05,\"length\":0.2},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}"
   ]
 }

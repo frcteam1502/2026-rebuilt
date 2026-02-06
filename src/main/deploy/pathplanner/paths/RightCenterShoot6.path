@@ -3,48 +3,53 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.8163461538461552,
-        "y": 2.8140384615384617
+        "x": 7.653705128205129,
+        "y": 3.988487179487179
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.0638335272614468,
-        "y": 2.84939380059779
+        "x": 7.758358974358975,
+        "y": 3.116371794871794
       },
       "isLocked": false,
-      "linkedName": "EndCenterStart2"
+      "linkedName": "RightCenterShoot5"
     },
     {
       "anchor": {
-        "x": 1.578670703871353,
-        "y": 2.340492297014636
+        "x": 5.525743589743591,
+        "y": 0.7558461538461541
       },
       "prevControl": {
-        "x": 1.8276917047978227,
-        "y": 2.3625952628242093
+        "x": 7.517060897435899,
+        "y": 1.3052788461538465
       },
       "nextControl": {
-        "x": 1.3296497029448833,
-        "y": 2.3183893312050623
+        "x": 3.5344262820512835,
+        "y": 0.2064134615384624
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.0801141783249069,
-        "y": 2.8140384615384617
+        "x": 1.688435897435899,
+        "y": 1.7907564102564106
       },
       "prevControl": {
-        "x": 1.4173321270428552,
-        "y": 2.779153846153846
+        "x": 2.118679487179488,
+        "y": 0.7209615384615393
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndCenterStart3"
+      "linkedName": "EndRightCenterShoot6"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.217204301075274,
+      "rotationDegrees": 0.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -61,10 +66,10 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "CenterStart",
+  "folder": "RightCenterShoot",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -155.0
+    "rotation": 90.0
   },
   "useDefaultConstraints": true
 }

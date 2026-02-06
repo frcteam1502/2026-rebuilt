@@ -3,36 +3,36 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.862884615384617,
-        "y": 2.0349487179487173
+        "x": 3.5722051282051295,
+        "y": 4.476871794871795
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.676807692307694,
-        "y": 2.26751282051282
+        "x": 2.723346153846155,
+        "y": 4.930371794871794
       },
       "isLocked": false,
-      "linkedName": "EndCenterGrab2Right"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.0488846153846167,
-        "y": 2.8372948717948714
+        "x": 1.2349358974358986,
+        "y": 5.849000000000001
       },
       "prevControl": {
-        "x": 1.6186666666666683,
-        "y": 2.6745000000000005
+        "x": 1.8744871794871805,
+        "y": 5.453641025641025
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "CenterStartGround1End"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.2823834196891146,
+      "minWaypointRelativePos": 0.7659758203799697,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 3.0,
@@ -56,13 +56,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.7848246029919131
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterGrabRight",
+  "folder": "CenterStartGround",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -10.0
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

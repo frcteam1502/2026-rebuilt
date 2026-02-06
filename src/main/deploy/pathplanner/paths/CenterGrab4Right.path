@@ -25,7 +25,7 @@
       },
       "nextControl": {
         "x": 6.234463804727878,
-        "y": 0.6302864061537653
+        "y": 0.6302864061537654
       },
       "isLocked": false,
       "linkedName": null
@@ -53,7 +53,7 @@
       },
       "prevControl": {
         "x": 3.440813092912206,
-        "y": 0.7430350802377484
+        "y": 0.7430350802377486
       },
       "nextControl": {
         "x": 3.260584084136816,
@@ -64,16 +64,16 @@
     },
     {
       "anchor": {
-        "x": 2.979166666666668,
-        "y": 2.65124358974359
+        "x": 2.862884615384617,
+        "y": 2.0349487179487173
       },
       "prevControl": {
-        "x": 3.095448717948719,
-        "y": 1.7791282051282051
+        "x": 2.979166666666668,
+        "y": 1.1628333333333325
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "CenterGrab4Right"
+      "linkedName": "EndCenterGrab2Right"
     }
   ],
   "rotationTargets": [
@@ -95,7 +95,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -135.0
+    "rotation": -10.0
   },
   "reversed": false,
   "folder": "CenterGrabRight",

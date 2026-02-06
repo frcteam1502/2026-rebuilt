@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.9442820512820527,
-        "y": 5.721089743589744
+        "x": 2.979166666666668,
+        "y": 6.18621794871795
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2321555537553097,
-        "y": 6.670588206536876
+        "x": 3.048935897435899,
+        "y": 7.802538461538461
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab2"
     },
     {
       "anchor": {
-        "x": 4.990846153846155,
-        "y": 7.476948717948718
+        "x": 4.95596153846154,
+        "y": 7.383923076923077
       },
       "prevControl": {
-        "x": 4.192272146336926,
-        "y": 7.56212994541637
+        "x": 4.1573875309523105,
+        "y": 7.469104304390728
       },
       "nextControl": {
-        "x": 5.86296153846154,
-        "y": 7.383923076923077
+        "x": 5.8280769230769245,
+        "y": 7.290897435897436
       },
       "isLocked": false,
       "linkedName": null
@@ -79,15 +79,15 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.5,
-      "rotationDegrees": -169.29804040334182
+      "rotationDegrees": 0.0
     },
     {
       "waypointRelativePos": 1.0,
-      "rotationDegrees": 180.0
+      "rotationDegrees": 0.0
     },
     {
       "waypointRelativePos": 1.43082437275985,
-      "rotationDegrees": 179.1580634874739
+      "rotationDegrees": 0.0
     },
     {
       "waypointRelativePos": 1.9354838709677336,
@@ -127,7 +127,7 @@
   "folder": "CenterGrabLeft",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 135.0
+    "rotation": 40.0
   },
   "useDefaultConstraints": true
 }

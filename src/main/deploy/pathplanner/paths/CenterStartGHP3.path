@@ -1,0 +1,100 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.7814358974416722,
+        "y": 0.6628205128156504
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.7814358974416722,
+        "y": 0.6628205128156504
+      },
+      "isLocked": false,
+      "linkedName": "EndCenterStart1"
+    },
+    {
+      "anchor": {
+        "x": 2.0023974358974375,
+        "y": 3.0000897435897445
+      },
+      "prevControl": {
+        "x": 1.9558846153846177,
+        "y": 2.5698461538461537
+      },
+      "nextControl": {
+        "x": 2.05019596453861,
+        "y": 3.442226133520599
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.0023974358974375,
+        "y": 4.674551282051282
+      },
+      "prevControl": {
+        "x": 2.0837948717948738,
+        "y": 3.9070897435897436
+      },
+      "nextControl": {
+        "x": 1.859701751299121,
+        "y": 6.019967736835402
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.2349358974358986,
+        "y": 5.849000000000001
+      },
+      "prevControl": {
+        "x": 1.4675000000000014,
+        "y": 5.488525641025641
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "CenterStartGround1End"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 2.095854922279793,
+      "maxWaypointRelativePos": 3.0,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 11.8,
+        "maxAngularVelocity": 1060.0,
+        "maxAngularAcceleration": 2043.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 5.5,
+    "maxAcceleration": 11.8,
+    "maxAngularVelocity": 1060.0,
+    "maxAngularAcceleration": 2043.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "reversed": false,
+  "folder": "CenterStartGHP",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -179.24615166730592
+  },
+  "useDefaultConstraints": true
+}
