@@ -448,12 +448,14 @@ private void configTurretMotor() {
 
   private void setShooterToWait(){
     shooterState = ShooterState.WAIT;
+    setIndexerWaitCycleOff();
     setIndexSpeed(0);
     setFeedSpeed(0);
     shooterSetSpeed = lookupShooterSpeed(targetTranslation);
     hoodSetAngle = lookupHoodAngle(targetTranslation);
   }
   private void setShooterOn(){
+    setIndexerWaitCycleOn();
     shooterState = ShooterState.SHOOTING;
     setIndexSpeed(ShooterCfg.INDEX_SPEED);
     setFeedSpeed(ShooterCfg.FEED_SPEED);
