@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Logger;
+import frc.robot.subsystems.Climber.Climber;
 import au.grapplerobotics.CanBridge;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.PowerDistribution;
@@ -72,6 +73,7 @@ public class Robot extends TimedRobot {
     null, //"14",
     null, //"15",
 };
+  private Climber climber;
 
   public Robot(){
     CanBridge.runTCP();
@@ -160,6 +162,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    climber.setClimberOut();
   }
 
   /** This function is called periodically during operator control. */

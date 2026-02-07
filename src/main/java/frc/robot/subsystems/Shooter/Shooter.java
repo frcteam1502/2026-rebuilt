@@ -31,6 +31,7 @@ import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
+import frc.robot.Operator;
 import frc.robot.subsystems.Intake.Intake;
 
 public class Shooter extends SubsystemBase {
@@ -133,6 +134,12 @@ public class Shooter extends SubsystemBase {
 
   private Intake intake;
 
+  private Operator operator;
+
+  private boolean autoAimToggle = true;
+
+  private boolean autoHoodToggle = true;
+
   public Shooter(DriveSubsystem drive) {
     this.drive = drive;
     configShooterMotors();
@@ -148,8 +155,8 @@ public class Shooter extends SubsystemBase {
     updateHoodAngleSetPoint();
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
-    updateShooterState();
-    updateTurretState();
+    updateAutoAim();
+    updateAutoHood();
     updateIndexerState();
     updateDashboard();
   }
@@ -383,6 +390,7 @@ private void configTurretMotor() {
     SmartDashboard.putString("Indexer State", indexerState.toString());
     SmartDashboard.putNumber("Feed Speed", getFeedVel());
     SmartDashboard.putNumber("Indexer Speed", getIndexVel());
+    SmartDashboard.putBoolean("Auto Aim Toggle", autoAimToggle);
   }
 
   public void updateShooterSetPoint(){
@@ -624,6 +632,37 @@ private void configTurretMotor() {
       }
     }else{
       return false;
+    }
+  }
+  public void toggleAutoAim(){
+    if(autoAimToggle == false){
+      autoAimToggle = true;
+    }else{
+      autoAimToggle = false;
+    }
+  }
+  public void toggleHoodAim(){
+    if(autoHoodToggle == false){
+      autoHoodToggle = true;
+    }else{
+      autoHoodToggle = false;
+    }
+  }
+  private void updateAutoAim(){
+    if(autoAimToggle == true){
+      updateTurretState();
+    }else{
+      setTurretAngle(operator.getRightX());
+    }
+  }
+  private void updateAutoHood(){
+    if(autoHoodToggle == true){
+      updateShooterState();
+    }else{
+      setHoodAngle(operator.getLeftY());
+      if(operator.getRightTrigger()>0.2){
+        setShooterSpeed(lookupShooterSpeed(targetTranslation)); 
+      }
     }
   }
 }

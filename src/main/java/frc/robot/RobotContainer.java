@@ -72,7 +72,14 @@ public class RobotContainer {
 
     //TODO set shooter Named Command
 
-    Driver.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setIndexerWaitCycleOn)).whileFalse(new InstantCommand(shooter::setIndexerWaitCycleOff));
+    Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
+    Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
+    Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
+    Operator.Controller.leftTrigger().onTrue(new InstantCommand(intake::setIntakeOn));
+    Operator.Controller.leftBumper().onTrue(new InstantCommand(intake::setIntakeReverse));
+    Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).whileFalse(new InstantCommand(shooter::setShooterToWait));
+    Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
+
   //  NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
     
 

@@ -17,6 +17,8 @@ public class Intake extends SubsystemBase {
   private final SparkFlexConfig intakeMotorConfig = new SparkFlexConfig();
   private final Solenoid hopperSolenoid = IntakeCfg.INTAKE_SOLENOID;
 
+  private boolean hopperToggle = true;
+
   public Intake() {
     intakeMotorConfig.inverted(IntakeCfg.INTAKE_MOTOR_REVERSED);
     intakeMotorConfig.idleMode(IntakeCfg.INTAKE_MOTOR_IDLE_MODE);
@@ -49,5 +51,14 @@ public class Intake extends SubsystemBase {
   }
   public void setIntakeSpeed(double speed){
     intakeMotor.set(speed);
+  }
+  public void toggleHopper(){
+    if(hopperToggle == false){
+      setHopperIn();
+      hopperToggle = true;
+    }else{
+      setHopperOut();
+      hopperToggle = false;
+    }
   }
 }

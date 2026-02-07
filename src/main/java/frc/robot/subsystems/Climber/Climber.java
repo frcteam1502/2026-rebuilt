@@ -11,6 +11,8 @@ public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
   private final Solenoid climberSolenoid = ClimberCfg.CLIMBER_SOLENOID;
 
+  private boolean climberToggle = true;
+
   public Climber() {}
     
 
@@ -25,5 +27,15 @@ public class Climber extends SubsystemBase {
   }
   public void setClimberIn(){
     climberSolenoid.set(false);
+  }
+  
+  public void toggleClimber(){
+    if(climberToggle == false){
+      setClimberOut();
+      climberToggle = true;
+    }else{
+      setClimberIn();
+      climberToggle = false;
+    }
   }
 }
