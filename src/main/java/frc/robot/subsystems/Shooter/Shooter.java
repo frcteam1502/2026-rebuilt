@@ -43,6 +43,7 @@ public class Shooter extends SubsystemBase {
   private final SparkMax turretMotor = ShooterCfg.TURRET_MOTOR;
   
   private LaserCan feedLaser;
+  private LaserCan hopperLaser;
 
   //RelativeEncoder for all motors
   RelativeEncoder shooterLeadEncoder;
@@ -597,6 +598,18 @@ private void configTurretMotor() {
     LaserCan.Measurement measurement = feedLaser.getMeasurement();
     if (measurement != null && measurement.status == LaserCan.LASERCAN_STATUS_VALID_MEASUREMENT) {
       if (measurement.distance_mm < ShooterCfg.FEED_LASER_THRESHOLD){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
+  public boolean isBallInHopper(){
+    LaserCan.Measurement hopperMeasurement = hopperLaser.getMeasurement();
+    if (hopperMeasurement != null && hopperMeasurement.status == LaserCan.LASERCAN_STATUS_VALID_MEASUREMENT) {
+      if (hopperMeasurement.distance_mm < ShooterCfg.HOPPER_LASER_THRESHOLD){
         return true;
       }else{
         return false;

@@ -120,4 +120,5 @@ public class ShooterCfg {
     public static final double INTAKE_AGITATION_SPEED = 0.5;
     
     public static final double FEED_LASER_THRESHOLD = 0.5;
+    public static final int HOPPER_LASER_THRESHOLD = 0;
 }
