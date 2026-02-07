@@ -8,6 +8,7 @@ import frc.robot.subsystems.Climber.Climber;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
@@ -34,10 +35,10 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  public final Shooter shooter = new Shooter();
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
-  public final Shooter shooter = new Shooter(driveSubsystem);
 
 
   private final SendableChooser<Command> autoChooser; 
@@ -63,20 +64,33 @@ public class RobotContainer {
 
     NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
     NamedCommands.registerCommand("retractIntake", new InstantCommand(intake::setHopperIn));
+
     NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
     NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeOn));
     NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
 
+
     //TODO set shooter Named Command
 
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setIndexerWaitCycleOn)).whileFalse(new InstantCommand(shooter::setIndexerWaitCycleOff));
+  //  NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
+    
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
     //e.g new PathPlannerAuto("MiddleAutoAMPFinal");
-
+    //Left Start
     new PathPlannerAuto("LeftCenterGrab");
+    new PathPlannerAuto("LeftCenterShoot");
+    //Right Start
     new PathPlannerAuto("RightCenterGrab");
-    new PathPlannerAuto("CenterStart");
+    new PathPlannerAuto("RightCenterShoot");
+    //Center Start
+    new PathPlannerAuto("CenterStartGHP");
+    new PathPlannerAuto("GetOutOfTheWay");
+    new PathPlannerAuto("CenterStartGround");
+    new PathPlannerAuto("CenterStartHp");
+
+   
     
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
