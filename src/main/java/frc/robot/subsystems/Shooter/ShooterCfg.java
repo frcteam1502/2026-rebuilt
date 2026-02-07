@@ -7,6 +7,7 @@ import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import au.grapplerobotics.interfaces.LaserCanInterface.Measurement;
 import edu.wpi.first.math.geometry.Translation2d;
 
 public class ShooterCfg {
@@ -116,5 +117,7 @@ public class ShooterCfg {
     public static final double TURRET_MIN_ANGLE = (Math.PI/2);
     public static final double TARGET_FEED_SPEED = 1;
     public static final double TARGET_INDEXER_SPEED = 1;
-    public static final double INTAKE_AGITATION_SPEED = 0.5;   
+    public static final double INTAKE_AGITATION_SPEED = 0.5;
+    
+    public static final double FEED_LASER_THRESHOLD = 0.5;
 }

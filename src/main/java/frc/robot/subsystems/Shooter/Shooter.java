@@ -19,6 +19,7 @@ import com.revrobotics.spark.config.FeedForwardConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
+import au.grapplerobotics.LaserCan;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -41,6 +42,7 @@ public class Shooter extends SubsystemBase {
   private final SparkFlex indexerMotor = ShooterCfg.INDEXER_MOTOR;
   private final SparkMax turretMotor = ShooterCfg.TURRET_MOTOR;
   
+  private LaserCan feedLaser;
 
   //RelativeEncoder for all motors
   RelativeEncoder shooterLeadEncoder;
@@ -589,5 +591,16 @@ private void configTurretMotor() {
   public void setIndexerWaitCycleOff(){
     indexerState = IndexerState.OFF;
   }
+  public boolean isBallInFeeder(){
+    LaserCan.Measurement measurement = feedLaser.getMeasurement();
+    if (measurement != null && measurement.status == LaserCan.LASERCAN_STATUS_VALID_MEASUREMENT) {
+      if (measurement.distance_mm < ShooterCfg.FEED_LASER_THRESHOLD){
+        return true;
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }
 }
-
