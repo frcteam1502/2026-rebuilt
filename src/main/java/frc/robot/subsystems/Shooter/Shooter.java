@@ -28,6 +28,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
+import frc.robot.subsystems.Vision.PhotonCameraCfg;
+import frc.robot.subsystems.Vision.PhotonVisionCamera;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 
@@ -62,7 +64,9 @@ public class Shooter extends SubsystemBase {
   
   private final PIDController hoodPIDController = new PIDController(ShooterCfg.HOOD_P_GAIN,
                                                                       ShooterCfg.HOOD_I_GAIN,
-                                                                      ShooterCfg.HOOD_D_GAIN);  
+                                                                      ShooterCfg.HOOD_D_GAIN);
+                                                                      
+  private final PhotonVisionCamera turretCamera;
 
 
   //Shooter lead motor config - REV closed loop speed control
@@ -98,6 +102,10 @@ public class Shooter extends SubsystemBase {
   private double hoodSetAngle = 0.0;
   private Translation2d targetTranslation = new Translation2d(0,0);
 
+  private boolean isTurretTargetPresent = false;
+  private boolean isHubFound = false;
+  private int targetId = -1;
+
   private enum ShooterState{
     OFF,
     WAIT,
@@ -120,6 +128,9 @@ public class Shooter extends SubsystemBase {
 
   public Shooter(DriveSubsystem drive) {
     this.drive = drive;
+    
+    turretCamera = new PhotonVisionCamera(PhotonCameraCfg.TURRET_CAM, PhotonCameraCfg.TURRET_CAM_TRANSFORM);
+    
     configShooterMotors();
     configFeedMotor();
     configHoodMotor();
@@ -130,6 +141,7 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    updateTurretCamera();
     updateHoodAngleSetPoint();
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
@@ -137,6 +149,7 @@ public class Shooter extends SubsystemBase {
     updateTurretState();
     updateDashboard();
   }
+
   private void configShooterMotors() {
     //Config the encoders
     shooterLeadEncoder = leadShooterMotor.getEncoder();
@@ -351,6 +364,52 @@ private void configTurretMotor() {
     hoodSetAngle = angle;
   }
 
+  private void updateTurretCamera(){
+    var turretCamResults = turretCamera.getLatestPipelineTargets();
+    var alliance = DriverStation.getAlliance();
+    targetId = -1;
+
+    isTurretTargetPresent = !turretCamResults.isEmpty();
+
+    if(!turretCamResults.isEmpty()){
+      if(alliance.isPresent()){
+        for(int i = 0;i<turretCamResults.size();i++){
+          var tagId = turretCamResults.get(i).getFiducialId();
+          if(alliance.get() == DriverStation.Alliance.Blue){
+            //Blue alliance so we only care if the tag is on the alliance zone side of the blue hub
+            if((tagId == 18)||(tagId == 19)||(tagId == 20)||
+               (tagId == 21)||(tagId == 24)||(tagId == 27)){
+                  //Found ID is on the alliance zone side of the blue hub  
+                  targetId = tagId;
+                  isHubFound = true;
+            }else{
+              //Found ID is NOT on the alliance zone side of the blue hub
+              targetId = -1;
+              isHubFound = false;
+            }
+          }else if((tagId == 5)||(tagId == 8)||(tagId == 9)||
+                   (tagId == 10)||(tagId == 11)||(tagId == 12)){
+                    //Found ID is on the alliance zone side of the red hub
+                    targetId = tagId;
+                    isHubFound = true;
+            }else{
+              //Found ID is NOT on the alliance zone side of the red hub
+              targetId = -1;
+              isHubFound = false;
+          }
+        }
+      }else{
+        //Alliance is not present in DS data
+        targetId = -1;
+        isHubFound = false;
+      }
+    }else{
+      //TurretResults is empty
+      targetId = -1;
+      isHubFound = false;
+    }
+  }
+
   private void updateDashboard(){
     SmartDashboard.putNumber("Turret Angle", getTurretAbsPositionZeroed());
     SmartDashboard.putNumber("Turret Velocity", getTurretAbsVelocity());
@@ -362,6 +421,8 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
     SmartDashboard.putNumber("Angle to Target", calculateTargetAngle(targetTranslation));
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
+    SmartDashboard.putBoolean("Is Hub Found", isHubFound);
+    SmartDashboard.putBoolean("Is Turret Target Found", isTurretTargetPresent);
   }
 
   public void updateShooterSetPoint(){

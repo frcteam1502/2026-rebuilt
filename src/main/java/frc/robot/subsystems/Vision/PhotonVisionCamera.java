@@ -150,11 +150,11 @@ public class PhotonVisionCamera {
         return estimatedGlobalPose;
     }
 
-    public List<PhotonTrackedTarget> getPipelineTargets(){
+    public List<PhotonTrackedTarget> getLatestPipelineTargets(){
         //Returns a list of tracked targets from the last camera result
         //Read a list of lists containing the results of all images processed since the last time this was called
         List<PhotonPipelineResult> pipelineResults = camera.getAllUnreadResults();
-        List<PhotonTrackedTarget> pipelineTargets;
+        List<PhotonTrackedTarget> pipelineTargets = new ArrayList<>();
 
         //Check to see if any camera results were read, if not return empty list
         if(pipelineResults.isEmpty()) return pipelineTargets;
@@ -162,16 +162,22 @@ public class PhotonVisionCamera {
         //At least one result was read, get the most recent result
         var result = pipelineResults.get(pipelineResults.size()-1);
         
+        LinkedList<PhotonTrackedTarget> toRemove = new LinkedList<PhotonTrackedTarget>();
         if(result.hasTargets()){
             //Last pipeline result has at least one target
             for(var target:result.getTargets()){
-                //For each target, check if ambiguity is less than a threshold
-                if(target.getPoseAmbiguity() <= PhotonCameraCfg.MINIMUM_TARGET_AMBIGUITY){
-                    //Passed level of certainty so add it to the list
-                    pipelineTargets.add(target);
+                //For each target, check if ambiguity is greater than a threshold
+                if(target.getPoseAmbiguity() > PhotonCameraCfg.MINIMUM_TARGET_AMBIGUITY){
+                    //Too ambiguous so remove it from the list of targets
+                    toRemove.add(target);
                 }
             }
         }
+
+        result.targets.removeAll(toRemove);
+
+        pipelineTargets = result.getTargets();
+        
         return pipelineTargets;
     }
     /**
