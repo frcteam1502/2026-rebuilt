@@ -12,20 +12,24 @@ import edu.wpi.first.wpilibj.Timer;
 public class AutoShoot extends Command {
   private Shooter shooter;
   private Timer fuelTimer;
+  private Timer startFuelTimerTimer;
   
     /** Creates a new AutoShoot. */
     public AutoShoot() {
       // Use addRequirements() here to declare subsystem dependencies.
-      this.shooter = shooter;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //Set shooter to on (Won't run untill setShooterWait is complete)
+
+    //Turns on fuel timer
     shooter.setShooterOn();
     //Starts Fuel Timer to check if we're done shooting
-    fuelTimer.start();
+    if(startFuelTimerTimer.get() > 1){
+      fuelTimer.start();
+    }
+    
     
   }
 
@@ -33,15 +37,11 @@ public class AutoShoot extends Command {
   @Override
   public void execute() {
     //Get Values from lazer can If(lazserCan = true) reset timer else, null
-   /* 
-   if(Shooter.lazserCanValue == true){
+   if(shooter.isBallInFeeder() == true){
         fuelTimer.reset();
-    }*/ 
+    }
   }
 
-  
-
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     shooter.setShooterToWait();

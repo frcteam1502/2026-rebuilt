@@ -35,10 +35,11 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  public final Shooter shooter = new Shooter();
+  public final Shooter shooter = new Shooter(driveSubsystem);
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Intake intake = new Intake();
   public final Climber climber = new Climber();
+  //public final Shooter shooter = new Shooter();
 
 
   private final SendableChooser<Command> autoChooser; 

@@ -41,8 +41,7 @@ public class Shooter extends SubsystemBase {
   private final SparkMax feedMotor = ShooterCfg.FEED_MOTOR;
   private final SparkFlex indexerMotor = ShooterCfg.INDEXER_MOTOR;
   private final SparkMax turretMotor = ShooterCfg.TURRET_MOTOR;
-  
-  private LaserCan feedLaser;
+ private LaserCan feedLaser;
 
   //RelativeEncoder for all motors
   RelativeEncoder shooterLeadEncoder;
@@ -116,7 +115,7 @@ public class Shooter extends SubsystemBase {
     ON_TARGET;
   }
 
-  private enum IndexerState{
+   private enum IndexerState{
     OFF,
     WAIT,
     ON;
@@ -125,11 +124,11 @@ public class Shooter extends SubsystemBase {
   private ShooterState shooterState = ShooterState.WAIT;
    
   private TurretState turretState = TurretState.MOVE_TO_TARGET;
-
+  
   private IndexerState indexerState = IndexerState.OFF;
 
   private DriveSubsystem drive;
-
+  
   private Intake intake;
 
   public Shooter(DriveSubsystem drive) {
@@ -381,9 +380,8 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Hood Angle", lookupHoodAngle(targetTranslation));
     SmartDashboard.putString("Indexer State", indexerState.toString());
     SmartDashboard.putNumber("Feed Speed", getFeedVel());
-    SmartDashboard.putNumber("Indexer Speed", getIndexVel());
-  }
-
+    SmartDashboard.putNumber("Indexer Speed", getIndexVel());  }
+    
   public void updateShooterSetPoint(){
     shooterPIDController.setSetpoint(shooterSetSpeed, SparkFlex.ControlType.kVelocity);
   }
@@ -446,21 +444,21 @@ private void configTurretMotor() {
     } 
   }
 
-  private void setShooterToWait(){
+  public void setShooterToWait(){
     shooterState = ShooterState.WAIT;
-    setIndexerWaitCycleOff();
+     setIndexerWaitCycleOff();
     setIndexSpeed(0);
     setFeedSpeed(0);
     shooterSetSpeed = lookupShooterSpeed(targetTranslation);
     hoodSetAngle = lookupHoodAngle(targetTranslation);
   }
-  private void setShooterOn(){
-    setIndexerWaitCycleOn();
+  public void setShooterOn(){
+     setIndexerWaitCycleOn();
     shooterState = ShooterState.SHOOTING;
     setIndexSpeed(ShooterCfg.INDEX_SPEED);
     setFeedSpeed(ShooterCfg.FEED_SPEED);
   }
-  private void setShooterOff(){
+  public void setShooterOff(){
     shooterState = ShooterState.OFF;
     shooterSetSpeed = 0;
     setIndexSpeed(0);
@@ -562,7 +560,7 @@ private void configTurretMotor() {
       return ShooterCfg.BLUE_LEFT;
     }
   }
-  private void updateIndexerState(){
+private void updateIndexerState(){
     switch (indexerState){
       case OFF:
       setFeedSpeed(0);
