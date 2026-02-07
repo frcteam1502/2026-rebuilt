@@ -424,17 +424,22 @@ private void configTurretMotor() {
         }
         break;
       case SHOOTING:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle(targetTranslation);
-        if((!shooterPIDController.isAtSetpoint())||
-           (!hoodPIDController.atSetpoint())){
-            shooterState = ShooterState.RECOVERY;
+        if(turretState == TurretState.ON_TARGET){
+          shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+          hoodSetAngle = lookupHoodAngle(targetTranslation);
+          if((!shooterPIDController.isAtSetpoint())||
+            (!hoodPIDController.atSetpoint())){
+              shooterState = ShooterState.RECOVERY;
+          }else{
+            //DO NOTHING
+          }
         }else{
-          //DO NOTHING
+          shooterState = ShooterState.RECOVERY;
         }
         //DO NOTHING
       break;
       case RECOVERY:
+      if(turretState != TurretState.ON_TARGET){
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle(targetTranslation);
         if((shooterPIDController.isAtSetpoint())&&
@@ -443,6 +448,9 @@ private void configTurretMotor() {
         }else{
           //DO NOTHING
         }
+      }else{
+        //DO NOTHING
+      }
       break;
     } 
   }
@@ -456,10 +464,10 @@ private void configTurretMotor() {
     hoodSetAngle = lookupHoodAngle(targetTranslation);
   }
   public void setShooterOn(){
-    setIndexerWaitCycleOn();
-    shooterState = ShooterState.SHOOTING;
-    setIndexSpeed(ShooterCfg.INDEX_SPEED);
-    setFeedSpeed(ShooterCfg.FEED_SPEED);
+      setIndexerWaitCycleOn();
+      shooterState = ShooterState.SHOOTING;
+      setIndexSpeed(ShooterCfg.INDEX_SPEED);
+      setFeedSpeed(ShooterCfg.FEED_SPEED);
   }
   private void setShooterOff(){
     shooterState = ShooterState.OFF;
