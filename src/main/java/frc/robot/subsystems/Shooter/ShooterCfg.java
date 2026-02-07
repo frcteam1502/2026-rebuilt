@@ -113,5 +113,8 @@ public class ShooterCfg {
     public static final Translation2d BLUE_TRENCHES = new Translation2d(5.8, 4);
 
     public static final double TURRET_MAX_ANGLE = (Math.PI/2)*3;
-    public static final double TURRET_MIN_ANGLE = (Math.PI/2);   
+    public static final double TURRET_MIN_ANGLE = (Math.PI/2);
+    public static final double TARGET_FEED_SPEED = 1;
+    public static final double TARGET_INDEXER_SPEED = 1;
+    public static final double INTAKE_AGITATION_SPEED = 0.5;   
 }

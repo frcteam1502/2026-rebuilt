@@ -30,6 +30,7 @@ import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
+import frc.robot.subsystems.Intake.Intake;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -39,6 +40,7 @@ public class Shooter extends SubsystemBase {
   private final SparkMax feedMotor = ShooterCfg.FEED_MOTOR;
   private final SparkFlex indexerMotor = ShooterCfg.INDEXER_MOTOR;
   private final SparkMax turretMotor = ShooterCfg.TURRET_MOTOR;
+  
 
   //RelativeEncoder for all motors
   RelativeEncoder shooterLeadEncoder;
@@ -112,11 +114,21 @@ public class Shooter extends SubsystemBase {
     ON_TARGET;
   }
 
+  private enum IndexerState{
+    OFF,
+    WAIT,
+    ON;
+  }
+
   private ShooterState shooterState = ShooterState.WAIT;
    
   private TurretState turretState = TurretState.MOVE_TO_TARGET;
 
+  private IndexerState indexerState = IndexerState.OFF;
+
   private DriveSubsystem drive;
+
+  private Intake intake;
 
   public Shooter(DriveSubsystem drive) {
     this.drive = drive;
@@ -135,6 +147,7 @@ public class Shooter extends SubsystemBase {
     updateTurretAngleSetPoint();
     updateShooterState();
     updateTurretState();
+    updateIndexerState();
     updateDashboard();
   }
   private void configShooterMotors() {
@@ -364,6 +377,9 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
     SmartDashboard.putNumber("Shooter Speed", lookupShooterSpeed(targetTranslation));
     SmartDashboard.putNumber("Hood Angle", lookupHoodAngle(targetTranslation));
+    SmartDashboard.putString("Indexer State", indexerState.toString());
+    SmartDashboard.putNumber("Feed Speed", getFeedVel());
+    SmartDashboard.putNumber("Indexer Speed", getIndexVel());
   }
 
   public void updateShooterSetPoint(){
@@ -541,6 +557,37 @@ private void configTurretMotor() {
     }else{
       return ShooterCfg.BLUE_LEFT;
     }
+  }
+  private void updateIndexerState(){
+    switch (indexerState){
+      case OFF:
+      setFeedSpeed(0);
+      setIndexSpeed(0);
+        break;
+      case WAIT:
+        if (getFeedVel() == ShooterCfg.TARGET_FEED_SPEED){
+          indexerState = IndexerState.ON; 
+        }else{
+          setIndexSpeed(0);
+          intake.setIntakeSpeed(0);
+        }
+        break;
+      case ON:
+        if (getFeedVel() != ShooterCfg.TARGET_FEED_SPEED){
+          indexerState = IndexerState.WAIT; 
+        }else{
+          setIndexSpeed(ShooterCfg.TARGET_INDEXER_SPEED);
+          intake.setIntakeSpeed(ShooterCfg.INTAKE_AGITATION_SPEED);
+        }
+       break;
+    }
+  }
+  public void setIndexerWaitCycleOn(){
+    setFeedSpeed(ShooterCfg.TARGET_FEED_SPEED);
+    indexerState = IndexerState.WAIT;
+  }
+  public void setIndexerWaitCycleOff(){
+    indexerState = IndexerState.OFF;
   }
 }
 

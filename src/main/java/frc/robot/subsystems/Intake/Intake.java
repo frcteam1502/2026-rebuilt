@@ -28,11 +28,11 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setIntakeIn(){
+  public void setIntakeOn(){
     intakeMotor.set(1.0);
   }
 
-  public void setIntakeOut(){
+  public void setIntakeReverse(){
     intakeMotor.set(-1.0);
   }
 
@@ -46,5 +46,8 @@ public class Intake extends SubsystemBase {
 
    public void setHopperIn(){
     hopperSolenoid.set(false);
+  }
+  public void setIntakeSpeed(double speed){
+    intakeMotor.set(speed);
   }
 }
