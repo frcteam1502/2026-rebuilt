@@ -25,17 +25,18 @@ public class AutoShoot extends Command {
 
     //Turns on fuel timer
     shooter.setShooterOn();
-    //Starts Fuel Timer to check if we're done shooting
-    if(startFuelTimerTimer.get() > 1){
-      fuelTimer.start();
-    }
-    
-    
+    startFuelTimerTimer.start();
+     //Starts Fuel Timer to check if we're done shooting
+    fuelTimer.start(); 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //Make sure wheels are spun up before starting fuel timer
+    if(startFuelTimerTimer.get() < 1){
+      fuelTimer.reset();
+    }
     //Get Values from lazer can If(lazserCan = true) reset timer else, null
    if(shooter.isBallInFeeder() == true){
         fuelTimer.reset();

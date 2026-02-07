@@ -69,12 +69,12 @@ public class RobotContainer {
     NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
     NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeOn));
     NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
+  
+    NamedCommands.registerCommand("shoot", new AutoShoot());
 
-
-    //TODO set shooter Named Command
 
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setIndexerWaitCycleOn)).whileFalse(new InstantCommand(shooter::setIndexerWaitCycleOff));
-  //  NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
+   
     
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()

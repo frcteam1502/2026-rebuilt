@@ -26,13 +26,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 5.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shoot"
+            "waitTime": 1.0
           }
         },
         {
@@ -50,12 +44,6 @@
                 "data": {
                   "name": "climberExtend"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "retractIntake"
-                }
               }
             ]
           }
@@ -64,6 +52,12 @@
           "type": "named",
           "data": {
             "name": "climberRetract"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         }
       ]
