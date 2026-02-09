@@ -414,8 +414,9 @@ private void configTurretMotor() {
       case WAIT:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle(targetTranslation);
-        if((shooterPIDController.isAtSetpoint())&&
-           (hoodPIDController.atSetpoint())){
+        if(shooterPIDController.isAtSetpoint() &&
+           hoodPIDController.atSetpoint()      &&
+           turretState == TurretState.ON_TARGET){
             shooterState = ShooterState.READY;
         }else{
           //DO NOTHING
@@ -424,40 +425,34 @@ private void configTurretMotor() {
       case READY:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle(targetTranslation);
-        if((!shooterPIDController.isAtSetpoint())||
-           (!hoodPIDController.atSetpoint())){
+        if(!shooterPIDController.isAtSetpoint()||
+           !hoodPIDController.atSetpoint()     ||
+           turretState != TurretState.ON_TARGET){
             shooterState = ShooterState.WAIT;
         }else{
           //DO NOTHING
         }
         break;
       case SHOOTING:
-        if(turretState == TurretState.ON_TARGET){
-          shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-          hoodSetAngle = lookupHoodAngle(targetTranslation);
-          if((!shooterPIDController.isAtSetpoint())||
-            (!hoodPIDController.atSetpoint())){
+        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+        hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if(!shooterPIDController.isAtSetpoint()||
+           !hoodPIDController.atSetpoint()     ||
+           turretState != TurretState.ON_TARGET){
               shooterState = ShooterState.RECOVERY;
           }else{
             //DO NOTHING
-          }
-        }else{
-          shooterState = ShooterState.RECOVERY;
         }
-        //DO NOTHING
-      break;
+        break;
       case RECOVERY:
-      if(turretState != TurretState.ON_TARGET){
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         hoodSetAngle = lookupHoodAngle(targetTranslation);
-        if((shooterPIDController.isAtSetpoint())&&
-           (hoodPIDController.atSetpoint())){
+        if(shooterPIDController.isAtSetpoint() &&
+           hoodPIDController.atSetpoint()      &&
+           turretState == TurretState.ON_TARGET){
             shooterState = ShooterState.SHOOTING;
         }else{
           //DO NOTHING
-        }
-      }else{
-        //DO NOTHING
       }
       break;
     } 
