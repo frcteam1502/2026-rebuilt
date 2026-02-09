@@ -72,13 +72,7 @@ public class RobotContainer {
 
     //TODO set shooter Named Command
 
-    Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
-    Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
-    Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
-    Operator.Controller.leftTrigger().onTrue(new InstantCommand(intake::setIntakeOn));
-    Operator.Controller.leftBumper().onTrue(new InstantCommand(intake::setIntakeReverse));
-    Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).whileFalse(new InstantCommand(shooter::setShooterToWait));
-    Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
+    
 
   //  NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
     
@@ -118,11 +112,13 @@ public class RobotContainer {
                                                         new MockDetector(),
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
-
-    //Driver.Controller.leftTrigger().whileTrue(new InstantCommand(shooter::setTurretForward)).whileFalse(new InstantCommand(shooter::setTurretOff));
-    //Driver.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setTurretReverse)).whileFalse(new InstantCommand(shooter::setTurretOff));
-
-
+    Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
+    Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
+    Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
+    Operator.Controller.leftTrigger().onTrue(new InstantCommand(intake::setIntakeOn));
+    Operator.Controller.leftBumper().onTrue(new InstantCommand(intake::setIntakeReverse));
+    Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).whileFalse(new InstantCommand(shooter::setShooterToWait));
+    Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
     
     //SysID stuff - comment out on competition build!
     /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));
