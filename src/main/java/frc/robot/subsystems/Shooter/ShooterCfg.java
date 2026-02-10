@@ -121,4 +121,7 @@ public class ShooterCfg {
     
     public static final double FEED_LASER_THRESHOLD = 0.5;
     public static final int HOPPER_LASER_THRESHOLD = 0;
+    
+    public static final double TURRET_CHANGE = 8;//Defines how much change we should see in on 20 ms loop
+    public static final double PIVOT_CHANGE = 2;
 }

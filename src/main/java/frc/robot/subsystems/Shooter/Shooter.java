@@ -660,4 +660,37 @@ private void configTurretMotor() {
       }
     }
   }
+
+  public void moveTurretManually(double input){
+    if(autoAimToggle){
+      double change = Math.signum(input) * ShooterCfg.TURRET_CHANGE;
+      double newPosition = turretSetAngle + change;
+
+      if(newPosition > ShooterCfg.TURRET_MAX_ANGLE){
+        newPosition = ShooterCfg.TURRET_MAX_ANGLE;
+      }else if (newPosition < ShooterCfg.TURRET_MIN_ANGLE){
+        newPosition = ShooterCfg.TURRET_MIN_ANGLE;
+      }else{
+        //Do nothing, newPosition is in-bounds, allow the set position to get updated
+      }
+      turretSetAngle = newPosition;
+    }
+  }
+
+  public void moveHoodManually(double input){
+    if(autoHoodToggle){
+      double change = Math.signum(input) * ShooterCfg.TURRET_CHANGE;
+      double newPosition = hoodSetAngle + change;
+
+      if(newPosition > ShooterCfg.TURRET_MAX_ANGLE){
+        newPosition = ShooterCfg.TURRET_MAX_ANGLE;
+      }else if (newPosition < ShooterCfg.TURRET_MIN_ANGLE){
+        newPosition = ShooterCfg.TURRET_MIN_ANGLE;
+      }else{
+        //Do nothing, newPosition is in-bounds, allow the set position to get updated
+      }
+
+      hoodSetAngle = newPosition;
+    }
+  }
 }

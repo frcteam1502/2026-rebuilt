@@ -111,8 +111,10 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(new DriverCommands(driveSubsystem, 
                                                         new MockDetector(),
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
+
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
+    
     Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
     Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     Operator.Controller.leftTrigger().onTrue(new InstantCommand(intake::setIntakeOn));
