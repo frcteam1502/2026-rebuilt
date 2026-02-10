@@ -91,6 +91,8 @@ public class RobotContainer {
     new PathPlannerAuto("CenterStartGround");
     new PathPlannerAuto("CenterStartHp");
 
+    new PathPlannerAuto("TestAuto");
+    new PathPlannerAuto("StrafeTestAuto");
    
     
     autoChooser = AutoBuilder.buildAutoChooser();

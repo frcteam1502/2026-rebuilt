@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.072141025641027,
-        "y": 4.639666666666667
+        "x": 1.2323265035455222,
+        "y": 4.415258174918319
       },
       "prevControl": {
-        "x": 1.5372692307692324,
-        "y": 5.2094487179487174
+        "x": 1.6974547086737275,
+        "y": 4.985040226200369
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftClimbEnd"
     }
   ],
   "rotationTargets": [],
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.42706130231653
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "CenterGrabLeft",

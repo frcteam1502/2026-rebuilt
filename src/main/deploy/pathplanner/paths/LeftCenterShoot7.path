@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.095397435897437,
-        "y": 4.639666666666667
+        "x": 1.2323265035455222,
+        "y": 4.415258174918319
       },
       "prevControl": {
-        "x": 1.4675000000000014,
-        "y": 4.988512820512821
+        "x": 1.6044290676480866,
+        "y": 4.764104328764473
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftClimbEnd"
     }
   ],
   "rotationTargets": [],
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 3.0,
+        "maxVelocity": 1.0,
         "maxAcceleration": 11.8,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,

@@ -36,12 +36,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "shoot"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "CenterGrab3Right"
@@ -51,12 +45,6 @@
           "type": "path",
           "data": {
             "pathName": "CenterGrab4Right"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shoot"
           }
         },
         {

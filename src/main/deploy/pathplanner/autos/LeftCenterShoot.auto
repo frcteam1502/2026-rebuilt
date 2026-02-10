@@ -36,12 +36,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "shoot"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "LeftCenterShoot3"
@@ -51,12 +45,6 @@
           "type": "path",
           "data": {
             "pathName": "LeftCenterShoot4"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shoot"
           }
         },
         {

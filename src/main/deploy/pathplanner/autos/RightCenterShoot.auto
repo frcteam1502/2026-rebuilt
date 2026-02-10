@@ -36,18 +36,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "shoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 5.0
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "RightCenterShoot3"
@@ -57,18 +45,6 @@
           "type": "path",
           "data": {
             "pathName": "RightCenterShoot4"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 5.0
           }
         },
         {

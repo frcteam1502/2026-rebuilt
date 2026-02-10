@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.0737813163107828,
-        "y": 4.653802597076924
+        "x": 1.2323265035455222,
+        "y": 4.415258174918319
       },
       "prevControl": {
-        "x": 2.443052895942376,
-        "y": 4.739355261601999
+        "x": 2.601598083177115,
+        "y": 4.500810839443394
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftClimbEnd"
     }
   ],
   "rotationTargets": [],

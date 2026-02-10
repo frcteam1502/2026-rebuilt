@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.0140000000000011,
-        "y": 2.848923076923077
+        "x": 1.2658786472583414,
+        "y": 2.7409565041484005
       },
       "prevControl": {
-        "x": 1.0488846153846165,
-        "y": 2.4070512820512833
+        "x": 1.3007632626429568,
+        "y": 2.299084709276607
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndCenterStart2"
+      "linkedName": "RightEndClimb"
     }
   ],
   "rotationTargets": [],
