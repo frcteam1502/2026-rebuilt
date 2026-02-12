@@ -8,6 +8,8 @@ import frc.robot.subsystems.Climber.Climber;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.commands.AlignToTowerLeft;
+import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.ResetGyro;
@@ -35,10 +37,10 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  public final Shooter shooter = new Shooter(driveSubsystem);
+  //public final Shooter shooter = new Shooter(driveSubsystem);
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
-  public final Intake intake = new Intake();
-  public final Climber climber = new Climber();
+  //public final Intake intake = new Intake();
+  //public final Climber climber = new Climber();
 
 
   private final SendableChooser<Command> autoChooser; 
@@ -57,17 +59,16 @@ public class RobotContainer {
     configureBindings();
 
     //Register named commands. Must register all commands we want Pathplanner to execute.
-    NamedCommands.registerCommand("Stop Drive Motors", new StopDriveMotors(driveSubsystem));
    
-    NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
-    NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
+    //NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
+    //NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
 
-    NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
-    NamedCommands.registerCommand("retractIntake", new InstantCommand(intake::setHopperIn));
+    //NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
+    //NamedCommands.registerCommand("retractIntake", new InstantCommand(intake::setHopperIn));
 
-    NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
-    NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeOn));
-    NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
+    //NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
+    //NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeOn));
+    //NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
 
 
     //TODO set shooter Named Command
@@ -80,16 +81,16 @@ public class RobotContainer {
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
     //e.g new PathPlannerAuto("MiddleAutoAMPFinal");
     //Left Start
-    new PathPlannerAuto("LeftCenterGrab");
-    new PathPlannerAuto("LeftCenterShoot");
+    //new PathPlannerAuto("LeftCenterGrab");
+    //new PathPlannerAuto("LeftCenterShoot");
     //Right Start
-    new PathPlannerAuto("RightCenterGrab");
-    new PathPlannerAuto("RightCenterShoot");
+    //new PathPlannerAuto("RightCenterGrab");
+    //new PathPlannerAuto("RightCenterShoot");
     //Center Start
-    new PathPlannerAuto("CenterStartGHP");
-    new PathPlannerAuto("GetOutOfTheWay");
-    new PathPlannerAuto("CenterStartGround");
-    new PathPlannerAuto("CenterStartHp");
+    //new PathPlannerAuto("CenterStartGHP");
+    //new PathPlannerAuto("GetOutOfTheWay");
+    //new PathPlannerAuto("CenterStartGround");
+    //new PathPlannerAuto("CenterStartHp");
 
    
     
@@ -113,14 +114,16 @@ public class RobotContainer {
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
 
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
-    Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
+    //Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
+    Driver.Controller.x().whileTrue(new AlignToTowerLeft(driveSubsystem));
+    Driver.Controller.b().whileTrue(new AlignToTowerRight(driveSubsystem));
     
-    Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
-    Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
-    Operator.Controller.leftTrigger().onTrue(new InstantCommand(intake::setIntakeOn));
-    Operator.Controller.leftBumper().onTrue(new InstantCommand(intake::setIntakeReverse));
-    Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).whileFalse(new InstantCommand(shooter::setShooterToWait));
-    Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
+    //Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
+    //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
+    //Operator.Controller.leftTrigger().onTrue(new InstantCommand(intake::setIntakeOn));
+    //Operator.Controller.leftBumper().onTrue(new InstantCommand(intake::setIntakeReverse));
+    //Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).whileFalse(new InstantCommand(shooter::setShooterToWait));
+    //Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
     
     //SysID stuff - comment out on competition build!
     /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));

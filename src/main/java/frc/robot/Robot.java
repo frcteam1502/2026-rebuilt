@@ -73,7 +73,6 @@ public class Robot extends TimedRobot {
     null, //"14",
     null, //"15",
 };
-  private Climber climber;
 
   public Robot(){
     CanBridge.runTCP();
@@ -162,7 +161,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    climber.setClimberOut();
   }
 
   /** This function is called periodically during operator control. */
