@@ -110,8 +110,12 @@ public class ShooterCfg {
     public static final Translation2d RED_RIGHT = new Translation2d(12.5,2.5);
     public static final Translation2d BLUE_LEFT = new Translation2d(4,5.65);
     public static final Translation2d BLUE_RIGHT = new Translation2d(4,2.5);
-    public static final Translation2d RED_TRENCHES = new Translation2d(11.9, 4);
-    public static final Translation2d BLUE_TRENCHES = new Translation2d(5.8, 4);
+    public static final double MIDDLE_RED_TRENCHES = 11.9;
+    public static final double MIDDLE_BLUE_TRENCHES = 5.8;
+    public static final double LOW_RED_TRENCHES = 11.3;
+    public static final double HIGH_RED_TRENCHES = 12.5;
+    public static final double LOW_BLUE_TRENCHES = 5.2;
+    public static final double HIGH_BLUE_TRENCHES = 6.4;
 
     public static final double TURRET_MAX_ANGLE = (Math.PI/2)*3;
     public static final double TURRET_MIN_ANGLE = (Math.PI/2);
@@ -120,8 +124,11 @@ public class ShooterCfg {
     public static final double INTAKE_AGITATION_SPEED = 0.5;
     
     public static final double FEED_LASER_THRESHOLD = 0.5;
-    public static final int HOPPER_LASER_THRESHOLD = 0;
+    public static final double HOPPER_LASER_THRESHOLD = 0.5;
     
     public static final double TURRET_CHANGE = 8;//Defines how much change we should see in on 20 ms loop
     public static final double PIVOT_CHANGE = 2;
+
+    public static final double HOOD_TRENCH_ANG = 10;
+    public static final double FEED_ON_THRESHOLD = 5300;
 }

@@ -12,6 +12,7 @@ import frc.robot.commands.AlignToTowerLeft;
 import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
+import frc.robot.commands.OperatorCommands;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
@@ -36,10 +37,10 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  //public final Shooter shooter = new Shooter(driveSubsystem);
-  //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   //public final Intake intake = new Intake();
+  public final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  //public final Shooter shooter = new Shooter(driveSubsystem, intake);
+  //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   //public final Climber climber = new Climber();
 
 
@@ -118,11 +119,12 @@ public class RobotContainer {
     Driver.Controller.x().whileTrue(new AlignToTowerLeft(driveSubsystem));
     Driver.Controller.b().whileTrue(new AlignToTowerRight(driveSubsystem));
     
+    //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
-    //Operator.Controller.leftTrigger().onTrue(new InstantCommand(intake::setIntakeOn));
-    //Operator.Controller.leftBumper().onTrue(new InstantCommand(intake::setIntakeReverse));
-    //Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).whileFalse(new InstantCommand(shooter::setShooterToWait));
+    //Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
+    //Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
+    //Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     //Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
     
     //SysID stuff - comment out on competition build!

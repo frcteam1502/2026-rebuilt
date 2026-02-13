@@ -108,6 +108,7 @@ public class Shooter extends SubsystemBase {
     OFF,
     WAIT,
     READY,
+    STARTFEED,
     SHOOTING,
     RECOVERY;
   }
@@ -140,8 +141,9 @@ public class Shooter extends SubsystemBase {
 
   private boolean autoHoodToggle = true;
 
-  public Shooter(DriveSubsystem drive) {
+  public Shooter(DriveSubsystem drive, Intake intake) {
     this.drive = drive;
+    this.intake = intake;
     configShooterMotors();
     configFeedMotor();
     configHoodMotor();
@@ -152,12 +154,11 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    updateShooterState();
+    updateTurretState();
     updateHoodAngleSetPoint();
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
-    updateAutoAim();
-    updateAutoHood();
-    updateIndexerState();
     updateDashboard();
   }
   private void configShooterMotors() {
@@ -413,18 +414,26 @@ private void configTurretMotor() {
         break;
       case WAIT:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if (autoHoodToggle){
+          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        }else{
+          //DO NOT UPDATE
+        }
         if(shooterPIDController.isAtSetpoint() &&
            hoodPIDController.atSetpoint()      &&
            turretState == TurretState.ON_TARGET){
-            shooterState = ShooterState.READY;
+           shooterState = ShooterState.READY;
         }else{
           //DO NOTHING
         }
         break;
       case READY:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if (autoHoodToggle){
+          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        }else{
+          //DO NOT UPDATE
+        }
         if(!shooterPIDController.isAtSetpoint()||
            !hoodPIDController.atSetpoint()     ||
            turretState != TurretState.ON_TARGET){
@@ -433,24 +442,55 @@ private void configTurretMotor() {
           //DO NOTHING
         }
         break;
+      case STARTFEED:
+        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+        setFeedSpeed(ShooterCfg.FEED_SPEED);
+        if (autoHoodToggle){
+          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        }else{
+          //DO NOT UPDATE
+        }
+        if(shooterPIDController.isAtSetpoint()&&
+           hoodPIDController.atSetpoint()     &&
+           turretState == TurretState.ON_TARGET&&
+           getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
+            setIndexSpeed(ShooterCfg.INDEX_SPEED);
+            intake.setIntakeOn();
+            shooterState = ShooterState.SHOOTING;
+          }else {
+            //NOTHING
+        }
+      break;
       case SHOOTING:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if (autoHoodToggle){
+          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        }else{
+          //DO NOT UPDATE
+        }
         if(!shooterPIDController.isAtSetpoint()||
            !hoodPIDController.atSetpoint()     ||
-           turretState != TurretState.ON_TARGET){
-              shooterState = ShooterState.RECOVERY;
-          }else{
-            //DO NOTHING
+           turretState != TurretState.ON_TARGET||
+           getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
+            setIndexSpeed(0);
+            intake.setIntakeOff();
+            shooterState = ShooterState.RECOVERY;
+          }else {
+            setIndexSpeed(ShooterCfg.INDEX_SPEED);
         }
         break;
       case RECOVERY:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if (autoHoodToggle){
+          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        }else{
+          //DO NOT UPDATE
+        }
         if(shooterPIDController.isAtSetpoint() &&
            hoodPIDController.atSetpoint()      &&
            turretState == TurretState.ON_TARGET){
-            shooterState = ShooterState.SHOOTING;
+            setFeedSpeed(ShooterCfg.FEED_SPEED);
+            shooterState = ShooterState.STARTFEED;
         }else{
           //DO NOTHING
       }
@@ -459,18 +499,14 @@ private void configTurretMotor() {
   }
 
   public void setShooterToWait(){
-    shooterState = ShooterState.WAIT;
-    setIndexerWaitCycleOff();
     setIndexSpeed(0);
     setFeedSpeed(0);
     shooterSetSpeed = lookupShooterSpeed(targetTranslation);
     hoodSetAngle = lookupHoodAngle(targetTranslation);
+    shooterState = ShooterState.WAIT;
   }
   public void setShooterOn(){
-      setIndexerWaitCycleOn();
-      shooterState = ShooterState.SHOOTING;
-      setIndexSpeed(ShooterCfg.INDEX_SPEED);
-      setFeedSpeed(ShooterCfg.FEED_SPEED);
+    shooterState = ShooterState.RECOVERY;
   }
   private void setShooterOff(){
     shooterState = ShooterState.OFF;
@@ -522,12 +558,12 @@ private void configTurretMotor() {
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     var distance = calculateTargetDistance(targetPose);
     var robotPose = drive.getEstimatedPose2d();
-    if((robotPose.getX() > 11.3)&&
-      (robotPose.getX() < 12.5)){
-        return 10;
-      }else if((robotPose.getX() > 4)&&
-      (robotPose.getX() < 5.2)){
-        return 10;
+    if((robotPose.getX() > ShooterCfg.LOW_RED_TRENCHES)&&
+      (robotPose.getX() < ShooterCfg.HIGH_RED_TRENCHES)){
+        return ShooterCfg.HOOD_TRENCH_ANG;
+      }else if((robotPose.getX() > ShooterCfg.LOW_BLUE_TRENCHES)&&
+      (robotPose.getX() < ShooterCfg.HIGH_BLUE_TRENCHES)){
+        return ShooterCfg.HOOD_TRENCH_ANG;
       }else{
         return ShooterLookup.LOOKUP[(int)(2*distance)][1];
       }
@@ -535,9 +571,9 @@ private void configTurretMotor() {
 
   private double calculateTargetAngle(Translation2d targetPose){
     var angle = drive.getDistanceAngleToPoint(targetPose).getY();
-    if (angle<ShooterCfg.TURRET_MIN_ANGLE){
+    if (angle < ShooterCfg.TURRET_MIN_ANGLE){
       angle = ShooterCfg.TURRET_MIN_ANGLE;
-    }else if (angle>ShooterCfg.TURRET_MAX_ANGLE){
+    }else if (angle > ShooterCfg.TURRET_MAX_ANGLE){
       angle = ShooterCfg.TURRET_MAX_ANGLE;
     }else{
 
@@ -632,8 +668,10 @@ private void configTurretMotor() {
   public void toggleAutoAim(){
     if(autoAimToggle == false){
       autoAimToggle = true;
+      setAutoAimOn();
     }else{
       autoAimToggle = false;
+      setAutoAimOff();
     }
   }
   public void toggleHoodAim(){
@@ -643,26 +681,9 @@ private void configTurretMotor() {
       autoHoodToggle = false;
     }
   }
-  private void updateAutoAim(){
-    if(autoAimToggle == true){
-      updateTurretState();
-    }else{
-      setTurretAngle(operator.getRightX());
-    }
-  }
-  private void updateAutoHood(){
-    if(autoHoodToggle == true){
-      updateShooterState();
-    }else{
-      setHoodAngle(operator.getLeftY());
-      if(operator.getRightTrigger()>0.2){
-        setShooterSpeed(lookupShooterSpeed(targetTranslation)); 
-      }
-    }
-  }
 
   public void moveTurretManually(double input){
-    if(autoAimToggle){
+    if(!autoAimToggle){
       double change = Math.signum(input) * ShooterCfg.TURRET_CHANGE;
       double newPosition = turretSetAngle + change;
 
@@ -676,9 +697,8 @@ private void configTurretMotor() {
       turretSetAngle = newPosition;
     }
   }
-
   public void moveHoodManually(double input){
-    if(autoHoodToggle){
+    if(!autoHoodToggle){
       double change = Math.signum(input) * ShooterCfg.TURRET_CHANGE;
       double newPosition = hoodSetAngle + change;
 
@@ -689,7 +709,6 @@ private void configTurretMotor() {
       }else{
         //Do nothing, newPosition is in-bounds, allow the set position to get updated
       }
-
       hoodSetAngle = newPosition;
     }
   }

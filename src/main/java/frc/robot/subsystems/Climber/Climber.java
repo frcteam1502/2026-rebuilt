@@ -11,11 +11,11 @@ public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
   private final Solenoid climberSolenoid = ClimberCfg.CLIMBER_SOLENOID;
 
-  private boolean climberToggle = true;
+  private boolean climberIn = true;
+
 
   public Climber() {}
     
-
 
   @Override
   public void periodic() {
@@ -23,19 +23,19 @@ public class Climber extends SubsystemBase {
 
   }
   public void setClimberOut(){
+    climberIn = false;    
     climberSolenoid.set(true);
   }
   public void setClimberIn(){
+    climberIn = true;
     climberSolenoid.set(false);
   }
   
   public void toggleClimber(){
-    if(climberToggle == false){
+    if(climberIn == true){
       setClimberOut();
-      climberToggle = true;
     }else{
       setClimberIn();
-      climberToggle = false;
     }
   }
 }
