@@ -60,6 +60,18 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "alignToClimbLeft"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Stop Drive Motors"
@@ -75,6 +87,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Center Start",
   "choreoAuto": false
 }

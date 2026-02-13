@@ -30,9 +30,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RightCenterShoot2"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
@@ -42,15 +54,33 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RightCenterShoot4"
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RightCenterShoot5"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
@@ -66,6 +96,12 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RightCenterShoot7"
@@ -74,13 +110,31 @@
         {
           "type": "named",
           "data": {
+            "name": "alignToClimbRight"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "climberRetract"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "retractIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Right Start",
   "choreoAuto": false
 }

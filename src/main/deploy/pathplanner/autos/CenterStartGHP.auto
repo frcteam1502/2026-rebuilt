@@ -38,7 +38,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 5.0
+            "waitTime": 1.0
           }
         },
         {
@@ -48,9 +48,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CenterStartGHP3"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
@@ -60,9 +72,33 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CenterStartGround3"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "alignToClimbLeft"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
           }
         },
         {
@@ -75,6 +111,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Center Start",
   "choreoAuto": false
 }

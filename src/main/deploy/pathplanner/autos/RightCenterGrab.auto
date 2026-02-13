@@ -30,9 +30,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CenterGrab2Right"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
@@ -42,9 +54,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CenterGrab4Right"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
@@ -69,13 +93,25 @@
         {
           "type": "named",
           "data": {
+            "name": "alignToClimbRight"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "climberRetract"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Right Start",
   "choreoAuto": false
 }

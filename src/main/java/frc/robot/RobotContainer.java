@@ -8,6 +8,8 @@ import frc.robot.subsystems.Climber.Climber;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.commands.AlignToTowerLeft;
+import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.ResetGyro;
@@ -62,6 +64,8 @@ public class RobotContainer {
    
     NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
     NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
+    NamedCommands.registerCommand("alignToClimbLeft", new AlignToTowerLeft(driveSubsystem));
+    NamedCommands.registerCommand("alignToClimbRight", new AlignToTowerRight(driveSubsystem));
 
     NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
     NamedCommands.registerCommand("retractIntake", new InstantCommand(intake::setHopperIn));

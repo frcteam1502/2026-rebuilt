@@ -30,9 +30,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "LeftCenterShoot2"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
@@ -42,9 +54,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "LeftCenterShoot4"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
@@ -54,21 +78,27 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "LeftCenterShoot6"
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "climberExtend"
+            "waitTime": 1.0
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "LeftCenterShoot7"
+            "name": "alignToClimbLeft"
           }
         },
         {
@@ -76,11 +106,17 @@
           "data": {
             "name": "climberRetract"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
+          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Left Start",
   "choreoAuto": false
 }

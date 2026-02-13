@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7814358974416722,
-        "y": 0.6628205128156504
+        "x": 0.8187603502724814,
+        "y": 0.6896096461636421
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7814358974416722,
-        "y": 0.6628205128156504
+        "x": 1.6246637670851625,
+        "y": 0.6431658772141406
       },
       "isLocked": false,
       "linkedName": "EndCenterStart1"
@@ -36,8 +36,8 @@
         "y": 0.6628205128156504
       },
       "prevControl": {
-        "x": 0.014000000000001123,
-        "y": 0.6628205128156505
+        "x": 0.7641335429771148,
+        "y": 0.6546502218275599
       },
       "nextControl": null,
       "isLocked": false,
@@ -72,13 +72,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.24615166730592
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterStartGHP",
+  "folder": "CenterStartGHP(LC)",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -179.24615166730592
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

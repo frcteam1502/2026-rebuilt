@@ -49,21 +49,39 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "retractIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "alignToClimbRight"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "climberRetract"
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 1.0
+            "name": "Stop Drive Motors"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Center Start",
   "choreoAuto": false
 }

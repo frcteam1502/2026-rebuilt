@@ -26,13 +26,19 @@
         {
           "type": "named",
           "data": {
-            "name": "Stop Drive Motors"
+            "name": "shoot"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "shoot"
+            "name": "alignToClimbLeft"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
           }
         },
         {
@@ -45,6 +51,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Center Start",
   "choreoAuto": false
 }

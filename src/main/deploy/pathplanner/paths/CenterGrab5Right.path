@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.753239340579922,
-        "y": 2.1922925789624697
+        "x": 1.7194952879584755,
+        "y": 2.4003359471643755
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab2Right"
     },
     {
       "anchor": {
-        "x": 1.2658786472583414,
-        "y": 2.7409565041484005
+        "x": 0.7814358974416722,
+        "y": 2.5151011998381034
       },
       "prevControl": {
-        "x": 1.71417642117568,
-        "y": 2.192090445258241
+        "x": 1.5312730733652717,
+        "y": 2.079502626835049
       },
       "nextControl": null,
       "isLocked": false,
@@ -62,7 +62,7 @@
   "folder": "CenterGrabRight",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -52.06143439925988
+    "rotation": -50.0
   },
   "useDefaultConstraints": true
 }

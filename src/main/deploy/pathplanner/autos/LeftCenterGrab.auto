@@ -76,18 +76,24 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "climberExtend"
-                }
-              },
-              {
                 "type": "path",
                 "data": {
                   "pathName": "CenterGrab5Left"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "alignToClimbLeft"
           }
         },
         {
@@ -106,6 +112,6 @@
     }
   },
   "resetOdom": true,
-  "folder": null,
+  "folder": "Left Start",
   "choreoAuto": false
 }

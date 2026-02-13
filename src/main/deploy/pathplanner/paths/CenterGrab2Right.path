@@ -41,7 +41,7 @@
       },
       "nextControl": {
         "x": 2.4979644009381374,
-        "y": 0.556455114133826
+        "y": 0.5564551141338259
       },
       "isLocked": false,
       "linkedName": null
@@ -71,7 +71,7 @@
     },
     {
       "waypointRelativePos": 2.15,
-      "rotationDegrees": -19.598686947946966
+      "rotationDegrees": -20.0
     }
   ],
   "constraintZones": [],
@@ -87,7 +87,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -52.06143439925988
+    "rotation": -50.0
   },
   "reversed": false,
   "folder": "CenterGrabRight",
