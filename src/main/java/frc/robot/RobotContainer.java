@@ -13,6 +13,7 @@ import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.ResetGyro;
+//import frc.robot.commands.ResetGyroTo90;
 import frc.robot.commands.StopDriveMotors;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 
@@ -76,6 +77,9 @@ public class RobotContainer {
   
     NamedCommands.registerCommand("shoot", new AutoShoot());
 
+    NamedCommands.registerCommand("ResetGyro", new ResetGyro(driveSubsystem));
+  // NamedCommands.registerCommand("resetGyroTo90", new ResetGyroTo90(driveSubsystem));
+
 
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setIndexerWaitCycleOn)).whileFalse(new InstantCommand(shooter::setIndexerWaitCycleOff));
    
@@ -119,6 +123,8 @@ public class RobotContainer {
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
 
+    Driver.Controller.x().whileTrue(new AlignToTowerLeft(driveSubsystem));
+    Driver.Controller.b().whileTrue(new AlignToTowerRight(driveSubsystem));
     //Driver.Controller.leftTrigger().whileTrue(new InstantCommand(shooter::setTurretForward)).whileFalse(new InstantCommand(shooter::setTurretOff));
     //Driver.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setTurretReverse)).whileFalse(new InstantCommand(shooter::setTurretOff));
 

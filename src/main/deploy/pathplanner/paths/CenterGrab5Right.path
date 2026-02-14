@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7194952879584755,
-        "y": 2.4003359471643755
+        "x": 2.239214212932877,
+        "y": 2.363294161266053
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab2Right"
     },
     {
       "anchor": {
-        "x": 0.7814358974416722,
-        "y": 2.5151011998381034
+        "x": 0.7897018416416579,
+        "y": 2.475965672730415
       },
       "prevControl": {
-        "x": 1.5312730733652717,
-        "y": 2.079502626835049
+        "x": 1.4404448754739565,
+        "y": 2.046117063226511
       },
       "nextControl": null,
       "isLocked": false,
@@ -56,7 +56,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "CenterGrabRight",

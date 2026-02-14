@@ -91,9 +91,9 @@
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "alignToClimbRight"
+            "waitTime": 1.0
           }
         },
         {

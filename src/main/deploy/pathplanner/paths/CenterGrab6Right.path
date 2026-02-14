@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.7897018416416579,
+        "y": 2.475965672730415
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.0570180734802777,
+        "y": 2.0048308902657923
+      },
+      "isLocked": false,
+      "linkedName": "RightEndClimb"
+    },
+    {
+      "anchor": {
+        "x": 1.047822588700625,
+        "y": 1.4561669650798625
+      },
+      "prevControl": {
+        "x": 0.5361815630595996,
+        "y": 1.9096669650798639
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 1.0,
+    "maxAcceleration": 11.8,
+    "maxAngularVelocity": 1060.0,
+    "maxAngularAcceleration": 2043.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": "CenterGrabRight",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 180.0
+  },
+  "useDefaultConstraints": true
+}

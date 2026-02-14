@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 0.7814358974416722,
-        "y": 2.5151011998381034
+        "x": 0.7897018416416579,
+        "y": 2.475965672730415
       },
       "prevControl": {
-        "x": 1.3477026282314526,
-        "y": 2.059006811565412
+        "x": 1.3559685724314383,
+        "y": 2.0198712844577233
       },
       "nextControl": null,
       "isLocked": false,
@@ -56,7 +56,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "RightCenterShoot",
