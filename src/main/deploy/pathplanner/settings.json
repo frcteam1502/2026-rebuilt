@@ -5,15 +5,19 @@
   "pathFolders": [
     "CenterGrabLeft",
     "CenterGrabRight",
-    "CenterStartGHP",
-    "CenterStartGround",
-    "CenterStartHp",
+    "CenterStartGHP(LC)",
+    "CenterStartGround(LC)",
+    "CenterStartHp(RC)",
+    "GetOutOfTheWay(LC,CS)",
     "LeftCenterShoot",
-    "GetOutOfTheWay",
     "RightCenterShoot"
   ],
-  "autoFolders": [],
-  "defaultMaxVel": 5.5,
+  "autoFolders": [
+    "Left Start",
+    "Center Start",
+    "Right Start"
+  ],
+  "defaultMaxVel": 1.0,
   "defaultMaxAccel": 11.8,
   "defaultMaxAngVel": 1060.0,
   "defaultMaxAngAccel": 2043.0,

@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 7.583935897435898,
-        "y": 5.035025641025641
+        "y": 5.084700274892775
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.560679487179488,
-        "y": 5.814115384615385
+        "x": 7.580221716604905,
+        "y": 5.557783288119842
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab1"
@@ -20,8 +20,8 @@
         "y": 6.279243589743589
       },
       "prevControl": {
-        "x": 7.665333333333335,
-        "y": 5.55829487179487
+        "x": 7.580221716604905,
+        "y": 5.955616605328205
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.5,
+    "maxVelocity": 1.0,
     "maxAcceleration": 11.8,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 2043.0,

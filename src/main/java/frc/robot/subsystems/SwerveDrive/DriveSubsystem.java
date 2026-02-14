@@ -554,7 +554,7 @@ public class DriveSubsystem extends SubsystemBase{
         this::getRobotRelativeSpeeds, //ChassisSpeeds provider.  MUST BE ROBOT RELATIVE!!! 
         this::driveRobotRelative, //ChassisSpeeds consumer.  MUST BE ROBOT RELATIVE!!!
         new PPHolonomicDriveController(
-                new PIDConstants(6, 0, 0), //Translation PID constants
+                new PIDConstants(5, 0, 0), //Translation PID constants
                 new PIDConstants(6, 0, 0)), //Rotation PID constants
         config,
         () -> {

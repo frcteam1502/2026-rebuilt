@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.467525641025642,
-        "y": 5.314576923076924
+        "x": 2.4168638250826575,
+        "y": 5.354994533809027
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab2"
     },
     {
       "anchor": {
-        "x": 1.072141025641027,
-        "y": 4.639666666666667
+        "x": 1.9555704959188271,
+        "y": 4.712177684134547
       },
       "prevControl": {
-        "x": 1.5372692307692324,
-        "y": 5.2094487179487174
+        "x": 2.754031600336581,
+        "y": 5.8178339343848675
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftClimbEnd"
     }
   ],
   "rotationTargets": [],
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.5,
+    "maxVelocity": 1.0,
     "maxAcceleration": 11.8,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 2043.0,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.42706130231653
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "CenterGrabLeft",

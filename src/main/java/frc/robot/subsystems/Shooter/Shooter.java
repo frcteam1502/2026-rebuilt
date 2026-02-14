@@ -119,7 +119,7 @@ public class Shooter extends SubsystemBase {
     ON_TARGET;
   }
 
-  private enum IndexerState{
+   private enum IndexerState{
     OFF,
     WAIT,
     ON;
@@ -128,11 +128,11 @@ public class Shooter extends SubsystemBase {
   private ShooterState shooterState = ShooterState.WAIT;
    
   private TurretState turretState = TurretState.MOVE_TO_TARGET;
-
+  
   private IndexerState indexerState = IndexerState.OFF;
 
   private DriveSubsystem drive;
-
+  
   private Intake intake;
 
   private Operator operator;
@@ -508,7 +508,7 @@ private void configTurretMotor() {
   public void setShooterOn(){
     shooterState = ShooterState.RECOVERY;
   }
-  private void setShooterOff(){
+  public void setShooterOff(){
     shooterState = ShooterState.OFF;
     shooterSetSpeed = 0;
     setIndexSpeed(0);
@@ -610,7 +610,7 @@ private void configTurretMotor() {
       return ShooterCfg.BLUE_LEFT;
     }
   }
-  private void updateIndexerState(){
+private void updateIndexerState(){
     switch (indexerState){
       case OFF:
       setFeedSpeed(0);

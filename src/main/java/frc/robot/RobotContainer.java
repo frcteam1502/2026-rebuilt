@@ -10,6 +10,8 @@ import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.commands.AlignToTowerLeft;
 import frc.robot.commands.AlignToTowerRight;
+import frc.robot.commands.AlignToTowerLeft;
+import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.OperatorCommands;
@@ -72,7 +74,6 @@ public class RobotContainer {
     //NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
 
 
-    //TODO set shooter Named Command
 
     
 
@@ -93,6 +94,8 @@ public class RobotContainer {
     //new PathPlannerAuto("CenterStartGround");
     //new PathPlannerAuto("CenterStartHp");
 
+    new PathPlannerAuto("TestAuto");
+    new PathPlannerAuto("StrafeTestAuto");
    
     
     autoChooser = AutoBuilder.buildAutoChooser();

@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6419230769230784,
-        "y": 5.651320512820514
+        "x": 1.5112241156514812,
+        "y": 5.462866316402029
       },
       "isLocked": false,
       "linkedName": "CenterStartGround2End"
@@ -20,24 +20,24 @@
         "y": 5.30247435897436
       },
       "prevControl": {
-        "x": 1.5339481853030958,
-        "y": 5.550473836905264
+        "x": 1.4737506567508958,
+        "y": 5.559788847797439
       },
       "nextControl": {
-        "x": 1.4708210454661377,
-        "y": 5.054474881043455
+        "x": 1.5300339501846882,
+        "y": 5.054008034726757
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.095397435897437,
-        "y": 4.639666666666667
+        "x": 1.5023846153846168,
+        "y": 4.846768836165314
       },
       "prevControl": {
-        "x": 1.537269230769232,
-        "y": 5.128051282051283
+        "x": 1.5013371110898528,
+        "y": 5.372813990611173
       },
       "nextControl": null,
       "isLocked": false,
@@ -51,7 +51,7 @@
       "minWaypointRelativePos": 0.8307426597582025,
       "maxWaypointRelativePos": 2.0,
       "constraints": {
-        "maxVelocity": 3.0,
+        "maxVelocity": 1.0,
         "maxAcceleration": 11.8,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,
@@ -63,7 +63,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.5,
+    "maxVelocity": 1.0,
     "maxAcceleration": 11.8,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 2043.0,
@@ -75,10 +75,10 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterStartGround",
+  "folder": "CenterStartGround(LC)",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -177.87890360333853
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

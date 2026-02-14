@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5722051282051295,
-        "y": 4.476871794871795
+        "x": 3.5928786612914516,
+        "y": 3.5903600965363998
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.723346153846155,
-        "y": 4.930371794871794
+        "x": 2.874666371799111,
+        "y": 4.252406637770792
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "CenterStartRight"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 5.849000000000001
       },
       "prevControl": {
-        "x": 1.8744871794871805,
-        "y": 5.453641025641025
+        "x": 1.7119088592731155,
+        "y": 5.332925744785621
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0.7659758203799697,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 3.0,
+        "maxVelocity": 1.0,
         "maxAcceleration": 11.8,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,
@@ -47,7 +47,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.5,
+    "maxVelocity": 1.0,
     "maxAcceleration": 11.8,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 2043.0,
@@ -59,7 +59,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterStartGround",
+  "folder": "CenterStartGround(LC)",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0
