@@ -130,11 +130,17 @@ public class RobotContainer {
     //Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     //Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
     
-    //SysID stuff - comment out on competition build!
+    //Drive SysID stuff - comment out on competition build!
     /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));
     Driver.Controller.a().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kReverse));
     Driver.Controller.b().whileTrue(driveSubsystem.sysIdDynamic(Direction.kForward));
     Driver.Controller.x().whileTrue(driveSubsystem.sysIdDynamic(Direction.kReverse));*/
+    
+    //Shooter SysID stuff - comment out on competition build!
+    /*Operator.Controller.y().whileTrue(shooter.sysIdQuasistatic(Direction.kForward));
+    Operator.Controller.a().whileTrue(shooter.sysIdQuasistatic(Direction.kReverse));
+    Operator.Controller.b().whileTrue(shooter.sysIdDynamic(Direction.kForward));
+    Operator.Controller.x().whileTrue(shooter.sysIdDynamic(Direction.kReverse));*/
 
     /* sample code
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`

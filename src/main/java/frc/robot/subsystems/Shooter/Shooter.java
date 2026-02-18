@@ -4,6 +4,10 @@
 
 package frc.robot.subsystems.Shooter;
 
+import static edu.wpi.first.units.Units.Radians;
+import static edu.wpi.first.units.Units.RadiansPerSecond;
+import static edu.wpi.first.units.Units.Volts;
+
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.PersistMode;
@@ -23,10 +27,15 @@ import au.grapplerobotics.LaserCan;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -135,11 +144,38 @@ public class Shooter extends SubsystemBase {
   
   private Intake intake;
 
-  private Operator operator;
-
   private boolean autoAimToggle = true;
 
   private boolean autoHoodToggle = true;
+
+  //Create a SysIdRoutine object for characterizing the Shooter
+  private final SysIdRoutine sysIdShooter = 
+  new SysIdRoutine(
+    //Create a new SysID Congig with default ramp rate (0.1 V/s), step (7V), and time out values
+    new SysIdRoutine.Config(), 
+    new SysIdRoutine.Mechanism(
+      voltage -> {
+        setSysIDVoltage(voltage);},
+      // Tell SysId how to record a frame of data for each motor on the mechanism being
+      // characterized.
+      log -> {
+        //Log a frame for the frontLeft Motor
+        log.motor("shooter")
+          .voltage(getShooterMotorVoltage())
+          .angularPosition(getShooterAngularPositionRadians())
+          .angularVelocity(getShooterAngularVelocityRadiansPerSec());
+      },
+      // Tell SysId to make generated commands require this subsystem, suffix test state in
+      // WPILog with this subsystem's name ("drive")
+      this));
+
+  public Command sysIdQuasistatic(SysIdRoutine.Direction direction){
+    return sysIdShooter.quasistatic(direction);
+  }
+
+  public Command sysIdDynamic(SysIdRoutine.Direction direction){
+    return sysIdShooter.dynamic(direction);
+  }
 
   public Shooter(DriveSubsystem drive, Intake intake) {
     this.drive = drive;
@@ -711,5 +747,24 @@ private void updateIndexerState(){
       }
       hoodSetAngle = newPosition;
     }
+  }
+
+  public void setSysIDVoltage(Voltage volts){
+    //Set drive motor open-loop voltage
+    leadShooterMotor.setVoltage(volts.magnitude());
+  }
+
+  public Voltage getShooterMotorVoltage(){
+    var busVoltage = Voltage.ofBaseUnits(leadShooterMotor.getBusVoltage(), Volts);
+    var appliedOutput = leadShooterMotor.getAppliedOutput();
+    return (busVoltage.times(appliedOutput));
+  }
+
+  public Angle getShooterAngularPositionRadians(){
+    return Angle.ofBaseUnits((shooterLeadEncoder.getPosition()*2*Math.PI), Radians);
+  }
+
+  public AngularVelocity getShooterAngularVelocityRadiansPerSec(){
+    return AngularVelocity.ofBaseUnits((shooterLeadEncoder.getPosition()*2*Math.PI), RadiansPerSecond);
   }
 }
