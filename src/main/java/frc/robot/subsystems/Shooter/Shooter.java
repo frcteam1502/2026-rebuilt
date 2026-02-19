@@ -586,14 +586,36 @@ private void configTurretMotor() {
 
   private double lookupShooterSpeed(Translation2d targetPose){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
-    var distance = calculateTargetDistance(targetPose); 
-    return ShooterLookup.LOOKUP[(int)(2*distance)][0];
+    var distance = calculateTargetDistance(targetPose);
+    int lookup_index = (int)(2*distance);
+
+    //Make sure you are not indexing outside of the array
+    if(lookup_index < 0){
+      lookup_index = 0;
+    }else if (lookup_index > ShooterLookup.LOOKUP.length){
+      lookup_index = ShooterLookup.LOOKUP.length - 1;
+    }else{
+      //Array size is inbounds
+    }
+
+    return ShooterLookup.LOOKUP[lookup_index][0];
     //CL - Was causing array out of bounds need to debug
   }
   private double lookupHoodAngle(Translation2d targetPose){
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     var distance = calculateTargetDistance(targetPose);
     var robotPose = drive.getEstimatedPose2d();
+    int lookup_index = (int)(2*distance);
+
+    //Make sure you are not indexing outside of the array
+    if(lookup_index < 0){
+      lookup_index = 0;
+    }else if (lookup_index > ShooterLookup.LOOKUP.length){
+      lookup_index = ShooterLookup.LOOKUP.length - 1;
+    }else{
+      //Array size is inbounds
+    }
+
     if((robotPose.getX() > ShooterCfg.LOW_RED_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_RED_TRENCHES)){
         return ShooterCfg.HOOD_TRENCH_ANG;
@@ -601,7 +623,7 @@ private void configTurretMotor() {
       (robotPose.getX() < ShooterCfg.HIGH_BLUE_TRENCHES)){
         return ShooterCfg.HOOD_TRENCH_ANG;
       }else{
-        return ShooterLookup.LOOKUP[(int)(2*distance)][1];
+        return ShooterLookup.LOOKUP[lookup_index][1];
       }
   }
 
