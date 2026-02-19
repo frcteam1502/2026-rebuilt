@@ -39,11 +39,11 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  //public final Intake intake = new Intake();
+  public final Intake intake = new Intake();
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
   //public final Shooter shooter = new Shooter(driveSubsystem, intake);
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
-  //public final Climber climber = new Climber();
+  public final Climber climber = new Climber();
 
 
   private final SendableChooser<Command> autoChooser; 
@@ -118,17 +118,17 @@ public class RobotContainer {
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
 
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
-    //Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
+    Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
     Driver.Controller.x().whileTrue(new AlignToTowerLeft(driveSubsystem));
     Driver.Controller.b().whileTrue(new AlignToTowerRight(driveSubsystem));
     
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
-    //Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
-    //Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
+    Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
+    Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
     //Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
-    //Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
+    Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
     
     //Drive SysID stuff - comment out on competition build!
     /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));

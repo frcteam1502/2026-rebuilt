@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  private final Solenoid climberSolenoid = ClimberCfg.CLIMBER_SOLENOID;
+  private final Solenoid climberSolenoid1 = ClimberCfg.CLIMBER_SOLENOID1;
+  private final Solenoid climberSolenoid2 = ClimberCfg.CLIMBER_SOLENOID2;
 
   private boolean climberIn = true;
 
@@ -24,11 +25,13 @@ public class Climber extends SubsystemBase {
   }
   public void setClimberOut(){
     climberIn = false;    
-    climberSolenoid.set(true);
+    climberSolenoid1.set(true);
+    climberSolenoid2.set(true);
   }
   public void setClimberIn(){
     climberIn = true;
-    climberSolenoid.set(false);
+    climberSolenoid1.set(false);
+    climberSolenoid2.set(false);
   }
   
   public void toggleClimber(){

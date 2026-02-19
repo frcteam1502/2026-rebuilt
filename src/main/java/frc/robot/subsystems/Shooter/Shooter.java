@@ -193,9 +193,9 @@ public class Shooter extends SubsystemBase {
     updateShooterState();
     updateTurretState();
     updateHoodAngleSetPoint();
-    updateShooterSetPoint();
-    updateTurretAngleSetPoint();
-    updateDashboard();
+    //updateShooterSetPoint();
+    //updateTurretAngleSetPoint();
+    //updateDashboard();
   }
   private void configShooterMotors() {
     //Config the encoders

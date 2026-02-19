@@ -13,7 +13,7 @@ public class IntakeCfg {
 //Intake Motor Config
 public static final int INTAKE_MOTOR_ID = 3;
 
-public static final int INTAKE_SOLENOID_ID = 1;
+public static final int INTAKE_SOLENOID_ID = 2;
 
 public static final int FRONT_HOPPER_SENSOR_ID = 1;
 public static final int REAR_HOPPER_SENSOR_ID = 2;
@@ -24,11 +24,11 @@ public static final Solenoid INTAKE_SOLENOID = new Solenoid(PneumaticsModuleType
 public static final LaserCan FRONT_LASER_CAN = new LaserCan(FRONT_HOPPER_SENSOR_ID);
 public static final LaserCan REAR_LASER_CAN =  new LaserCan(REAR_HOPPER_SENSOR_ID);
 
-public static final boolean INTAKE_MOTOR_REVERSED = false;
+public static final boolean INTAKE_MOTOR_REVERSED = true;
 
 public static final IdleMode INTAKE_MOTOR_IDLE_MODE = SparkBaseConfig.IdleMode.kCoast;
 
-public static final int INTAKE_MOTOR_CURRENT_LIMIT = 40;
+public static final int INTAKE_MOTOR_CURRENT_LIMIT = 60;
 
 
 }
