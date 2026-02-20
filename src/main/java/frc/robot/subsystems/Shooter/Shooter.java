@@ -40,6 +40,7 @@ import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
+import frc.robot.Logger;
 import frc.robot.Operator;
 import frc.robot.subsystems.Intake.Intake;
 
@@ -108,7 +109,7 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
-  private double shooterSetSpeed = 0.0;
+  private double shooterSetSpeed = 4000.0;
   private double turretSetAngle = Math.toRadians(180.0);
   private double hoodSetAngle = 0.0;
   private Translation2d targetTranslation = new Translation2d(0,0);
@@ -185,18 +186,34 @@ public class Shooter extends SubsystemBase {
     configHoodMotor();
     configIndexMotor();
     configTurretMotor();
+
+    registerLoggerObjects();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    updateShooterState();
-    updateTurretState();
-    updateHoodAngleSetPoint();
-    //updateShooterSetPoint();
-    //updateTurretAngleSetPoint();
-    //updateDashboard();
+    //updateShooterState();
+    //updateTurretState();
+    //updateHoodAngleSetPoint();
+    updateShooterSetPoint();
+    updateTurretAngleSetPoint();
+    updateDashboard();
   }
+
+  private void registerLoggerObjects(){
+    Logger.RegisterSparkFlex("Shooter Lead", ShooterCfg.LEAD_SHOOTER_MOTOR);
+    Logger.RegisterSparkFlex("Shooter Follower", ShooterCfg.FOLLOWER_SHOOTER_MOTOR);
+    Logger.RegisterSparkFlex("Indexer",ShooterCfg.INDEXER_MOTOR);
+
+    Logger.RegisterSparkMax("Hood", ShooterCfg.HOOD_MOTOR);
+    Logger.RegisterSparkMax("Turret", ShooterCfg.TURRET_MOTOR);
+    Logger.RegisterSparkMax("Hood", ShooterCfg.FEED_MOTOR);
+
+    Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
+    Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
+  }
+
   private void configShooterMotors() {
     //Config the encoders
     shooterLeadEncoder = leadShooterMotor.getEncoder();
@@ -234,12 +251,11 @@ public class Shooter extends SubsystemBase {
     shooterFollowerEncoderConfig.velocityConversionFactor(ShooterCfg.SHOOTER_ENC_VEL_CONFIG);
 
     //Config Spark Flex
-    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID);
-    shooterFollowerConfig.inverted(ShooterCfg.SHOOTER_FOLLOW_INVERTED);
+    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID,ShooterCfg.SHOOTER_FOLLOW_INVERTED);
     shooterFollowerConfig.idleMode(ShooterCfg.SHOOTER_IDLE_MODE);
     shooterFollowerConfig.smartCurrentLimit(ShooterCfg.SHOOTER_CURRENT_LIMIT);
 
-    shooterFollowerConfig.apply(shooterLeadEncoderConfig);
+    shooterFollowerConfig.apply(shooterFollowerEncoderConfig);
 
     //Write to the SparkFlex
     followerShooterMotor.configure(shooterFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -428,6 +444,10 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Feed Speed", getFeedVel());
     SmartDashboard.putNumber("Indexer Speed", getIndexVel());
     SmartDashboard.putBoolean("Auto Aim Toggle", autoAimToggle);
+    SmartDashboard.putNumber("Shooter Speed (RPM)",shooterLeadEncoder.getVelocity());
+    SmartDashboard.putNumber("Shooter Output", leadShooterMotor.getAppliedOutput());
+    SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
   }
 
   public void updateShooterSetPoint(){

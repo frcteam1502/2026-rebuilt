@@ -41,7 +41,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public final Intake intake = new Intake();
   public final DriveSubsystem driveSubsystem = new DriveSubsystem();
-  //public final Shooter shooter = new Shooter(driveSubsystem, intake);
+  public final Shooter shooter = new Shooter(driveSubsystem, intake);
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Climber climber = new Climber();
 
@@ -137,10 +137,10 @@ public class RobotContainer {
     Driver.Controller.x().whileTrue(driveSubsystem.sysIdDynamic(Direction.kReverse));*/
     
     //Shooter SysID stuff - comment out on competition build!
-    /*Operator.Controller.y().whileTrue(shooter.sysIdQuasistatic(Direction.kForward));
-    Operator.Controller.a().whileTrue(shooter.sysIdQuasistatic(Direction.kReverse));
-    Operator.Controller.b().whileTrue(shooter.sysIdDynamic(Direction.kForward));
-    Operator.Controller.x().whileTrue(shooter.sysIdDynamic(Direction.kReverse));*/
+    /*Operator.Controller.rightTrigger().whileTrue(shooter.sysIdQuasistatic(Direction.kForward));
+    Operator.Controller.leftTrigger().whileTrue(shooter.sysIdQuasistatic(Direction.kReverse));
+    Operator.Controller.rightBumper().whileTrue(shooter.sysIdDynamic(Direction.kForward));
+    Operator.Controller.leftBumper().whileTrue(shooter.sysIdDynamic(Direction.kReverse));*/
 
     /* sample code
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
