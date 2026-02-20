@@ -42,7 +42,7 @@ public class ShooterCfg {
     //PIDF Gains
     public static final double SHOOTER_P_GAIN = 0.00075;
     public static final double SHOOTER_I_GAIN = 0;
-    public static final double SHOOTER_D_GAIN = 0.001;
+    public static final double SHOOTER_D_GAIN = 0.004;
 
     public static final double TURRET_P_GAIN = 10;
     public static final double TURRET_I_GAIN = 0;

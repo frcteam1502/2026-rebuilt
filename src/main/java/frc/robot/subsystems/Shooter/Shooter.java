@@ -108,7 +108,7 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
-  private double shooterSetSpeed = 5000.0;
+  private double shooterSetSpeed = 4000.0;
   private double turretSetAngle = Math.toRadians(180.0);
   private double hoodSetAngle = 0.0;
   private Translation2d targetTranslation = new Translation2d(0,0);
