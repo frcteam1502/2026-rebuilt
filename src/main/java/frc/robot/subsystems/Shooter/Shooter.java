@@ -108,7 +108,7 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
-  private double shooterSetSpeed = 0.0;
+  private double shooterSetSpeed = 5000.0;
   private double turretSetAngle = Math.toRadians(180.0);
   private double hoodSetAngle = 0.0;
   private Translation2d targetTranslation = new Translation2d(0,0);
@@ -190,12 +190,12 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    updateShooterState();
-    updateTurretState();
-    updateHoodAngleSetPoint();
-    //updateShooterSetPoint();
+    //updateShooterState();
+    //updateTurretState();
+    //updateHoodAngleSetPoint();
+    updateShooterSetPoint();
     //updateTurretAngleSetPoint();
-    //updateDashboard();
+    updateDashboard();
   }
   private void configShooterMotors() {
     //Config the encoders
@@ -234,12 +234,11 @@ public class Shooter extends SubsystemBase {
     shooterFollowerEncoderConfig.velocityConversionFactor(ShooterCfg.SHOOTER_ENC_VEL_CONFIG);
 
     //Config Spark Flex
-    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID);
-    shooterFollowerConfig.inverted(ShooterCfg.SHOOTER_FOLLOW_INVERTED);
+    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID,ShooterCfg.SHOOTER_FOLLOW_INVERTED);
     shooterFollowerConfig.idleMode(ShooterCfg.SHOOTER_IDLE_MODE);
     shooterFollowerConfig.smartCurrentLimit(ShooterCfg.SHOOTER_CURRENT_LIMIT);
 
-    shooterFollowerConfig.apply(shooterLeadEncoderConfig);
+    shooterFollowerConfig.apply(shooterFollowerEncoderConfig);
 
     //Write to the SparkFlex
     followerShooterMotor.configure(shooterFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -428,6 +427,10 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Feed Speed", getFeedVel());
     SmartDashboard.putNumber("Indexer Speed", getIndexVel());
     SmartDashboard.putBoolean("Auto Aim Toggle", autoAimToggle);
+    SmartDashboard.putNumber("Shooter Speed (RPM)",shooterLeadEncoder.getVelocity());
+    SmartDashboard.putNumber("Shooter Output", leadShooterMotor.getAppliedOutput());
+    SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
   }
 
   public void updateShooterSetPoint(){

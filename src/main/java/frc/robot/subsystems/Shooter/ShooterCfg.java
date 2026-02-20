@@ -40,13 +40,13 @@ public class ShooterCfg {
     public static final double DISCONTINUITY_POINT = 1;
 
     //PIDF Gains
-    public static final double SHOOTER_P_GAIN = 0;
+    public static final double SHOOTER_P_GAIN = 0.00075;
     public static final double SHOOTER_I_GAIN = 0;
-    public static final double SHOOTER_D_GAIN = 0;
+    public static final double SHOOTER_D_GAIN = 0.001;
 
     public static final double TURRET_P_GAIN = 10;
     public static final double TURRET_I_GAIN = 0;
-    public static final double TURRET_D_GAIN = 0.001;
+    public static final double TURRET_D_GAIN = 0.005;
 
     public static final double HOOD_P_GAIN = 0;
     public static final double HOOD_I_GAIN = 0;
@@ -55,13 +55,13 @@ public class ShooterCfg {
     //Shooter
     public static final double SHOOTER_ENC_POS_CONFIG = 1;
     public static final double SHOOTER_ENC_VEL_CONFIG = 1;
-    public static final double SHOOTER_KV = 0;
-    public static final double SHOOTER_KA = 0;
-    public static final double SHOOTER_KS = 0;
+    public static final double SHOOTER_KV = 0.002;
+    public static final double SHOOTER_KA = 0.11812;
+    public static final double SHOOTER_KS = 0.35577;
 
     public static final boolean SHOOTER_LEAD_INVERTED = false;
     public static final IdleMode SHOOTER_IDLE_MODE = IdleMode.kCoast;
-    public static final int SHOOTER_CURRENT_LIMIT = 40;
+    public static final int SHOOTER_CURRENT_LIMIT = 100;
     public static final boolean SHOOTER_FOLLOW_INVERTED = !SHOOTER_LEAD_INVERTED;
     
     //Feed
