@@ -40,6 +40,7 @@ import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
+import frc.robot.Logger;
 import frc.robot.Operator;
 import frc.robot.subsystems.Intake.Intake;
 
@@ -185,6 +186,8 @@ public class Shooter extends SubsystemBase {
     configHoodMotor();
     configIndexMotor();
     configTurretMotor();
+
+    registerLoggerObjects();
   }
 
   @Override
@@ -194,9 +197,23 @@ public class Shooter extends SubsystemBase {
     //updateTurretState();
     //updateHoodAngleSetPoint();
     updateShooterSetPoint();
-    //updateTurretAngleSetPoint();
+    updateTurretAngleSetPoint();
     updateDashboard();
   }
+
+  private void registerLoggerObjects(){
+    Logger.RegisterSparkFlex("Shooter Lead", ShooterCfg.LEAD_SHOOTER_MOTOR);
+    Logger.RegisterSparkFlex("Shooter Follower", ShooterCfg.FOLLOWER_SHOOTER_MOTOR);
+    Logger.RegisterSparkFlex("Indexer",ShooterCfg.INDEXER_MOTOR);
+
+    Logger.RegisterSparkMax("Hood", ShooterCfg.HOOD_MOTOR);
+    Logger.RegisterSparkMax("Turret", ShooterCfg.TURRET_MOTOR);
+    Logger.RegisterSparkMax("Hood", ShooterCfg.FEED_MOTOR);
+
+    Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
+    Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
+  }
+
   private void configShooterMotors() {
     //Config the encoders
     shooterLeadEncoder = leadShooterMotor.getEncoder();

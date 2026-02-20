@@ -125,10 +125,10 @@ public class RobotContainer {
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
-    //Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
-    //Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
+    Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
+    Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
     //Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
-    //Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
+    Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
     
     //Drive SysID stuff - comment out on competition build!
     /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));
@@ -137,10 +137,10 @@ public class RobotContainer {
     Driver.Controller.x().whileTrue(driveSubsystem.sysIdDynamic(Direction.kReverse));*/
     
     //Shooter SysID stuff - comment out on competition build!
-    Operator.Controller.rightTrigger().whileTrue(shooter.sysIdQuasistatic(Direction.kForward));
+    /*Operator.Controller.rightTrigger().whileTrue(shooter.sysIdQuasistatic(Direction.kForward));
     Operator.Controller.leftTrigger().whileTrue(shooter.sysIdQuasistatic(Direction.kReverse));
     Operator.Controller.rightBumper().whileTrue(shooter.sysIdDynamic(Direction.kForward));
-    Operator.Controller.leftBumper().whileTrue(shooter.sysIdDynamic(Direction.kReverse));
+    Operator.Controller.leftBumper().whileTrue(shooter.sysIdDynamic(Direction.kReverse));*/
 
     /* sample code
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
