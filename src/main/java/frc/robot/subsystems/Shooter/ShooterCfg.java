@@ -131,4 +131,5 @@ public class ShooterCfg {
 
     public static final double HOOD_TRENCH_ANG = 10;
     public static final double FEED_ON_THRESHOLD = 5300;
+    public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
 }

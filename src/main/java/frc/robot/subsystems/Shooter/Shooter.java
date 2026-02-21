@@ -109,7 +109,7 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
-  private double shooterSetSpeed = 4000.0;
+  private double shooterSetSpeed = 0.0;
   private double turretSetAngle = Math.toRadians(180.0);
   private double hoodSetAngle = 0.0;
   private Translation2d targetTranslation = new Translation2d(0,0);
@@ -439,7 +439,6 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Angle to Target", calculateTargetAngle(targetTranslation));
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
     SmartDashboard.putNumber("Shooter Speed", lookupShooterSpeed(targetTranslation));
-    SmartDashboard.putNumber("Hood Angle", lookupHoodAngle(targetTranslation));
     SmartDashboard.putString("Indexer State", indexerState.toString());
     SmartDashboard.putNumber("Feed Speed", getFeedVel());
     SmartDashboard.putNumber("Indexer Speed", getIndexVel());
@@ -448,6 +447,9 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Shooter Output", leadShooterMotor.getAppliedOutput());
     SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Actual Hood Angle", getHoodAbsPositionZeroed());
+    SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
+
   }
 
   public void updateShooterSetPoint(){
@@ -643,7 +645,7 @@ private void configTurretMotor() {
       (robotPose.getX() < ShooterCfg.HIGH_BLUE_TRENCHES)){
         return ShooterCfg.HOOD_TRENCH_ANG;
       }else{
-        return ShooterLookup.LOOKUP[lookup_index][1];
+        return (((ShooterCfg.HOOD_ENCODER_FULL_ROTATION)*ShooterLookup.LOOKUP[lookup_index][1])*(2*(Math.PI)));
       }
   }
 
