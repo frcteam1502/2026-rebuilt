@@ -33,7 +33,7 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double TURRET_ABS_ENCODER_OFFSET = 0.42;
+    public static final double TURRET_ABS_ENCODER_OFFSET = 0.3341;
     public static final double HOOD_ABS_ENCODER_OFFSET = 0.86;
     public static final SensorDirectionValue TURRET_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.CounterClockwise_Positive;
@@ -44,8 +44,8 @@ public class ShooterCfg {
     public static final double SHOOTER_I_GAIN = 0;
     public static final double SHOOTER_D_GAIN = 0.004;
 
-    public static final double TURRET_P_GAIN = 10;
-    public static final double TURRET_I_GAIN = 0;
+    public static final double TURRET_P_GAIN = 12;
+    public static final double TURRET_I_GAIN = 0.001;   
     public static final double TURRET_D_GAIN = 0.005;
 
     public static final double HOOD_P_GAIN = 0;
@@ -117,8 +117,10 @@ public class ShooterCfg {
     public static final double LOW_BLUE_TRENCHES = 5.2;
     public static final double HIGH_BLUE_TRENCHES = 6.4;
 
-    public static final double TURRET_MAX_ANGLE = (Math.PI/2)*3;
-    public static final double TURRET_MIN_ANGLE = (Math.PI/2);
+    public static final double TURRET_MAX_ANGLE = 4.8;
+    public static final double TURRET_MIN_ANGLE = 0.9;
+    public static final double HOOD_MAX_ANGLE = 3;
+    public static final double HOOOD_MIN_ANGLE = 1.75;
     public static final double TARGET_FEED_SPEED = 1;
     public static final double TARGET_INDEXER_SPEED = 1;
     public static final double INTAKE_AGITATION_SPEED = 0.5;

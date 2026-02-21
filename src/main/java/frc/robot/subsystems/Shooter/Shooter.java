@@ -303,7 +303,7 @@ private void configTurretMotor() {
     turretMotor.configure(shooterTurretConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     //Set absolute encoder magnet configuration
-    turretCANcoderConfig.MagnetSensor.MagnetOffset = -ShooterCfg.TURRET_ABS_ENCODER_OFFSET;
+    turretCANcoderConfig.MagnetSensor.MagnetOffset = ShooterCfg.TURRET_ABS_ENCODER_OFFSET;
     turretCANcoderConfig.MagnetSensor.SensorDirection = ShooterCfg.TURRET_CAN_CODER_DIRECTION;
     turretCANcoderConfig.MagnetSensor.AbsoluteSensorDiscontinuityPoint = ShooterCfg.DISCONTINUITY_POINT;
     turretAbsEncoder.getConfigurator().apply(turretCANcoderConfig);
@@ -449,7 +449,7 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Actual Hood Angle", getHoodAbsPositionZeroed());
     SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
-
+  
   }
 
   public void updateShooterSetPoint(){
