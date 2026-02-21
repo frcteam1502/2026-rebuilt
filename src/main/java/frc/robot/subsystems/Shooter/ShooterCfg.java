@@ -2,6 +2,7 @@ package frc.robot.subsystems.Shooter;
 
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
@@ -43,6 +44,7 @@ public class ShooterCfg {
     public static final double SHOOTER_P_GAIN = 0.00075;
     public static final double SHOOTER_I_GAIN = 0;
     public static final double SHOOTER_D_GAIN = 0.004;
+    public static final double SHOOTER_ALLOWED_ERROR = 50;
 
     public static final double TURRET_P_GAIN = 12;
     public static final double TURRET_I_GAIN = 0.001;   
@@ -133,7 +135,7 @@ public class ShooterCfg {
     public static final double PIVOT_CHANGE = 2;
 
     public static final double HOOD_TRENCH_ANG = 12;
-    public static final double FEED_ON_THRESHOLD = 5300;
+    public static final double FEED_ON_THRESHOLD = 2500;
     public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
     public static final double HOOD_ANGLE_OFFSET = Math.toRadians(12);
 }

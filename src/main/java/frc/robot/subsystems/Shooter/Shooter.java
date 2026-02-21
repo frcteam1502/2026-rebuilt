@@ -13,6 +13,7 @@ import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
@@ -80,7 +81,6 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterLeadEncoderConfig = new EncoderConfig();
   private final ClosedLoopConfig shooterLeadPIDFConfig = new ClosedLoopConfig();
   private final FeedForwardConfig shooterLeadFFConfig = new FeedForwardConfig();
-  private final SignalsConfig shooterRangeConfig = new SignalsConfig();
 
   //Shooter follower motor config - follow lead motor
   private final SparkFlexConfig shooterFollowerConfig = new SparkFlexConfig();
@@ -448,7 +448,7 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
     SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
     SmartDashboard.putString("Shooter State", shooterState.toString());
-    SmartDashboard.putBoolean("Shooter At Setpoint", shooterPIDController.isAtSetpoint());
+    SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
     SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
   }
 
@@ -477,7 +477,7 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(shooterPIDController.isAtSetpoint() &&
+        if(isShooterAtSetPoint() &&
            hoodPIDController.atSetpoint()      &&
            turretState == TurretState.ON_TARGET){
            shooterState = ShooterState.READY;
@@ -492,7 +492,7 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(!shooterPIDController.isAtSetpoint()||
+        if(!isShooterAtSetPoint()||
            !hoodPIDController.atSetpoint()     ||
            turretState != TurretState.ON_TARGET){
             shooterState = ShooterState.WAIT;
@@ -508,7 +508,7 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(shooterPIDController.isAtSetpoint()&&
+        if(isShooterAtSetPoint()&&
            hoodPIDController.atSetpoint()     &&
            turretState == TurretState.ON_TARGET&&
            getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
@@ -526,7 +526,7 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(!shooterPIDController.isAtSetpoint()||
+        if(!isShooterAtSetPoint()||
            !hoodPIDController.atSetpoint()     ||
            turretState != TurretState.ON_TARGET||
            getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
@@ -544,7 +544,7 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(shooterPIDController.isAtSetpoint() &&
+        if(isShooterAtSetPoint() &&
            hoodPIDController.atSetpoint()      &&
            turretState == TurretState.ON_TARGET){
             setFeedSpeed(ShooterCfg.FEED_SPEED);
@@ -604,6 +604,15 @@ private void configTurretMotor() {
 
   private void setAutoAimOff(){
     turretState = TurretState.INACTIVE;
+  }
+
+  private boolean isShooterAtSetPoint(){
+    if(shooterLeadEncoder.getVelocity() <= shooterSetSpeed+ShooterCfg.SHOOTER_ALLOWED_ERROR &&
+       shooterLeadEncoder.getVelocity() >= shooterSetSpeed-ShooterCfg.SHOOTER_ALLOWED_ERROR){
+        return true;
+      }else{
+        return false;
+    }   
   }
 
   private double lookupShooterSpeed(Translation2d targetPose){
