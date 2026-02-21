@@ -111,7 +111,7 @@ public class Shooter extends SubsystemBase {
 
   private double shooterSetSpeed = 0.0;
   private double turretSetAngle = Math.toRadians(180.0);
-  private double hoodSetAngle = 0.0;
+  private double hoodSetAngle = Math.toRadians(22);
   private Translation2d targetTranslation = new Translation2d(0,0);
 
   private enum ShooterState{
@@ -195,7 +195,7 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
     //updateShooterState();
     //updateTurretState();
-    //updateHoodAngleSetPoint();
+    updateHoodAngleSetPoint();
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
     updateDashboard();
@@ -278,7 +278,7 @@ public class Shooter extends SubsystemBase {
     hoodMotor.configure(shooterHoodConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     //Set absolute encoder magnet configuration
-    hoodCANcoderConfig.MagnetSensor.MagnetOffset = -ShooterCfg.HOOD_ABS_ENCODER_OFFSET;
+    hoodCANcoderConfig.MagnetSensor.MagnetOffset = ShooterCfg.HOOD_ABS_ENCODER_OFFSET;
     hoodCANcoderConfig.MagnetSensor.SensorDirection = ShooterCfg.HOOD_CAN_CODER_DIRECTION;
     hoodCANcoderConfig.MagnetSensor.AbsoluteSensorDiscontinuityPoint = ShooterCfg.DISCONTINUITY_POINT;
     hoodAbsEncoder.getConfigurator().apply(hoodCANcoderConfig);
@@ -412,7 +412,7 @@ private void configTurretMotor() {
   public double getHoodAbsPositionZeroed() {
     //CANcoders in Phoenix return rotations 0 to 1
     var angle = hoodAbsEncoder.getAbsolutePosition();
-    return angle.getValueAsDouble()*2.0*Math.PI;
+    return angle.getValueAsDouble()*ShooterCfg.HOOD_ROT_TO_RADIANS+ShooterCfg.HOOD_ANGLE_OFFSET;
   }
 
   public void setShooterSpeed(double speed){
@@ -449,7 +449,7 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Actual Hood Angle", getHoodAbsPositionZeroed());
     SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
-  
+    SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
   }
 
   public void updateShooterSetPoint(){
