@@ -15,34 +15,28 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.EncoderConfig;
 import com.revrobotics.spark.config.FeedForwardConfig;
+import com.revrobotics.spark.config.SignalsConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import au.grapplerobotics.LaserCan;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
-import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
-import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 import frc.robot.Logger;
-import frc.robot.Operator;
 import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -86,6 +80,7 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterLeadEncoderConfig = new EncoderConfig();
   private final ClosedLoopConfig shooterLeadPIDFConfig = new ClosedLoopConfig();
   private final FeedForwardConfig shooterLeadFFConfig = new FeedForwardConfig();
+  private final SignalsConfig shooterRangeConfig = new SignalsConfig();
 
   //Shooter follower motor config - follow lead motor
   private final SparkFlexConfig shooterFollowerConfig = new SparkFlexConfig();
@@ -109,9 +104,9 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
-  private double shooterSetSpeed = 0.0;
-  private double turretSetAngle = Math.toRadians(180.0);
-  private double hoodSetAngle = Math.toRadians(22);
+  private double shooterSetSpeed = 3500;
+  private double turretSetAngle = Math.toRadians(180);
+  private double hoodSetAngle = Math.toRadians(35);
   private Translation2d targetTranslation = new Translation2d(0,0);
 
   private enum ShooterState{
@@ -193,8 +188,8 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //updateShooterState();
-    //updateTurretState();
+    updateShooterState();
+    updateTurretState();
     updateHoodAngleSetPoint();
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
@@ -232,6 +227,8 @@ public class Shooter extends SubsystemBase {
     shooterLeadFFConfig.kS(ShooterCfg.SHOOTER_KS);
     
     shooterLeadPIDFConfig.apply(shooterLeadFFConfig);
+
+    
 
     //Config SparkFlex
     shooterLeadConfig.inverted(ShooterCfg.SHOOTER_LEAD_INVERTED);
@@ -423,8 +420,8 @@ private void configTurretMotor() {
     turretSetAngle = angle;
   }
 
-  public void setHoodAngle(double angle){
-    hoodSetAngle = angle;
+  public void setHoodAngle(double angleDeg){
+    hoodSetAngle = Math.toRadians(angleDeg);
   }
 
   private void updateDashboard(){
@@ -450,6 +447,9 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Actual Hood Angle", getHoodAbsPositionZeroed());
     SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
     SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
+    SmartDashboard.putString("Shooter State", shooterState.toString());
+    SmartDashboard.putBoolean("Shooter At Setpoint", shooterPIDController.isAtSetpoint());
+    SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
   }
 
   public void updateShooterSetPoint(){
@@ -640,12 +640,12 @@ private void configTurretMotor() {
 
     if((robotPose.getX() > ShooterCfg.LOW_RED_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_RED_TRENCHES)){
-        return ShooterCfg.HOOD_TRENCH_ANG;
+        return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
       }else if((robotPose.getX() > ShooterCfg.LOW_BLUE_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_BLUE_TRENCHES)){
-        return ShooterCfg.HOOD_TRENCH_ANG;
+        return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
       }else{
-        return (((ShooterCfg.HOOD_ENCODER_FULL_ROTATION)*ShooterLookup.LOOKUP[lookup_index][1])*(2*(Math.PI)));
+        return (Math.toRadians(ShooterLookup.LOOKUP[lookup_index][1]));
       }
   }
 
@@ -810,5 +810,17 @@ private void updateIndexerState(){
 
   public AngularVelocity getShooterAngularVelocityRadiansPerSec(){
     return AngularVelocity.ofBaseUnits((shooterLeadEncoder.getPosition()*2*Math.PI), RadiansPerSecond);
+  }
+  public void setFeedOn(){
+    setFeedSpeed(1);
+  }
+  public void setFeedOff(){
+    setFeedSpeed(0);
+  }
+  public void setIndexerOn(){
+    setIndexSpeed(1);
+  }
+  public void setIndexerOff(){
+    setIndexSpeed(0);
   }
 }

@@ -67,14 +67,14 @@ public class ShooterCfg {
     //Feed
     public static final double FEED_ENC_POS_CONFIG = 1;
     public static final double FEED_ENC_VEL_CONFIG = 1;
-    public static final boolean FEED_INVERTED = false;
+    public static final boolean FEED_INVERTED = true;
     public static final IdleMode FEED_IDLE_MODE = IdleMode.kCoast;
     public static final int FEED_CURRENT_LIMIT = 40;
 
     //Indexer
     public static final double INDEXER_ENC_VEL_CONFIG = 1;
     public static final double INDEXER_ENC_POS_CONFIG = 1;
-    public static final boolean INDEXER_INVERTED = false;
+    public static final boolean INDEXER_INVERTED = true;
     public static final IdleMode INDEXER_IDLE_MODE = IdleMode.kCoast;
     public static final int INDEXER_CURRENT_LIMIT = 40;
    
@@ -132,7 +132,7 @@ public class ShooterCfg {
     public static final double TURRET_CHANGE = 8;//Defines how much change we should see in on 20 ms loop
     public static final double PIVOT_CHANGE = 2;
 
-    public static final double HOOD_TRENCH_ANG = 10;
+    public static final double HOOD_TRENCH_ANG = 12;
     public static final double FEED_ON_THRESHOLD = 5300;
     public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
     public static final double HOOD_ANGLE_OFFSET = Math.toRadians(12);
