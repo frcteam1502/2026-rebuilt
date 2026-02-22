@@ -78,7 +78,7 @@ public class ShooterCfg {
     public static final double INDEXER_ENC_POS_CONFIG = 1;
     public static final boolean INDEXER_INVERTED = true;
     public static final IdleMode INDEXER_IDLE_MODE = IdleMode.kCoast;
-    public static final int INDEXER_CURRENT_LIMIT = 40;
+    public static final int INDEXER_CURRENT_LIMIT = 60;
    
     //Hood
     public static final boolean HOOD_INVERTED = false;
@@ -97,6 +97,7 @@ public class ShooterCfg {
     public static final double TURRET_KV = 0;
     public static final double TURRET_KA = 0;
     public static final double TURRET_KS = 0;
+    public static final double TURRET_PID_TOLERANCE = 0.0873;//Radians
     public static final double TURRET_ENC_POS_CONFIG = 1;
     public static final double TURRET_ENC_VEL_CONFIG = 1;
     

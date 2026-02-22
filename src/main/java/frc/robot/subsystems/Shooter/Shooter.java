@@ -104,7 +104,8 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
-  private double shooterSetSpeed = 3500;
+  private double shooterSetSpeed = 0;
+  private double angleToTarget;
   private double turretSetAngle = Math.toRadians(180);
   private double hoodSetAngle = Math.toRadians(35);
   private Translation2d targetTranslation = new Translation2d(0,0);
@@ -304,6 +305,8 @@ private void configTurretMotor() {
     turretCANcoderConfig.MagnetSensor.SensorDirection = ShooterCfg.TURRET_CAN_CODER_DIRECTION;
     turretCANcoderConfig.MagnetSensor.AbsoluteSensorDiscontinuityPoint = ShooterCfg.DISCONTINUITY_POINT;
     turretAbsEncoder.getConfigurator().apply(turretCANcoderConfig);
+
+    turretPIDController.setTolerance(ShooterCfg.TURRET_PID_TOLERANCE);
   }
 
   //Index Motor Config
@@ -580,7 +583,7 @@ private void configTurretMotor() {
       case MOVE_TO_TARGET:
         targetTranslation = calculateTargetPosition();
         turretSetAngle = calculateTargetAngle(targetTranslation);
-        if(turretPIDController.atSetpoint()){
+        if(isTurretPointingAtTarget()){
           turretState = TurretState.ON_TARGET;
         } else{
           //Do nothing
@@ -589,7 +592,7 @@ private void configTurretMotor() {
       case ON_TARGET:
         targetTranslation = calculateTargetPosition();
         turretSetAngle = calculateTargetAngle(targetTranslation);
-        if(!turretPIDController.atSetpoint()){
+        if(!isTurretPointingAtTarget()){
           turretState = TurretState.MOVE_TO_TARGET;
         } else{
           //Do nothing
@@ -612,6 +615,15 @@ private void configTurretMotor() {
       }else{
         return false;
     }   
+  }
+
+  private boolean isTurretPointingAtTarget(){
+    if(getTurretAbsPositionZeroed() <= angleToTarget+ShooterCfg.TURRET_PID_TOLERANCE &&
+       getTurretAbsPositionZeroed() >= angleToTarget-ShooterCfg.TURRET_PID_TOLERANCE){
+        return true;
+       }else{
+        return false;
+       }
   }
 
   private double lookupShooterSpeed(Translation2d targetPose){
@@ -658,13 +670,15 @@ private void configTurretMotor() {
   }
 
   private double calculateTargetAngle(Translation2d targetPose){
-    var angle = drive.getDistanceAngleToPoint(targetPose).getY();
-    if (angle < ShooterCfg.TURRET_MIN_ANGLE){
+    double angle;
+    angleToTarget = drive.getDistanceAngleToPoint(targetPose).getY();
+
+    if (angleToTarget < ShooterCfg.TURRET_MIN_ANGLE){
       angle = ShooterCfg.TURRET_MIN_ANGLE;
-    }else if (angle > ShooterCfg.TURRET_MAX_ANGLE){
+    }else if (angleToTarget > ShooterCfg.TURRET_MAX_ANGLE){
       angle = ShooterCfg.TURRET_MAX_ANGLE;
     }else{
-
+      angle = angleToTarget;
     }
     return angle;
   }

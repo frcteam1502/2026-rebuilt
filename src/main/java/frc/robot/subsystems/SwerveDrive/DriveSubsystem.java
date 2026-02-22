@@ -252,9 +252,6 @@ public class DriveSubsystem extends SubsystemBase{
     updateEstimatedPose();
     updatePhotonVisionPose();
 
-    //Push Swerve Module states to the logger
-    Logger.PushSwerveStates(getModuleStates(), loggerSwerveCommands);
-
     //Update SmartDashboard 
     updateDashboard();
   }
