@@ -14,6 +14,7 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.config.PIDConstants;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.math.VecBuilder;
@@ -31,11 +32,15 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 
 public class DriveSubsystem extends SubsystemBase{
+
+  private final Field2d m_field = new Field2d(); 
   
   public static boolean isTeleOp = false;
 
@@ -83,10 +88,8 @@ public class DriveSubsystem extends SubsystemBase{
   private Pose2d photonLeftPose = new Pose2d();
   private Pose2d photonRightPose = new Pose2d();
   private Pose2d estimatedPose = new Pose2d();
-  private Pose2d targetPose = new Pose2d();
 
-  private boolean isLeftCameraPosePresent = false;
-  private boolean isRightCameraPosePresent = false;
+  SwerveModuleState[] loggerSwerveCommands;
 
   //Debug
   private double angleRadians = 0;
@@ -214,6 +217,31 @@ public class DriveSubsystem extends SubsystemBase{
     reset();
     registerLoggerObjects();
 
+    //Add a Field2d widget to the Dashboard
+    SmartDashboard.putData("Field", m_field);
+
+    //Add a Swerve widget to the Dashboard
+    SmartDashboard.putData("Swerve Drive", new Sendable() {
+      @Override
+      public void initSendable(SendableBuilder builder) {
+        builder.setSmartDashboardType("SwerveDrive");
+
+        builder.addDoubleProperty("Front Left Angle",     () -> frontLeft.getAbsPositionZeroed(), null);
+        builder.addDoubleProperty("Front Left Velocity",  () -> frontLeft.getVelocity(), null);
+
+        builder.addDoubleProperty("Front Right Angle",    () -> frontRight.getAbsPositionZeroed(), null);
+        builder.addDoubleProperty("Front Right Velocity", () -> frontRight.getVelocity(), null);
+
+        builder.addDoubleProperty("Back Left Angle",      () -> backLeft.getAbsPositionZeroed(), null);
+        builder.addDoubleProperty("Back Left Velocity",   () -> backLeft.getVelocity(), null);
+
+        builder.addDoubleProperty("Back Right Angle",     () -> backRight.getAbsPositionZeroed(), null);
+        builder.addDoubleProperty("Back Right Velocity",  () -> backRight.getVelocity(), null);
+
+        builder.addDoubleProperty("Robot Angle", () -> estimatedPose.getRotation().getRadians(), null);
+      }
+    });
+
     //Configure Auto Builder last!
     configAutoBuilder(); 
   }
@@ -224,6 +252,10 @@ public class DriveSubsystem extends SubsystemBase{
     updateEstimatedPose();
     updatePhotonVisionPose();
 
+    //Push Swerve Module states to the logger
+    Logger.PushSwerveStates(getModuleStates(), loggerSwerveCommands);
+
+    //Update SmartDashboard 
     updateDashboard();
   }
   
@@ -259,8 +291,12 @@ public class DriveSubsystem extends SubsystemBase{
     
     //Convert from robot frame of reference (ChassisSpeeds) to swerve module frame of reference (SwerveModuleState)
     var swerveModuleStates = kinematics.toSwerveModuleStates(robotRelativeSpeeds);
+
     //Normalize wheel speed commands to make sure no speed is greater than the maximum achievable wheel speed.
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DrivebaseCfg.MAX_SPEED_METERS_PER_SECOND);
+
+    //Save the requested states for the logger
+    loggerSwerveCommands = swerveModuleStates;
 
     //Set the speed and angle of each module
     setDesiredModuleStates(swerveModuleStates);
@@ -323,16 +359,14 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("Gyro Yaw", getIMU_Yaw());
 
     //Pose Info
-    SmartDashboard.putString("FMS Alliance", DriverStation.getAlliance().toString());
-    SmartDashboard.putNumber("Pose2D X", pose.getX());
-    SmartDashboard.putNumber("Pose2D Y", pose.getY());
-    SmartDashboard.putNumber("Pose2D Rotation", pose.getRotation().getDegrees());
+    m_field.setRobotPose(estimatedPose);
 
     SmartDashboard.putNumber("EstimatedPose X", estimatedPose.getX());
     SmartDashboard.putNumber("EstimatedPose Y", estimatedPose.getY());
     SmartDashboard.putNumber("EstimatedPose Rotation", estimatedPose.getRotation().getDegrees());
 
-    SmartDashboard.putNumber("PhotonLeft Pose X", photonLeftPose.getX());
+    //Photonvision Stuff for Debugging - Comment out when not in use to save bandwidth
+    /*SmartDashboard.putNumber("PhotonLeft Pose X", photonLeftPose.getX());
     SmartDashboard.putNumber("PhotonLeft Pose Y", photonLeftPose.getY());
     SmartDashboard.putNumber("PhotonLeft Pose Rotation", photonLeftPose.getRotation().getDegrees());
 
@@ -340,59 +374,51 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("PhotonRight Pose Y", photonRightPose.getY());
     SmartDashboard.putNumber("PhotonRight Pose Rotation", photonRightPose.getRotation().getDegrees());
 
-    SmartDashboard.putNumber("TargetPose X", targetPose.getX());
-    SmartDashboard.putNumber("TargetPose Y", targetPose.getY());
-    SmartDashboard.putNumber("TargetPose Rotation", targetPose.getRotation().getDegrees());
-
-    SmartDashboard.putBoolean("Left Camera Pose Present", isLeftCameraPosePresent);
-    SmartDashboard.putBoolean("Right Camera Pose Present", isRightCameraPosePresent);
     SmartDashboard.putBoolean("Left Any Found", leftPhotonCamera.doesCameraHaveAnyTargets());
     SmartDashboard.putBoolean("Left Any New", leftPhotonCamera.doesCameraHaveNewTargets());
     SmartDashboard.putBoolean("Left Any Valid", leftPhotonCamera.doesCameraHaveAnyValidTargets());
     SmartDashboard.putBoolean("Right Any Found", rightPhotonCamera.doesCameraHaveAnyTargets());
     SmartDashboard.putBoolean("Right Any New", rightPhotonCamera.doesCameraHaveNewTargets());
-    SmartDashboard.putBoolean("Right Any Valid", rightPhotonCamera.doesCameraHaveAnyValidTargets());
-
-    SmartDashboard.putNumber("Target Angle", angleRadians);
+    SmartDashboard.putBoolean("Right Any Valid", rightPhotonCamera.doesCameraHaveAnyValidTargets());*/
   }
 
     private void registerLoggerObjects(){
-    Logger.RegisterSparkFlex("FL Drive", ChassisMotorCfg.DRIVE_FRONT_LEFT);
-    Logger.RegisterSparkFlex("FR Drive", ChassisMotorCfg.DRIVE_FRONT_RIGHT);
-    Logger.RegisterSparkFlex("RL Drive", ChassisMotorCfg.DRIVE_BACK_LEFT);
-    Logger.RegisterSparkFlex("RR Drive", ChassisMotorCfg.DRIVE_BACK_RIGHT);
+      Logger.RegisterSparkFlex("FL Drive", ChassisMotorCfg.DRIVE_FRONT_LEFT);
+      Logger.RegisterSparkFlex("FR Drive", ChassisMotorCfg.DRIVE_FRONT_RIGHT);
+      Logger.RegisterSparkFlex("RL Drive", ChassisMotorCfg.DRIVE_BACK_LEFT);
+      Logger.RegisterSparkFlex("RR Drive", ChassisMotorCfg.DRIVE_BACK_RIGHT);
 
-    Logger.RegisterSparkFlex("FL Turn", ChassisMotorCfg.ANGLE_FRONT_LEFT);
-    Logger.RegisterSparkFlex("FR Turn", ChassisMotorCfg.ANGLE_FRONT_RIGHT);
-    Logger.RegisterSparkFlex("RL Turn", ChassisMotorCfg.ANGLE_BACK_LEFT);
-    Logger.RegisterSparkFlex("RR Turn", ChassisMotorCfg.ANGLE_BACK_RIGHT);
+      Logger.RegisterSparkFlex("FL Turn", ChassisMotorCfg.ANGLE_FRONT_LEFT);
+      Logger.RegisterSparkFlex("FR Turn", ChassisMotorCfg.ANGLE_FRONT_RIGHT);
+      Logger.RegisterSparkFlex("RL Turn", ChassisMotorCfg.ANGLE_BACK_LEFT);
+      Logger.RegisterSparkFlex("RR Turn", ChassisMotorCfg.ANGLE_BACK_RIGHT);
 
-    Logger.RegisterPigeon(IMU_Cfg.IMU);
+      Logger.RegisterPigeon(IMU_Cfg.IMU);
 
-    Logger.RegisterCanCoder("FL Abs Position", CANCoderCfg.FRONT_LEFT_CAN_CODER);
-    Logger.RegisterCanCoder("FR Abs Position", CANCoderCfg.FRONT_RIGHT_CAN_CODER);
-    Logger.RegisterCanCoder("RL Abs Position", CANCoderCfg.BACK_LEFT_CAN_CODER);
-    Logger.RegisterCanCoder("RR Abs Position", CANCoderCfg.BACK_RIGHT_CAN_CODER);
+      Logger.RegisterCanCoder("FL Abs Position", CANCoderCfg.FRONT_LEFT_CAN_CODER);
+      Logger.RegisterCanCoder("FR Abs Position", CANCoderCfg.FRONT_RIGHT_CAN_CODER);
+      Logger.RegisterCanCoder("RL Abs Position", CANCoderCfg.BACK_LEFT_CAN_CODER);
+      Logger.RegisterCanCoder("RR Abs Position", CANCoderCfg.BACK_RIGHT_CAN_CODER);
 
-    Logger.RegisterSensor("Front Left Angle Command",   ()->frontLeft.getCommandedAngle());
-    Logger.RegisterSensor("Front Right Angle Command",  ()->frontRight.getCommandedAngle());
-    Logger.RegisterSensor("Back Left Angle Command",    ()->backLeft.getCommandedAngle());
-    Logger.RegisterSensor("Back Right Angle Command",   ()->backRight.getCommandedAngle());
+      Logger.RegisterDoubleSensor("Front Left Angle Command",   ()->frontLeft.getCommandedAngle());
+      Logger.RegisterDoubleSensor("Front Right Angle Command",  ()->frontRight.getCommandedAngle());
+      Logger.RegisterDoubleSensor("Back Left Angle Command",    ()->backLeft.getCommandedAngle());
+      Logger.RegisterDoubleSensor("Back Right Angle Command",   ()->backRight.getCommandedAngle());
 
-    Logger.RegisterSensor("Front Left Angle (radians)",  ()->frontLeft.getAbsPositionZeroed());
-    Logger.RegisterSensor("Front Right Angle (radians)", ()->frontRight.getAbsPositionZeroed());
-    Logger.RegisterSensor("Back Left Angle (radians)",   ()->backLeft.getAbsPositionZeroed());
-    Logger.RegisterSensor("Back Right Angle (radians)",  ()->backRight.getAbsPositionZeroed());
+      Logger.RegisterDoubleSensor("Front Left Angle (radians)",  ()->frontLeft.getAbsPositionZeroed());
+      Logger.RegisterDoubleSensor("Front Right Angle (radians)", ()->frontRight.getAbsPositionZeroed());
+      Logger.RegisterDoubleSensor("Back Left Angle (radians)",   ()->backLeft.getAbsPositionZeroed());
+      Logger.RegisterDoubleSensor("Back Right Angle (radians)",  ()->backRight.getAbsPositionZeroed());
 
-    Logger.RegisterSensor("FL Drive Speed Command", ()->frontLeft.getCommandedSpeed());
-    Logger.RegisterSensor("FR Drive Speed Command", ()->frontRight.getCommandedSpeed());
-    Logger.RegisterSensor("RL Drive Speed Command", ()->backLeft.getCommandedSpeed());
-    Logger.RegisterSensor("RR Drive Speed Command", ()->backRight.getCommandedSpeed());
+      Logger.RegisterDoubleSensor("FL Drive Speed Command", ()->frontLeft.getCommandedSpeed());
+      Logger.RegisterDoubleSensor("FR Drive Speed Command", ()->frontRight.getCommandedSpeed());
+      Logger.RegisterDoubleSensor("RL Drive Speed Command", ()->backLeft.getCommandedSpeed());
+      Logger.RegisterDoubleSensor("RR Drive Speed Command", ()->backRight.getCommandedSpeed());
 
-    Logger.RegisterSensor("FL Drive Speed", ()->frontLeft.getVelocity());
-    Logger.RegisterSensor("FR Drive Speed", ()->frontRight.getVelocity());
-    Logger.RegisterSensor("RL Drive Speed", ()->backLeft.getVelocity());
-    Logger.RegisterSensor("RR Drive Speed", ()->backRight.getVelocity());
+      Logger.RegisterDoubleSensor("FL Drive Speed", ()->frontLeft.getVelocity());
+      Logger.RegisterDoubleSensor("FR Drive Speed", ()->frontRight.getVelocity());
+      Logger.RegisterDoubleSensor("RL Drive Speed", ()->backLeft.getVelocity());
+      Logger.RegisterDoubleSensor("RR Drive Speed", ()->backRight.getVelocity());
   }
 
   public void resetOdometry(Pose2d pose) {
