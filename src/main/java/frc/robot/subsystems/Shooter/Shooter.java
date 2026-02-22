@@ -115,7 +115,7 @@ public class Shooter extends SubsystemBase {
     READY,
     STARTFEED,
     SHOOTING,
-    RECOVERY;
+    SPIN_UP;
   }
 
   private enum TurretState{
@@ -471,14 +471,12 @@ private void configTurretMotor() {
         //DO NOTHING
         break;
       case WAIT:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         if (autoHoodToggle){
           hoodSetAngle = lookupHoodAngle(targetTranslation);
         }else{
           //DO NOT UPDATE
         }
-        if(isShooterAtSetPoint() &&
-           hoodPIDController.atSetpoint()      &&
+        if(hoodPIDController.atSetpoint() &&
            turretState == TurretState.ON_TARGET){
            shooterState = ShooterState.READY;
         }else{
@@ -486,14 +484,12 @@ private void configTurretMotor() {
         }
         break;
       case READY:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         if (autoHoodToggle){
           hoodSetAngle = lookupHoodAngle(targetTranslation);
         }else{
           //DO NOT UPDATE
         }
-        if(!isShooterAtSetPoint()||
-           !hoodPIDController.atSetpoint()     ||
+        if(!hoodPIDController.atSetpoint() ||
            turretState != TurretState.ON_TARGET){
             shooterState = ShooterState.WAIT;
         }else{
@@ -532,12 +528,12 @@ private void configTurretMotor() {
            getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(0);
             intake.setIntakeOff();
-            shooterState = ShooterState.RECOVERY;
+            shooterState = ShooterState.SPIN_UP;
           }else {
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
         }
         break;
-      case RECOVERY:
+      case SPIN_UP:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         if (autoHoodToggle){
           hoodSetAngle = lookupHoodAngle(targetTranslation);
@@ -559,13 +555,16 @@ private void configTurretMotor() {
   public void setShooterToWait(){
     setIndexSpeed(0);
     setFeedSpeed(0);
-    shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+    intake.setIntakeOff();
+    shooterSetSpeed = 0;
     hoodSetAngle = lookupHoodAngle(targetTranslation);
     shooterState = ShooterState.WAIT;
   }
+
   public void setShooterOn(){
-    shooterState = ShooterState.RECOVERY;
+    shooterState = ShooterState.SPIN_UP;
   }
+
   public void setShooterOff(){
     shooterState = ShooterState.OFF;
     shooterSetSpeed = 0;
