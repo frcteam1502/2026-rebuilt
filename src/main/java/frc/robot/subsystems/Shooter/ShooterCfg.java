@@ -93,7 +93,7 @@ public class ShooterCfg {
     //Turret
     public static final boolean TURRET_INVERTED = true;
     public static final IdleMode TURRET_IDLE_MODE = IdleMode.kCoast;
-    public static final int TURRET_CURRENT_LIMIT = 40;
+    public static final int TURRET_CURRENT_LIMIT = 20;
     public static final double TURRET_KV = 0;
     public static final double TURRET_KA = 0;
     public static final double TURRET_KS = 0;
