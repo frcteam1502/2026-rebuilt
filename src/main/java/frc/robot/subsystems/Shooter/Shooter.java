@@ -629,7 +629,7 @@ private void configTurretMotor() {
   private double lookupShooterSpeed(Translation2d targetPose){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
     var distance = calculateTargetDistance(targetPose);
-    int lookup_index = (int)(2*distance);
+    int lookup_index = (int)(4*distance);
 
     //Make sure you are not indexing outside of the array
     if(lookup_index < 0){
@@ -647,7 +647,7 @@ private void configTurretMotor() {
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     var distance = calculateTargetDistance(targetPose);
     var robotPose = drive.getEstimatedPose2d();
-    int lookup_index = (int)(2*distance);
+    int lookup_index = (int)(4*distance);
 
     //Make sure you are not indexing outside of the array
     if(lookup_index < 0){
