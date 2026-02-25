@@ -20,8 +20,8 @@
         "y": 6.232730769230769
       },
       "prevControl": {
-        "x": 2.374500000000001,
-        "y": 6.1513333333333335
+        "x": 1.7244064986197087,
+        "y": 6.118195219190597
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0.6623488773747783,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 3.0,
+        "maxVelocity": 1.0,
         "maxAcceleration": 11.8,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,
@@ -47,7 +47,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.5,
+    "maxVelocity": 1.0,
     "maxAcceleration": 11.8,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 2043.0,
@@ -56,10 +56,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -177.87890360333853
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterStartGround",
+  "folder": "CenterStartGround(LC)",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

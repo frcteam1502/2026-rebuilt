@@ -8,6 +8,7 @@ import frc.robot.Logger;
 import frc.robot.subsystems.Climber.Climber;
 import au.grapplerobotics.CanBridge;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.RobotController;
@@ -29,26 +30,26 @@ public class Robot extends TimedRobot {
   private Logger logger = new Logger();
 
   private String[] pdhRealChannelNames = {
-    "FL Drive",       //"0"
-    "FL Turn",        //"1"
+    null,             //"0"
+    null,             //"1"
     null,             //"2"
     null,             //"3"
     null,             //"4"  
     null,             //"5"
     null,             //"6"
     null,             //"7"
-    "RL Turn",        //"8"
-    "RL Drive",       //"9"
-    "RR Drive",       //"10"
-    "RR Turn",        //"11"
+    null,             //"8"
+    null,             //"9"
+    null,             //"10"
+    null,             //"11"
     null,             //"12"
     null,             //"13"
     null,             //"14"
     null,             //"15"
     null,             //"16"
     null,             //"17"
-    "FR Turn",        //"18"
-    "FR Drive",       //"19"
+    null,             //"18"
+    null,             //"19"
     null,             //"20"
     null,             //"21"
     null,             //"22"
@@ -56,9 +57,9 @@ public class Robot extends TimedRobot {
 };
 
   private String[] pneumaticNames = {
-    null, //"0",
-    null, //"1",
-    null, //"2"
+    "Climber 1", //"0",
+    "Climber 2", //"1",
+    "Hopper", //"2"
     null, //"3"
     null, //"4",
     null, //"5",
@@ -84,7 +85,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-   // CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
     
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items
@@ -96,7 +97,7 @@ public class Robot extends TimedRobot {
     //Register Logger items
     //Logger.RegisterLoopTimes(this);
     Logger.RegisterPdp(new PowerDistribution(1, ModuleType.kRev), pdhRealChannelNames);
-    //Logger.RegisterPneumaticHub(new PneumaticHub(7), pneumaticNames);
+    Logger.RegisterPneumaticHub(new PneumaticHub(1), pneumaticNames);
     logger.start();
   }
 

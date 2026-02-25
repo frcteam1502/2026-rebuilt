@@ -4,35 +4,40 @@
 
 package frc.robot.subsystems.Shooter;
 
+import static edu.wpi.first.units.Units.Radians;
+import static edu.wpi.first.units.Units.RadiansPerSecond;
+import static edu.wpi.first.units.Units.Volts;
+
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.EncoderConfig;
 import com.revrobotics.spark.config.FeedForwardConfig;
+import com.revrobotics.spark.config.SignalsConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import au.grapplerobotics.LaserCan;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
-import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
-import frc.robot.Operator;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.Logger;
 import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -99,9 +104,10 @@ public class Shooter extends SubsystemBase {
   private final EncoderConfig shooterTurretEncoderConfig = new EncoderConfig();
   private final CANcoderConfiguration turretCANcoderConfig = new CANcoderConfiguration();
 
-  private double shooterSetSpeed = 0.0;
-  private double turretSetAngle = Math.toRadians(180.0);
-  private double hoodSetAngle = 0.0;
+  private double shooterSetSpeed = 0;
+  private double angleToTarget;
+  private double turretSetAngle = Math.toRadians(180);
+  private double hoodSetAngle = Math.toRadians(35);
   private Translation2d targetTranslation = new Translation2d(0,0);
 
   private enum ShooterState{
@@ -110,7 +116,7 @@ public class Shooter extends SubsystemBase {
     READY,
     STARTFEED,
     SHOOTING,
-    RECOVERY;
+    SPIN_UP;
   }
 
   private enum TurretState{
@@ -119,7 +125,7 @@ public class Shooter extends SubsystemBase {
     ON_TARGET;
   }
 
-  private enum IndexerState{
+   private enum IndexerState{
     OFF,
     WAIT,
     ON;
@@ -128,18 +134,45 @@ public class Shooter extends SubsystemBase {
   private ShooterState shooterState = ShooterState.WAIT;
    
   private TurretState turretState = TurretState.MOVE_TO_TARGET;
-
+  
   private IndexerState indexerState = IndexerState.OFF;
 
   private DriveSubsystem drive;
-
+  
   private Intake intake;
-
-  private Operator operator;
 
   private boolean autoAimToggle = true;
 
   private boolean autoHoodToggle = true;
+
+  //Create a SysIdRoutine object for characterizing the Shooter
+  private final SysIdRoutine sysIdShooter = 
+  new SysIdRoutine(
+    //Create a new SysID Congig with default ramp rate (0.1 V/s), step (7V), and time out values
+    new SysIdRoutine.Config(), 
+    new SysIdRoutine.Mechanism(
+      voltage -> {
+        setSysIDVoltage(voltage);},
+      // Tell SysId how to record a frame of data for each motor on the mechanism being
+      // characterized.
+      log -> {
+        //Log a frame for the frontLeft Motor
+        log.motor("shooter")
+          .voltage(getShooterMotorVoltage())
+          .angularPosition(getShooterAngularPositionRadians())
+          .angularVelocity(getShooterAngularVelocityRadiansPerSec());
+      },
+      // Tell SysId to make generated commands require this subsystem, suffix test state in
+      // WPILog with this subsystem's name ("drive")
+      this));
+
+  public Command sysIdQuasistatic(SysIdRoutine.Direction direction){
+    return sysIdShooter.quasistatic(direction);
+  }
+
+  public Command sysIdDynamic(SysIdRoutine.Direction direction){
+    return sysIdShooter.dynamic(direction);
+  }
 
   public Shooter(DriveSubsystem drive, Intake intake) {
     this.drive = drive;
@@ -149,6 +182,8 @@ public class Shooter extends SubsystemBase {
     configHoodMotor();
     configIndexMotor();
     configTurretMotor();
+
+    registerLoggerObjects();
   }
 
   @Override
@@ -161,6 +196,20 @@ public class Shooter extends SubsystemBase {
     updateTurretAngleSetPoint();
     updateDashboard();
   }
+
+  private void registerLoggerObjects(){
+    Logger.RegisterSparkFlex("Shooter Lead", ShooterCfg.LEAD_SHOOTER_MOTOR);
+    Logger.RegisterSparkFlex("Shooter Follower", ShooterCfg.FOLLOWER_SHOOTER_MOTOR);
+    Logger.RegisterSparkFlex("Indexer",ShooterCfg.INDEXER_MOTOR);
+
+    Logger.RegisterSparkMax("Hood", ShooterCfg.HOOD_MOTOR);
+    Logger.RegisterSparkMax("Turret", ShooterCfg.TURRET_MOTOR);
+    Logger.RegisterSparkMax("Hood", ShooterCfg.FEED_MOTOR);
+
+    Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
+    Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
+  }
+
   private void configShooterMotors() {
     //Config the encoders
     shooterLeadEncoder = leadShooterMotor.getEncoder();
@@ -180,6 +229,8 @@ public class Shooter extends SubsystemBase {
     
     shooterLeadPIDFConfig.apply(shooterLeadFFConfig);
 
+    
+
     //Config SparkFlex
     shooterLeadConfig.inverted(ShooterCfg.SHOOTER_LEAD_INVERTED);
     shooterLeadConfig.idleMode(ShooterCfg.SHOOTER_IDLE_MODE);
@@ -198,12 +249,11 @@ public class Shooter extends SubsystemBase {
     shooterFollowerEncoderConfig.velocityConversionFactor(ShooterCfg.SHOOTER_ENC_VEL_CONFIG);
 
     //Config Spark Flex
-    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID);
-    shooterFollowerConfig.inverted(ShooterCfg.SHOOTER_FOLLOW_INVERTED);
+    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID,ShooterCfg.SHOOTER_FOLLOW_INVERTED);
     shooterFollowerConfig.idleMode(ShooterCfg.SHOOTER_IDLE_MODE);
     shooterFollowerConfig.smartCurrentLimit(ShooterCfg.SHOOTER_CURRENT_LIMIT);
 
-    shooterFollowerConfig.apply(shooterLeadEncoderConfig);
+    shooterFollowerConfig.apply(shooterFollowerEncoderConfig);
 
     //Write to the SparkFlex
     followerShooterMotor.configure(shooterFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -226,7 +276,7 @@ public class Shooter extends SubsystemBase {
     hoodMotor.configure(shooterHoodConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     //Set absolute encoder magnet configuration
-    hoodCANcoderConfig.MagnetSensor.MagnetOffset = -ShooterCfg.HOOD_ABS_ENCODER_OFFSET;
+    hoodCANcoderConfig.MagnetSensor.MagnetOffset = ShooterCfg.HOOD_ABS_ENCODER_OFFSET;
     hoodCANcoderConfig.MagnetSensor.SensorDirection = ShooterCfg.HOOD_CAN_CODER_DIRECTION;
     hoodCANcoderConfig.MagnetSensor.AbsoluteSensorDiscontinuityPoint = ShooterCfg.DISCONTINUITY_POINT;
     hoodAbsEncoder.getConfigurator().apply(hoodCANcoderConfig);
@@ -251,10 +301,12 @@ private void configTurretMotor() {
     turretMotor.configure(shooterTurretConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     //Set absolute encoder magnet configuration
-    turretCANcoderConfig.MagnetSensor.MagnetOffset = -ShooterCfg.TURRET_ABS_ENCODER_OFFSET;
+    turretCANcoderConfig.MagnetSensor.MagnetOffset = ShooterCfg.TURRET_ABS_ENCODER_OFFSET;
     turretCANcoderConfig.MagnetSensor.SensorDirection = ShooterCfg.TURRET_CAN_CODER_DIRECTION;
     turretCANcoderConfig.MagnetSensor.AbsoluteSensorDiscontinuityPoint = ShooterCfg.DISCONTINUITY_POINT;
     turretAbsEncoder.getConfigurator().apply(turretCANcoderConfig);
+
+    turretPIDController.setTolerance(ShooterCfg.TURRET_PID_TOLERANCE);
   }
 
   //Index Motor Config
@@ -360,7 +412,7 @@ private void configTurretMotor() {
   public double getHoodAbsPositionZeroed() {
     //CANcoders in Phoenix return rotations 0 to 1
     var angle = hoodAbsEncoder.getAbsolutePosition();
-    return angle.getValueAsDouble()*2.0*Math.PI;
+    return angle.getValueAsDouble()*ShooterCfg.HOOD_ROT_TO_RADIANS+ShooterCfg.HOOD_ANGLE_OFFSET;
   }
 
   public void setShooterSpeed(double speed){
@@ -371,8 +423,8 @@ private void configTurretMotor() {
     turretSetAngle = angle;
   }
 
-  public void setHoodAngle(double angle){
-    hoodSetAngle = angle;
+  public void setHoodAngle(double angleDeg){
+    hoodSetAngle = Math.toRadians(angleDeg);
   }
 
   private void updateDashboard(){
@@ -386,12 +438,21 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
     SmartDashboard.putNumber("Angle to Target", calculateTargetAngle(targetTranslation));
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
-    SmartDashboard.putNumber("Shooter Speed", lookupShooterSpeed(targetTranslation));
-    SmartDashboard.putNumber("Hood Angle", lookupHoodAngle(targetTranslation));
+    SmartDashboard.putNumber("Target Shooter Speed", lookupShooterSpeed(targetTranslation));
     SmartDashboard.putString("Indexer State", indexerState.toString());
     SmartDashboard.putNumber("Feed Speed", getFeedVel());
     SmartDashboard.putNumber("Indexer Speed", getIndexVel());
     SmartDashboard.putBoolean("Auto Aim Toggle", autoAimToggle);
+    SmartDashboard.putNumber("Shooter Speed (RPM)",shooterLeadEncoder.getVelocity());
+    SmartDashboard.putNumber("Shooter Output", leadShooterMotor.getAppliedOutput());
+    SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Actual Hood Angle", Math.toDegrees(getHoodAbsPositionZeroed()));
+    SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
+    SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
+    SmartDashboard.putString("Shooter State", shooterState.toString());
+    SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
+    SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
   }
 
   public void updateShooterSetPoint(){
@@ -413,14 +474,12 @@ private void configTurretMotor() {
         //DO NOTHING
         break;
       case WAIT:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         if (autoHoodToggle){
           hoodSetAngle = lookupHoodAngle(targetTranslation);
         }else{
           //DO NOT UPDATE
         }
-        if(shooterPIDController.isAtSetpoint() &&
-           hoodPIDController.atSetpoint()      &&
+        if(hoodPIDController.atSetpoint() &&
            turretState == TurretState.ON_TARGET){
            shooterState = ShooterState.READY;
         }else{
@@ -428,14 +487,12 @@ private void configTurretMotor() {
         }
         break;
       case READY:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         if (autoHoodToggle){
           hoodSetAngle = lookupHoodAngle(targetTranslation);
         }else{
           //DO NOT UPDATE
         }
-        if(!shooterPIDController.isAtSetpoint()||
-           !hoodPIDController.atSetpoint()     ||
+        if(!hoodPIDController.atSetpoint() ||
            turretState != TurretState.ON_TARGET){
             shooterState = ShooterState.WAIT;
         }else{
@@ -450,7 +507,7 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(shooterPIDController.isAtSetpoint()&&
+        if(isShooterAtSetPoint()&&
            hoodPIDController.atSetpoint()     &&
            turretState == TurretState.ON_TARGET&&
            getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
@@ -468,25 +525,32 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(!shooterPIDController.isAtSetpoint()||
+
+        if(intake.isHopperIn()){
+          intake.setIntakeReverse();
+        }else{
+          intake.setIntakeOn();
+        }
+        
+        if(!isShooterAtSetPoint()||
            !hoodPIDController.atSetpoint()     ||
            turretState != TurretState.ON_TARGET||
            getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(0);
             intake.setIntakeOff();
-            shooterState = ShooterState.RECOVERY;
+            shooterState = ShooterState.SPIN_UP;
           }else {
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
         }
         break;
-      case RECOVERY:
+      case SPIN_UP:
         shooterSetSpeed = lookupShooterSpeed(targetTranslation);
         if (autoHoodToggle){
           hoodSetAngle = lookupHoodAngle(targetTranslation);
         }else{
           //DO NOT UPDATE
         }
-        if(shooterPIDController.isAtSetpoint() &&
+        if(isShooterAtSetPoint() &&
            hoodPIDController.atSetpoint()      &&
            turretState == TurretState.ON_TARGET){
             setFeedSpeed(ShooterCfg.FEED_SPEED);
@@ -501,14 +565,17 @@ private void configTurretMotor() {
   public void setShooterToWait(){
     setIndexSpeed(0);
     setFeedSpeed(0);
-    shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+    intake.setIntakeOff();
+    shooterSetSpeed = 0;
     hoodSetAngle = lookupHoodAngle(targetTranslation);
     shooterState = ShooterState.WAIT;
   }
+
   public void setShooterOn(){
-    shooterState = ShooterState.RECOVERY;
+    shooterState = ShooterState.SPIN_UP;
   }
-  private void setShooterOff(){
+
+  public void setShooterOff(){
     shooterState = ShooterState.OFF;
     shooterSetSpeed = 0;
     setIndexSpeed(0);
@@ -523,7 +590,7 @@ private void configTurretMotor() {
       case MOVE_TO_TARGET:
         targetTranslation = calculateTargetPosition();
         turretSetAngle = calculateTargetAngle(targetTranslation);
-        if(turretPIDController.atSetpoint()){
+        if(isTurretPointingAtTarget()){
           turretState = TurretState.ON_TARGET;
         } else{
           //Do nothing
@@ -532,7 +599,7 @@ private void configTurretMotor() {
       case ON_TARGET:
         targetTranslation = calculateTargetPosition();
         turretSetAngle = calculateTargetAngle(targetTranslation);
-        if(!turretPIDController.atSetpoint()){
+        if(!isTurretPointingAtTarget()){
           turretState = TurretState.MOVE_TO_TARGET;
         } else{
           //Do nothing
@@ -548,35 +615,85 @@ private void configTurretMotor() {
     turretState = TurretState.INACTIVE;
   }
 
+  public boolean isShooterAtSetPoint(){
+    if(shooterLeadEncoder.getVelocity() <= shooterSetSpeed+ShooterCfg.SHOOTER_ALLOWED_ERROR &&
+       shooterLeadEncoder.getVelocity() >= shooterSetSpeed-ShooterCfg.SHOOTER_ALLOWED_ERROR){
+        return true;
+      }else{
+        return false;
+    }   
+  }
+
+  public boolean isTurretAtSetpoint(){
+    return turretPIDController.atSetpoint();
+  }
+
+  public boolean isHoodAtSetpoint(){
+    return hoodPIDController.atSetpoint();
+  }
+
+  private boolean isTurretPointingAtTarget(){
+    if(getTurretAbsPositionZeroed() <= angleToTarget+ShooterCfg.TURRET_PID_TOLERANCE &&
+       getTurretAbsPositionZeroed() >= angleToTarget-ShooterCfg.TURRET_PID_TOLERANCE){
+        return true;
+       }else{
+        return false;
+       }
+  }
+
   private double lookupShooterSpeed(Translation2d targetPose){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
-    var distance = calculateTargetDistance(targetPose); 
-    return ShooterLookup.LOOKUP[(int)(2*distance)][0];
+    var distance = calculateTargetDistance(targetPose);
+    int lookup_index = (int)(4*distance);
+
+    //Make sure you are not indexing outside of the array
+    if(lookup_index < 0){
+      lookup_index = 0;
+    }else if (lookup_index > ShooterLookup.LOOKUP.length){
+      lookup_index = ShooterLookup.LOOKUP.length - 1;
+    }else{
+      //Array size is inbounds
+    }
+
+    return ShooterLookup.LOOKUP[lookup_index][0];
     //CL - Was causing array out of bounds need to debug
   }
   private double lookupHoodAngle(Translation2d targetPose){
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     var distance = calculateTargetDistance(targetPose);
     var robotPose = drive.getEstimatedPose2d();
+    int lookup_index = (int)(4*distance);
+
+    //Make sure you are not indexing outside of the array
+    if(lookup_index < 0){
+      lookup_index = 0;
+    }else if (lookup_index > ShooterLookup.LOOKUP.length){
+      lookup_index = ShooterLookup.LOOKUP.length - 1;
+    }else{
+      //Array size is inbounds
+    }
+
     if((robotPose.getX() > ShooterCfg.LOW_RED_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_RED_TRENCHES)){
-        return ShooterCfg.HOOD_TRENCH_ANG;
+        return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
       }else if((robotPose.getX() > ShooterCfg.LOW_BLUE_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_BLUE_TRENCHES)){
-        return ShooterCfg.HOOD_TRENCH_ANG;
+        return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
       }else{
-        return ShooterLookup.LOOKUP[(int)(2*distance)][1];
+        return (Math.toRadians(ShooterLookup.LOOKUP[lookup_index][1]));
       }
   }
 
   private double calculateTargetAngle(Translation2d targetPose){
-    var angle = drive.getDistanceAngleToPoint(targetPose).getY();
-    if (angle < ShooterCfg.TURRET_MIN_ANGLE){
+    double angle;
+    angleToTarget = drive.getDistanceAngleToPoint(targetPose).getY();
+
+    if (angleToTarget < ShooterCfg.TURRET_MIN_ANGLE){
       angle = ShooterCfg.TURRET_MIN_ANGLE;
-    }else if (angle > ShooterCfg.TURRET_MAX_ANGLE){
+    }else if (angleToTarget > ShooterCfg.TURRET_MAX_ANGLE){
       angle = ShooterCfg.TURRET_MAX_ANGLE;
     }else{
-
+      angle = angleToTarget;
     }
     return angle;
   }
@@ -610,7 +727,7 @@ private void configTurretMotor() {
       return ShooterCfg.BLUE_LEFT;
     }
   }
-  private void updateIndexerState(){
+private void updateIndexerState(){
     switch (indexerState){
       case OFF:
       setFeedSpeed(0);
@@ -711,5 +828,36 @@ private void configTurretMotor() {
       }
       hoodSetAngle = newPosition;
     }
+  }
+
+  public void setSysIDVoltage(Voltage volts){
+    //Set drive motor open-loop voltage
+    leadShooterMotor.setVoltage(volts.magnitude());
+  }
+
+  public Voltage getShooterMotorVoltage(){
+    var busVoltage = Voltage.ofBaseUnits(leadShooterMotor.getBusVoltage(), Volts);
+    var appliedOutput = leadShooterMotor.getAppliedOutput();
+    return (busVoltage.times(appliedOutput));
+  }
+
+  public Angle getShooterAngularPositionRadians(){
+    return Angle.ofBaseUnits((shooterLeadEncoder.getPosition()*2*Math.PI), Radians);
+  }
+
+  public AngularVelocity getShooterAngularVelocityRadiansPerSec(){
+    return AngularVelocity.ofBaseUnits((shooterLeadEncoder.getPosition()*2*Math.PI), RadiansPerSecond);
+  }
+  public void setFeedOn(){
+    setFeedSpeed(1);
+  }
+  public void setFeedOff(){
+    setFeedSpeed(0);
+  }
+  public void setIndexerOn(){
+    setIndexSpeed(1);
+  }
+  public void setIndexerOff(){
+    setIndexSpeed(0);
   }
 }

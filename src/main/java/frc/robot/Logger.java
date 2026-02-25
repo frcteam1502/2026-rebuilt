@@ -3,6 +3,7 @@ package frc.robot;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 //import com.ctre.phoenix.ErrorCode;
@@ -117,7 +118,11 @@ public class Logger implements Runnable {
         items.put(name, coder);
     }
 
-    public static void RegisterSensor(String name, DoubleSupplier value) {
+    public static void RegisterDoubleSensor(String name, DoubleSupplier value) {
+        items.put(name, value);
+    }
+
+    public static void RegisterBooleanSensor(String name, BooleanSupplier value) {
         items.put(name, value);
     }
 
@@ -140,7 +145,6 @@ public class Logger implements Runnable {
     }
 
     public static void PushSwerveStates(SwerveModuleState[] state, SwerveModuleState[] request) {
-        //CDL - Rework this for 1502's swerve
         var size = state.length;
         var states = new double[size * 2];
         var requests = new double[size * 2];

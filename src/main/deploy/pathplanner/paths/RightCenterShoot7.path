@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.4675000000000014,
-        "y": 2.174487179487179
+        "x": 1.4312843023016562,
+        "y": 2.0470665724125263
       },
       "isLocked": false,
       "linkedName": "EndRightCenterShoot6"
     },
     {
       "anchor": {
-        "x": 1.0256282051282062,
-        "y": 2.7907820512820525
+        "x": 0.7814358974416722,
+        "y": 2.5151011998381034
       },
       "prevControl": {
-        "x": 1.2930769230769243,
-        "y": 2.1861153846153853
+        "x": 1.3477026282314526,
+        "y": 2.059006811565412
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightEndClimb"
     }
   ],
   "rotationTargets": [],
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 3.0,
+        "maxVelocity": 1.0,
         "maxAcceleration": 11.8,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,
@@ -47,7 +47,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 5.5,
+    "maxVelocity": 1.0,
     "maxAcceleration": 11.8,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 2043.0,

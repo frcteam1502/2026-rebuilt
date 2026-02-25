@@ -2,6 +2,7 @@ package frc.robot.subsystems.Shooter;
 
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.SparkMax;
@@ -33,55 +34,56 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double TURRET_ABS_ENCODER_OFFSET = -0.066;
-    public static final double HOOD_ABS_ENCODER_OFFSET = 0;
+    public static final double TURRET_ABS_ENCODER_OFFSET = 0.3341;
+    public static final double HOOD_ABS_ENCODER_OFFSET = -0.8522;
     public static final SensorDirectionValue TURRET_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
-    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.CounterClockwise_Positive;
+    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final double DISCONTINUITY_POINT = 1;
 
     //PIDF Gains
-    public static final double SHOOTER_P_GAIN = 0;
+    public static final double SHOOTER_P_GAIN = 0.00075;
     public static final double SHOOTER_I_GAIN = 0;
-    public static final double SHOOTER_D_GAIN = 0;
+    public static final double SHOOTER_D_GAIN = 0.004;
+    public static final double SHOOTER_ALLOWED_ERROR = 50;
 
-    public static final double TURRET_P_GAIN = 10;
-    public static final double TURRET_I_GAIN = 0;
-    public static final double TURRET_D_GAIN = 0.001;
+    public static final double TURRET_P_GAIN = 12;
+    public static final double TURRET_I_GAIN = 0.001;   
+    public static final double TURRET_D_GAIN = 0.005;
 
-    public static final double HOOD_P_GAIN = 0;
-    public static final double HOOD_I_GAIN = 0;
+    public static final double HOOD_P_GAIN = 70;
+    public static final double HOOD_I_GAIN = 0.1;
     public static final double HOOD_D_GAIN = 0;
 
     //Shooter
     public static final double SHOOTER_ENC_POS_CONFIG = 1;
     public static final double SHOOTER_ENC_VEL_CONFIG = 1;
-    public static final double SHOOTER_KV = 0;
-    public static final double SHOOTER_KA = 0;
-    public static final double SHOOTER_KS = 0;
+    public static final double SHOOTER_KV = 0.002;
+    public static final double SHOOTER_KA = 0.11812;
+    public static final double SHOOTER_KS = 0.35577;
 
     public static final boolean SHOOTER_LEAD_INVERTED = false;
     public static final IdleMode SHOOTER_IDLE_MODE = IdleMode.kCoast;
-    public static final int SHOOTER_CURRENT_LIMIT = 40;
+    public static final int SHOOTER_CURRENT_LIMIT = 100;
     public static final boolean SHOOTER_FOLLOW_INVERTED = !SHOOTER_LEAD_INVERTED;
     
     //Feed
     public static final double FEED_ENC_POS_CONFIG = 1;
     public static final double FEED_ENC_VEL_CONFIG = 1;
-    public static final boolean FEED_INVERTED = false;
+    public static final boolean FEED_INVERTED = true;
     public static final IdleMode FEED_IDLE_MODE = IdleMode.kCoast;
     public static final int FEED_CURRENT_LIMIT = 40;
 
     //Indexer
     public static final double INDEXER_ENC_VEL_CONFIG = 1;
     public static final double INDEXER_ENC_POS_CONFIG = 1;
-    public static final boolean INDEXER_INVERTED = false;
+    public static final boolean INDEXER_INVERTED = true;
     public static final IdleMode INDEXER_IDLE_MODE = IdleMode.kCoast;
-    public static final int INDEXER_CURRENT_LIMIT = 40;
+    public static final int INDEXER_CURRENT_LIMIT = 60;
    
     //Hood
     public static final boolean HOOD_INVERTED = false;
     public static final IdleMode HOOD_IDLE_MODE = IdleMode.kCoast;
-    public static final int HOOD_CURRENT_LIMIT = 40;
+    public static final int HOOD_CURRENT_LIMIT = 20;
     public static final double HOOD_ENC_POS_CONFIG = 1;
     public static final double HOOD_ENC_VEL_CONFIG = 1;
     public static final double HOOD_KV = 0;
@@ -91,10 +93,11 @@ public class ShooterCfg {
     //Turret
     public static final boolean TURRET_INVERTED = true;
     public static final IdleMode TURRET_IDLE_MODE = IdleMode.kCoast;
-    public static final int TURRET_CURRENT_LIMIT = 40;
+    public static final int TURRET_CURRENT_LIMIT = 20;
     public static final double TURRET_KV = 0;
     public static final double TURRET_KA = 0;
     public static final double TURRET_KS = 0;
+    public static final double TURRET_PID_TOLERANCE = 0.0873;//Radians
     public static final double TURRET_ENC_POS_CONFIG = 1;
     public static final double TURRET_ENC_VEL_CONFIG = 1;
     
@@ -114,11 +117,14 @@ public class ShooterCfg {
     public static final double MIDDLE_BLUE_TRENCHES = 5.8;
     public static final double LOW_RED_TRENCHES = 11.3;
     public static final double HIGH_RED_TRENCHES = 12.5;
-    public static final double LOW_BLUE_TRENCHES = 5.2;
-    public static final double HIGH_BLUE_TRENCHES = 6.4;
+    public static final double LOW_BLUE_TRENCHES = 3.9;
+    public static final double HIGH_BLUE_TRENCHES = 5.3;
 
-    public static final double TURRET_MAX_ANGLE = (Math.PI/2)*3;
-    public static final double TURRET_MIN_ANGLE = (Math.PI/2);
+    public static final double TURRET_MAX_ANGLE = 4.8;
+    public static final double TURRET_MIN_ANGLE = 0.9;
+    public static final double HOOD_MAX_ANGLE = 0.775;
+    public static final double HOOD_MIN_ANGLE = 0;
+    public static final double HOOD_ROT_TO_RADIANS = 0.70686;
     public static final double TARGET_FEED_SPEED = 1;
     public static final double TARGET_INDEXER_SPEED = 1;
     public static final double INTAKE_AGITATION_SPEED = 0.5;
@@ -129,6 +135,8 @@ public class ShooterCfg {
     public static final double TURRET_CHANGE = 8;//Defines how much change we should see in on 20 ms loop
     public static final double PIVOT_CHANGE = 2;
 
-    public static final double HOOD_TRENCH_ANG = 10;
-    public static final double FEED_ON_THRESHOLD = 5300;
+    public static final double HOOD_TRENCH_ANG = 12;
+    public static final double FEED_ON_THRESHOLD = 2500;
+    public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
+    public static final double HOOD_ANGLE_OFFSET = Math.toRadians(12);
 }

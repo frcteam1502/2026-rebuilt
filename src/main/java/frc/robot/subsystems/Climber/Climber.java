@@ -4,14 +4,20 @@
 
 package frc.robot.subsystems.Climber;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
-  private final Solenoid climberSolenoid = ClimberCfg.CLIMBER_SOLENOID;
+  private final Solenoid climberSolenoid1 = ClimberCfg.CLIMBER_SOLENOID1;
+  private final Solenoid climberSolenoid2 = ClimberCfg.CLIMBER_SOLENOID2;
+  private final AnalogInput climberPSI = ClimberCfg.CLIMBER_PSI;
 
   private boolean climberIn = true;
+  private double climberPSIValue = 0;
 
 
   public Climber() {}
@@ -20,15 +26,34 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    calculatePressure();
+    updateDashboard();
+
 
   }
   public void setClimberOut(){
     climberIn = false;    
-    climberSolenoid.set(true);
+    climberSolenoid1.set(true);
+    climberSolenoid2.set(true);
   }
   public void setClimberIn(){
     climberIn = true;
-    climberSolenoid.set(false);
+    climberSolenoid1.set(false);
+    climberSolenoid2.set(false);
+  }
+
+  public void calculatePressure(){
+    var climberVoltage = climberPSI.getVoltage();
+    climberPSIValue = (climberVoltage - 0.5)*50;
+  }
+
+  public boolean isClimberReady(){
+    return(climberPSIValue>= ClimberCfg.CLIMBER_PSI_LIMIT);
+  }
+
+  private void updateDashboard(){
+    SmartDashboard.putNumber("Climber Pressure", climberPSIValue);
+    SmartDashboard.putBoolean("Climber Ready", isClimberReady());
   }
   
   public void toggleClimber(){
