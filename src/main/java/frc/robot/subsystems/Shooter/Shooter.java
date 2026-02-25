@@ -615,13 +615,21 @@ private void configTurretMotor() {
     turretState = TurretState.INACTIVE;
   }
 
-  private boolean isShooterAtSetPoint(){
+  public boolean isShooterAtSetPoint(){
     if(shooterLeadEncoder.getVelocity() <= shooterSetSpeed+ShooterCfg.SHOOTER_ALLOWED_ERROR &&
        shooterLeadEncoder.getVelocity() >= shooterSetSpeed-ShooterCfg.SHOOTER_ALLOWED_ERROR){
         return true;
       }else{
         return false;
     }   
+  }
+
+  public boolean isTurretAtSetpoint(){
+    return turretPIDController.atSetpoint();
+  }
+
+  public boolean isHoodAtSetpoint(){
+    return hoodPIDController.atSetpoint();
   }
 
   private boolean isTurretPointingAtTarget(){
