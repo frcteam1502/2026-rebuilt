@@ -134,10 +134,10 @@ public class RobotContainer {
     //Operator.Controller.b().whileTrue(new InstantCommand(shooter::setIndexerOn)).whileFalse(new InstantCommand(shooter::setIndexerOff));
     
     //Drive SysID stuff - comment out on competition build!
-    /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kForward));
-    Driver.Controller.a().whileTrue(driveSubsystem.sysIdQuasistatic(Direction.kReverse));
-    Driver.Controller.b().whileTrue(driveSubsystem.sysIdDynamic(Direction.kForward));
-    Driver.Controller.x().whileTrue(driveSubsystem.sysIdDynamic(Direction.kReverse));*/
+    Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
+    Driver.Controller.a().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kReverse));
+    Driver.Controller.b().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kForward));
+    Driver.Controller.x().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kReverse));
     
     //Shooter SysID stuff - comment out on competition build!
     /*Operator.Controller.rightTrigger().whileTrue(shooter.sysIdQuasistatic(Direction.kForward));
