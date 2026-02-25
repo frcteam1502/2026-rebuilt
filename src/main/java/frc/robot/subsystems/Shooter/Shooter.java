@@ -525,6 +525,13 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
+
+        if(intake.isHopperIn()){
+          intake.setIntakeReverse();
+        }else{
+          intake.setIntakeOn();
+        }
+        
         if(!isShooterAtSetPoint()||
            !hoodPIDController.atSetpoint()     ||
            turretState != TurretState.ON_TARGET||

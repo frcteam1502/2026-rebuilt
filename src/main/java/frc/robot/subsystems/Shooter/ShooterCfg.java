@@ -83,7 +83,7 @@ public class ShooterCfg {
     //Hood
     public static final boolean HOOD_INVERTED = false;
     public static final IdleMode HOOD_IDLE_MODE = IdleMode.kCoast;
-    public static final int HOOD_CURRENT_LIMIT = 40;
+    public static final int HOOD_CURRENT_LIMIT = 20;
     public static final double HOOD_ENC_POS_CONFIG = 1;
     public static final double HOOD_ENC_VEL_CONFIG = 1;
     public static final double HOOD_KV = 0;
@@ -117,8 +117,8 @@ public class ShooterCfg {
     public static final double MIDDLE_BLUE_TRENCHES = 5.8;
     public static final double LOW_RED_TRENCHES = 11.3;
     public static final double HIGH_RED_TRENCHES = 12.5;
-    public static final double LOW_BLUE_TRENCHES = 5.2;
-    public static final double HIGH_BLUE_TRENCHES = 6.4;
+    public static final double LOW_BLUE_TRENCHES = 3.9;
+    public static final double HIGH_BLUE_TRENCHES = 5.3;
 
     public static final double TURRET_MAX_ANGLE = 4.8;
     public static final double TURRET_MIN_ANGLE = 0.9;

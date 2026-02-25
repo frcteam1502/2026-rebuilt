@@ -65,4 +65,7 @@ public class Intake extends SubsystemBase {
       hopperIn = false;
     }
   }
+  public boolean isHopperIn(){
+    return hopperIn;
+  }
 }
