@@ -63,21 +63,19 @@ public class RobotContainer {
 
     //Register named commands. Must register all commands we want Pathplanner to execute.
    
-    //NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
-    //NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
+    NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
+    NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
 
-    //NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
-    //NamedCommands.registerCommand("retractIntake", new InstantCommand(intake::setHopperIn));
+    NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
+    NamedCommands.registerCommand("retractIntake", new InstantCommand(intake::setHopperIn));
 
-    //NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
-    //NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeOn));
-    //NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
+    NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
+    NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeOn));
+    NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
 
-
-
-    
-
-  //  NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
+    NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
+    NamedCommands.registerCommand("shootOn", new InstantCommand(shooter::setShooterOn));
+    NamedCommands.registerCommand("shootOff", new InstantCommand(shooter::setShooterOff));
     
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
@@ -93,6 +91,7 @@ public class RobotContainer {
     //new PathPlannerAuto("GetOutOfTheWay");
     //new PathPlannerAuto("CenterStartGround");
     //new PathPlannerAuto("CenterStartHp");
+    new PathPlannerAuto("LeftWeek0CenterGrab");
 
     new PathPlannerAuto("TestAuto");
     new PathPlannerAuto("StrafeTestAuto");
@@ -134,10 +133,10 @@ public class RobotContainer {
     //Operator.Controller.b().whileTrue(new InstantCommand(shooter::setIndexerOn)).whileFalse(new InstantCommand(shooter::setIndexerOff));
     
     //Drive SysID stuff - comment out on competition build!
-    Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
+    /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
     Driver.Controller.a().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kReverse));
     Driver.Controller.b().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kForward));
-    Driver.Controller.x().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kReverse));
+    Driver.Controller.x().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kReverse));*/
     
     //Shooter SysID stuff - comment out on competition build!
     /*Operator.Controller.rightTrigger().whileTrue(shooter.sysIdQuasistatic(Direction.kForward));
