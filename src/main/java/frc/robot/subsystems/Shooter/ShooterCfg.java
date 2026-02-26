@@ -34,7 +34,7 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double TURRET_ABS_ENCODER_OFFSET = 0.3341;
+    public static final double TURRET_ABS_ENCODER_OFFSET = 0.35145;
     public static final double HOOD_ABS_ENCODER_OFFSET = -0.8522;
     public static final SensorDirectionValue TURRET_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
