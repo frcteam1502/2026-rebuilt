@@ -20,42 +20,80 @@ public class Intake extends SubsystemBase {
   private final Solenoid hopperSolenoid = IntakeCfg.INTAKE_SOLENOID;
 
   private boolean hopperIn = true;
+  private boolean isShooterRequestIn = false;
+  private boolean isShooterRequestOut = false;
+  private boolean isCntrlRequestIn = false;
+  private boolean isCntrlRequestOut = false;
+  
+    public Intake() {
+      intakeMotorConfig.inverted(IntakeCfg.INTAKE_MOTOR_REVERSED);
+      intakeMotorConfig.idleMode(IntakeCfg.INTAKE_MOTOR_IDLE_MODE);
+      intakeMotorConfig.smartCurrentLimit(IntakeCfg.INTAKE_MOTOR_CURRENT_LIMIT);
+  
+      intakeMotor.configure(intakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    }
+  
+    @Override
+    public void periodic() {
+      // This method will be called once per scheduler run
+      arbitrateIntake();
+    }
 
-  public Intake() {
-    intakeMotorConfig.inverted(IntakeCfg.INTAKE_MOTOR_REVERSED);
-    intakeMotorConfig.idleMode(IntakeCfg.INTAKE_MOTOR_IDLE_MODE);
-    intakeMotorConfig.smartCurrentLimit(IntakeCfg.INTAKE_MOTOR_CURRENT_LIMIT);
-
-    intakeMotor.configure(intakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    private void arbitrateIntake(){
+      if(isCntrlRequestIn){
+        intakeMotor.set(1.0);
+      }else if(isCntrlRequestOut){
+        intakeMotor.set(-1.0);
+      }else if(isShooterRequestIn){
+        intakeMotor.set(1.0);
+      }else if(isShooterRequestOut){
+        intakeMotor.set(-1.0);
+      }else{
+        intakeMotor.set(0);
+      }
+    }
+  
+    public void setIntakeOn(){
+      isCntrlRequestIn = true;
+      isCntrlRequestOut = false;
+    }
+  
+    public void setIntakeReverse(){
+      isCntrlRequestIn = false;
+      isCntrlRequestOut = true;
+    }
+  
+    public void setIntakeOff(){
+      isCntrlRequestIn = false;
+      isCntrlRequestOut = false;
+    }
+  
+    public void setHopperOut(){
+      hopperSolenoid.set(true);
+    }
+  
+     public void setHopperIn(){
+      hopperSolenoid.set(false);
+    }
+    public void setIntakeSpeed(double speed){
+      intakeMotor.set(speed);
+    }
+  
+  public void shooterRequestIntakeOn(){
+    isShooterRequestIn = true;
+    isShooterRequestOut = false;
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  public void shooterRequestIntakeReverse(){
+    isShooterRequestIn = false;
+    isShooterRequestOut = true;
   }
 
-  public void setIntakeOn(){
-    intakeMotor.set(1.0);
+  public void shooterRequestIntakeOff(){
+    isShooterRequestIn = false;
+    isShooterRequestOut = false;
   }
 
-  public void setIntakeReverse(){
-    intakeMotor.set(-1.0);
-  }
-
-  public void setIntakeOff(){
-    intakeMotor.set(0);
-  }
-
-  public void setHopperOut(){
-    hopperSolenoid.set(true);
-  }
-
-   public void setHopperIn(){
-    hopperSolenoid.set(false);
-  }
-  public void setIntakeSpeed(double speed){
-    intakeMotor.set(speed);
-  }
   public void toggleHopper(){
     if(hopperIn == false){
       setHopperIn();

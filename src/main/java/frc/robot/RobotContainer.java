@@ -126,7 +126,7 @@ public class RobotContainer {
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
     Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
-    Operator.Controller.rightTrigger().onTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
+    Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
 
     //Operator.Controller.x().whileTrue(new InstantCommand(shooter::setFeedOn)).whileFalse(new InstantCommand(shooter::setFeedOff));

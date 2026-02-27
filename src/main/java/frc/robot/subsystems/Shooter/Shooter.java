@@ -512,7 +512,7 @@ private void configTurretMotor() {
            turretState == TurretState.ON_TARGET&&
            getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
-            intake.setIntakeOn();
+            intake.shooterRequestIntakeOn();
             shooterState = ShooterState.SHOOTING;
           }else {
             //NOTHING
@@ -527,9 +527,9 @@ private void configTurretMotor() {
         }
 
         if(intake.isHopperIn()){
-          intake.setIntakeReverse();
+          intake.shooterRequestIntakeReverse();
         }else{
-          intake.setIntakeOn();
+          intake.shooterRequestIntakeOn();
         }
         
         if(!isShooterAtSetPoint()||
@@ -537,7 +537,7 @@ private void configTurretMotor() {
            turretState != TurretState.ON_TARGET||
            getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(0);
-            intake.setIntakeOff();
+            intake.shooterRequestIntakeOff();
             shooterState = ShooterState.SPIN_UP;
           }else {
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
@@ -565,7 +565,7 @@ private void configTurretMotor() {
   public void setShooterToWait(){
     setIndexSpeed(0);
     setFeedSpeed(0);
-    intake.setIntakeOff();
+    intake.shooterRequestIntakeOff();
     shooterSetSpeed = 0;
     hoodSetAngle = lookupHoodAngle(targetTranslation);
     shooterState = ShooterState.WAIT;

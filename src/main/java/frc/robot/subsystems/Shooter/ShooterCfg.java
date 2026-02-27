@@ -44,7 +44,7 @@ public class ShooterCfg {
     public static final double SHOOTER_P_GAIN = 0.00075;
     public static final double SHOOTER_I_GAIN = 0;
     public static final double SHOOTER_D_GAIN = 0.004;
-    public static final double SHOOTER_ALLOWED_ERROR = 50;
+    public static final double SHOOTER_ALLOWED_ERROR = 100;
 
     public static final double TURRET_P_GAIN = 12;
     public static final double TURRET_I_GAIN = 0.001;   
@@ -103,7 +103,7 @@ public class ShooterCfg {
     
     public static final double SPEED_TOLERENCE = 100;
     public static final double FEED_SPEED = 1;
-    public static final double INDEX_SPEED = 1;
+    public static final double INDEX_SPEED = 0.35;
     public static final double TURRET_TOLERANCE = 0;
     
     //Target Translations
