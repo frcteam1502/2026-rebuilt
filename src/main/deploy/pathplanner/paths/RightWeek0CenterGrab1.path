@@ -3,37 +3,53 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5928786612914516,
-        "y": 3.5903600965363998
+        "x": 4.3906626506072515,
+        "y": 0.42885542168127355
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.357206472404197,
-        "y": 2.980896097420135
+        "x": 6.215590361450624,
+        "y": 0.46163855421139377
       },
       "isLocked": false,
-      "linkedName": "CenterStartRight"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.8187603502724814,
-        "y": 0.6896096461636421
+        "x": 6.95867469879518,
+        "y": 1.128228915662652
       },
       "prevControl": {
-        "x": 1.0862090682211993,
-        "y": 1.0268275948815915
+        "x": 6.182807228915663,
+        "y": 0.6801927710843394
+      },
+      "nextControl": {
+        "x": 7.92754525745527,
+        "y": 1.6877175481283369
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.734542168679539,
+        "y": 3.226349397584887
+      },
+      "prevControl": {
+        "x": 7.658048192775926,
+        "y": 1.9915180722836823
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndCenterStart1"
+      "linkedName": "EndRightWeek0CenterGrab1"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.0,
-      "maxWaypointRelativePos": 0.65,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 1.4365853658536583,
       "constraints": {
         "maxVelocity": 2.5,
         "maxAcceleration": 3.0,
@@ -45,13 +61,13 @@
     },
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.65,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 1.44,
+      "maxWaypointRelativePos": 2.0,
       "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 2.0,
+        "maxVelocity": 2.5,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 1060.0,
-        "maxAngularAcceleration": 2043.0,
+        "maxAngularAcceleration": 1397.0,
         "nominalVoltage": 12.0,
         "unlimited": false
       }
@@ -69,13 +85,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 90.75384833307075
   },
   "reversed": false,
-  "folder": "CenterStartHp(RC)",
+  "folder": "RightWeek0CenterGrab",
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 180.0
+    "velocity": 0,
+    "rotation": 90.0
   },
   "useDefaultConstraints": true
 }
