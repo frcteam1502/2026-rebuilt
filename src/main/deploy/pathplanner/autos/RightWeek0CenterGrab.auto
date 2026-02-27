@@ -11,19 +11,13 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterStart1Hp"
+                  "pathName": "RightWeek0CenterGrab1"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "extendIntake"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "climberExtend"
                 }
               },
               {
@@ -38,26 +32,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 3.0
+            "waitTime": 0.5
           }
         },
         {
-          "type": "parallel",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "CenterStart2Hp"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "climberExtend"
-                }
-              }
-            ]
+            "name": "intakeOff"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightWeek0CenterGrab2"
           }
         },
         {
@@ -91,15 +78,15 @@
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "CenterStart3Hp"
+            "name": "shootOff"
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "alignToClimbRight"
+            "pathName": "RightWeek0CenterGrab3"
           }
         },
         {
@@ -107,17 +94,11 @@
           "data": {
             "name": "Stop Drive Motors"
           }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
-          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Center Start",
+  "folder": "Right Start",
   "choreoAuto": false
 }

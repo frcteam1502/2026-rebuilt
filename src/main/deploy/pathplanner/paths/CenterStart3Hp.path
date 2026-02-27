@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.1116883845050416,
-        "y": 6.914205132638914
+        "x": 1.4948192771084337,
+        "y": 1.7729638554216867
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2303755117387265,
-        "y": 5.95522120933372
+        "x": 0.6533855421686748,
+        "y": 2.3302771084337364
       },
       "isLocked": false,
-      "linkedName": "EndCenterGrab2"
+      "linkedName": "EndCenterStart2HP"
     },
     {
       "anchor": {
-        "x": 1.9555704959188271,
-        "y": 4.712177684134547
+        "x": 0.5113253012048191,
+        "y": 2.330277108433736
       },
       "prevControl": {
-        "x": 2.6133929932504882,
-        "y": 6.540575137170625
+        "x": 1.1997710843373495,
+        "y": 2.024301204819277
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftClimbEnd"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -33,10 +33,10 @@
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 2.0,
-        "maxAcceleration": 1.5,
+        "maxVelocity": 1.0,
+        "maxAcceleration": 2.0,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 1397.0,
         "nominalVoltage": 12.0,
@@ -56,13 +56,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "CenterGrabLeft",
+  "folder": "CenterStartHp(RC)",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 40.0
+    "rotation": -135.83031548625806
   },
   "useDefaultConstraints": true
 }
