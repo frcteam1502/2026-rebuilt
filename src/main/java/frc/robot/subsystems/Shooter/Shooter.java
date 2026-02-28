@@ -121,7 +121,7 @@ public class Shooter extends SubsystemBase {
 
   private boolean isTurretTargetPresent = false;
   private boolean isHubFound = false;
-  private double turretCamAveYaw = 0.0;
+  private double turretCamYaw = 0.0;//Photonvision Yaw value for the tag closest to the camera, from center of FoV
   private int targetId = -1;
 
   private enum ShooterState{
@@ -446,6 +446,8 @@ private void configTurretMotor() {
   }
 
   private void updateTurretCamera(){
+    double bestArea = 0;
+    double bestYaw = 0;
     var turretCamResults = turretCamera.getLatestPipelineTargets();
     var alliance = DriverStation.getAlliance();
 
@@ -456,24 +458,36 @@ private void configTurretMotor() {
         for(int i = 0;i<turretCamResults.size();i++){
           //Get the tag id and yaw for the 
           var tagId = turretCamResults.get(i).getFiducialId();
+          var targetArea = turretCamResults.get(i).getArea();
 
           if(alliance.get() == DriverStation.Alliance.Blue){
             //Blue alliance so we only care if the tag is on the alliance zone side of the blue hub
             if((tagId == 18)||(tagId == 21)||(tagId == 24)||
                (tagId == 25)||(tagId == 26)||(tagId == 27)){
                   //Found ID is on the alliance zone side of the blue hub  
-                  targetId = tagId;
                   isHubFound = true;
                   turretCameraTimeout.reset();
+                  //Check to see if the target is the closest to the camera (largest area should be closest)
+                  if(targetArea >= bestArea){
+                    targetId = tagId;
+                    bestYaw = turretCamResults.get(i).getYaw();
+                    bestArea = targetArea;
+                  }
+                  
             }else{
               //Found ID is NOT on the alliance zone side of the blue hub
             }
-          }else if((tagId == 5)||(tagId == 8)||(tagId == 9)||
-                   (tagId == 10)||(tagId == 11)||(tagId == 12)){
+          }else if((tagId == 2)||(tagId == 5)||(tagId == 8)||
+                   (tagId == 9)||(tagId == 10)||(tagId == 11)){
                     //Found ID is on the alliance zone side of the red hub
-                    targetId = tagId;
                     isHubFound = true;
-                    turretCameraTimeout.reset();
+                  turretCameraTimeout.reset();
+                  //Check to see if the target is the closest to the camera (largest area should be closest)
+                  if(targetArea >= bestArea){
+                    targetId = tagId;
+                    bestYaw = turretCamResults.get(i).getYaw();
+                    bestArea = targetArea;
+                  }
             }else{
               //Found ID is NOT on the alliance zone side of the red hub
           }
@@ -488,6 +502,9 @@ private void configTurretMotor() {
     if(turretCameraTimeout.get() >= ShooterCfg.TURRET_CAM_TIMEOUT){
       targetId = -1;
       isHubFound = false;
+      turretCamYaw = 0;
+    }else{
+      turretCamYaw = bestYaw;
     }
   }
 
