@@ -31,6 +31,7 @@ import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -45,6 +46,8 @@ import frc.robot.subsystems.SwerveDrive.CANCoderCfg;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
+  private final Timer turretCameraTimeout = new Timer();
+
   private final SparkFlex leadShooterMotor = ShooterCfg.LEAD_SHOOTER_MOTOR;
   private final SparkFlex followerShooterMotor = ShooterCfg.FOLLOWER_SHOOTER_MOTOR;
   private final SparkMax hoodMotor = ShooterCfg.HOOD_MOTOR;
@@ -118,6 +121,7 @@ public class Shooter extends SubsystemBase {
 
   private boolean isTurretTargetPresent = false;
   private boolean isHubFound = false;
+  private double turretCamAveYaw = 0.0;
   private int targetId = -1;
 
   private enum ShooterState{
@@ -189,7 +193,7 @@ public class Shooter extends SubsystemBase {
     this.intake = intake;
     
     turretCamera = new PhotonVisionCamera(PhotonCameraCfg.TURRET_CAM, PhotonCameraCfg.TURRET_CAM_TRANSFORM);
-    
+    turretCameraTimeout.start();
     configShooterMotors();
     configFeedMotor();
     configHoodMotor();
@@ -444,44 +448,44 @@ private void configTurretMotor() {
   private void updateTurretCamera(){
     var turretCamResults = turretCamera.getLatestPipelineTargets();
     var alliance = DriverStation.getAlliance();
-    targetId = -1;
 
     isTurretTargetPresent = !turretCamResults.isEmpty();
 
     if(!turretCamResults.isEmpty()){
       if(alliance.isPresent()){
         for(int i = 0;i<turretCamResults.size();i++){
+          //Get the tag id and yaw for the 
           var tagId = turretCamResults.get(i).getFiducialId();
+
           if(alliance.get() == DriverStation.Alliance.Blue){
             //Blue alliance so we only care if the tag is on the alliance zone side of the blue hub
-            if((tagId == 18)||(tagId == 19)||(tagId == 20)||
-               (tagId == 21)||(tagId == 24)||(tagId == 27)){
+            if((tagId == 18)||(tagId == 21)||(tagId == 24)||
+               (tagId == 25)||(tagId == 26)||(tagId == 27)){
                   //Found ID is on the alliance zone side of the blue hub  
                   targetId = tagId;
                   isHubFound = true;
+                  turretCameraTimeout.reset();
             }else{
               //Found ID is NOT on the alliance zone side of the blue hub
-              targetId = -1;
-              isHubFound = false;
             }
           }else if((tagId == 5)||(tagId == 8)||(tagId == 9)||
                    (tagId == 10)||(tagId == 11)||(tagId == 12)){
                     //Found ID is on the alliance zone side of the red hub
                     targetId = tagId;
                     isHubFound = true;
+                    turretCameraTimeout.reset();
             }else{
               //Found ID is NOT on the alliance zone side of the red hub
-              targetId = -1;
-              isHubFound = false;
           }
         }
       }else{
         //Alliance is not present in DS data
-        targetId = -1;
-        isHubFound = false;
       }
     }else{
       //TurretResults is empty
+    }
+
+    if(turretCameraTimeout.get() >= ShooterCfg.TURRET_CAM_TIMEOUT){
       targetId = -1;
       isHubFound = false;
     }
@@ -515,6 +519,7 @@ private void configTurretMotor() {
     SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
     SmartDashboard.putBoolean("Is Hub Found", isHubFound);
     SmartDashboard.putBoolean("Is Turret Target Found", isTurretTargetPresent);
+    SmartDashboard.putNumber("Target ID", (double)targetId);
   }
 
   public void updateShooterSetPoint(){

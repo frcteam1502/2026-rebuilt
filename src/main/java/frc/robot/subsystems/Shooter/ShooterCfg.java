@@ -139,4 +139,5 @@ public class ShooterCfg {
     public static final double FEED_ON_THRESHOLD = 2500;
     public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
     public static final double HOOD_ANGLE_OFFSET = Math.toRadians(12);
+    public static final double TURRET_CAM_TIMEOUT = 0.5;
 }
