@@ -3,25 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.0684096385542166,
-        "y": 1.4451325301204816
+        "x": 3.0902650602409643,
+        "y": 1.0954457831325295
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.833918110394329,
-        "y": 1.5318142653433113
+        "x": 2.51109638554713,
+        "y": 1.062662650596949
       },
       "isLocked": false,
       "linkedName": "EndRightWeek0CenterGrab2"
     },
     {
       "anchor": {
-        "x": 0.4894698795180723,
-        "y": 2.1554337349397588
+        "x": 1.0795662650652025,
+        "y": 1.6855421686692384
       },
       "prevControl": {
-        "x": 0.736393056606726,
-        "y": 2.194535456339786
+        "x": 1.763286849188846,
+        "y": 1.5628230894675599
+      },
+      "nextControl": {
+        "x": 0.22720481928206981,
+        "y": 1.8385301204764661
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 0.3766092215566721,
+        "y": 2.8248521011621177
+      },
+      "prevControl": {
+        "x": 0.6235323986453258,
+        "y": 2.863953822562145
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,8 +48,8 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5247967479674798,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 1.05,
+      "maxWaypointRelativePos": 2.0,
       "constraints": {
         "maxVelocity": 2.0,
         "maxAcceleration": 1.5,
@@ -62,7 +78,7 @@
   "folder": "RightWeek0CenterGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -85.42607874009913
+    "rotation": -59.470294100065956
   },
   "useDefaultConstraints": true
 }
