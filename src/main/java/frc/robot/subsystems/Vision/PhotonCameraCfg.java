@@ -12,6 +12,7 @@ import edu.wpi.first.math.numbers.N3;
 public class PhotonCameraCfg{
 	public static final String LEFT_APRILTAG_CAM = "leftAprilTagCam";
 	public static final String RIGHT_APRILTAG_CAM = "rightAprilTagCam";
+	public static final String TURRET_CAM = "turretAprilTagCam";
 
 	//Left AprilTag Cam Pose Config wrt robot center
 	public static final double LEFT_APRILTAG_CAM_XPOS_METERS = -0.276;//"Forward" from center, in meters
@@ -47,6 +48,23 @@ public class PhotonCameraCfg{
 					new Rotation3d(Math.toRadians(RIGHT_APRILTAG_CAM_ROLL_DEG),
 								   Math.toRadians(RIGHT_APRILTAG_CAM_PITCH_DEG), 
 								   Math.toRadians(RIGHT_APRILTAG_CAM_YAW_DEG)));
+
+	//Turret Cam Pose Config wrt robot center
+	public static final double TURRET_CAM_XPOS_METERS = 0;//"Forward" from center, in meters
+	public static final double TURRET_CAM_YPOS_METERS = 0;//"Left" from center, in meters
+	public static final double TURRET_CAM_ZPOS_METERS = 0;//"Up" from center, in meters
+	
+	public static final double TURRET_CAM_ROLL_DEG	= 0;
+	public static final double TURRET_CAM_PITCH_DEG	= 0;
+	public static final double TURRET_CAM_YAW_DEG	= 0;
+
+	public static final Transform3d TURRET_CAM_TRANSFORM = new Transform3d(
+					new Translation3d(TURRET_CAM_XPOS_METERS,
+								      TURRET_CAM_YPOS_METERS, 
+									  TURRET_CAM_ZPOS_METERS), 
+					new Rotation3d(Math.toRadians(TURRET_CAM_ROLL_DEG),
+								   Math.toRadians(TURRET_CAM_PITCH_DEG), 
+								   Math.toRadians(TURRET_CAM_YAW_DEG)));
 
 	//Minimum abiguity to trust the pose (i.e. anything greater than this number discard)
 	public static final double MINIMUM_TARGET_AMBIGUITY = 0.25; 
