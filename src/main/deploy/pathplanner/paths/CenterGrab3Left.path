@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.979166666666668,
-        "y": 6.18621794871795
+        "x": 3.1116883845050416,
+        "y": 6.914205132638914
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.3570102625287217,
-        "y": 7.8609697989396405
+        "x": 3.4895319803670954,
+        "y": 8.588956982860605
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab2"
@@ -73,7 +73,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "CenterGrab3"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
@@ -112,16 +112,16 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.0,
-    "maxAcceleration": 11.8,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 2043.0,
+    "maxAngularAcceleration": 1397.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 40.0
   },
   "reversed": false,
   "folder": "CenterGrabLeft",

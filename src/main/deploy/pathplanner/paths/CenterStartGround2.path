@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.2349358974358986,
-        "y": 5.849000000000001
+        "x": 1.1154075247960713,
+        "y": 5.819803676767864
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.220255391948031,
-        "y": 5.599431406706252
+        "x": 1.48694969347077,
+        "y": 5.590321749057019
       },
       "isLocked": false,
       "linkedName": "CenterStartGround1End"
     },
     {
       "anchor": {
-        "x": 1.2349358974358986,
-        "y": 6.232730769230769
+        "x": 1.1154075247960713,
+        "y": 6.320637650097269
       },
       "prevControl": {
-        "x": 1.7244064986197087,
-        "y": 6.118195219190597
+        "x": 1.8694195729888428,
+        "y": 6.2878545175671485
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6623488773747783,
+      "minWaypointRelativePos": 0.0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
-        "maxAcceleration": 11.8,
+        "maxAcceleration": 1.5,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,
         "nominalVoltage": 12.0,
@@ -47,10 +47,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.0,
-    "maxAcceleration": 11.8,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 2043.0,
+    "maxAngularAcceleration": 1397.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },

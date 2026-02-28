@@ -3,42 +3,58 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5928786612914516,
-        "y": 3.5903600965363998
+        "x": 3.0902650602409643,
+        "y": 1.0954457831325295
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.199860896911839,
-        "y": 3.9140096160664175
+        "x": 2.51109638554713,
+        "y": 1.062662650596949
       },
       "isLocked": false,
-      "linkedName": "CenterStartRight"
+      "linkedName": "EndRightWeek0CenterGrab2"
     },
     {
       "anchor": {
-        "x": 1.6150240963855422,
-        "y": 4.72344578313253
+        "x": 1.0795662650652025,
+        "y": 1.6855421686692384
       },
       "prevControl": {
-        "x": 1.8990027036922168,
-        "y": 4.695221874897199
+        "x": 1.763286849188846,
+        "y": 1.5628230894675599
+      },
+      "nextControl": {
+        "x": 0.22720481928206981,
+        "y": 1.8385301204764661
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 0.3766092215566721,
+        "y": 2.8248521011621177
+      },
+      "prevControl": {
+        "x": 0.6235323986453258,
+        "y": 2.863953822562145
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftClimbEnd"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 1.05,
+      "maxWaypointRelativePos": 2.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 11.8,
+        "maxAcceleration": 1.5,
         "maxAngularVelocity": 1060.0,
-        "maxAngularAcceleration": 2043.0,
+        "maxAngularAcceleration": 1397.0,
         "nominalVoltage": 12.0,
         "unlimited": false
       }
@@ -56,13 +72,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "GetOutOfTheWay(LC,CS)",
+  "folder": "RightWeek0CenterGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -59.470294100065956
   },
   "useDefaultConstraints": true
 }

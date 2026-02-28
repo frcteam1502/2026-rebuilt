@@ -3,56 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.8187603502724814,
-        "y": 0.6896096461636421
+        "x": 0.7408072289156629,
+        "y": 0.84410843373494
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.1977974071859632,
-        "y": 1.5352959445166117
+        "x": 1.3403721798480004,
+        "y": 1.512209630944792
       },
       "isLocked": false,
       "linkedName": "EndCenterStart1"
     },
     {
       "anchor": {
-        "x": 0.9403238333556942,
-        "y": 1.6333811154995717
+        "x": 1.4948192771084337,
+        "y": 1.7729638554216867
       },
       "prevControl": {
-        "x": 0.9593633187934312,
-        "y": 1.382151173554876
-      },
-      "nextControl": {
-        "x": 0.9212534435112345,
-        "y": 1.885018847472637
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 0.7814358974416722,
-        "y": 2.5151011998381034
-      },
-      "prevControl": {
-        "x": 0.8189625252648952,
-        "y": 1.9558356370277954
+        "x": 1.5323459049316566,
+        "y": 1.2136982926113786
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightEndClimb"
+      "linkedName": "EndCenterStart2HP"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.9,
-      "maxWaypointRelativePos": 2.0,
+      "minWaypointRelativePos": 0.0,
+      "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 11.8,
+        "maxVelocity": 2.5,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,
         "nominalVoltage": 12.0,
@@ -63,16 +47,16 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.0,
-    "maxAcceleration": 11.8,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 2043.0,
+    "maxAngularAcceleration": 1397.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -135.83031548625806
   },
   "reversed": false,
   "folder": "CenterStartHp(RC)",

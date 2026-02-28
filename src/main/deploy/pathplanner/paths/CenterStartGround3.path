@@ -3,41 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.2349358974358986,
-        "y": 6.232730769230769
+        "x": 1.1154075247960713,
+        "y": 6.320637650097269
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5112241156514812,
-        "y": 5.462866316402029
+        "x": 1.7949598308990113,
+        "y": 5.352979993730889
       },
       "isLocked": false,
       "linkedName": "CenterStartGround2End"
     },
     {
       "anchor": {
-        "x": 1.5023846153846168,
-        "y": 5.30247435897436
+        "x": 2.0412048192771084,
+        "y": 5.073132530120482
       },
       "prevControl": {
-        "x": 1.4737506567508958,
-        "y": 5.559788847797439
-      },
-      "nextControl": {
-        "x": 1.5300339501846882,
-        "y": 5.054008034726757
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 1.5023846153846168,
-        "y": 4.846768836165314
-      },
-      "prevControl": {
-        "x": 1.5013371110898528,
-        "y": 5.372813990611173
+        "x": 1.8971228532742495,
+        "y": 5.277437172928106
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8307426597582025,
-      "maxWaypointRelativePos": 2.0,
+      "minWaypointRelativePos": 0.0,
+      "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 11.8,
+        "maxVelocity": 2.5,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 1060.0,
         "maxAngularAcceleration": 2043.0,
         "nominalVoltage": 12.0,
@@ -63,10 +47,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.0,
-    "maxAcceleration": 11.8,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 2043.0,
+    "maxAngularAcceleration": 1397.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },

@@ -34,8 +34,8 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double TURRET_ABS_ENCODER_OFFSET = 0.3341;
-    public static final double HOOD_ABS_ENCODER_OFFSET = -0.8522;
+    public static final double TURRET_ABS_ENCODER_OFFSET = 0.35145;
+    public static final double HOOD_ABS_ENCODER_OFFSET = -0.09;
     public static final SensorDirectionValue TURRET_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final double DISCONTINUITY_POINT = 1;
@@ -44,7 +44,7 @@ public class ShooterCfg {
     public static final double SHOOTER_P_GAIN = 0.00075;
     public static final double SHOOTER_I_GAIN = 0;
     public static final double SHOOTER_D_GAIN = 0.004;
-    public static final double SHOOTER_ALLOWED_ERROR = 50;
+    public static final double SHOOTER_ALLOWED_ERROR = 100;
 
     public static final double TURRET_P_GAIN = 12;
     public static final double TURRET_I_GAIN = 0.001;   
@@ -83,7 +83,7 @@ public class ShooterCfg {
     //Hood
     public static final boolean HOOD_INVERTED = false;
     public static final IdleMode HOOD_IDLE_MODE = IdleMode.kCoast;
-    public static final int HOOD_CURRENT_LIMIT = 40;
+    public static final int HOOD_CURRENT_LIMIT = 20;
     public static final double HOOD_ENC_POS_CONFIG = 1;
     public static final double HOOD_ENC_VEL_CONFIG = 1;
     public static final double HOOD_KV = 0;
@@ -93,17 +93,17 @@ public class ShooterCfg {
     //Turret
     public static final boolean TURRET_INVERTED = true;
     public static final IdleMode TURRET_IDLE_MODE = IdleMode.kCoast;
-    public static final int TURRET_CURRENT_LIMIT = 40;
+    public static final int TURRET_CURRENT_LIMIT = 20;
     public static final double TURRET_KV = 0;
     public static final double TURRET_KA = 0;
     public static final double TURRET_KS = 0;
-    public static final double TURRET_PID_TOLERANCE = 0.0873;//Radians
+    public static final double TURRET_PID_TOLERANCE = Math.toRadians(8);//Radians
     public static final double TURRET_ENC_POS_CONFIG = 1;
     public static final double TURRET_ENC_VEL_CONFIG = 1;
     
     public static final double SPEED_TOLERENCE = 100;
     public static final double FEED_SPEED = 1;
-    public static final double INDEX_SPEED = 1;
+    public static final double INDEX_SPEED = 0.35;
     public static final double TURRET_TOLERANCE = 0;
     
     //Target Translations
@@ -117,8 +117,8 @@ public class ShooterCfg {
     public static final double MIDDLE_BLUE_TRENCHES = 5.8;
     public static final double LOW_RED_TRENCHES = 11.3;
     public static final double HIGH_RED_TRENCHES = 12.5;
-    public static final double LOW_BLUE_TRENCHES = 5.2;
-    public static final double HIGH_BLUE_TRENCHES = 6.4;
+    public static final double LOW_BLUE_TRENCHES = 3.9;
+    public static final double HIGH_BLUE_TRENCHES = 5.3;
 
     public static final double TURRET_MAX_ANGLE = 4.8;
     public static final double TURRET_MIN_ANGLE = 0.9;

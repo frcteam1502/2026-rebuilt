@@ -412,7 +412,7 @@ private void configTurretMotor() {
   public double getHoodAbsPositionZeroed() {
     //CANcoders in Phoenix return rotations 0 to 1
     var angle = hoodAbsEncoder.getAbsolutePosition();
-    return angle.getValueAsDouble()*ShooterCfg.HOOD_ROT_TO_RADIANS+ShooterCfg.HOOD_ANGLE_OFFSET;
+    return (angle.getValueAsDouble()*ShooterCfg.HOOD_ROT_TO_RADIANS)+ShooterCfg.HOOD_ANGLE_OFFSET;
   }
 
   public void setShooterSpeed(double speed){
@@ -428,11 +428,11 @@ private void configTurretMotor() {
   }
 
   private void updateDashboard(){
-    SmartDashboard.putNumber("Turret Angle", getTurretAbsPositionZeroed());
+    SmartDashboard.putNumber("Turret Angle", Math.toDegrees(getTurretAbsPositionZeroed()));
     SmartDashboard.putNumber("Turret Velocity", getTurretAbsVelocity());
     SmartDashboard.putNumber("Turret Motor Command", turretMotor.getAppliedOutput());
     SmartDashboard.putString("Turret State", turretState.toString());
-    SmartDashboard.putNumber("Turret Set Angle", turretSetAngle);
+    SmartDashboard.putNumber("Turret Set Angle", Math.toDegrees(turretSetAngle));
     SmartDashboard.putBoolean("Is Turret At Set Point", turretPIDController.atSetpoint());
     SmartDashboard.putNumber("Target Translation X", targetTranslation.getX());
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
@@ -448,7 +448,7 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Actual Hood Angle", Math.toDegrees(getHoodAbsPositionZeroed()));
-    SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
+    SmartDashboard.putNumber("Target Hood Angle", Math.toDegrees(lookupHoodAngle(targetTranslation)));
     SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
     SmartDashboard.putString("Shooter State", shooterState.toString());
     SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
@@ -512,7 +512,7 @@ private void configTurretMotor() {
            turretState == TurretState.ON_TARGET&&
            getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
-            intake.setIntakeOn();
+            intake.shooterRequestIntakeOn();
             shooterState = ShooterState.SHOOTING;
           }else {
             //NOTHING
@@ -525,12 +525,19 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
+
+        if(intake.isHopperIn()){
+          intake.shooterRequestIntakeReverse();
+        }else{
+          intake.shooterRequestIntakeOn();
+        }
+        
         if(!isShooterAtSetPoint()||
            !hoodPIDController.atSetpoint()     ||
            turretState != TurretState.ON_TARGET||
            getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(0);
-            intake.setIntakeOff();
+            intake.shooterRequestIntakeOff();
             shooterState = ShooterState.SPIN_UP;
           }else {
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
@@ -558,7 +565,7 @@ private void configTurretMotor() {
   public void setShooterToWait(){
     setIndexSpeed(0);
     setFeedSpeed(0);
-    intake.setIntakeOff();
+    intake.shooterRequestIntakeOff();
     shooterSetSpeed = 0;
     hoodSetAngle = lookupHoodAngle(targetTranslation);
     shooterState = ShooterState.WAIT;
@@ -608,13 +615,21 @@ private void configTurretMotor() {
     turretState = TurretState.INACTIVE;
   }
 
-  private boolean isShooterAtSetPoint(){
+  public boolean isShooterAtSetPoint(){
     if(shooterLeadEncoder.getVelocity() <= shooterSetSpeed+ShooterCfg.SHOOTER_ALLOWED_ERROR &&
        shooterLeadEncoder.getVelocity() >= shooterSetSpeed-ShooterCfg.SHOOTER_ALLOWED_ERROR){
         return true;
       }else{
         return false;
     }   
+  }
+
+  public boolean isTurretAtSetpoint(){
+    return turretPIDController.atSetpoint();
+  }
+
+  public boolean isHoodAtSetpoint(){
+    return hoodPIDController.atSetpoint();
   }
 
   private boolean isTurretPointingAtTarget(){
