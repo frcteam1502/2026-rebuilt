@@ -35,7 +35,7 @@ public class ShooterCfg {
 
     //CanCoder Configuration 
     public static final double TURRET_ABS_ENCODER_OFFSET = 0.35145;
-    public static final double HOOD_ABS_ENCODER_OFFSET = -0.8522;
+    public static final double HOOD_ABS_ENCODER_OFFSET = -0.85;
     public static final SensorDirectionValue TURRET_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final double DISCONTINUITY_POINT = 1;
@@ -97,7 +97,7 @@ public class ShooterCfg {
     public static final double TURRET_KV = 0;
     public static final double TURRET_KA = 0;
     public static final double TURRET_KS = 0;
-    public static final double TURRET_PID_TOLERANCE = 0.0873;//Radians
+    public static final double TURRET_PID_TOLERANCE = Math.toRadians(8);//Radians
     public static final double TURRET_ENC_POS_CONFIG = 1;
     public static final double TURRET_ENC_VEL_CONFIG = 1;
     

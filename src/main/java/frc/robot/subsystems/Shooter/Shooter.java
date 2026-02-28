@@ -412,7 +412,7 @@ private void configTurretMotor() {
   public double getHoodAbsPositionZeroed() {
     //CANcoders in Phoenix return rotations 0 to 1
     var angle = hoodAbsEncoder.getAbsolutePosition();
-    return angle.getValueAsDouble()*ShooterCfg.HOOD_ROT_TO_RADIANS+ShooterCfg.HOOD_ANGLE_OFFSET;
+    return (angle.getValueAsDouble()*ShooterCfg.HOOD_ROT_TO_RADIANS)+ShooterCfg.HOOD_ANGLE_OFFSET;
   }
 
   public void setShooterSpeed(double speed){
@@ -428,11 +428,11 @@ private void configTurretMotor() {
   }
 
   private void updateDashboard(){
-    SmartDashboard.putNumber("Turret Angle", getTurretAbsPositionZeroed());
+    SmartDashboard.putNumber("Turret Angle", Math.toDegrees(getTurretAbsPositionZeroed()));
     SmartDashboard.putNumber("Turret Velocity", getTurretAbsVelocity());
     SmartDashboard.putNumber("Turret Motor Command", turretMotor.getAppliedOutput());
     SmartDashboard.putString("Turret State", turretState.toString());
-    SmartDashboard.putNumber("Turret Set Angle", turretSetAngle);
+    SmartDashboard.putNumber("Turret Set Angle", Math.toDegrees(turretSetAngle));
     SmartDashboard.putBoolean("Is Turret At Set Point", turretPIDController.atSetpoint());
     SmartDashboard.putNumber("Target Translation X", targetTranslation.getX());
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
@@ -448,7 +448,7 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Actual Hood Angle", Math.toDegrees(getHoodAbsPositionZeroed()));
-    SmartDashboard.putNumber("Target Hood Angle", lookupHoodAngle(targetTranslation));
+    SmartDashboard.putNumber("Target Hood Angle", Math.toDegrees(lookupHoodAngle(targetTranslation)));
     SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
     SmartDashboard.putString("Shooter State", shooterState.toString());
     SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
