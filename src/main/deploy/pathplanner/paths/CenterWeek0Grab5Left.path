@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5928786612914516,
-        "y": 3.5903600965363998
+        "x": 3.1116883845050416,
+        "y": 6.914205132638914
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.199860896911839,
-        "y": 3.9140096160664175
+        "x": 2.2303755117387265,
+        "y": 5.95522120933372
       },
       "isLocked": false,
-      "linkedName": "CenterStartRight"
+      "linkedName": "EndCenterGrab2"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 4.72344578313253
       },
       "prevControl": {
-        "x": 1.8990027036922168,
-        "y": 4.695221874897199
+        "x": 2.2728465937172033,
+        "y": 6.551843236168608
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,10 +35,10 @@
       "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 2.0,
-        "maxAcceleration": 11.8,
+        "maxVelocity": 1.5,
+        "maxAcceleration": 1.5,
         "maxAngularVelocity": 1060.0,
-        "maxAngularAcceleration": 2043.0,
+        "maxAngularAcceleration": 1397.0,
         "nominalVoltage": 12.0,
         "unlimited": false
       }
@@ -59,10 +59,10 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "GetOutOfTheWay(LC,CS)",
+  "folder": "LeftWeek0CenterGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 40.0
   },
   "useDefaultConstraints": true
 }

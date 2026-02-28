@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.4948192771084337,
-        "y": 1.7729638554216867
+        "x": 0.7408072289156629,
+        "y": 0.84410843373494
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.6533855421686748,
-        "y": 2.3302771084337364
+        "x": 2.1413329198565396,
+        "y": 1.4737902552282307
       },
       "isLocked": false,
-      "linkedName": "EndCenterStart2HP"
+      "linkedName": "EndCenterStart1"
     },
     {
       "anchor": {
-        "x": 0.5113253012048191,
-        "y": 2.330277108433736
+        "x": 0.3692650602409637,
+        "y": 2.7673855421686757
       },
       "prevControl": {
-        "x": 1.1997710843373495,
-        "y": 2.024301204819277
+        "x": 1.0577108433734943,
+        "y": 2.461409638554217
       },
       "nextControl": null,
       "isLocked": false,
@@ -62,7 +62,7 @@
   "folder": "CenterStartHp(RC)",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -135.83031548625806
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

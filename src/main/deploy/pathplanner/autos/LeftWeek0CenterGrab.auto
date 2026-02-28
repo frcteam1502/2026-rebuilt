@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterGrab1Left"
+                  "pathName": "CenterWeek0Grab1Left"
                 }
               },
               {
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.25
           }
         },
         {
@@ -44,7 +44,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterGrab2Left"
+            "pathName": "CenterWeek0Grab2Left"
           }
         },
         {
@@ -86,7 +86,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterGrab5Left"
+            "pathName": "CenterWeek0Grab5Left"
           }
         },
         {

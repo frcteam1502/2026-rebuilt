@@ -10,8 +10,9 @@
     "CenterStartHp(RC)",
     "GetOutOfTheWay(LC,CS)",
     "LeftCenterShoot",
-    "RightWeek0CenterGrab",
-    "RightCenterShoot"
+    "LeftWeek0CenterGrab",
+    "RightCenterShoot",
+    "RightWeek0CenterGrab"
   ],
   "autoFolders": [
     "Left Start",
