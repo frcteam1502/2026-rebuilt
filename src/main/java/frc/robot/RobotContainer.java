@@ -14,6 +14,8 @@ import frc.robot.commands.AlignToTowerLeft;
 import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
+import frc.robot.commands.ExtendAndAlignLeft;
+import frc.robot.commands.ExtendAndAlignRight;
 import frc.robot.commands.OperatorCommands;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
@@ -76,6 +78,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
     NamedCommands.registerCommand("shootOn", new InstantCommand(shooter::setShooterOn));
     NamedCommands.registerCommand("shootOff", new InstantCommand(shooter::setShooterOff));
+    NamedCommands.registerCommand("Stop Drive Motors", new StopDriveMotors(driveSubsystem));
     
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
@@ -118,8 +121,8 @@ public class RobotContainer {
 
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
-    Driver.Controller.x().whileTrue(new AlignToTowerLeft(driveSubsystem));
-    Driver.Controller.b().whileTrue(new AlignToTowerRight(driveSubsystem));
+    Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
+    Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
     
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));

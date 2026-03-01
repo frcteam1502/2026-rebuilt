@@ -8,6 +8,7 @@ import frc.robot.Logger;
 import frc.robot.subsystems.Climber.Climber;
 import au.grapplerobotics.CanBridge;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;

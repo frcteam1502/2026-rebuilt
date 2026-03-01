@@ -190,10 +190,10 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     updateShooterState();
-    updateTurretState();
+    //updateTurretState();
     updateHoodAngleSetPoint();
-    updateShooterSetPoint();
-    updateTurretAngleSetPoint();
+    //updateShooterSetPoint();
+    //updateTurretAngleSetPoint();
     updateDashboard();
   }
 
@@ -649,7 +649,7 @@ private void configTurretMotor() {
     //Make sure you are not indexing outside of the array
     if(lookup_index < 0){
       lookup_index = 0;
-    }else if (lookup_index > ShooterLookup.LOOKUP.length){
+    }else if (lookup_index >= ShooterLookup.LOOKUP.length){
       lookup_index = ShooterLookup.LOOKUP.length - 1;
     }else{
       //Array size is inbounds
@@ -667,7 +667,7 @@ private void configTurretMotor() {
     //Make sure you are not indexing outside of the array
     if(lookup_index < 0){
       lookup_index = 0;
-    }else if (lookup_index > ShooterLookup.LOOKUP.length){
+    }else if (lookup_index >= ShooterLookup.LOOKUP.length){
       lookup_index = ShooterLookup.LOOKUP.length - 1;
     }else{
       //Array size is inbounds
