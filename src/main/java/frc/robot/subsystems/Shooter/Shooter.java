@@ -190,10 +190,10 @@ public class Shooter extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     updateShooterState();
-    //updateTurretState();
+    updateTurretState();
     updateHoodAngleSetPoint();
-    //updateShooterSetPoint();
-    //updateTurretAngleSetPoint();
+    updateShooterSetPoint();
+    updateTurretAngleSetPoint();
     updateDashboard();
   }
 
@@ -819,10 +819,10 @@ private void updateIndexerState(){
       double change = Math.signum(input) * ShooterCfg.TURRET_CHANGE;
       double newPosition = hoodSetAngle + change;
 
-      if(newPosition > ShooterCfg.TURRET_MAX_ANGLE){
-        newPosition = ShooterCfg.TURRET_MAX_ANGLE;
-      }else if (newPosition < ShooterCfg.TURRET_MIN_ANGLE){
-        newPosition = ShooterCfg.TURRET_MIN_ANGLE;
+      if(newPosition > ShooterCfg.HOOD_MAX_ANGLE){
+        newPosition = ShooterCfg.HOOD_MAX_ANGLE;
+      }else if (newPosition < ShooterCfg.HOOD_MIN_ANGLE){
+        newPosition = ShooterCfg.HOOD_MIN_ANGLE;
       }else{
         //Do nothing, newPosition is in-bounds, allow the set position to get updated
       }
