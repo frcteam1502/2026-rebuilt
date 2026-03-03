@@ -98,6 +98,122 @@
               "period": 0.06,
               "sort_options": false
             }
+          },
+          {
+            "title": "EstimatedPose X",
+            "x": 256.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/EstimatedPose X",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "EstimatedPose Y",
+            "x": 384.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/EstimatedPose Y",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "x",
+            "x": 512.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/leftAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "x"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "y",
+            "x": 640.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/leftAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "y"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "x",
+            "x": 768.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/rightAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "x"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "y",
+            "x": 896.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/rightAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "y"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
           }
         ]
       }
@@ -330,6 +446,102 @@
       "grid_layout": {
         "layouts": [],
         "containers": []
+      }
+    },
+    {
+      "name": "Tab 6",
+      "grid_layout": {
+        "layouts": [],
+        "containers": [
+          {
+            "title": "x",
+            "x": 512.0,
+            "y": 128.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/leftAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "x"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "y",
+            "x": 512.0,
+            "y": 256.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/leftAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "y"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "x",
+            "x": 640.0,
+            "y": 128.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/rightAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "x"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "y",
+            "x": 640.0,
+            "y": 256.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/photonvision/rightAprilTagCam/targetPose",
+              "period": 0.06,
+              "data_type": "double",
+              "struct_meta": {
+                "path": [
+                  "translation",
+                  "y"
+                ],
+                "schema_name": "Transform3d",
+                "type": "double"
+              },
+              "show_submit_button": false
+            }
+          }
+        ]
       }
     }
   ]

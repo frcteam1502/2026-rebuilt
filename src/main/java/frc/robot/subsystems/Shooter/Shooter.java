@@ -527,7 +527,7 @@ private void configTurretMotor() {
         }
 
         if(intake.isHopperIn()){
-          intake.shooterRequestIntakeReverse();
+          intake.shooterRequestIntakeOnSlow();
         }else{
           intake.shooterRequestIntakeOn();
         }

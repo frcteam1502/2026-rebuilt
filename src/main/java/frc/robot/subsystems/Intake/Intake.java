@@ -24,6 +24,7 @@ public class Intake extends SubsystemBase {
   private boolean isShooterRequestOut = false;
   private boolean isCntrlRequestIn = false;
   private boolean isCntrlRequestOut = false;
+  private boolean isShooterRequestSlow = false;
   
     public Intake() {
       intakeMotorConfig.inverted(IntakeCfg.INTAKE_MOTOR_REVERSED);
@@ -46,6 +47,8 @@ public class Intake extends SubsystemBase {
         intakeMotor.set(-1.0);
       }else if(isShooterRequestIn){
         intakeMotor.set(1.0);
+      }else if(isShooterRequestSlow){
+        intakeMotor.set(0.5);
       }else if(isShooterRequestOut){
         intakeMotor.set(-1.0);
       }else{
@@ -81,18 +84,28 @@ public class Intake extends SubsystemBase {
   
   public void shooterRequestIntakeOn(){
     isShooterRequestIn = true;
+    isShooterRequestSlow = false;
+    isShooterRequestOut = false;
+  }
+
+  public void shooterRequestIntakeOnSlow(){
+    isShooterRequestIn = false;
+    isShooterRequestSlow = true;
     isShooterRequestOut = false;
   }
 
   public void shooterRequestIntakeReverse(){
     isShooterRequestIn = false;
+    isShooterRequestSlow = false;
     isShooterRequestOut = true;
   }
 
   public void shooterRequestIntakeOff(){
     isShooterRequestIn = false;
+    isShooterRequestSlow = false;
     isShooterRequestOut = false;
   }
+
 
   public void toggleHopper(){
     if(hopperIn == false){
