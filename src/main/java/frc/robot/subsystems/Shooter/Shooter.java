@@ -195,6 +195,7 @@ public class Shooter extends SubsystemBase {
     updateShooterSetPoint();
     updateTurretAngleSetPoint();
     updateDashboard();
+    isShootingReady();
   }
 
   private void registerLoggerObjects(){
@@ -453,6 +454,7 @@ private void configTurretMotor() {
     SmartDashboard.putString("Shooter State", shooterState.toString());
     SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
     SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
+    SmartDashboard.putBoolean("Is Shooting Ready", isShootingReady());
   }
 
   public void updateShooterSetPoint(){
@@ -507,9 +509,9 @@ private void configTurretMotor() {
         }else{
           //DO NOT UPDATE
         }
-        if(isShooterAtSetPoint()&&
-           hoodPIDController.atSetpoint()     &&
-           turretState == TurretState.ON_TARGET&&
+        if(isShooterAtSetPoint()                    &&
+           hoodPIDController.atSetpoint()           &&
+           turretState == TurretState.ON_TARGET     &&
            getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
             intake.shooterRequestIntakeOn();
@@ -859,5 +861,16 @@ private void updateIndexerState(){
   }
   public void setIndexerOff(){
     setIndexSpeed(0);
+  }
+  public boolean isShootingReady(){
+    if (isShooterAtSetPoint()                     &&
+        hoodPIDController.atSetpoint()            &&
+        turretState == TurretState.ON_TARGET      &&
+        getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
+          return true;
+        }
+        else{
+          return false;
+        }
   }
 }
