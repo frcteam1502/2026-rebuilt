@@ -23,12 +23,6 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "climberExtend"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
                   "name": "intakeOn"
                 }
               }
@@ -81,12 +75,6 @@
           "type": "named",
           "data": {
             "name": "Stop Drive Motors"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
           }
         }
       ]
