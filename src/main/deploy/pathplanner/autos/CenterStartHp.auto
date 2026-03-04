@@ -38,7 +38,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 10.0
+            "waitTime": 8.0
           }
         },
         {
@@ -60,6 +60,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "climberExtend"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CenterStart3Hp"
@@ -69,6 +75,12 @@
           "type": "named",
           "data": {
             "name": "alignToClimbRight"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "climberRetract"
           }
         },
         {

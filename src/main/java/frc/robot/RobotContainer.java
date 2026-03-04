@@ -79,6 +79,10 @@ public class RobotContainer {
     NamedCommands.registerCommand("shootOn", new InstantCommand(shooter::setShooterOn));
     NamedCommands.registerCommand("shootOff", new InstantCommand(shooter::setShooterOff));
     NamedCommands.registerCommand("Stop Drive Motors", new StopDriveMotors(driveSubsystem));
+
+    NamedCommands.registerCommand("alignToClimbRight", new ExtendAndAlignRight(driveSubsystem, climber));
+    NamedCommands.registerCommand("alignToClimbLeft", new ExtendAndAlignLeft(driveSubsystem, climber));
+
     
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
