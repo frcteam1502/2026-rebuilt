@@ -675,11 +675,16 @@ private void configTurretMotor() {
       //Array size is inbounds
     }
 
-    if((robotPose.getX() > ShooterCfg.LOW_RED_TRENCHES)&&
+    /*if((robotPose.getX() > ShooterCfg.LOW_RED_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_RED_TRENCHES)){
         return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
       }else if((robotPose.getX() > ShooterCfg.LOW_BLUE_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_BLUE_TRENCHES)){
+        return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
+      }else{
+        return (Math.toRadians(ShooterLookup.LOOKUP[lookup_index][1]));
+      }*/
+    if(drive.isInTrenchZone()){
         return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
       }else{
         return (Math.toRadians(ShooterLookup.LOOKUP[lookup_index][1]));
