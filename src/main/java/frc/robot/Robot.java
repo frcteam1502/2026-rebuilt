@@ -159,7 +159,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.driveSubsystem.resetGyroToPose();
     m_robotContainer.climber.setClimberOut();
     m_robotContainer.intake.setIntakeOff();
-    m_robotContainer.shooter.setShooterOff();
+    m_robotContainer.shooter.setShooterToWait();
 
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to

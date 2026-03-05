@@ -439,7 +439,7 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
     SmartDashboard.putNumber("Angle to Target", calculateTargetAngle(targetTranslation));
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
-    SmartDashboard.putNumber("Target Shooter Speed", lookupShooterSpeed(targetTranslation));
+    SmartDashboard.putNumber("Target Shooter Speed", shooterSetSpeed);
     SmartDashboard.putString("Indexer State", indexerState.toString());
     SmartDashboard.putNumber("Feed Speed", getFeedVel());
     SmartDashboard.putNumber("Indexer Speed", getIndexVel());
@@ -449,7 +449,7 @@ private void configTurretMotor() {
     SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
     SmartDashboard.putNumber("Actual Hood Angle", Math.toDegrees(getHoodAbsPositionZeroed()));
-    SmartDashboard.putNumber("Target Hood Angle", Math.toDegrees(lookupHoodAngle(targetTranslation)));
+    SmartDashboard.putNumber("Target Hood Angle", Math.toDegrees(hoodSetAngle));
     SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
     SmartDashboard.putString("Shooter State", shooterState.toString());
     SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
