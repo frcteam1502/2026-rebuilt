@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 
 public class Climber extends SubsystemBase {
   /** Creates a new Climber. */
@@ -19,14 +20,22 @@ public class Climber extends SubsystemBase {
   private boolean climberIn = true;
   private double climberPSIValue = 0;
 
+  DriveSubsystem drive = new DriveSubsystem();
 
-  public Climber() {}
+  public Climber(DriveSubsystem drive) {
+    this.drive = drive;
+  }
     
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     calculatePressure();
+    
+    if(drive.isInTrenchZone()){
+      setClimberIn();
+    }
+    
     updateDashboard();
 
 

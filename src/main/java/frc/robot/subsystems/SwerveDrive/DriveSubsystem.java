@@ -1,6 +1,8 @@
 package frc.robot.subsystems.SwerveDrive;
 
 import frc.robot.Logger;
+import frc.robot.subsystems.Shooter.ShooterCfg;
+import frc.robot.subsystems.Shooter.ShooterLookup;
 import frc.robot.subsystems.Vision.PhotonCameraCfg;
 import frc.robot.subsystems.Vision.PhotonVisionCamera;
 
@@ -597,6 +599,22 @@ public class DriveSubsystem extends SubsystemBase{
     } catch (Exception e) {
       // Handle exception as needed
       DriverStation.reportError("Failed to load PathPlanner config and configure AutoBuilder", e.getStackTrace());
+    }
+  }
+
+  //Rebuilt stuff
+  public boolean isInTrenchZone(){
+    var pose_x = getEstimatedPose2d().getX();
+    
+    if((pose_x > ShooterCfg.LOW_RED_TRENCHES)  &&
+       (pose_x < ShooterCfg.HIGH_RED_TRENCHES))
+    {
+        return true;
+    }else if((pose_x > ShooterCfg.LOW_BLUE_TRENCHES)&&
+             (pose_x < ShooterCfg.HIGH_BLUE_TRENCHES)){
+        return true;
+    }else{
+        return false;
     }
   }
 }
