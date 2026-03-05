@@ -9,9 +9,9 @@
           "data": {
             "commands": [
               {
-                "type": "path",
+                "type": "named",
                 "data": {
-                  "pathName": "CenterGrab1Right"
+                  "name": "shootOn"
                 }
               },
               {
@@ -25,6 +25,31 @@
                 "data": {
                   "name": "intakeOn"
                 }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "CenterShootRight1"
+                }
+              },
+              {
+                "type": "parallel",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 2.0
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "shootOff"
+                      }
+                    }
+                  ]
+                }
               }
             ]
           }
@@ -36,75 +61,21 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "intakeOff"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RightCenterShoot2"
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RightCenterShoot3"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RightCenterShoot4"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RightCenterShoot5"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RightCenterShoot6"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "climberExtend"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RightCenterShoot7"
           }
         },
         {
@@ -117,12 +88,6 @@
           "type": "named",
           "data": {
             "name": "climberRetract"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "retractIntake"
           }
         },
         {
