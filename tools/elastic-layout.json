@@ -128,91 +128,34 @@
             }
           },
           {
-            "title": "x",
-            "x": 512.0,
-            "y": 512.0,
-            "width": 128.0,
-            "height": 128.0,
-            "type": "Text Display",
-            "properties": {
-              "topic": "/photonvision/leftAprilTagCam/targetPose",
-              "period": 0.06,
-              "data_type": "double",
-              "struct_meta": {
-                "path": [
-                  "translation",
-                  "x"
-                ],
-                "schema_name": "Transform3d",
-                "type": "double"
-              },
-              "show_submit_button": false
-            }
-          },
-          {
-            "title": "y",
+            "title": "Distance To Target",
             "x": 640.0,
             "y": 512.0,
             "width": 128.0,
             "height": 128.0,
             "type": "Text Display",
             "properties": {
-              "topic": "/photonvision/leftAprilTagCam/targetPose",
+              "topic": "/SmartDashboard/Distance To Target",
               "period": 0.06,
               "data_type": "double",
-              "struct_meta": {
-                "path": [
-                  "translation",
-                  "y"
-                ],
-                "schema_name": "Transform3d",
-                "type": "double"
-              },
               "show_submit_button": false
             }
           },
           {
-            "title": "x",
-            "x": 768.0,
+            "title": "Is Shooting Ready",
+            "x": 1152.0,
             "y": 512.0,
             "width": 128.0,
             "height": 128.0,
-            "type": "Text Display",
+            "type": "Boolean Box",
             "properties": {
-              "topic": "/photonvision/rightAprilTagCam/targetPose",
+              "topic": "/SmartDashboard/Is Shooting Ready",
               "period": 0.06,
-              "data_type": "double",
-              "struct_meta": {
-                "path": [
-                  "translation",
-                  "x"
-                ],
-                "schema_name": "Transform3d",
-                "type": "double"
-              },
-              "show_submit_button": false
-            }
-          },
-          {
-            "title": "y",
-            "x": 896.0,
-            "y": 512.0,
-            "width": 128.0,
-            "height": 128.0,
-            "type": "Text Display",
-            "properties": {
-              "topic": "/photonvision/rightAprilTagCam/targetPose",
-              "period": 0.06,
-              "data_type": "double",
-              "struct_meta": {
-                "path": [
-                  "translation",
-                  "y"
-                ],
-                "schema_name": "Transform3d",
-                "type": "double"
-              },
-              "show_submit_button": false
+              "data_type": "boolean",
+              "true_color": 4283215696,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
             }
           }
         ]
@@ -341,7 +284,7 @@
           {
             "title": "Target Shooter Speed",
             "x": 256.0,
-            "y": 128.0,
+            "y": 0.0,
             "width": 128.0,
             "height": 128.0,
             "type": "Text Display",
@@ -400,6 +343,107 @@
               "max_value": 90.0,
               "color": 4278238420,
               "line_width": 2.0
+            }
+          },
+          {
+            "title": "Actual Hood Angle",
+            "x": 256.0,
+            "y": 384.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Actual Hood Angle",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "Hood",
+            "x": 896.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/Device_Faults/Hood",
+              "period": 0.06,
+              "data_type": "string",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "Hood",
+            "x": 1024.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/Device_Faults_Sticky/Hood",
+              "period": 0.06,
+              "data_type": "string",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "Shooter Speed (RPM)",
+            "x": 256.0,
+            "y": 128.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shooter Speed (RPM)",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": false
+            }
+          },
+          {
+            "title": "Shooter Test Speed",
+            "x": 0.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Shooter Test Speed",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": true
+            }
+          },
+          {
+            "title": "Hood Test Angle",
+            "x": 128.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Text Display",
+            "properties": {
+              "topic": "/SmartDashboard/Hood Test Angle",
+              "period": 0.06,
+              "data_type": "double",
+              "show_submit_button": true
+            }
+          },
+          {
+            "title": "Is Shooter Test Active",
+            "x": 256.0,
+            "y": 512.0,
+            "width": 128.0,
+            "height": 128.0,
+            "type": "Boolean Box",
+            "properties": {
+              "topic": "/SmartDashboard/Is Shooter Test Active",
+              "period": 0.06,
+              "data_type": "boolean",
+              "true_color": 4283215696,
+              "false_color": 4294198070,
+              "true_icon": "None",
+              "false_icon": "None"
             }
           }
         ]
