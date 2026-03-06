@@ -110,6 +110,8 @@ public class Shooter extends SubsystemBase {
   private double hoodSetAngle = Math.toRadians(35);
   private Translation2d targetTranslation = new Translation2d(0,0);
 
+  private boolean isTestMode = false;
+
   private enum ShooterState{
     OFF,
     WAIT,
@@ -177,6 +179,10 @@ public class Shooter extends SubsystemBase {
   public Shooter(DriveSubsystem drive, Intake intake) {
     this.drive = drive;
     this.intake = intake;
+
+    SmartDashboard.putNumber("Shooter Test Speed", shooterSetSpeed);
+    SmartDashboard.putNumber("Hood Test Angle", Math.toDegrees(hoodSetAngle));
+
     configShooterMotors();
     configFeedMotor();
     configHoodMotor();
@@ -455,6 +461,7 @@ private void configTurretMotor() {
     SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
     SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
     SmartDashboard.putBoolean("Is Shooting Ready", isShootingReady());
+    SmartDashboard.putBoolean("Is Shooter Test Active", isTestMode);
   }
 
   public void updateShooterSetPoint(){
@@ -475,12 +482,18 @@ private void configTurretMotor() {
       case OFF:
         //DO NOTHING
         break;
-      case WAIT:
-        if (autoHoodToggle){
-          hoodSetAngle = lookupHoodAngle(targetTranslation);
+      
+        case WAIT:
+        if(isTestMode){
+          hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
-          //DO NOT UPDATE
+          if (autoHoodToggle){
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
+          }else{
+            //DO NOT UPDATE
+          }
         }
+
         if(hoodPIDController.atSetpoint() &&
            turretState == TurretState.ON_TARGET){
            shooterState = ShooterState.READY;
@@ -488,12 +501,18 @@ private void configTurretMotor() {
           //DO NOTHING
         }
         break;
+
       case READY:
-        if (autoHoodToggle){
-          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if(isTestMode){
+          hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
-          //DO NOT UPDATE
+          if (autoHoodToggle){
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
+          }else{
+            //DO NOT UPDATE
+          }
         }
+
         if(!hoodPIDController.atSetpoint() ||
            turretState != TurretState.ON_TARGET){
             shooterState = ShooterState.WAIT;
@@ -501,14 +520,22 @@ private void configTurretMotor() {
           //DO NOTHING
         }
         break;
+
       case STARTFEED:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        setFeedSpeed(ShooterCfg.FEED_SPEED);
-        if (autoHoodToggle){
-          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if(isTestMode){
+          shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
+          hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
-          //DO NOT UPDATE
+          shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+          setFeedSpeed(ShooterCfg.FEED_SPEED);
+          
+          if (autoHoodToggle){
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
+          }else{
+            //DO NOT UPDATE
+          }
         }
+
         if(isShooterAtSetPoint()                    &&
            hoodPIDController.atSetpoint()           &&
            turretState == TurretState.ON_TARGET     &&
@@ -520,12 +547,20 @@ private void configTurretMotor() {
             //NOTHING
         }
       break;
+
       case SHOOTING:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        if (autoHoodToggle){
-          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if(isTestMode){
+          shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
+          hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
-          //DO NOT UPDATE
+          shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+          setFeedSpeed(ShooterCfg.FEED_SPEED);
+          
+          if (autoHoodToggle){
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
+          }else{
+            //DO NOT UPDATE
+          }
         }
 
         if(intake.isHopperIn()){
@@ -545,13 +580,22 @@ private void configTurretMotor() {
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
         }
         break;
+
       case SPIN_UP:
-        shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-        if (autoHoodToggle){
-          hoodSetAngle = lookupHoodAngle(targetTranslation);
+        if(isTestMode){
+          shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
+          hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
-          //DO NOT UPDATE
+          shooterSetSpeed = lookupShooterSpeed(targetTranslation);
+          setFeedSpeed(ShooterCfg.FEED_SPEED);
+          
+          if (autoHoodToggle){
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
+          }else{
+            //DO NOT UPDATE
+          }
         }
+
         if(isShooterAtSetPoint() &&
            hoodPIDController.atSetpoint()      &&
            turretState == TurretState.ON_TARGET){
@@ -560,8 +604,16 @@ private void configTurretMotor() {
         }else{
           //DO NOTHING
       }
-      break;
+        break;
     } 
+  }
+
+  public void toggleTestMode(){
+    if(isTestMode){
+      isTestMode = false;
+    }else{
+      isTestMode = true;
+    }
   }
 
   public void setShooterToWait(){
@@ -569,7 +621,17 @@ private void configTurretMotor() {
     setFeedSpeed(0);
     intake.shooterRequestIntakeOff();
     shooterSetSpeed = 0;
-    hoodSetAngle = lookupHoodAngle(targetTranslation);
+    
+    if(isTestMode){
+          hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
+        }else{
+          if (autoHoodToggle){
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
+          }else{
+            //DO NOT UPDATE
+          }
+    }
+      
     shooterState = ShooterState.WAIT;
   }
 

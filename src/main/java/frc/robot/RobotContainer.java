@@ -131,6 +131,8 @@ public class RobotContainer {
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
+    Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
+
     Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
     Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
