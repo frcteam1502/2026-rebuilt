@@ -217,7 +217,7 @@ public class DriveSubsystem extends SubsystemBase{
           PhotonCameraCfg.RIGHT_APRILTAG_CAM_TRANSFORM);
 
     reset();
-    registerLoggerObjects();
+    //registerLoggerObjects();
 
     //Add a Field2d widget to the Dashboard
     SmartDashboard.putData("Field", m_field);

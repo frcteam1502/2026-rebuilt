@@ -189,7 +189,7 @@ public class Shooter extends SubsystemBase {
     configIndexMotor();
     configTurretMotor();
 
-    registerLoggerObjects();
+    //registerLoggerObjects();
   }
 
   @Override
