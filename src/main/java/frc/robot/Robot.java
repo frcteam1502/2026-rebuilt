@@ -86,9 +86,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    UsbCamera camera = CameraServer.startAutomaticCapture();
-    camera.setResolution(320,240);
-    camera.setFPS(15);
+    //UsbCamera camera = CameraServer.startAutomaticCapture();
+    //camera.setResolution(320,240);
+    //camera.setFPS(15);
     
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items

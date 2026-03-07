@@ -23,8 +23,8 @@ public class AlignToTowerRight extends Command {
   private double lastHeading;
   private Pose2d targetPose;
 
-  private Pose2d redTowerRightPose = new Pose2d(15.60,5.15,new Rotation2d(Math.toRadians(180)));
-  private Pose2d blueTowerRightPose = new Pose2d(0.91,2.91,new Rotation2d(0));
+  private Pose2d redTowerRightPose = new Pose2d(15.38,5.18,new Rotation2d(Math.toRadians(180)));
+  private Pose2d blueTowerRightPose = new Pose2d(1.13,2.89,new Rotation2d(0));
 
   public AlignToTowerRight(DriveSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
