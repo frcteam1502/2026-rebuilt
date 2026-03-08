@@ -157,7 +157,7 @@ public class Robot extends TimedRobot {
     GameState.teleopInit();
     //Reset gyro heading to whatever the pose heading is coming out of auto.  This should be 0 if going directly to teleop
     m_robotContainer.driveSubsystem.resetGyroToPose();
-    m_robotContainer.climber.setClimberOut();
+    //m_robotContainer.climber.setClimberOut();
     m_robotContainer.intake.setIntakeOff();
     m_robotContainer.shooter.setShooterToWait();
 
