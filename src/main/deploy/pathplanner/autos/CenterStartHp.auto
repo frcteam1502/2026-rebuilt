@@ -74,12 +74,6 @@
         {
           "type": "named",
           "data": {
-            "name": "alignToClimbRight"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
             "name": "climberRetract"
           }
         },
