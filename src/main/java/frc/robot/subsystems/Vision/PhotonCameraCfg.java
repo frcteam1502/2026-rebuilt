@@ -56,7 +56,7 @@ public class PhotonCameraCfg{
     public static final Matrix<N3, N1> SINGLE_TAG_STD_DEV = VecBuilder.fill(4, 4, 8);
     public static final Matrix<N3, N1> MULTI_TAG_STD_DEV = VecBuilder.fill(0.5, 0.5, 1);
 	
-	public static final AprilTagFields FIELD_VERSION = AprilTagFields.kDefaultField;
+	public static final AprilTagFields FIELD_VERSION = AprilTagFields.k2026RebuiltAndymark;
 	public static final AprilTagFieldLayout FIELD_TAG_LAYOUT = AprilTagFieldLayout.loadField(FIELD_VERSION);
 	public static final double DISTANCE_THRESHOLD_M = 20;
 
