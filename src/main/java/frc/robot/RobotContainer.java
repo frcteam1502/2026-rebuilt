@@ -14,6 +14,7 @@ import frc.robot.commands.AlignToTowerLeft;
 import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
+import frc.robot.commands.EVIL;
 import frc.robot.commands.ExtendAndAlignLeft;
 import frc.robot.commands.ExtendAndAlignRight;
 import frc.robot.commands.OperatorCommands;
@@ -80,8 +81,9 @@ public class RobotContainer {
     NamedCommands.registerCommand("shootOff", new InstantCommand(shooter::setShooterOff));
     NamedCommands.registerCommand("Stop Drive Motors", new StopDriveMotors(driveSubsystem));
 
-    NamedCommands.registerCommand("alignToClimbRight", new ExtendAndAlignRight(driveSubsystem, climber));
+    NamedCommands.registerCommand("alignToClimbRight", new AlignToTowerRight(driveSubsystem));
     NamedCommands.registerCommand("alignToClimbLeft", new ExtendAndAlignLeft(driveSubsystem, climber));
+   NamedCommands.registerCommand("EVIL", new EVIL(driveSubsystem));
 
     
 
@@ -103,7 +105,8 @@ public class RobotContainer {
     new PathPlannerAuto("TestAuto");
     new PathPlannerAuto("StrafeTestAuto");
    
-    
+     new PathPlannerAuto("Test1");
+
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
   }

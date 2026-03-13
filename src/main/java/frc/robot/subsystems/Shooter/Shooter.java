@@ -488,7 +488,8 @@ private void configTurretMotor() {
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
           if (autoHoodToggle){
-            hoodSetAngle = lookupHoodAngle(targetTranslation);
+            //hoodSetAngle = lookupHoodAngle(targetTranslation);
+            hoodSetAngle = Math.toRadians(15);
           }else{
             //DO NOT UPDATE
           }
@@ -507,7 +508,8 @@ private void configTurretMotor() {
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
           if (autoHoodToggle){
-            hoodSetAngle = lookupHoodAngle(targetTranslation);
+            //hoodSetAngle = lookupHoodAngle(targetTranslation);
+            hoodSetAngle = Math.toRadians(15);
           }else{
             //DO NOT UPDATE
           }
