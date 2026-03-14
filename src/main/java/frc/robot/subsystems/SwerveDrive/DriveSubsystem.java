@@ -384,6 +384,9 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("EstimatedPose X", estimatedPose.getX());
     SmartDashboard.putNumber("EstimatedPose Y", estimatedPose.getY());
     SmartDashboard.putNumber("EstimatedPose Rotation", estimatedPose.getRotation().getDegrees());
+    SmartDashboard.putNumber("Auto Aim Set Angle",getDistanceAngleToPoint(Shooter.calculateTargetPosition(this)).getY());
+    SmartDashboard.putNumber("Target Position Y",Shooter.calculateTargetPosition(this).getY());
+    SmartDashboard.putNumber("Target Position X",Shooter.calculateTargetPosition(this).getX());
 
     //Photonvision Stuff for Debugging - Comment out when not in use to save bandwidth
     /*SmartDashboard.putNumber("PhotonLeft Pose X", photonLeftPose.getX());
