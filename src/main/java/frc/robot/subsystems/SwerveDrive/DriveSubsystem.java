@@ -1,6 +1,8 @@
 package frc.robot.subsystems.SwerveDrive;
 
+import frc.robot.Driver;
 import frc.robot.Logger;
+import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterCfg;
 import frc.robot.subsystems.Shooter.ShooterLookup;
 import frc.robot.subsystems.Vision.PhotonCameraCfg;
@@ -50,9 +52,12 @@ public class DriveSubsystem extends SubsystemBase{
   public double turnCommand = 0.0;
   public double fieldXCommand = 0;
   public double fieldYCommand = 0;
+  public double fieldRotCommand = 0;
 
   ChassisSpeeds speedCommands = new ChassisSpeeds(0, 0, 0);
   ChassisSpeeds relativeCommands = new ChassisSpeeds(0,0,0);
+
+  private double angleToTarget;
 
   private final SwerveModule frontLeft = new SwerveModule(
     DrivebaseCfg.FRONT_LEFT_MOD_ID,
@@ -257,22 +262,37 @@ public class DriveSubsystem extends SubsystemBase{
     //Update SmartDashboard 
     updateDashboard();
   }
-  
+  boolean toggleAim;
+  public void setAutoTargetOn(){
+    toggleAim = true;
+  }
+  public void setAutoTargetOff(){
+    toggleAim = false;
+  }
+  private double getRotation(double rot){
+    if (toggleAim){
+      //rotation of robot to target
+      var targetPose = Shooter.calculateTargetPosition(this);
+      return getDistanceAngleToPoint(targetPose).getY();
+    }
+    return rot;
+  }
   //Drive command consumer
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
     //Set Dashboard variables
     fieldXCommand = xSpeed;
     fieldYCommand = ySpeed;
-
+    fieldRotCommand = getRotation(rot);
+    
     if(fieldRelative){
       var alliance = DriverStation.getAlliance();
       if((alliance.isPresent()) && (alliance.get() == DriverStation.Alliance.Red)){
-        speedCommands = ChassisSpeeds.fromFieldRelativeSpeeds(-xSpeed, -ySpeed, rot, getGyroRotation2d());
+        speedCommands = ChassisSpeeds.fromFieldRelativeSpeeds(-xSpeed, -ySpeed, fieldRotCommand, getGyroRotation2d());
       }else{
-        speedCommands = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, getGyroRotation2d());   
+        speedCommands = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, fieldRotCommand, getGyroRotation2d());   
       }  
     } else {
-      speedCommands.omegaRadiansPerSecond = rot;
+      speedCommands.omegaRadiansPerSecond = fieldRotCommand;
       speedCommands.vxMetersPerSecond = xSpeed;
       speedCommands.vyMetersPerSecond = ySpeed;
     }
@@ -356,6 +376,7 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("Drive Robot Relative Rotation Command", relativeCommands.omegaRadiansPerSecond);
 
     SmartDashboard.putNumber("Gyro Yaw", getIMU_Yaw());
+    
 
     //Pose Info
     m_field.setRobotPose(estimatedPose);

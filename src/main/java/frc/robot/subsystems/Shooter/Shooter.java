@@ -654,7 +654,7 @@ private void configTurretMotor() {
         //Do nothing here
         break;
       case MOVE_TO_TARGET:
-        targetTranslation = calculateTargetPosition();
+        targetTranslation = calculateTargetPosition(drive);
         turretSetAngle = calculateTargetAngle(targetTranslation);
         if(isTurretPointingAtTarget()){
           turretState = TurretState.ON_TARGET;
@@ -663,7 +663,7 @@ private void configTurretMotor() {
         } 
         break;
       case ON_TARGET:
-        targetTranslation = calculateTargetPosition();
+        targetTranslation = calculateTargetPosition(drive);
         turretSetAngle = calculateTargetAngle(targetTranslation);
         if(!isTurretPointingAtTarget()){
           turretState = TurretState.MOVE_TO_TARGET;
@@ -773,7 +773,7 @@ private void configTurretMotor() {
     return drive.getDistanceAngleToPoint(targetPose).getX();
   }
 
-  private Translation2d calculateTargetPosition(){
+  public static Translation2d calculateTargetPosition(DriveSubsystem drive){
     var alliance = DriverStation.getAlliance();
     var robotPose = drive.getEstimatedPose2d();
     if (alliance.isPresent()){
