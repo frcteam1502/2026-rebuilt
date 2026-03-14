@@ -17,13 +17,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "extendIntake"
+                  "name": "intakeOn"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "intakeOn"
+                  "name": "extendIntake"
                 }
               }
             ]
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.75
+            "waitTime": 1.0
           }
         },
         {
@@ -84,27 +84,9 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "climberExtend"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "RightWeek0CenterGrab3"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "alignToClimbRight"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
           }
         },
         {

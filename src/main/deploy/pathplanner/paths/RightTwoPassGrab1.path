@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.583935897435898,
-        "y": 4.186166666666668
+        "x": 4.305,
+        "y": 0.407
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.630448717948719,
-        "y": 4.96525641025641
+        "x": 5.6217338966884975,
+        "y": 0.43799740539362464
       },
       "isLocked": false,
-      "linkedName": "EndLeftCenterShoot3"
+      "linkedName": "RightStart"
     },
     {
       "anchor": {
-        "x": 7.583935897435898,
-        "y": 6.279243589743589
+        "x": 6.821538017347746,
+        "y": 0.6296327857766995
       },
       "prevControl": {
-        "x": 7.595564102564104,
-        "y": 5.41875641025641
+        "x": 6.498314879463788,
+        "y": 0.4290851151107693
+      },
+      "nextControl": {
+        "x": 7.144761155231704,
+        "y": 0.8301804564426296
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.816676697750223,
+        "y": 2.5153669318330185
+      },
+      "prevControl": {
+        "x": 7.835643554882804,
+        "y": 1.5335714950807402
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndLeftCenterShoot2"
+      "linkedName": "EndRightTwoPassGrab1"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +58,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 90.0
   },
   "reversed": false,
-  "folder": "DeaD",
+  "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 90.0
   },
   "useDefaultConstraints": true
 }

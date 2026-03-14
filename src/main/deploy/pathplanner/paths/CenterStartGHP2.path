@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.546710645728344,
+        "x": 1.5467106457283437,
         "y": 0.7976646647854386
       },
       "isLocked": false,
@@ -63,7 +63,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
+    "maxVelocity": 1.25,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -75,7 +75,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterStartGHP(LC)",
+  "folder": "dEAD",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

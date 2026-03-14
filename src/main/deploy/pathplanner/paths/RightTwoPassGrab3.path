@@ -8,58 +8,61 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.3471807228965273,
-        "y": 1.1828674698740589
+        "x": 2.9559102564102573,
+        "y": 0.2442051282051284
       },
       "isLocked": false,
       "linkedName": "EndRightWeek0CenterGrab2"
     },
     {
       "anchor": {
-        "x": 1.0795662650652025,
-        "y": 1.6855421686692384
+        "x": 6.200179487179489,
+        "y": 0.6163076923076927
       },
       "prevControl": {
-        "x": 1.763286849188846,
-        "y": 1.5628230894675599
+        "x": 5.786520842987335,
+        "y": 0.4361930993203591
       },
       "nextControl": {
-        "x": 0.2272048192820697,
-        "y": 1.8385301204764664
+        "x": 6.613838131371643,
+        "y": 0.7964222852950262
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.3766092215566721,
-        "y": 2.8248521011621177
+        "x": 5.711633560334132,
+        "y": 3.1918246219901527
       },
       "prevControl": {
-        "x": 0.6235323986453258,
-        "y": 2.863953822562145
+        "x": 5.932569457770028,
+        "y": 2.2499400066055375
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightTwoPassGrab3"
     }
   ],
-  "rotationTargets": [],
-  "constraintZones": [
+  "rotationTargets": [
     {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 1.05,
-      "maxWaypointRelativePos": 2.0,
-      "constraints": {
-        "maxVelocity": 2.0,
-        "maxAcceleration": 1.5,
-        "maxAngularVelocity": 1060.0,
-        "maxAngularAcceleration": 1397.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
+      "waypointRelativePos": 0.3333333333333348,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 0.519298245614036,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 0.8385964912280676,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 1.3228070175438638,
+      "rotationDegrees": 90.0
     }
   ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -72,10 +75,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 91.21887523513139
   },
   "reversed": false,
-  "folder": "RightWeek0CenterGrab",
+  "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -59.470294100065956

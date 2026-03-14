@@ -90,7 +90,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
+    "maxVelocity": 1.25,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -102,7 +102,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "LeftCenterShoot",
+  "folder": "DeaD",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0

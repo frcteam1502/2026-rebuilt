@@ -7,7 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "StatfeTestPath"
+            "pathName": "Test 1"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
           }
         }
       ]
