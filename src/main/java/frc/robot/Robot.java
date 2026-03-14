@@ -11,6 +11,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -87,8 +88,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     UsbCamera camera = CameraServer.startAutomaticCapture();
-    camera.setResolution(320,240);
-    camera.setFPS(15);
+    if (RobotBase.isReal()){
+      camera.setResolution(320,240);
+      camera.setFPS(15);
+    }
     
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items

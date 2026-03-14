@@ -20,7 +20,7 @@ public class Climber extends SubsystemBase {
   private boolean climberIn = true;
   private double climberPSIValue = 0;
 
-  DriveSubsystem drive = new DriveSubsystem();
+  DriveSubsystem drive;
 
   public Climber(DriveSubsystem drive) {
     this.drive = drive;
