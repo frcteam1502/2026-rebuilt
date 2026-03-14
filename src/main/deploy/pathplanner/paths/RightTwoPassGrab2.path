@@ -3,75 +3,75 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.653705128205129,
-        "y": 2.662871794871795
+        "x": 7.816676697750223,
+        "y": 2.5153669318330185
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.351371794871795,
-        "y": 2.011692307692308
+        "x": 7.725106558360819,
+        "y": 2.097812068614187
       },
       "isLocked": false,
-      "linkedName": "EndCenterGrab1Right"
+      "linkedName": "EndRightTwoPassGrab1"
     },
     {
       "anchor": {
-        "x": 5.5345249168903585,
-        "y": 0.43589474497945047
+        "x": 6.7001923076923084,
+        "y": 0.7907307692307699
       },
       "prevControl": {
-        "x": 6.358080648847704,
-        "y": 0.5286897570309838
+        "x": 6.928807477758725,
+        "y": 1.090288625069967
       },
       "nextControl": {
-        "x": 4.708922352787794,
-        "y": 0.3428691039538081
+        "x": 6.471577137625892,
+        "y": 0.49117291339157276
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.3017001953006404,
-        "y": 0.43589474497945047
+        "x": 5.339692307692308,
+        "y": 0.4418846153846152
       },
       "prevControl": {
-        "x": 3.766828400428846,
-        "y": 0.36612551421021966
+        "x": 7.006632108526684,
+        "y": 0.582488885715118
       },
       "nextControl": {
-        "x": 2.4979644009381374,
-        "y": 0.5564551141338259
+        "x": 3.6727525068579325,
+        "y": 0.30128034505411283
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.862884615384617,
-        "y": 2.0349487179487173
+        "x": 2.9263493975903616,
+        "y": 1.2156506024096394
       },
       "prevControl": {
-        "x": 2.932487179487182,
-        "y": 2.4651923076923064
+        "x": 3.2698717948717957,
+        "y": 0.7558461538461541
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndCenterGrab2Right"
+      "linkedName": "EndRightWeek0CenterGrab2"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 2.0315789473684243,
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 1.0,
+      "waypointRelativePos": 2.2807017543859702,
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 2.15,
-      "rotationDegrees": -20.0
+      "waypointRelativePos": 2.573684210526329,
+      "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [],
@@ -87,10 +87,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -50.0
+    "rotation": -59.470294100065956
   },
   "reversed": false,
-  "folder": "DEAD",
+  "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0

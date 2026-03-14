@@ -93,19 +93,19 @@ public class RobotContainer {
     //new PathPlannerAuto("LeftCenterGrab");
     //new PathPlannerAuto("LeftCenterShoot");
     //Right Start
-    //new PathPlannerAuto("RightCenterGrab");
+    new PathPlannerAuto("RightCenterGrab");
     //new PathPlannerAuto("RightCenterShoot");
     //Center Start
     //new PathPlannerAuto("CenterStartGHP");
     //new PathPlannerAuto("GetOutOfTheWay");
     //new PathPlannerAuto("CenterStartGround");
-    //new PathPlannerAuto("CenterStartHp");
+    new PathPlannerAuto("CenterStartHp");
     new PathPlannerAuto("LeftWeek0CenterGrab");
-
-    new PathPlannerAuto("TestAuto");
-    new PathPlannerAuto("StrafeTestAuto");
+    new PathPlannerAuto("RightTwoPassGrab");
+    //new PathPlannerAuto("TestAuto");
+   // new PathPlannerAuto("StrafeTestAuto");
    
-     new PathPlannerAuto("Test1");
+    // new PathPlannerAuto("Test1");
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);

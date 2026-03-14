@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterStart1Hp"
+                  "pathName": "RightTwoPassGrab1"
                 }
               },
               {
@@ -30,6 +30,24 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "RightTwoPassGrab2"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.25
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeOff"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "shootOn"
@@ -38,7 +56,73 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 8.0
+            "waitTime": 2.0
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 2.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "retractIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootOff"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "extendIntake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeOn"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.25
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightTwoPassGrab3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeOff"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightTwoPassGrab4"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shootOn"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 2.0
           }
         },
         {
@@ -56,37 +140,13 @@
         {
           "type": "named",
           "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberExtend"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CenterStart3Hp"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Stop Drive Motors"
+            "name": "shootOff"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Center Start",
+  "folder": "Right Start",
   "choreoAuto": false
 }
