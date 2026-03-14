@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "RightTwoPassGrab1"
+                  "pathName": "LeftTwoPassGrab1"
                 }
               },
               {
@@ -32,7 +32,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.25
+            "waitTime": 1.0
           }
         },
         {
@@ -44,7 +44,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RightTwoPassGrab2"
+            "pathName": "LeftTwoPassGrab2"
           }
         },
         {
@@ -82,12 +82,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "extendIntake"
           }
         },
         {
@@ -99,13 +93,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RightTwoPassGrab3"
+            "pathName": "LeftTwoPassGrab3"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.25
+            "waitTime": 1.0
           }
         },
         {
@@ -117,7 +111,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RightTwoPassGrab4"
+            "pathName": "LeftTwoPassGrab4"
           }
         },
         {
@@ -156,36 +150,11 @@
               }
             ]
           }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "RightTwoPassGrab5"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "climberExtend"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
-          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Right Start",
+  "folder": "Left Start",
   "choreoAuto": false
 }

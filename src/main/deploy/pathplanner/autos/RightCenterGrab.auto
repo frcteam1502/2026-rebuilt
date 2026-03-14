@@ -36,39 +36,52 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "intakeOff"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CenterGrab2Right"
           }
         },
         {
-          "type": "wait",
+          "type": "sequential",
           "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CenterGrab3Right"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CenterGrab4Right"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
           }
         },
         {
@@ -78,28 +91,83 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterGrab5Right"
+                  "pathName": "CenterGrab3Right"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "climberExtend"
+                  "name": "extendIntake"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "intakeOn"
                 }
               }
             ]
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "alignToClimbRight"
+            "waitTime": 1.0
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "climberRetract"
+            "name": "intakeOff"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CenterGrab4Right"
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CenterGrab5Right"
           }
         },
         {

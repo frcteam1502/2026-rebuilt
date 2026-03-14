@@ -98,7 +98,7 @@
     "rotation": 40.0
   },
   "reversed": false,
-  "folder": "DeAd",
+  "folder": "CenterGrabLeft",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0

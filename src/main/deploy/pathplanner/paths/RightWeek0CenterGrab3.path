@@ -12,7 +12,7 @@
         "y": 1.1828674698740589
       },
       "isLocked": false,
-      "linkedName": "EndRightWeek0CenterGrab2"
+      "linkedName": "RightShootPose"
     },
     {
       "anchor": {
@@ -32,16 +32,16 @@
     },
     {
       "anchor": {
-        "x": 0.3766092215566721,
-        "y": 2.8248521011621177
+        "x": 1.0488846153846167,
+        "y": 2.9186923076923086
       },
       "prevControl": {
-        "x": 0.6235323986453258,
-        "y": 2.863953822562145
+        "x": 1.2958077924732705,
+        "y": 2.957794029092336
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightClimbPose"
     }
   ],
   "rotationTargets": [],

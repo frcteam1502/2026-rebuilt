@@ -3,55 +3,59 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.711633560334132,
-        "y": 3.1918246219901527
+        "x": 3.1116883845050416,
+        "y": 6.914205132638914
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.7930309962315665,
-        "y": 2.308081032246563
+        "x": 3.5489487179487194,
+        "y": 7.7211410256410264
       },
       "isLocked": false,
-      "linkedName": "RightTwoPassGrab3"
+      "linkedName": "LeftShootPose"
     },
     {
       "anchor": {
-        "x": 5.293179487179487,
-        "y": 0.558166666666666
+        "x": 5.746679487179488,
+        "y": 7.116474358974359
       },
       "prevControl": {
-        "x": 6.328089743589743,
-        "y": 0.755846153846154
+        "x": 5.393890846126261,
+        "y": 7.482342148544344
       },
       "nextControl": {
-        "x": 4.0444277079191755,
-        "y": 0.3196410459090774
+        "x": 6.099468128232715,
+        "y": 6.750606569404374
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.9263493975903616,
-        "y": 1.2156506024096394
+        "x": 5.746679487179488,
+        "y": 4.953628205128206
       },
       "prevControl": {
-        "x": 3.6187179487179497,
-        "y": 0.7907307692307699
+        "x": 5.781564102564104,
+        "y": 5.616435897435898
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightShootPose"
+      "linkedName": "LeftTwoPassGrab3"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.971929824561401,
+      "waypointRelativePos": 0.5,
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 1.5964912280701808,
-      "rotationDegrees": 0.0
+      "waypointRelativePos": 0.8771929824561404,
+      "rotationDegrees": -26.810239541059563
+    },
+    {
+      "waypointRelativePos": 1.1859649122807105,
+      "rotationDegrees": -90.0
     }
   ],
   "constraintZones": [],
@@ -67,13 +71,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -59.470294100065956
+    "rotation": -90.0
   },
   "reversed": false,
-  "folder": "RightTwoPassGrab",
+  "folder": "LeftTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 91.21887523513139
+    "rotation": 40.0
   },
   "useDefaultConstraints": true
 }

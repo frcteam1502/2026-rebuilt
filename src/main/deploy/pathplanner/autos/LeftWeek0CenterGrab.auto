@@ -48,57 +48,52 @@
           }
         },
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "shootOn"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 5.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "retractIntake"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shootOff"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 5.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CenterWeek0Grab5Left"
+            "pathName": "CenterWeek0Grab3Left"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Stop Drive Motors"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
           }
         }
       ]

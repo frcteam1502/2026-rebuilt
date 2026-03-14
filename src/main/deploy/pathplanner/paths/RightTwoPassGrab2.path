@@ -20,12 +20,12 @@
         "y": 0.7907307692307699
       },
       "prevControl": {
-        "x": 6.928807477758725,
-        "y": 1.090288625069967
+        "x": 7.19606402342615,
+        "y": 1.2866024849646114
       },
       "nextControl": {
-        "x": 6.471577137625892,
-        "y": 0.49117291339157276
+        "x": 6.362974358974359,
+        "y": 0.45351282051282066
       },
       "isLocked": false,
       "linkedName": null
@@ -57,7 +57,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndRightWeek0CenterGrab2"
+      "linkedName": "RightShootPose"
     }
   ],
   "rotationTargets": [

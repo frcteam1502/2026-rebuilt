@@ -48,39 +48,40 @@
           }
         },
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "shootOn"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 5.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "retractIntake"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shootOff"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 5.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
           }
         },
         {

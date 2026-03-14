@@ -3,16 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7408072289156629,
-        "y": 0.84410843373494
+        "x": 2.9263493975903616,
+        "y": 1.2156506024096394
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.298120481927711,
-        "y": 1.4342048192771086
+        "x": 1.5475349594749357,
+        "y": 1.2864995327228803
       },
       "isLocked": false,
-      "linkedName": "EndCenterStart1"
+      "linkedName": "RightShootPose"
+    },
+    {
+      "anchor": {
+        "x": 0.5863457076675984,
+        "y": 2.3670911760590787
+      },
+      "prevControl": {
+        "x": 0.6085104947475227,
+        "y": 1.5543823164618644
+      },
+      "nextControl": {
+        "x": 0.568435348938269,
+        "y": 3.02380432946782
+      },
+      "isLocked": false,
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +36,8 @@
         "y": 2.9186923076923086
       },
       "prevControl": {
-        "x": 1.5181274312874353,
-        "y": 2.5400497569680374
+        "x": 0.3296305658805452,
+        "y": 2.9879836120091614
       },
       "nextControl": null,
       "isLocked": false,
@@ -29,21 +45,7 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 2.0,
-        "maxAngularVelocity": 1060.0,
-        "maxAngularAcceleration": 1397.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -59,10 +61,10 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "CenterStartHp(RC)",
+  "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -59.470294100065956
   },
   "useDefaultConstraints": true
 }

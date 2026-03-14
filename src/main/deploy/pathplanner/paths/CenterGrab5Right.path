@@ -8,32 +8,48 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7194952879584755,
-        "y": 2.4003359471643755
+        "x": 0.7545730375192572,
+        "y": 1.316236495372352
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab2Right"
     },
     {
       "anchor": {
-        "x": 1.4948192771084337,
-        "y": 1.7729638554216867
+        "x": 0.5492397125084889,
+        "y": 2.184625349063724
       },
       "prevControl": {
-        "x": 2.244656453032033,
-        "y": 1.3373652824186322
+        "x": 0.6374406862259357,
+        "y": 1.9507010274652765
+      },
+      "nextControl": {
+        "x": 0.4508508276074962,
+        "y": 2.4455697829315763
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.0488846153846167,
+        "y": 2.9186923076923086
+      },
+      "prevControl": {
+        "x": 0.3695730531240671,
+        "y": 2.8947364313926314
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightEndClimb"
+      "linkedName": "RightClimbPose"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.2823834196891146,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0.55,
+      "maxWaypointRelativePos": 2.0,
       "constraints": {
         "maxVelocity": 1.0,
         "maxAcceleration": 11.8,
@@ -56,10 +72,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -148.9026871142205
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "DEAD",
+  "folder": "CenterGrabRight",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -50.0

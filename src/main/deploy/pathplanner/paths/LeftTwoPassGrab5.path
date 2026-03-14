@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.257,
-        "y": 7.674628205125028
+        "x": 3.1116883845050416,
+        "y": 6.914205132638914
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.257,
-        "y": 6.755739356761266
+        "x": 2.4554888795259044,
+        "y": 5.9224212483902825
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftShootPose"
     },
     {
       "anchor": {
-        "x": 8.257,
-        "y": 4.021
+        "x": 1.70244578313253,
+        "y": 5.073132530120482
       },
       "prevControl": {
-        "x": 8.257,
-        "y": 5.044333450263011
+        "x": 2.145615367970255,
+        "y": 5.347008509383618
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftClimbEnd"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "TestPaths",
+  "folder": "LeftTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 40.0
   },
   "useDefaultConstraints": true
 }

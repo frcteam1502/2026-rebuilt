@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.257,
-        "y": 7.674628205125028
+        "x": 4.391238694723572,
+        "y": 7.667978388883467
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.257,
-        "y": 6.755739356761266
+        "x": 5.391238694723572,
+        "y": 7.667978388883467
+      },
+      "isLocked": false,
+      "linkedName": "LeftStart"
+    },
+    {
+      "anchor": {
+        "x": 7.525794871794874,
+        "y": 7.197871794871795
+      },
+      "prevControl": {
+        "x": 6.971078103168074,
+        "y": 7.765991392092662
+      },
+      "nextControl": {
+        "x": 8.080511640421674,
+        "y": 6.629752197650928
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.257,
-        "y": 4.021
+        "x": 7.781615384615385,
+        "y": 4.767576923076923
       },
       "prevControl": {
-        "x": 8.257,
-        "y": 5.044333450263011
+        "x": 7.886269230769232,
+        "y": 5.604807692307693
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftTwoPassGrab1"
     }
   ],
   "rotationTargets": [],
@@ -41,14 +57,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": 0.0
+    "velocity": 0.0,
+    "rotation": -90.0
   },
   "reversed": false,
-  "folder": "TestPaths",
+  "folder": "LeftTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }
