@@ -78,4 +78,8 @@ public class DrivebaseCfg {
     public static final double FORWARD_SLEW_RATE_M_PER_SEC = MAX_SPEED_METERS_PER_SECOND/FORWARD_RAMP_TIME_SEC;
     public static final double STRAFE_SLEW_RATE = 22;
     public static final double FORWARD_SLEW_RATE = 22;
+
+    public static final double ROBOT_AIM_P_GAIN = 1;
+    public static final double ROBOT_AIM_I_GAIN = 0;   
+    public static final double ROBOT_AIM_D_GAIN = 0;
 }

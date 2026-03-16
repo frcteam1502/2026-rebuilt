@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.Vector;
-
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -273,7 +273,7 @@ public class DriveSubsystem extends SubsystemBase{
     if (toggleAim){
       //rotation of robot to target
       var targetPose = Shooter.calculateTargetPosition(this);
-      return getDistanceAngleToPoint(targetPose).getY();
+      return getOmega(targetPose);
     }
     return rot;
   }
@@ -381,12 +381,19 @@ public class DriveSubsystem extends SubsystemBase{
     //Pose Info
     m_field.setRobotPose(estimatedPose);
 
+    //SmartDashboard.putData("EstimatedPose", estimatedPose);
     SmartDashboard.putNumber("EstimatedPose X", estimatedPose.getX());
     SmartDashboard.putNumber("EstimatedPose Y", estimatedPose.getY());
     SmartDashboard.putNumber("EstimatedPose Rotation", estimatedPose.getRotation().getDegrees());
     SmartDashboard.putNumber("Auto Aim Set Angle",getDistanceAngleToPoint(Shooter.calculateTargetPosition(this)).getY());
     SmartDashboard.putNumber("Target Position Y",Shooter.calculateTargetPosition(this).getY());
     SmartDashboard.putNumber("Target Position X",Shooter.calculateTargetPosition(this).getX());
+    SmartDashboard.putData("Aim PID", robotAimPIDController);
+    SmartDashboard.putNumber("Aim P", robotAimPIDController.getP());
+    SmartDashboard.putNumber("Aim I", robotAimPIDController.getI());
+    SmartDashboard.putNumber("Aim D", robotAimPIDController.getD());
+    SmartDashboard.putNumber("Target Aim PID", getOmega(Shooter.calculateTargetPosition(this)));
+    
 
     //Photonvision Stuff for Debugging - Comment out when not in use to save bandwidth
     /*SmartDashboard.putNumber("PhotonLeft Pose X", photonLeftPose.getX());
@@ -531,6 +538,30 @@ public class DriveSubsystem extends SubsystemBase{
   
     return new Translation2d(currentPosition.getDistance(targetPoint), angleRadians);
   }
+
+  public double getOmega(Translation2d targetPoint){
+    //Returns Translation2d with distance and angle to target point
+    Translation2d currentPosition = new Translation2d(getEstimatedPose2d().getX(), getEstimatedPose2d().getY());
+
+    double x1 = currentPosition.getX();
+    double y1 = currentPosition.getY();
+    double x2 = targetPoint.getX();
+    double y2 = targetPoint.getY();
+
+    double delta_y = y2 - y1;
+    double delta_x = x2 - x1;
+
+    angleRadians = Math.atan2(delta_y, delta_x);
+    
+    var aimCommand = robotAimPIDController.calculate(estimatedPose.getRotation().getRadians(), angleRadians);
+
+    return aimCommand;
+  }
+  
+  private final PIDController robotAimPIDController = new PIDController(DrivebaseCfg.ROBOT_AIM_P_GAIN,
+                                                                      DrivebaseCfg.ROBOT_AIM_I_GAIN,
+                                                                      DrivebaseCfg.ROBOT_AIM_D_GAIN);
+
 
   public void resetGyro(double angle) {
     gyro.setYaw(angle);
