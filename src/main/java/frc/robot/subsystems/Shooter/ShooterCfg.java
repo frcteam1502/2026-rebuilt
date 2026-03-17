@@ -109,10 +109,10 @@ public class ShooterCfg {
     //Target Translations
     public static final Translation2d RED_HUB_TARGET_POSE = new Translation2d(11.91,4);
     public static final Translation2d BLUE_HUB_TARGET_POSE = new Translation2d(4.54,4);
-    public static final Translation2d RED_LEFT = new Translation2d(12.5,5.65);
-    public static final Translation2d RED_RIGHT = new Translation2d(12.5,2.5);
-    public static final Translation2d BLUE_LEFT = new Translation2d(4,5.65);
-    public static final Translation2d BLUE_RIGHT = new Translation2d(4,2.5);
+    public static final Translation2d RED_LEFT = new Translation2d(12.5,6.5);
+    public static final Translation2d RED_RIGHT = new Translation2d(12.5,1.5);
+    public static final Translation2d BLUE_LEFT = new Translation2d(4,6.5);
+    public static final Translation2d BLUE_RIGHT = new Translation2d(4,1.5);
     public static final double MIDDLE_RED_TRENCHES = 11.9;
     public static final double MIDDLE_BLUE_TRENCHES = 5.8;
     public static final double LOW_RED_TRENCHES = 11.3;
