@@ -548,12 +548,16 @@ public class DriveSubsystem extends SubsystemBase{
     double x2 = targetPoint.getX();
     double y2 = targetPoint.getY();
 
-    double delta_y = y2 - y1;
-    double delta_x = x2 - x1;
+    double delta_y = y1 - y2;
+    double delta_x = x1 - x2;
 
     angleRadians = Math.atan2(delta_y, delta_x);
     
-    var aimCommand = robotAimPIDController.calculate(estimatedPose.getRotation().getRadians(), -angleRadians);
+    var aimCommand = robotAimPIDController.calculate(estimatedPose.getRotation().getRadians(), angleRadians);
+
+    if(angleRadians>(Math.PI)){
+      angleRadians = angleRadians - (Math.PI*2);
+    }
 
     return aimCommand;
   }
@@ -569,6 +573,7 @@ public class DriveSubsystem extends SubsystemBase{
 
   private void resetModules() {
     frontLeft.zeroModule();
+
     frontRight.zeroModule();
     backLeft.zeroModule();
     backRight.zeroModule();
