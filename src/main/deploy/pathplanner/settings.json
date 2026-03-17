@@ -24,7 +24,7 @@
     "Right Start",
     "TestAutos"
   ],
-  "defaultMaxVel": 1.25,
+  "defaultMaxVel": 1.5,
   "defaultMaxAccel": 4.5,
   "defaultMaxAngVel": 1060.0,
   "defaultMaxAngAccel": 1397.0,

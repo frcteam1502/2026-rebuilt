@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.9263493975903616,
-        "y": 1.2156506024096394
+        "x": 2.150481927710843,
+        "y": 1.532554216867469
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.3471807228965273,
-        "y": 1.1828674698740589
+        "x": 1.5713132530170086,
+        "y": 1.4997710843318885
       },
       "isLocked": false,
       "linkedName": "RightShootPose"
@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 1.0488846153846167,
-        "y": 2.9186923076923086
+        "x": 1.0686385542168677,
+        "y": 3.051506024096385
       },
       "prevControl": {
-        "x": 1.2958077924732705,
-        "y": 2.957794029092336
+        "x": 1.3155617313055215,
+        "y": 3.0906077454964125
       },
       "nextControl": null,
       "isLocked": false,
@@ -63,7 +63,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.25,
+    "maxVelocity": 1.5,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -78,7 +78,7 @@
   "folder": "RightWeek0CenterGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -59.470294100065956
+    "rotation": -134.14490260373336
   },
   "useDefaultConstraints": true
 }

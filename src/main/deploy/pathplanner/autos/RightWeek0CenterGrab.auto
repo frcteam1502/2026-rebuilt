@@ -85,9 +85,21 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "climberExtend"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RightWeek0CenterGrab3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "climberRetract"
           }
         },
         {

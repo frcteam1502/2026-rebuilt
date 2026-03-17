@@ -83,7 +83,7 @@ public class RobotContainer {
 
     NamedCommands.registerCommand("alignToClimbRight", new AlignToTowerRight(driveSubsystem));
     NamedCommands.registerCommand("alignToClimbLeft", new ExtendAndAlignLeft(driveSubsystem, climber));
-   NamedCommands.registerCommand("EVIL", new EVIL(driveSubsystem));
+    //NamedCommands.registerCommand("EVIL", new EVIL(driveSubsystem));
 
     
 

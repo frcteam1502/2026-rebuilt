@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.9263493975903616,
-        "y": 1.2156506024096394
+        "x": 2.150481927710843,
+        "y": 1.532554216867469
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.5475349594749357,
-        "y": 1.2864995327228803
+        "x": 1.1389114263952171,
+        "y": 1.9442629093370976
       },
       "isLocked": false,
       "linkedName": "RightShootPose"
@@ -20,24 +20,24 @@
         "y": 2.3670911760590787
       },
       "prevControl": {
-        "x": 0.6085104947475227,
-        "y": 1.5543823164618644
+        "x": 0.632238335473078,
+        "y": 2.121339539822191
       },
       "nextControl": {
-        "x": 0.568435348938269,
-        "y": 3.02380432946782
+        "x": 0.5404530798621188,
+        "y": 2.6128428122959666
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.0488846153846167,
-        "y": 2.9186923076923086
+        "x": 1.0686385542168677,
+        "y": 3.051506024096385
       },
       "prevControl": {
-        "x": 0.3296305658805452,
-        "y": 2.9879836120091614
+        "x": 0.6811966669723384,
+        "y": 2.7199946717193746
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,7 +49,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.25,
+    "maxVelocity": 1.5,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -64,7 +64,7 @@
   "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -59.470294100065956
+    "rotation": -134.14490260373336
   },
   "useDefaultConstraints": true
 }

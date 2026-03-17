@@ -181,6 +181,12 @@
           "data": {
             "name": "climberRetract"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
+          }
         }
       ]
     }

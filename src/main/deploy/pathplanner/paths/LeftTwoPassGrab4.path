@@ -36,7 +36,7 @@
         "y": 7.535089743589744
       },
       "prevControl": {
-        "x": 4.403615384615384,
+        "x": 4.403615384615386,
         "y": 7.535089743589744
       },
       "nextControl": {
@@ -48,12 +48,12 @@
     },
     {
       "anchor": {
-        "x": 3.1116883845050416,
-        "y": 6.914205132638914
+        "x": 2.806144578313253,
+        "y": 6.450024096385542
       },
       "prevControl": {
-        "x": 3.0140512820512835,
-        "y": 7.511833333333334
+        "x": 2.708507475859495,
+        "y": 7.047652297079962
       },
       "nextControl": null,
       "isLocked": false,
@@ -74,7 +74,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.25,
+    "maxVelocity": 1.5,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -83,7 +83,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 40.0
+    "rotation": 125.65532809790037
   },
   "reversed": false,
   "folder": "LeftTwoPassGrab",
