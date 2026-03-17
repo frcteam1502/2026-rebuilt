@@ -27,7 +27,6 @@ public class OperatorCommands extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shooter.moveTurretManually(-MathUtil.applyDeadband(Operator.getRightX(),0.5));
     shooter.moveHoodManually(-MathUtil.applyDeadband(Operator.getLeftY(),0.5));
   }
 

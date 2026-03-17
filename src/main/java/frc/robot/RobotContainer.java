@@ -133,7 +133,6 @@ public class RobotContainer {
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
 
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
-    //Operator.Controller.rightStick().onTrue(new InstantCommand(shooter::toggleAutoAim));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
 
