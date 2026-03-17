@@ -354,7 +354,6 @@ public class Shooter extends SubsystemBase {
   private void updateDashboard(){
     SmartDashboard.putNumber("Target Translation X", targetTranslation.getX());
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
-    SmartDashboard.putNumber("Angle to Target", calculateTargetAngle(targetTranslation));
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
     SmartDashboard.putNumber("Target Shooter Speed", shooterSetSpeed);
     SmartDashboard.putString("Indexer State", indexerState.toString());
@@ -611,20 +610,6 @@ public class Shooter extends SubsystemBase {
       }
   }
 
-  private double calculateTargetAngle(Translation2d targetPose){
-    double angle;
-    angleToTarget = drive.getDistanceAngleToPoint(targetPose).getY();
-
-    if (angleToTarget < ShooterCfg.TURRET_MIN_ANGLE){
-      angle = ShooterCfg.TURRET_MIN_ANGLE;
-    }else if (angleToTarget > ShooterCfg.TURRET_MAX_ANGLE){
-      angle = ShooterCfg.TURRET_MAX_ANGLE;
-    }else{
-      angle = angleToTarget;
-    }
-    return angle;
-  }
-
   private double calculateTargetDistance(Translation2d targetPose){
     return drive.getDistanceAngleToPoint(targetPose).getX();
   }
@@ -720,7 +705,7 @@ private void updateIndexerState(){
 
   public void moveHoodManually(double input){
     if(!autoHoodToggle){
-      double change = Math.signum(input) * ShooterCfg.TURRET_CHANGE;
+      double change = Math.signum(input) * ShooterCfg.PIVOT_CHANGE;
       double newPosition = hoodSetAngle + change;
 
       if(newPosition > ShooterCfg.HOOD_MAX_ANGLE){
