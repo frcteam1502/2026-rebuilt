@@ -79,7 +79,7 @@ public class DrivebaseCfg {
     public static final double STRAFE_SLEW_RATE = 22;
     public static final double FORWARD_SLEW_RATE = 22;
 
-    public static final double ROBOT_AIM_P_GAIN = 1;
+    public static final double ROBOT_AIM_P_GAIN = 4;
     public static final double ROBOT_AIM_I_GAIN = 0;   
-    public static final double ROBOT_AIM_D_GAIN = 0;
+    public static final double ROBOT_AIM_D_GAIN = 0.5;
 }

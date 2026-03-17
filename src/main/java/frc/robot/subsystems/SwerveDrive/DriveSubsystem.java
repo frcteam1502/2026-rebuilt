@@ -385,7 +385,7 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("EstimatedPose X", estimatedPose.getX());
     SmartDashboard.putNumber("EstimatedPose Y", estimatedPose.getY());
     SmartDashboard.putNumber("EstimatedPose Rotation", estimatedPose.getRotation().getDegrees());
-    SmartDashboard.putNumber("Auto Aim Set Angle",getDistanceAngleToPoint(Shooter.calculateTargetPosition(this)).getY());
+    SmartDashboard.putNumber("Auto Aim Set Angle", Math.toDegrees(getDistanceAngleToPoint(Shooter.calculateTargetPosition(this)).getY()));
     SmartDashboard.putNumber("Target Position Y",Shooter.calculateTargetPosition(this).getY());
     SmartDashboard.putNumber("Target Position X",Shooter.calculateTargetPosition(this).getX());
     SmartDashboard.putData("Aim PID", robotAimPIDController);
@@ -548,8 +548,8 @@ public class DriveSubsystem extends SubsystemBase{
     double x2 = targetPoint.getX();
     double y2 = targetPoint.getY();
 
-    double delta_y = y2 - y1;
-    double delta_x = x2 - x1;
+    double delta_y = y1 - y2;
+    double delta_x = x1 - x2;
 
     angleRadians = Math.atan2(delta_y, delta_x);
     
