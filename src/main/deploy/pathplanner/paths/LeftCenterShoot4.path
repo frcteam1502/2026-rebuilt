@@ -3,37 +3,58 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.583935897435898,
-        "y": 4.186166666666668
+        "x": 7.432769230769232,
+        "y": 5.6745769230769225
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.630448717948719,
-        "y": 4.96525641025641
+        "x": 6.783594324022753,
+        "y": 6.030633171066813
       },
       "isLocked": false,
       "linkedName": "EndLeftCenterShoot3"
     },
     {
       "anchor": {
-        "x": 7.583935897435898,
-        "y": 6.279243589743589
+        "x": 4.223384615390774,
+        "y": 7.511833333341828
       },
       "prevControl": {
-        "x": 7.595564102564104,
-        "y": 5.41875641025641
+        "x": 6.235064102570119,
+        "y": 7.511833333328321
+      },
+      "nextControl": {
+        "x": 2.496762558743756,
+        "y": 7.5118333333534215
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.8404221669340117,
+        "y": 6.214182708024159
+      },
+      "prevControl": {
+        "x": 2.0457605384969386,
+        "y": 6.356787592806853
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndLeftCenterShoot2"
+      "linkedName": "LeftCenterShoot4"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.105263157894745,
+      "rotationDegrees": 0.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.5,
+    "maxVelocity": 3.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -42,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -179.57733550046294
   },
   "reversed": false,
-  "folder": "DeaD",
+  "folder": "LeftCenterShoot",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

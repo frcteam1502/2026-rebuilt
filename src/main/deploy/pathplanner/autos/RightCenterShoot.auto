@@ -5,95 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "shootOn"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "extendIntake"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "intakeOn"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "CenterShootRight1"
-                }
-              },
-              {
-                "type": "parallel",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 2.0
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "shootOff"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "RightCenterShoot2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberExtend"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "alignToClimbRight"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Stop Drive Motors"
+            "pathName": "CenterShootRight1"
           }
         }
       ]
