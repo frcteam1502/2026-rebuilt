@@ -128,7 +128,7 @@ public class Shooter extends SubsystemBase {
   private boolean autoHoodToggle = true;
 
   //Create a SysIdRoutine object for characterizing the Shooter
-  private final SysIdRoutine sysIdShooter = 
+  /*private final SysIdRoutine sysIdShooter = 
   new SysIdRoutine(
     //Create a new SysID Congig with default ramp rate (0.1 V/s), step (7V), and time out values
     new SysIdRoutine.Config(), 
@@ -146,15 +146,15 @@ public class Shooter extends SubsystemBase {
       },
       // Tell SysId to make generated commands require this subsystem, suffix test state in
       // WPILog with this subsystem's name ("drive")
-      this));
+      this));*/
 
-  public Command sysIdQuasistatic(SysIdRoutine.Direction direction){
+  /*public Command sysIdQuasistatic(SysIdRoutine.Direction direction){
     return sysIdShooter.quasistatic(direction);
   }
 
   public Command sysIdDynamic(SysIdRoutine.Direction direction){
     return sysIdShooter.dynamic(direction);
-  }
+  }*/
 
   public Shooter(DriveSubsystem drive, Intake intake) {
     this.drive = drive;
@@ -370,7 +370,7 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putString("Shooter State", shooterState.toString());
     SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
     SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
-    SmartDashboard.putBoolean("Is Shooting Ready", isShootingReady());
+    //SmartDashboard.putBoolean("Is Shooting Ready", isShootingReady());
     SmartDashboard.putBoolean("Is Shooter Test Active", isTestMode);
   }
 
@@ -445,7 +445,7 @@ public class Shooter extends SubsystemBase {
            hoodPIDController.atSetpoint()           &&
            getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
-            intake.shooterRequestIntakeOn();
+            //intake.shooterRequestIntakeOn();
             shooterState = ShooterState.SHOOTING;
           }else {
             //NOTHING
@@ -467,17 +467,17 @@ public class Shooter extends SubsystemBase {
           }
         }
 
-        if(intake.isHopperIn()){
-          intake.shooterRequestIntakeOnSlow();
+        /*if(intake.isHopperIn()){
+          //intake.shooterRequestIntakeOnSlow();
         }else{
-          intake.shooterRequestIntakeOn();
-        }
+          //intake.shooterRequestIntakeOn();
+        }*/
         
         if(!isShooterAtSetPoint()||
            !hoodPIDController.atSetpoint()     ||
            getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(0);
-            intake.shooterRequestIntakeOff();
+            //intake.shooterRequestIntakeOff();
             shooterState = ShooterState.SPIN_UP;
           }else {
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
@@ -521,7 +521,7 @@ public class Shooter extends SubsystemBase {
   public void setShooterToWait(){
     setIndexSpeed(0);
     setFeedSpeed(0);
-    intake.shooterRequestIntakeOff();
+    //intake.shooterRequestIntakeOff();
     shooterSetSpeed = 0;
     
     if(isTestMode){
@@ -651,7 +651,7 @@ private void updateIndexerState(){
           indexerState = IndexerState.ON; 
         }else{
           setIndexSpeed(0);
-          intake.setIntakeSpeed(0);
+          //intake.setIntakeSpeed(0);
         }
         break;
       case ON:
@@ -659,7 +659,7 @@ private void updateIndexerState(){
           indexerState = IndexerState.WAIT; 
         }else{
           setIndexSpeed(ShooterCfg.TARGET_INDEXER_SPEED);
-          intake.setIntakeSpeed(ShooterCfg.INTAKE_AGITATION_SPEED);
+          //intake.setIntakeSpeed(ShooterCfg.INTAKE_AGITATION_SPEED);
         }
        break;
     }
@@ -720,6 +720,7 @@ private void updateIndexerState(){
     }
   }
 
+/* 
   public void setSysIDVoltage(Voltage volts){
     //Set drive motor open-loop voltage
     leadShooterMotor.setVoltage(volts.magnitude());
@@ -760,4 +761,5 @@ private void updateIndexerState(){
           return false;
         }
   }
+*/
 }

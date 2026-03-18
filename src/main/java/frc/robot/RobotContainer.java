@@ -66,7 +66,7 @@ public class RobotContainer {
 
     //Register named commands. Must register all commands we want Pathplanner to execute.
    
-    NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
+    /*NamedCommands.registerCommand("climberExtend", new InstantCommand(climber::setClimberOut));
     NamedCommands.registerCommand("climberRetract", new InstantCommand(climber::setClimberIn));
 
     NamedCommands.registerCommand("extendIntake", new InstantCommand(intake::setHopperOut));
@@ -74,7 +74,7 @@ public class RobotContainer {
 
     NamedCommands.registerCommand("intakeOff", new InstantCommand(intake::setIntakeOff));
     NamedCommands.registerCommand("intakeOn", new InstantCommand(intake::setIntakeOn));
-    NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));
+    NamedCommands.registerCommand("intakeReverse", new InstantCommand(intake::setIntakeReverse));*/
 
     NamedCommands.registerCommand("shoot", new AutoShoot(shooter));
     NamedCommands.registerCommand("shootOn", new InstantCommand(shooter::setShooterOn));
@@ -127,7 +127,7 @@ public class RobotContainer {
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
 
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
-    Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
+    //Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
     Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
     Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
@@ -136,11 +136,11 @@ public class RobotContainer {
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
 
-    Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
+    /*Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
     Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
-
+*/
     //Operator.Controller.x().whileTrue(new InstantCommand(shooter::setFeedOn)).whileFalse(new InstantCommand(shooter::setFeedOff));
     //Operator.Controller.b().whileTrue(new InstantCommand(shooter::setIndexerOn)).whileFalse(new InstantCommand(shooter::setIndexerOff));
     

@@ -17,6 +17,6 @@ public class ExtendAndAlignRight extends ParallelCommandGroup {
   public ExtendAndAlignRight(DriveSubsystem drive, Climber climber) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new AlignToTowerRight(drive), new InstantCommand(climber::setClimberOut));
+    //addCommands(new AlignToTowerRight(drive), new InstantCommand(climber::setClimberOut));
   }
 }

@@ -36,10 +36,10 @@ public class Climber extends SubsystemBase {
       //setClimberIn();
     }
     
-    updateDashboard();
+    //updateDashboard();
 
 
-  }
+  }/* 
   public void setClimberOut(){
     climberIn = false;    
     climberSolenoid1.set(true);
@@ -71,5 +71,5 @@ public class Climber extends SubsystemBase {
     }else{
       setClimberIn();
     }
-  }
+  }*/
 }

@@ -60,7 +60,7 @@ public class Intake extends SubsystemBase {
       isCntrlRequestIn = true;
       isCntrlRequestOut = false;
     }
-  
+  /* 
     public void setIntakeReverse(){
       isCntrlRequestIn = false;
       isCntrlRequestOut = true;
@@ -118,5 +118,5 @@ public class Intake extends SubsystemBase {
   }
   public boolean isHopperIn(){
     return hopperIn;
-  }
+  }*/
 }
