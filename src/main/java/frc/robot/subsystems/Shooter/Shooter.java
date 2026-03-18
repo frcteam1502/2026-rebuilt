@@ -174,11 +174,11 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    updateShooterState();
-    updateHoodAngleSetPoint();
-    updateShooterSetPoint();
+    //updateShooterState();
+    //updateHoodAngleSetPoint();
+    //updateShooterSetPoint();
     updateDashboard();
-    isShootingReady();
+    //isShootingReady();
   }
 
   private void registerLoggerObjects(){
@@ -639,6 +639,7 @@ public class Shooter extends SubsystemBase {
       return ShooterCfg.BLUE_LEFT;
     }
   }
+
 private void updateIndexerState(){
     switch (indexerState){
       case OFF:
