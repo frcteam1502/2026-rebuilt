@@ -214,7 +214,12 @@ public class DriveSubsystem extends SubsystemBase{
           PoseEstCfg.VISION_STD_DEV_Y,
           PoseEstCfg.VISION_STD_DEV_THETA));
     
-    
+    robotAimPIDController= new PIDController(DrivebaseCfg.ROBOT_AIM_P_GAIN,
+                                            DrivebaseCfg.ROBOT_AIM_I_GAIN,
+                                            DrivebaseCfg.ROBOT_AIM_D_GAIN);
+
+    robotAimPIDController.enableContinuousInput(-Math.PI, Math.PI);
+
     leftPhotonCamera = new PhotonVisionCamera(PhotonCameraCfg.LEFT_APRILTAG_CAM, 
           PhotonCameraCfg.LEFT_APRILTAG_CAM_TRANSFORM);
 
@@ -551,7 +556,7 @@ public class DriveSubsystem extends SubsystemBase{
     double delta_y = y2 - y1;
     double delta_x = x2 - x1;
 
-    angleRadians = Math.atan2(delta_y, delta_x);
+    angleRadians = (Math.atan2(delta_y, delta_x))+Math.PI;
 
     //Tried to fix spinning - didn't work 3/16/26
     /*if(angleRadians<0){
@@ -563,10 +568,7 @@ public class DriveSubsystem extends SubsystemBase{
     return aimCommand;
   }
   
-  private final PIDController robotAimPIDController = new PIDController(DrivebaseCfg.ROBOT_AIM_P_GAIN,
-                                                                      DrivebaseCfg.ROBOT_AIM_I_GAIN,
-                                                                      DrivebaseCfg.ROBOT_AIM_D_GAIN);
-
+  private final PIDController robotAimPIDController;
 
   public void resetGyro(double angle) {
     gyro.setYaw(angle);
