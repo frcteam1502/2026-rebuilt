@@ -1,25 +1,10 @@
 package frc.robot.subsystems.SwerveDrive;
 
-import frc.robot.Driver;
-import frc.robot.Logger;
-import frc.robot.subsystems.Shooter.Shooter;
-import frc.robot.subsystems.Shooter.ShooterCfg;
-import frc.robot.subsystems.Shooter.ShooterLookup;
-import frc.robot.subsystems.Vision.PhotonCameraCfg;
-import frc.robot.subsystems.Vision.PhotonVisionCamera;
-
-import org.ejml.simple.SimpleMatrix;
-import org.photonvision.EstimatedRobotPose;
-
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-import com.pathplanner.lib.config.PIDConstants;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.Vector;
@@ -27,7 +12,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -38,14 +22,24 @@ import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.FieldObject2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.Logger;
+import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.subsystems.Shooter.ShooterCfg;
+import frc.robot.subsystems.Vision.PhotonCameraCfg;
+import frc.robot.subsystems.Vision.PhotonVisionCamera;
 
 public class DriveSubsystem extends SubsystemBase{
 
   private final Field2d m_field = new Field2d(); 
-  
+  FieldObject2d m_poseObject2d;   
+
   public static boolean isTeleOp = false;
 
   public boolean isTurning = false;
@@ -231,6 +225,8 @@ public class DriveSubsystem extends SubsystemBase{
 
     //Add a Field2d widget to the Dashboard
     SmartDashboard.putData("Field", m_field);
+    m_poseObject2d = m_field.getObject("PoseObject");
+    m_poseObject2d.setPose(Pose2d.kZero);
 
     //Add a Swerve widget to the Dashboard
     SmartDashboard.putData("Swerve Drive", new Sendable() {
@@ -393,6 +389,7 @@ public class DriveSubsystem extends SubsystemBase{
 
     //Pose Info
     m_field.setRobotPose(estimatedPose);
+    m_poseObject2d.setPose(getEstimatedPose2d());
 
     //SmartDashboard.putData("EstimatedPose", estimatedPose);
     SmartDashboard.putNumber("EstimatedPose X", estimatedPose.getX());

@@ -4,25 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.subsystems.Climber.Climber;
-import frc.robot.subsystems.Intake.Intake;
-import frc.robot.subsystems.PowerManagement.MockDetector;
-import frc.robot.subsystems.Shooter.Shooter;
-import frc.robot.commands.AlignToTowerLeft;
-import frc.robot.commands.AlignToTowerRight;
-import frc.robot.commands.AlignToTowerLeft;
-import frc.robot.commands.AlignToTowerRight;
-import frc.robot.commands.AutoShoot;
-import frc.robot.commands.DriverCommands;
-import frc.robot.commands.EVIL;
-import frc.robot.commands.ExtendAndAlignLeft;
-import frc.robot.commands.ExtendAndAlignRight;
-import frc.robot.commands.OperatorCommands;
-import frc.robot.commands.ResetGyro;
-import frc.robot.commands.StopDriveMotors;
-import frc.robot.commands.TurnToTarget;
-import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
-
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -33,7 +14,20 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AlignToTowerRight;
+import frc.robot.commands.AutoShoot;
+import frc.robot.commands.DriverCommands;
+import frc.robot.commands.EVIL;
+import frc.robot.commands.ExtendAndAlignLeft;
+import frc.robot.commands.ExtendAndAlignRight;
+import frc.robot.commands.ResetGyro;
+import frc.robot.commands.StopDriveMotors;
+import frc.robot.commands.TurnToTarget;
+import frc.robot.subsystems.Climber.Climber;
+import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.PowerManagement.MockDetector;
+import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -108,11 +102,12 @@ public class RobotContainer {
     new PathPlannerAuto("LeftWeek0CenterGrab");
     new PathPlannerAuto("RightTwoPassGrab");
     //new PathPlannerAuto("TestAuto");
-   // new PathPlannerAuto("StrafeTestAuto");
-   
+    // new PathPlannerAuto("StrafeTestAuto");
+    
     // new PathPlannerAuto("Test1");
     
     new PathPlannerAuto("AutoAlignTest");
+    new PathPlannerAuto("New Auto");
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
