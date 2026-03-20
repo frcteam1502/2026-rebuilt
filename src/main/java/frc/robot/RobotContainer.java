@@ -20,6 +20,7 @@ import frc.robot.commands.ExtendAndAlignRight;
 import frc.robot.commands.OperatorCommands;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
+import frc.robot.commands.TurnToTarget;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -83,7 +84,11 @@ public class RobotContainer {
 
     NamedCommands.registerCommand("alignToClimbRight", new AlignToTowerRight(driveSubsystem));
     NamedCommands.registerCommand("alignToClimbLeft", new ExtendAndAlignLeft(driveSubsystem, climber));
-   NamedCommands.registerCommand("EVIL", new EVIL(driveSubsystem));
+    NamedCommands.registerCommand("EVIL", new EVIL(driveSubsystem));
+    
+    NamedCommands.registerCommand("turnToTarget", new TurnToTarget(driveSubsystem));
+
+  
 
     
 
@@ -106,6 +111,8 @@ public class RobotContainer {
    // new PathPlannerAuto("StrafeTestAuto");
    
     // new PathPlannerAuto("Test1");
+    
+    new PathPlannerAuto("AutoAlignTest");
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);

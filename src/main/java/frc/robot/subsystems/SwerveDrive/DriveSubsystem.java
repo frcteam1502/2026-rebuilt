@@ -282,6 +282,14 @@ public class DriveSubsystem extends SubsystemBase{
     }
     return rot;
   }
+
+  int count = 0;
+
+  public boolean atSetPoint(){
+    count++;
+    return false;
+  }
+
   //Drive command consumer
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
     //Set Dashboard variables
@@ -398,6 +406,7 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("Aim I", robotAimPIDController.getI());
     SmartDashboard.putNumber("Aim D", robotAimPIDController.getD());
     SmartDashboard.putNumber("Target Aim PID", getOmega(Shooter.calculateTargetPosition(this)));
+    SmartDashboard.putBoolean("Is Aiming", toggleAim);
     
 
     //Photonvision Stuff for Debugging - Comment out when not in use to save bandwidth
