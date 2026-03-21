@@ -4,29 +4,26 @@
 
 package frc.robot.subsystems.Shooter;
 
-import static edu.wpi.first.units.Units.Radians;
-import static edu.wpi.first.units.Units.RadiansPerSecond;
-import static edu.wpi.first.units.Units.Volts;
-
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.PersistMode;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.ResetMode;
-import com.revrobotics.spark.ClosedLoopSlot;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.EncoderConfig;
 import com.revrobotics.spark.config.FeedForwardConfig;
-import com.revrobotics.spark.config.SignalsConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 import au.grapplerobotics.LaserCan;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Translation2d;
+import static edu.wpi.first.units.Units.Radians;
+import static edu.wpi.first.units.Units.RadiansPerSecond;
+import static edu.wpi.first.units.Units.Volts;
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Voltage;
@@ -42,9 +39,11 @@ import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   private final SparkFlex leadShooterMotor = ShooterCfg.LEAD_SHOOTER_MOTOR;
-  private final SparkFlex followerShooterMotor = ShooterCfg.FOLLOWER_SHOOTER_MOTOR;
-  private final SparkMax hoodMotor = ShooterCfg.HOOD_MOTOR;
-  private final SparkMax feedMotor = ShooterCfg.FEED_MOTOR;
+  private final SparkFlex followerShooterMotor1 = ShooterCfg.FOLLOWER_SHOOTER_1_MOTOR;
+  private final SparkFlex followerShooterMotor2 = ShooterCfg.FOLLOWER_SHOOTER_2_MOTOR;
+  private final SparkFlex followerShooterMotor3 = ShooterCfg.FOLLOWER_SHOOTER_3_MOTOR;
+  private final SparkFlex hoodMotor = ShooterCfg.HOOD_MOTOR;
+  private final SparkFlex feedMotor = ShooterCfg.FEED_MOTOR;
   private final SparkFlex indexerMotor = ShooterCfg.INDEXER_MOTOR;
   
   private LaserCan feedLaser;
@@ -62,6 +61,7 @@ public class Shooter extends SubsystemBase {
   
   //REV PIDF control objects
   SparkClosedLoopController shooterPIDController;
+  SparkClosedLoopController shooterFeedPIDController;
 
   //WPI PID control objects
   
@@ -69,15 +69,16 @@ public class Shooter extends SubsystemBase {
                                                                       ShooterCfg.HOOD_I_GAIN,
                                                                       ShooterCfg.HOOD_D_GAIN);  
 
-
   //Shooter lead motor config - REV closed loop speed control
   private final SparkFlexConfig shooterLeadConfig = new SparkFlexConfig();
   private final EncoderConfig shooterLeadEncoderConfig = new EncoderConfig();
   private final ClosedLoopConfig shooterLeadPIDFConfig = new ClosedLoopConfig();
+  private final ClosedLoopConfig shooterFeedPIDConfig = new ClosedLoopConfig();
   private final FeedForwardConfig shooterLeadFFConfig = new FeedForwardConfig();
 
   //Shooter follower motor config - follow lead motor
   private final SparkFlexConfig shooterFollowerConfig = new SparkFlexConfig();
+  private final SparkFlexConfig shooterFollowerConfigNotInverted = new SparkFlexConfig();
   private final EncoderConfig shooterFollowerEncoderConfig = new EncoderConfig();
 
   //Hood motor config - WPI position control 
@@ -183,11 +184,13 @@ public class Shooter extends SubsystemBase {
 
   private void registerLoggerObjects(){
     Logger.RegisterSparkFlex("Shooter Lead", ShooterCfg.LEAD_SHOOTER_MOTOR);
-    Logger.RegisterSparkFlex("Shooter Follower", ShooterCfg.FOLLOWER_SHOOTER_MOTOR);
+    Logger.RegisterSparkFlex("Shooter Follower 1", ShooterCfg.FOLLOWER_SHOOTER_1_MOTOR);
+    Logger.RegisterSparkFlex("Shooter Follower 2", ShooterCfg.FOLLOWER_SHOOTER_2_MOTOR);
+    Logger.RegisterSparkFlex("Shooter Follower 3", ShooterCfg.FOLLOWER_SHOOTER_3_MOTOR);
     Logger.RegisterSparkFlex("Indexer",ShooterCfg.INDEXER_MOTOR);
 
-    Logger.RegisterSparkMax("Hood", ShooterCfg.HOOD_MOTOR);
-    Logger.RegisterSparkMax("Hood", ShooterCfg.FEED_MOTOR);
+    Logger.RegisterSparkFlex("Hood", ShooterCfg.HOOD_MOTOR);
+    Logger.RegisterSparkFlex("Hood", ShooterCfg.FEED_MOTOR);
 
     Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
     Logger.RegisterCanCoder("Hood Abs Encoder", ShooterCfg.HOOD_ABS_ENCODER);
@@ -232,14 +235,20 @@ public class Shooter extends SubsystemBase {
     shooterFollowerEncoderConfig.velocityConversionFactor(ShooterCfg.SHOOTER_ENC_VEL_CONFIG);
 
     //Config Spark Flex
-    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID,ShooterCfg.SHOOTER_FOLLOW_INVERTED);
+    shooterFollowerConfig.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID, true);
     shooterFollowerConfig.idleMode(ShooterCfg.SHOOTER_IDLE_MODE);
     shooterFollowerConfig.smartCurrentLimit(ShooterCfg.SHOOTER_CURRENT_LIMIT);
-
     shooterFollowerConfig.apply(shooterFollowerEncoderConfig);
+    //Config Spark Flex -- NOT INVERTED
+    shooterFollowerConfigNotInverted.follow(ShooterCfg.LEAD_SHOOTER_MOTOR_ID, false);
+    shooterFollowerConfigNotInverted.idleMode(ShooterCfg.SHOOTER_IDLE_MODE);
+    shooterFollowerConfigNotInverted.smartCurrentLimit(ShooterCfg.SHOOTER_CURRENT_LIMIT);
+    shooterFollowerConfigNotInverted.apply(shooterFollowerEncoderConfig);
 
     //Write to the SparkFlex
-    followerShooterMotor.configure(shooterFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    followerShooterMotor1.configure(shooterFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    followerShooterMotor2.configure(shooterFollowerConfigNotInverted, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    followerShooterMotor3.configure(shooterFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
   //Hood Motor COnfig
@@ -291,12 +300,19 @@ public class Shooter extends SubsystemBase {
     shooterFeedEncoderConfig.positionConversionFactor(ShooterCfg.FEED_ENC_POS_CONFIG);
     shooterFeedEncoderConfig.velocityConversionFactor(ShooterCfg.FEED_ENC_VEL_CONFIG);
 
+    //Config PID values
+    shooterFeedPIDController = feedMotor.getClosedLoopController();
+    shooterFeedPIDConfig.p(ShooterCfg.FEED_P_GAIN);
+    shooterFeedPIDConfig.i(ShooterCfg.FEED_I_GAIN);
+    shooterFeedPIDConfig.d(ShooterCfg.FEED_D_GAIN);
+
     //Config SparkFlex
     shooterFeedConfig.inverted(ShooterCfg.FEED_INVERTED);
     shooterFeedConfig.idleMode(ShooterCfg.FEED_IDLE_MODE);
     shooterFeedConfig.smartCurrentLimit(ShooterCfg.FEED_CURRENT_LIMIT);
 
     shooterFeedConfig.apply(shooterFeedEncoderConfig);
+    shooterFeedConfig.apply(shooterFeedPIDConfig);
 
     //Write to the SparkFlex
     feedMotor.configure(shooterFeedConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -334,7 +350,7 @@ public class Shooter extends SubsystemBase {
     return feedEncoder.getVelocity();
   }
   public void setFeedSpeed(double speed){
-    feedMotor.set(speed);
+    shooterFeedPIDController.setSetpoint(speed, ControlType.kDutyCycle);
   }
 
   public double getHoodAbsPositionZeroed() {
@@ -363,7 +379,9 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("Shooter Speed (RPM)",shooterLeadEncoder.getVelocity());
     SmartDashboard.putNumber("Shooter Output", leadShooterMotor.getAppliedOutput());
     SmartDashboard.putNumber("Shooter Lead Current",leadShooterMotor.getOutputCurrent());
-    SmartDashboard.putNumber("Shooter Follow Current",followerShooterMotor.getOutputCurrent());
+    SmartDashboard.putNumber("Shooter Follow Current 1",followerShooterMotor1.getOutputCurrent());
+    SmartDashboard.putNumber("Shooter Follow Current 2",followerShooterMotor2.getOutputCurrent());
+    SmartDashboard.putNumber("Shooter Follow Current 3",followerShooterMotor3.getOutputCurrent());
     SmartDashboard.putNumber("Actual Hood Angle", Math.toDegrees(getHoodAbsPositionZeroed()));
     SmartDashboard.putNumber("Target Hood Angle", Math.toDegrees(hoodSetAngle));
     SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());

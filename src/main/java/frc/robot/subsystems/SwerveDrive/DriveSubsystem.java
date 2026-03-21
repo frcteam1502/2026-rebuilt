@@ -36,6 +36,8 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.StructPublisher;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -45,7 +47,20 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 public class DriveSubsystem extends SubsystemBase{
 
   private final Field2d m_field = new Field2d(); 
-  
+   StructPublisher<Pose2d> robotPublisher = NetworkTableInstance
+        .getDefault()
+        .getStructTopic("robotPose", Pose2d.struct)
+        .publish();
+  StructPublisher<Pose2d> targetPublisher = NetworkTableInstance
+        .getDefault()
+        .getStructTopic("targetPose", Pose2d.struct)
+        .publish();
+  StructPublisher<Pose2d> aimPublisher = NetworkTableInstance
+        .getDefault()
+        .getStructTopic("aimPose", Pose2d.struct)
+        .publish();
+
+ 
   public static boolean isTeleOp = false;
 
   public boolean isTurning = false;
@@ -213,7 +228,14 @@ public class DriveSubsystem extends SubsystemBase{
           PoseEstCfg.VISION_STD_DEV_X,
           PoseEstCfg.VISION_STD_DEV_Y,
           PoseEstCfg.VISION_STD_DEV_THETA));
-    
+        
+    robotAimPIDController= new PIDController(DrivebaseCfg.ROBOT_AIM_P_GAIN,
+                                            DrivebaseCfg.ROBOT_AIM_I_GAIN,
+                                            DrivebaseCfg.ROBOT_AIM_D_GAIN);
+
+    robotAimPIDController.enableContinuousInput(-Math.PI, Math.PI);
+
+
     
     leftPhotonCamera = new PhotonVisionCamera(PhotonCameraCfg.LEFT_APRILTAG_CAM, 
           PhotonCameraCfg.LEFT_APRILTAG_CAM_TRANSFORM);
@@ -563,10 +585,7 @@ public class DriveSubsystem extends SubsystemBase{
     return aimCommand;
   }
   
-  private final PIDController robotAimPIDController = new PIDController(DrivebaseCfg.ROBOT_AIM_P_GAIN,
-                                                                      DrivebaseCfg.ROBOT_AIM_I_GAIN,
-                                                                      DrivebaseCfg.ROBOT_AIM_D_GAIN);
-
+  private final PIDController robotAimPIDController;
 
   public void resetGyro(double angle) {
     gyro.setYaw(angle);

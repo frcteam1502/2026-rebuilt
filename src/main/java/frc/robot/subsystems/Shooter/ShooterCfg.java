@@ -2,19 +2,18 @@ package frc.robot.subsystems.Shooter;
 
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.signals.SensorDirectionValue;
-import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel;
-import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
-import au.grapplerobotics.interfaces.LaserCanInterface.Measurement;
 import edu.wpi.first.math.geometry.Translation2d;
 
 public class ShooterCfg {
     //Shooter Motor Config
     public static final int LEAD_SHOOTER_MOTOR_ID = 1;
-    public static final int FOLLOWER_SHOOTER_MOTOR_ID = 2;
+    public static final int FOLLOWER_SHOOTER_MOTOR_1_ID = 2;
+    public static final int FOLLOWER_SHOOTER_MOTOR_2_ID = 13;
+    public static final int FOLLOWER_SHOOTER_MOTOR_3_ID = 15;
     public static final int HOOD_MOTOR_ID = 6;
     public static final int FEED_MOTOR_ID = 7;
     public static final int INDEXER_MOTOR_ID = 12;
@@ -23,9 +22,11 @@ public class ShooterCfg {
     public static final int HOOD_ABS_ENCODER_ID = 14;
 
     public static final SparkFlex LEAD_SHOOTER_MOTOR = new SparkFlex(LEAD_SHOOTER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
-    public static final SparkFlex FOLLOWER_SHOOTER_MOTOR = new SparkFlex(FOLLOWER_SHOOTER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
-    public static final SparkMax HOOD_MOTOR = new SparkMax(HOOD_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
-    public static final SparkMax FEED_MOTOR = new SparkMax(FEED_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
+    public static final SparkFlex FOLLOWER_SHOOTER_1_MOTOR = new SparkFlex(FOLLOWER_SHOOTER_MOTOR_1_ID, SparkLowLevel.MotorType.kBrushless);
+    public static final SparkFlex FOLLOWER_SHOOTER_2_MOTOR = new SparkFlex(FOLLOWER_SHOOTER_MOTOR_2_ID, SparkLowLevel.MotorType.kBrushless);
+    public static final SparkFlex FOLLOWER_SHOOTER_3_MOTOR = new SparkFlex(FOLLOWER_SHOOTER_MOTOR_3_ID, SparkLowLevel.MotorType.kBrushless);
+    public static final SparkFlex HOOD_MOTOR = new SparkFlex(HOOD_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
+    public static final SparkFlex FEED_MOTOR = new SparkFlex(FEED_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkFlex INDEXER_MOTOR = new SparkFlex(INDEXER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
@@ -43,6 +44,10 @@ public class ShooterCfg {
     public static final double HOOD_P_GAIN = 70;
     public static final double HOOD_I_GAIN = 0.1;
     public static final double HOOD_D_GAIN = 0;
+
+    public static final double FEED_P_GAIN = 1;
+    public static final double FEED_I_GAIN = 0;
+    public static final double FEED_D_GAIN = 0;
 
     //Shooter
     public static final double SHOOTER_ENC_POS_CONFIG = 1;
