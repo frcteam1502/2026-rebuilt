@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AlignToTowerRight;
@@ -110,6 +112,13 @@ public class RobotContainer {
     new PathPlannerAuto("New Auto");
 
     autoChooser = AutoBuilder.buildAutoChooser();
+
+    var run = new RunCommand(()->driveSubsystem.drive(0.1,0.1,0, false), driveSubsystem)
+                    .withTimeout(2.0);
+    var stop = new InstantCommand(()->driveSubsystem.drive(0,0,0, false));
+    
+    Command moveForwarCommand = new SequentialCommandGroup(run,stop);
+    autoChooser.addOption("Move forward", moveForwarCommand);
     SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 

@@ -20,6 +20,8 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.StructPublisher;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -39,6 +41,18 @@ public class DriveSubsystem extends SubsystemBase{
 
   private final Field2d m_field = new Field2d(); 
   FieldObject2d m_poseObject2d;   
+  StructPublisher<Pose2d> robotPublisher = NetworkTableInstance
+        .getDefault()
+        .getStructTopic("robotPose", Pose2d.struct)
+        .publish();
+  StructPublisher<Pose2d> targetPublisher = NetworkTableInstance
+        .getDefault()
+        .getStructTopic("targetPose", Pose2d.struct)
+        .publish();
+  StructPublisher<Pose2d> aimPublisher = NetworkTableInstance
+        .getDefault()
+        .getStructTopic("aimPose", Pose2d.struct)
+        .publish();
 
   public static boolean isTeleOp = false;
 
@@ -389,7 +403,14 @@ public class DriveSubsystem extends SubsystemBase{
 
     //Pose Info
     m_field.setRobotPose(estimatedPose);
-    m_poseObject2d.setPose(getEstimatedPose2d());
+    var robotPose = getEstimatedPose2d();
+    var calculatedTargetPosition = new Pose2d(Shooter.calculateTargetPosition(this), Rotation2d.kZero);
+    robotPublisher.set(robotPose);
+    targetPublisher.set(calculatedTargetPosition);
+    var distance = calculatedTargetPosition.getTranslation().getNorm();
+    var aimPosition = (new Translation2d(distance,0)).rotateBy(robotPose.getRotation().plus(Rotation2d.k180deg));
+    var aimField = robotPose.getTranslation().plus(aimPosition);
+    aimPublisher.set(new Pose2d(aimField, Rotation2d.kZero));
 
     //SmartDashboard.putData("EstimatedPose", estimatedPose);
     SmartDashboard.putNumber("EstimatedPose X", estimatedPose.getX());
