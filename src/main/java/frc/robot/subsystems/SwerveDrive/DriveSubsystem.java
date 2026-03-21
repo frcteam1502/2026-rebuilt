@@ -59,7 +59,6 @@ public class DriveSubsystem extends SubsystemBase{
         .getDefault()
         .getStructTopic("aimPose", Pose2d.struct)
         .publish();
-
  
   public static boolean isTeleOp = false;
 
@@ -71,8 +70,6 @@ public class DriveSubsystem extends SubsystemBase{
 
   ChassisSpeeds speedCommands = new ChassisSpeeds(0, 0, 0);
   ChassisSpeeds relativeCommands = new ChassisSpeeds(0,0,0);
-
-  private double angleToTarget;
 
   private final SwerveModule frontLeft = new SwerveModule(
     DrivebaseCfg.FRONT_LEFT_MOD_ID,
@@ -210,8 +207,6 @@ public class DriveSubsystem extends SubsystemBase{
   }
 
   public DriveSubsystem() {
-
-    //this.odometry = new SwerveDrivePoseEstimator(kinematics, getGyroRotation2d(), getModulePositions(), pose);
     resetGyro(0);
     this.odometry = new SwerveDriveOdometry(kinematics, getGyroRotation2d(), getModulePositions());
 
@@ -402,6 +397,14 @@ public class DriveSubsystem extends SubsystemBase{
 
     //Pose Info
     m_field.setRobotPose(estimatedPose);
+    var robotPose = getEstimatedPose2d();
+    var calculatedTargetPosition = new Pose2d(Shooter.calculateTargetPosition(this), Rotation2d.kZero);
+    robotPublisher.set(robotPose);
+    targetPublisher.set(calculatedTargetPosition);
+    var distance = calculatedTargetPosition.getTranslation().getNorm();
+    var aimPosition = (new Translation2d(distance,0)).rotateBy(robotPose.getRotation().plus(Rotation2d.k180deg));
+    var aimField = robotPose.getTranslation().plus(aimPosition);
+    aimPublisher.set(new Pose2d(aimField, Rotation2d.kZero));
 
     //SmartDashboard.putData("EstimatedPose", estimatedPose);
     SmartDashboard.putNumber("EstimatedPose X", estimatedPose.getX());
