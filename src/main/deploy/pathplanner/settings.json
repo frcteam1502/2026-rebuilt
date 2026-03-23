@@ -3,17 +3,18 @@
   "robotLength": 0.927,
   "holonomicMode": true,
   "pathFolders": [
-    "dEAD",
-    "DEad",
     "CenterStartHp(RC)",
+    "DEAD",
+    "DEad",
     "DeAD",
     "DeAd",
     "DeaD",
-    "LeftWeek0CenterGrab",
-    "DEAD",
     "Dead",
+    "LeftWeek0CenterGrab",
+    "New Folder",
     "RightTwoPassGrab",
-    "RightWeek0CenterGrab"
+    "RightWeek0CenterGrab",
+    "dEAD"
   ],
   "autoFolders": [
     "Center Start",
