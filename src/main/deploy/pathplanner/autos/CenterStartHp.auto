@@ -30,33 +30,52 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "shootOn"
-          }
-        },
-        {
           "type": "wait",
           "data": {
-            "waitTime": 8.0
+            "waitTime": 3.0
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "retractIntake"
+            "pathName": "CenterStart2Hp"
           }
         },
         {
-          "type": "wait",
+          "type": "sequential",
           "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 8.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "intakeOff"
+                }
+              }
+            ]
           }
         },
         {

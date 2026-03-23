@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7408072289156629,
-        "y": 0.84410843373494
+        "x": 1.4948192771084337,
+        "y": 1.7729638554216867
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.298120481927711,
-        "y": 1.4342048192771086
+        "x": 2.052132530120482,
+        "y": 2.363060240963855
       },
       "isLocked": false,
-      "linkedName": "EndCenterStart1"
+      "linkedName": "EndCenterStart2HP"
     },
     {
       "anchor": {
-        "x": 0.4457590361445781,
-        "y": 2.505120481927711
+        "x": 1.0686385542168677,
+        "y": 3.051506024096385
       },
       "prevControl": {
-        "x": 1.0030722891566264,
-        "y": 2.1007951807228915
+        "x": 1.5378813701196863,
+        "y": 2.672863473372114
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightClimbPose"
     }
   ],
   "rotationTargets": [],
@@ -47,7 +47,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.25,
+    "maxVelocity": 3.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -62,7 +62,7 @@
   "folder": "CenterStartHp(RC)",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -144.83356396420712
   },
   "useDefaultConstraints": true
 }

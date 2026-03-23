@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.456686746987951,
+        "x": 0.45668674698795053,
         "y": 0.8222530120481923
       },
       "isLocked": false,
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.25,
+    "maxVelocity": 3.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -45,7 +45,7 @@
     "rotation": -20.80679101271121
   },
   "reversed": false,
-  "folder": null,
+  "folder": "TestPaths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0

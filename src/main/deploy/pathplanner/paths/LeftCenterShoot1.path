@@ -3,32 +3,37 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.257,
-        "y": 7.674628205125028
+        "x": 4.391238694723572,
+        "y": 7.667978388883467
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.257,
-        "y": 6.755739356761266
+        "x": 3.8414991048424945,
+        "y": 7.794359525181466
       },
-      "isLocked": false,
-      "linkedName": null
+      "isLocked": true,
+      "linkedName": "LeftStart"
     },
     {
       "anchor": {
-        "x": 8.257,
-        "y": 4.021
+        "x": 2.8512564102597007,
+        "y": 5.732717948718889
       },
       "prevControl": {
-        "x": 8.257,
-        "y": 5.044333450263011
+        "x": 2.932653846157135,
+        "y": 7.686256410257347
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftCenterShoot1"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": -90.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -42,13 +47,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 138.63227902316243
   },
   "reversed": false,
-  "folder": "TestPaths",
+  "folder": "LeftCenterShoot",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }

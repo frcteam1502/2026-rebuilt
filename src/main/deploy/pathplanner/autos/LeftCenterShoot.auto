@@ -5,13 +5,44 @@
     "data": {
       "commands": [
         {
+          "type": "path",
+          "data": {
+            "pathName": "LeftCenterShoot1"
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterGrab1Left"
+                  "pathName": "LeftCenterShoot2"
                 }
               },
               {
@@ -30,33 +61,89 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.25
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "intakeOff"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "LeftCenterShoot3"
           }
         },
         {
-          "type": "path",
+          "type": "sequential",
           "data": {
-            "pathName": "LeftCenterShoot6"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 3.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "alignToClimbLeft"
+            "pathName": "LeftCenterShoot4"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "climberExtend"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "LeftCenterShoot5"
+                }
+              }
+            ]
           }
         },
         {
           "type": "named",
           "data": {
             "name": "climberRetract"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Stop Drive Motors"
           }
         }
       ]

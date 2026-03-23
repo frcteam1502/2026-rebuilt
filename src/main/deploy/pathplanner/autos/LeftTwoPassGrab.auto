@@ -11,19 +11,19 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "RightWeek0CenterGrab1"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "intakeOn"
+                  "pathName": "LeftTwoPassGrab1"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "extendIntake"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "intakeOn"
                 }
               }
             ]
@@ -44,7 +44,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RightWeek0CenterGrab2"
+            "pathName": "LeftTwoPassGrab2"
           }
         },
         {
@@ -60,7 +60,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 5.0
+                  "waitTime": 2.0
                 }
               },
               {
@@ -87,31 +87,92 @@
         {
           "type": "named",
           "data": {
-            "name": "climberExtend"
+            "name": "intakeOn"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RightWeek0CenterGrab3"
+            "pathName": "LeftTwoPassGrab3"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "climberRetract"
+            "name": "intakeOff"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LeftTwoPassGrab4"
+          }
+        },
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Stop Drive Motors"
+            "name": "extendIntake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LeftTwoPassGrab5"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "retractIntake"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Right Start",
+  "folder": "Left Start",
   "choreoAuto": false
 }

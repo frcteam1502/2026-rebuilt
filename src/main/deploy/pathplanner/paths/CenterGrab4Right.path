@@ -32,53 +32,37 @@
     },
     {
       "anchor": {
-        "x": 4.769717993971893,
-        "y": 0.42814110673519623
+        "x": 4.434373493975314,
+        "y": 0.6036987951871935
       },
       "prevControl": {
-        "x": 5.560435942689843,
-        "y": 0.3816282862223751
+        "x": 5.212891605216456,
+        "y": 0.45772664932947893
       },
       "nextControl": {
-        "x": 4.277264168400298,
-        "y": 0.4571089788276431
+        "x": 3.035626506023507,
+        "y": 0.8659638554281581
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.3537736069184705,
-        "y": 0.8088633135259955
+        "x": 2.150481927710843,
+        "y": 1.532554216867469
       },
       "prevControl": {
-        "x": 3.5814181824486466,
-        "y": 0.5840615804567774
-      },
-      "nextControl": {
-        "x": 3.1604753858768477,
-        "y": 0.9997476119466864
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 2.862884615384617,
-        "y": 2.0349487179487173
-      },
-      "prevControl": {
-        "x": 2.979166666666668,
-        "y": 1.1628333333333325
+        "x": 2.4564578313247107,
+        "y": 1.040807228922133
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndCenterGrab2Right"
+      "linkedName": "RightShootPose"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 2.2050179211469465,
+      "waypointRelativePos": 2.1,
       "rotationDegrees": 0.0
     }
   ],
@@ -86,7 +70,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.25,
+    "maxVelocity": 3.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -95,10 +79,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -50.0
+    "rotation": -134.14490260373336
   },
   "reversed": false,
-  "folder": "DEAD",
+  "folder": "CenterGrabRight",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0

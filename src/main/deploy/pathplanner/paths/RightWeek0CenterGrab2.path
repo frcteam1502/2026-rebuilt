@@ -32,32 +32,32 @@
     },
     {
       "anchor": {
-        "x": 4.6419999999999995,
+        "x": 3.3306746987951805,
         "y": 0.680192771084337
       },
       "prevControl": {
-        "x": 4.862381377859493,
-        "y": 0.562158673075536
+        "x": 3.5533835629108728,
+        "y": 0.5666112503853338
       },
       "nextControl": {
-        "x": 4.421618622140506,
-        "y": 0.7982268690931379
+        "x": 2.2379036144578315,
+        "y": 1.2375060240963864
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.9263493975903616,
-        "y": 1.2156506024096394
+        "x": 2.150481927710843,
+        "y": 1.532554216867469
       },
       "prevControl": {
-        "x": 3.9754096385542166,
-        "y": 0.3195783132530121
+        "x": 2.980987951807229,
+        "y": 0.5490602409638553
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndRightWeek0CenterGrab2"
+      "linkedName": "RightShootPose"
     }
   ],
   "rotationTargets": [
@@ -88,7 +88,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 1.25,
+    "maxVelocity": 3.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -97,7 +97,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -59.470294100065956
+    "rotation": -134.14490260373336
   },
   "reversed": false,
   "folder": "RightWeek0CenterGrab",
