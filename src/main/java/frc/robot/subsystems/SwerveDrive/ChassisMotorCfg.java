@@ -76,10 +76,10 @@ final class ChassisMotorCfg {
   };
 
   public static final double DRIVE_MOTOR_KS[] = { 
-    DRIVE_FRONT_LEFT_KS,
-    DRIVE_FRONT_RIGHT_KS,
-    DRIVE_BACK_LEFT_KS,
-    DRIVE_BACK_RIGHT_KS
+    0.5, //DRIVE_FRONT_LEFT_KS,
+    0.5, //DRIVE_FRONT_RIGHT_KS,
+    0.5, //DRIVE_BACK_LEFT_KS,
+    0.5, //DRIVE_BACK_RIGHT_KS
   };
 
   public static final double DRIVE_MOTOR_KA[] = { 

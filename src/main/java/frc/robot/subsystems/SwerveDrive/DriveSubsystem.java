@@ -57,6 +57,8 @@ public class DriveSubsystem extends SubsystemBase{
   ChassisSpeeds speedCommands = new ChassisSpeeds(0, 0, 0);
   ChassisSpeeds relativeCommands = new ChassisSpeeds(0,0,0);
 
+  boolean m_atSetPoint = false;
+
   private double angleToTarget;
 
   private final SwerveModule frontLeft = new SwerveModule(
@@ -273,6 +275,7 @@ public class DriveSubsystem extends SubsystemBase{
   }
   public void setAutoTargetOff(){
     toggleAim = false;
+    m_atSetPoint = false;
   }
   private double getRotation(double rot){
     if (toggleAim){
@@ -286,8 +289,8 @@ public class DriveSubsystem extends SubsystemBase{
   int count = 0;
 
   public boolean atSetPoint(){
-    count++;
-    return false;
+     return m_atSetPoint;
+    
   }
 
   //Drive command consumer
@@ -321,8 +324,10 @@ public class DriveSubsystem extends SubsystemBase{
     relativeCommands.vyMetersPerSecond = robotRelativeSpeeds.vyMetersPerSecond;
     relativeCommands.omegaRadiansPerSecond = robotRelativeSpeeds.omegaRadiansPerSecond;
     
+    ChassisSpeeds discretChassisSpeeds =ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
+
     //Convert from robot frame of reference (ChassisSpeeds) to swerve module frame of reference (SwerveModuleState)
-    var swerveModuleStates = kinematics.toSwerveModuleStates(robotRelativeSpeeds);
+    var swerveModuleStates = kinematics.toSwerveModuleStates(discretChassisSpeeds);
 
     //Normalize wheel speed commands to make sure no speed is greater than the maximum achievable wheel speed.
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DrivebaseCfg.MAX_SPEED_METERS_PER_SECOND);
@@ -573,6 +578,8 @@ public class DriveSubsystem extends SubsystemBase{
     }*/
 
     var aimCommand = robotAimPIDController.calculate(estimatedPose.getRotation().getRadians(), angleRadians);
+    
+    m_atSetPoint = Math.abs(aimCommand) < 0.5;
 
     return aimCommand;
   }
