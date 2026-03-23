@@ -3,25 +3,28 @@
   "robotLength": 0.927,
   "holonomicMode": true,
   "pathFolders": [
-    "dEAD",
-    "DEad",
+    "CenterGrabLeft",
+    "CenterGrabRight",
     "CenterStartHp(RC)",
+    "DEad",
     "DeAD",
-    "DeAd",
-    "DeaD",
+    "RightCenterShoot",
+    "LeftCenterShoot",
+    "LeftTwoPassGrab",
     "LeftWeek0CenterGrab",
-    "DEAD",
-    "Dead",
     "RightTwoPassGrab",
-    "RightWeek0CenterGrab"
+    "RightWeek0CenterGrab",
+    "TestPaths",
+    "dEAD"
   ],
   "autoFolders": [
     "Center Start",
     "Left Start",
-    "TestAutos",
-    "Right Start"
+    "DEADAUTOS",
+    "Right Start",
+    "TestAutos"
   ],
-  "defaultMaxVel": 1.25,
+  "defaultMaxVel": 3.0,
   "defaultMaxAccel": 4.5,
   "defaultMaxAngVel": 1060.0,
   "defaultMaxAngAccel": 1397.0,

@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.257,
-        "y": 7.674628205125028
+        "x": 2.150481927710843,
+        "y": 1.532554216867469
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.257,
-        "y": 6.755739356761266
+        "x": 1.1389114263952171,
+        "y": 1.9442629093370976
+      },
+      "isLocked": false,
+      "linkedName": "RightShootPose"
+    },
+    {
+      "anchor": {
+        "x": 0.5863457076675984,
+        "y": 2.3670911760590787
+      },
+      "prevControl": {
+        "x": 0.632238335473078,
+        "y": 2.121339539822191
+      },
+      "nextControl": {
+        "x": 0.5404530798621188,
+        "y": 2.6128428122959666
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.257,
-        "y": 4.021
+        "x": 1.0686385542168677,
+        "y": 3.051506024096385
       },
       "prevControl": {
-        "x": 8.257,
-        "y": 5.044333450263011
+        "x": 0.6811966669723384,
+        "y": 2.7199946717193746
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RightClimbPose"
     }
   ],
   "rotationTargets": [],
@@ -45,10 +61,10 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "TestPaths",
+  "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -134.14490260373336
   },
   "useDefaultConstraints": true
 }

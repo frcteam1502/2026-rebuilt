@@ -30,12 +30,6 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "RightTwoPassGrab2"
-          }
-        },
-        {
           "type": "wait",
           "data": {
             "waitTime": 1.25
@@ -48,33 +42,46 @@
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "shootOn"
+            "pathName": "RightTwoPassGrab2"
           }
         },
         {
-          "type": "wait",
+          "type": "sequential",
           "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "retractIntake"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shootOff"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
           }
         },
         {
@@ -90,15 +97,15 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.25
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "RightTwoPassGrab3"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.25
           }
         },
         {
@@ -114,33 +121,71 @@
           }
         },
         {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "RightTwoPassGrab5"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "climberExtend"
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "named",
           "data": {
-            "name": "shootOn"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
+            "name": "climberRetract"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "retractIntake"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 2.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "shootOff"
+            "name": "Stop Drive Motors"
           }
         }
       ]
