@@ -31,8 +31,8 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double HOOD_ABS_ENCODER_OFFSET = -0.9203;
-    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
+    public static final double HOOD_ABS_ENCODER_OFFSET = -0.203;
+    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.CounterClockwise_Positive;
     public static final double DISCONTINUITY_POINT = 1;
 
     //PIDF Gains
@@ -105,7 +105,7 @@ public class ShooterCfg {
 
     public static final double HOOD_MAX_ANGLE = Math.toRadians(44);
     public static final double HOOD_MIN_ANGLE = Math.toRadians(12);
-    public static final double HOOD_ROT_TO_RADIANS = 0.70686;
+    public static final double HOOD_ROT_TO_RADIANS = 0.340339204348;
     public static final double TARGET_FEED_SPEED = 1;
     public static final double TARGET_INDEXER_SPEED = 1;
     public static final double INTAKE_AGITATION_SPEED = 0.5;
@@ -118,5 +118,5 @@ public class ShooterCfg {
     public static final double HOOD_TRENCH_ANG = 12;
     public static final double FEED_ON_THRESHOLD = 2500;
     public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
-    public static final double HOOD_ANGLE_OFFSET = Math.toRadians(12);
+    public static final double HOOD_ANGLE_OFFSET = Math.toRadians(14);
 }
