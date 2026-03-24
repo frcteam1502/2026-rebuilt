@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.AnalogInput;
 
 public class ClimberCfg {
-    public static final int CLIMBER_SOLENOID1_CHAN = 0;
-    public static final int CLIMBER_SOLENOID2_CHAN = 1;
+    public static final int CLIMBER_SOLENOID1_CHAN = 1;
+    public static final int CLIMBER_SOLENOID2_CHAN = 2;
     public static final int CLIMBER_PSI_CHAN = 0;
      public static final double CLIMBER_PSI_LIMIT = 35;
     

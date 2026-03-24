@@ -756,7 +756,7 @@ private void updateIndexerState(){
     return AngularVelocity.ofBaseUnits((shooterLeadEncoder.getPosition()*2*Math.PI), RadiansPerSecond);
   }
   public void setFeedOn(){
-    setFeedSpeed(-1);
+    setFeedSpeed(1);
   }
   public void setFeedOff(){
     setFeedSpeed(0);

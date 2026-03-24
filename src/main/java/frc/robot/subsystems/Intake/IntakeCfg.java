@@ -13,7 +13,7 @@ public class IntakeCfg {
 //Intake Motor Config
 public static final int INTAKE_MOTOR_ID = 3;
 
-public static final int INTAKE_SOLENOID_ID = 2;
+public static final int INTAKE_SOLENOID_ID = 0;
 
 public static final int FRONT_HOPPER_SENSOR_ID = 1;
 public static final int REAR_HOPPER_SENSOR_ID = 2;
