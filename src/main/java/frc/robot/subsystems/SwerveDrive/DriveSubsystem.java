@@ -280,11 +280,16 @@ public class DriveSubsystem extends SubsystemBase{
     updateDashboard();
   }
   boolean toggleAim;
+  boolean m_atSetPoint;
   public void setAutoTargetOn(){
     toggleAim = true;
   }
   public void setAutoTargetOff(){
     toggleAim = false;
+    m_atSetPoint = false;
+  }
+  public boolean atSetPoint(){
+    return m_atSetPoint;
   }
   private double getRotation(double rot){
     if (toggleAim){
@@ -324,9 +329,11 @@ public class DriveSubsystem extends SubsystemBase{
     relativeCommands.vxMetersPerSecond = robotRelativeSpeeds.vxMetersPerSecond;
     relativeCommands.vyMetersPerSecond = robotRelativeSpeeds.vyMetersPerSecond;
     relativeCommands.omegaRadiansPerSecond = robotRelativeSpeeds.omegaRadiansPerSecond;
+
+    ChassisSpeeds discreteChassisSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
     
     //Convert from robot frame of reference (ChassisSpeeds) to swerve module frame of reference (SwerveModuleState)
-    var swerveModuleStates = kinematics.toSwerveModuleStates(robotRelativeSpeeds);
+    var swerveModuleStates = kinematics.toSwerveModuleStates(discreteChassisSpeeds);
 
     //Normalize wheel speed commands to make sure no speed is greater than the maximum achievable wheel speed.
     SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DrivebaseCfg.MAX_SPEED_METERS_PER_SECOND);
@@ -418,6 +425,7 @@ public class DriveSubsystem extends SubsystemBase{
     SmartDashboard.putNumber("Aim I", robotAimPIDController.getI());
     SmartDashboard.putNumber("Aim D", robotAimPIDController.getD());
     SmartDashboard.putNumber("Target Aim PID", getOmega(Shooter.calculateTargetPosition(this)));
+    SmartDashboard.putBoolean("Is Aiming", toggleAim);
     
 
     //Photonvision Stuff for Debugging - Comment out when not in use to save bandwidth
