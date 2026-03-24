@@ -463,6 +463,7 @@ public class DriveSubsystem extends SubsystemBase{
       Logger.RegisterCanCoder("RL Abs Position", CANCoderCfg.BACK_LEFT_CAN_CODER);
       Logger.RegisterCanCoder("RR Abs Position", CANCoderCfg.BACK_RIGHT_CAN_CODER);
 
+
       Logger.RegisterDoubleSensor("Front Left Angle Command",   ()->frontLeft.getCommandedAngle());
       Logger.RegisterDoubleSensor("Front Right Angle Command",  ()->frontRight.getCommandedAngle());
       Logger.RegisterDoubleSensor("Back Left Angle Command",    ()->backLeft.getCommandedAngle());
@@ -584,7 +585,7 @@ public class DriveSubsystem extends SubsystemBase{
     double delta_y = y2 - y1;
     double delta_x = x2 - x1;
 
-    angleRadians = Math.atan2(delta_y, delta_x);
+    angleRadians = Math.atan2(delta_y, delta_x)+Math.PI;
 
     //Tried to fix spinning - didn't work 3/16/26
     /*if(angleRadians<0){

@@ -86,7 +86,7 @@ public class ShooterCfg {
     public static final double HOOD_KA = 0;
     
     public static final double SPEED_TOLERENCE = 100;
-    public static final double FEED_SPEED = 1;
+    public static final double FEED_SPEED = -1;
     public static final double INDEX_SPEED = 0.35;
     
     //Target Translations
