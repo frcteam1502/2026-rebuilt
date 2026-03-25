@@ -291,6 +291,15 @@ public class DriveSubsystem extends SubsystemBase{
   public boolean atSetPoint(){
     return m_atSetPoint;
   }
+  public void setSwerveXLock(){
+    SwerveModuleState[] SwerveLockStates = new SwerveModuleState[]{
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(45)),
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(-45)),
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(-45)),
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(45))
+    };
+    setDesiredModuleStates(SwerveLockStates);
+  }
   private double getRotation(double rot){
     if (toggleAim){
       //rotation of robot to target
