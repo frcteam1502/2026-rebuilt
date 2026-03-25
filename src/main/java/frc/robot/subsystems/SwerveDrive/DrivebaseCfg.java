@@ -81,5 +81,5 @@ public class DrivebaseCfg {
 
     public static final double ROBOT_AIM_P_GAIN = 4;
     public static final double ROBOT_AIM_I_GAIN = 0;   
-    public static final double ROBOT_AIM_D_GAIN = 1.2;
+    public static final double ROBOT_AIM_D_GAIN = 0;
 }

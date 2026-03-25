@@ -96,10 +96,10 @@ public class Shooter extends SubsystemBase {
 
   private double shooterSetSpeed = 0;
   private double angleToTarget;
-  private double hoodSetAngle = Math.toRadians(35);
+  private double hoodSetAngle = Math.toRadians(16);
   private Translation2d targetTranslation = new Translation2d(0,0);
 
-  private boolean isTestMode = true;
+  private boolean isTestMode = false;
 
   private enum ShooterState{
     OFF,
@@ -175,11 +175,11 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //updateShooterState();
+    updateShooterState();
     updateHoodAngleSetPoint();
-    //updateShooterSetPoint();
+    updateShooterSetPoint();
     updateDashboard();
-    //isShootingReady();
+    isShootingReady();
   }
 
   private void registerLoggerObjects(){
@@ -392,6 +392,7 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putBoolean("Hood At Setpoint", hoodPIDController.atSetpoint());
     SmartDashboard.putBoolean("Is Shooting Ready", isShootingReady());
     SmartDashboard.putBoolean("Is Shooter Test Active", isTestMode);
+    
   }
 
   public void updateShooterSetPoint(){
@@ -399,7 +400,14 @@ public class Shooter extends SubsystemBase {
   }
 
   public void updateHoodAngleSetPoint(){
+    if(hoodSetAngle>ShooterCfg.HOOD_MAX_ANGLE){
+      hoodSetAngle = ShooterCfg.HOOD_MAX_ANGLE;
+    }
+    else if(hoodSetAngle<ShooterCfg.HOOD_MIN_ANGLE){
+      hoodSetAngle = ShooterCfg.HOOD_MIN_ANGLE;
+    }
     var hoodCommand = hoodPIDController.calculate(getHoodAbsPositionZeroed(), hoodSetAngle);
+    SmartDashboard.putNumber("hood command v", hoodCommand);
     hoodMotor.setVoltage(hoodCommand);
   }
 
@@ -415,7 +423,7 @@ public class Shooter extends SubsystemBase {
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
           if (autoHoodToggle){
-            //hoodSetAngle = lookupHoodAngle(targetTranslation);
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
           }else{
             //DO NOT UPDATE
           }
@@ -433,6 +441,7 @@ public class Shooter extends SubsystemBase {
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
           if (autoHoodToggle){
+            hoodSetAngle = lookupHoodAngle(targetTranslation);
           }else{
             //DO NOT UPDATE
           }
@@ -455,6 +464,7 @@ public class Shooter extends SubsystemBase {
           
           if (autoHoodToggle){
             hoodSetAngle = lookupHoodAngle(targetTranslation);
+        
           }else{
             //DO NOT UPDATE
           }
@@ -476,6 +486,7 @@ public class Shooter extends SubsystemBase {
           shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
+
           shooterSetSpeed = lookupShooterSpeed(targetTranslation);
           setFeedSpeed(ShooterCfg.FEED_SPEED);
           
@@ -584,34 +595,46 @@ public class Shooter extends SubsystemBase {
   private double lookupShooterSpeed(Translation2d targetPose){
     //TODO Look UP shooter speed and set the shooterSetSpeed to the lookup value
     var distance = calculateTargetDistance(targetPose);
-    int lookup_index = (int)(4*distance);
 
-    //Make sure you are not indexing outside of the array
-    if(lookup_index < 0){
-      lookup_index = 0;
-    }else if (lookup_index >= ShooterLookup.LOOKUP.length){
-      lookup_index = ShooterLookup.LOOKUP.length - 1;
-    }else{
-      //Array size is inbounds
-    }
+    double shooterspeed =  ShooterLookup.Lookup(distance).m_velocity;
+    SmartDashboard.putNumber("lookup shooter speed", shooterspeed);
+    SmartDashboard.putNumber("lookup distance", distance);
+    return shooterspeed;
 
-    return ShooterLookup.LOOKUP[lookup_index][0];
-    //CL - Was causing array out of bounds need to debug
+    // int lookup_index = (int)(4*distance);
+
+    // //Make sure you are not indexing outside of the array
+    // if(lookup_index < 0){
+    //   lookup_index = 0;
+    // }else if (lookup_index >= ShooterLookup.LOOKUP.length){
+    //   lookup_index = ShooterLookup.LOOKUP.length - 1;
+    // }else{
+    //   //Array size is inbounds
+    // }
+
+    // return ShooterLookup.LOOKUP[lookup_index][0];
+    // //CL - Was causing array out of bounds need to debug
   }
   private double lookupHoodAngle(Translation2d targetPose){
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     var distance = calculateTargetDistance(targetPose);
-    var robotPose = drive.getEstimatedPose2d();
-    int lookup_index = (int)(4*distance);
+    double hoodangle=  ShooterLookup.Lookup(distance).m_hoodAngle;
+    SmartDashboard.putNumber("lookup hood angle", hoodangle);
+    SmartDashboard.putNumber("lookup shooter speed", ShooterLookup.Lookup(distance).m_velocity);
+    SmartDashboard.putNumber("lookup distance", distance);
+    return hoodangle;
 
-    //Make sure you are not indexing outside of the array
-    if(lookup_index < 0){
-      lookup_index = 0;
-    }else if (lookup_index >= ShooterLookup.LOOKUP.length){
-      lookup_index = ShooterLookup.LOOKUP.length - 1;
-    }else{
-      //Array size is inbounds
-    }
+    // var robotPose = drive.getEstimatedPose2d();
+    // int lookup_index = (int)(4*distance);
+
+    // //Make sure you are not indexing outside of the array
+    // if(lookup_index < 0){
+    //   lookup_index = 0;
+    // }else if (lookup_index >= ShooterLookup.LOOKUP.length){
+    //   lookup_index = ShooterLookup.LOOKUP.length - 1;
+    // }else{
+    //   //Array size is inbounds
+    // }
 
     /*if((robotPose.getX() > ShooterCfg.LOW_RED_TRENCHES)&&
       (robotPose.getX() < ShooterCfg.HIGH_RED_TRENCHES)){
@@ -622,11 +645,11 @@ public class Shooter extends SubsystemBase {
       }else{
         return (Math.toRadians(ShooterLookup.LOOKUP[lookup_index][1]));
       }*/
-    if(drive.isInTrenchZone()){
-        return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
-      }else{
-        return (Math.toRadians(ShooterLookup.LOOKUP[lookup_index][1]));
-      }
+    // if(drive.isInTrenchZone()){
+    //     return Math.toRadians(ShooterCfg.HOOD_TRENCH_ANG);
+    //   }else{
+    //     return (Math.toRadians(ShooterLookup.LOOKUP[lookup_index][1]));
+    //   }
   }
 
   private double calculateTargetDistance(Translation2d targetPose){

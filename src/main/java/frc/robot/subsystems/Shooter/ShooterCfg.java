@@ -31,8 +31,8 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double HOOD_ABS_ENCODER_OFFSET = 0;
-    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionVClockwise_Positive;
+    public static final double HOOD_ABS_ENCODER_OFFSET = -0.82;
+    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final double DISCONTINUITY_POINT = 1;
 
     //PIDF Gains
@@ -41,7 +41,7 @@ public class ShooterCfg {
     public static final double SHOOTER_D_GAIN = 0.0;
     public static final double SHOOTER_ALLOWED_ERROR = 100;
 
-    public static final double HOOD_P_GAIN = 70;
+    public static final double HOOD_P_GAIN = 30;
     public static final double HOOD_I_GAIN = 0;
     public static final double HOOD_D_GAIN = 0;
 
@@ -76,8 +76,8 @@ public class ShooterCfg {
     public static final int INDEXER_CURRENT_LIMIT = 60;
    
     //Hood
-    public static final boolean HOOD_INVERTED = true;
-    public static final IdleMode HOOD_IDLE_MODE = IdleMode.kCoast;
+    public static final boolean HOOD_INVERTED = false;
+    public static final IdleMode HOOD_IDLE_MODE = IdleMode.kBrake;
     public static final int HOOD_CURRENT_LIMIT = 20;
     public static final double HOOD_ENC_POS_CONFIG = 1;
     public static final double HOOD_ENC_VEL_CONFIG = 1;
@@ -103,7 +103,7 @@ public class ShooterCfg {
     public static final double LOW_BLUE_TRENCHES = 3.9;
     public static final double HIGH_BLUE_TRENCHES = 5.3;
 
-    public static final double HOOD_MAX_ANGLE = Math.toRadians(33);
+    public static final double HOOD_MAX_ANGLE = Math.toRadians(30);
     public static final double HOOD_MIN_ANGLE = Math.toRadians(14);
     public static final double HOOD_ROT_TO_RADIANS = ((22.7/180)*Math.PI);
     public static final double TARGET_FEED_SPEED = 1;

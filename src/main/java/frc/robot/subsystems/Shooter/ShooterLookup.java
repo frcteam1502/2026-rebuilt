@@ -1,9 +1,57 @@
 package frc.robot.subsystems.Shooter;
 
+import java.util.List;
+
 public class ShooterLookup {
-    public static final double[][] LOOKUP = {
-        {2250,30},//2
-    };
+    public static final class LookupTablePoint{
+        double m_velocity;
+        double m_hoodAngle;
+        double m_distance;
+    
+        public LookupTablePoint(double meters, double velocity, double hoodAngle){
+            this.m_hoodAngle = hoodAngle;
+            this.m_distance = meters;
+            this.m_velocity = velocity;
+        }
+    }
+
+    public static final List<LookupTablePoint> LookupTable = List.of(
+        new LookupTablePoint(0, 1500, 14.5),
+        new LookupTablePoint(2.42, 2250, 18),
+        new LookupTablePoint(2.72, 2250, 19),
+        new LookupTablePoint(3, 2100, 26),
+        new LookupTablePoint(3.9, 2300, 28),
+        new LookupTablePoint(4.6, 2450, 31),
+        new LookupTablePoint(9.6, 4000, 33)
+
+    );
+
+    public static LookupTablePoint Lookup(double distance)
+    {
+       // LookupTablePoint greater;
+        //LookupTablePoint lesser;
+        LookupTablePoint interpolated = LookupTable.get(0);
+
+        for (int i = 1; i < LookupTable.size(); i++)
+        {
+            LookupTablePoint greater = LookupTable.get(i);
+            if (LookupTable.get(i).m_distance > distance)  {
+                interpolated.m_velocity = greater.m_velocity + (distance - interpolated.m_distance )* (greater.m_velocity - interpolated.m_velocity)/(greater.m_distance-interpolated.m_distance);
+                interpolated.m_hoodAngle = greater.m_hoodAngle + (distance - interpolated.m_distance) * (greater.m_hoodAngle - interpolated.m_hoodAngle)/(greater.m_distance-interpolated.m_distance);
+                interpolated.m_distance = distance;
+                return interpolated;
+
+            }
+            else {
+
+                interpolated = LookupTable.get(i);
+            }
+        }
+
+
+        return interpolated;
+    }
+
     public static final double[][] LOOKUP2 = {
         //{Speed,Angle}
         {1450,16},//0

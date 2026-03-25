@@ -113,32 +113,26 @@ public class SwerveModule{
     commandedSpeed = desiredState.speedMetersPerSecond;
     commandedAngle = desiredState.angle.getRadians();
 
-    if(Math.abs(desiredState.speedMetersPerSecond) < .2){
-      driveMotor.set(0);
-      turningMotor.set(0);
-      return;
-    }else{
-      // Optimize the reference state to avoid spinning further than 90 degrees
-      var rotation = new Rotation2d(getAbsPositionZeroed());
-      desiredState.optimize(rotation);
-      
-      // Scale speed by cosine of angle error. This scales down movement perpendicular to the desired
-      // direction of travel that can occur when modules change directions. This results in smoother
-      // driving.
-      desiredState.cosineScale(rotation);
+    // Optimize the reference state to avoid spinning further than 90 degrees
+    var rotation = new Rotation2d(getAbsPositionZeroed());
+    desiredState.optimize(rotation);
+    
+    // Scale speed by cosine of angle error. This scales down movement perpendicular to the desired
+    // direction of travel that can occur when modules change directions. This results in smoother
+    // driving.
+    desiredState.cosineScale(rotation);
 
-      //Set SmartDashboard variables
-      commandedSpeed = desiredState.speedMetersPerSecond;
-      commandedAngle = desiredState.angle.getRadians();
+    //Set SmartDashboard variables
+    commandedSpeed = desiredState.speedMetersPerSecond;
+    commandedAngle = desiredState.angle.getRadians();
 
-      //Calculate the motor speed output && feedforward and pass the values to the SPARK PID Controller object
-      var desiredSpeed = desiredState.speedMetersPerSecond;
-      drivePIDController.setSetpoint(desiredSpeed, SparkFlex.ControlType.kVelocity);
+    //Calculate the motor speed output && feedforward and pass the values to the SPARK PID Controller object
+    var desiredSpeed = desiredState.speedMetersPerSecond;
+    drivePIDController.setSetpoint(desiredSpeed, SparkFlex.ControlType.kVelocity);
 
-      // Calculate the turning motor output from the turning PID controller.
-      final double turnOutput = turningPIDController.calculate(getAbsPositionZeroed(), desiredState.angle.getRadians());
-      turningMotor.setVoltage(turnOutput);
-    }
+    // Calculate the turning motor output from the turning PID controller.
+    final double turnOutput = turningPIDController.calculate(getAbsPositionZeroed(), desiredState.angle.getRadians());
+    turningMotor.setVoltage(turnOutput);
   }
 
   /**
