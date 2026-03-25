@@ -99,7 +99,7 @@ public class Shooter extends SubsystemBase {
   private double hoodSetAngle = Math.toRadians(35);
   private Translation2d targetTranslation = new Translation2d(0,0);
 
-  private boolean isTestMode = false;
+  private boolean isTestMode = true;
 
   private enum ShooterState{
     OFF,
@@ -175,11 +175,11 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    updateShooterState();
+    //updateShooterState();
     updateHoodAngleSetPoint();
-    updateShooterSetPoint();
+    //updateShooterSetPoint();
     updateDashboard();
-    isShootingReady();
+    //isShootingReady();
   }
 
   private void registerLoggerObjects(){
@@ -368,6 +368,7 @@ public class Shooter extends SubsystemBase {
   }
 
   private void updateDashboard(){
+    SmartDashboard.putNumber("Hood Encoder Value", hoodAbsEncoder.getPosition().getValueAsDouble());
     SmartDashboard.putNumber("Target Translation X", targetTranslation.getX());
     SmartDashboard.putNumber("Target Translation Y", targetTranslation.getY());
     SmartDashboard.putNumber("Distance To Target", calculateTargetDistance(targetTranslation));
@@ -384,6 +385,7 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("Shooter Follow Current 3",followerShooterMotor3.getOutputCurrent());
     SmartDashboard.putNumber("Actual Hood Angle", Math.toDegrees(getHoodAbsPositionZeroed()));
     SmartDashboard.putNumber("Target Hood Angle", Math.toDegrees(hoodSetAngle));
+    SmartDashboard.putData("Hood PID", hoodPIDController);
     SmartDashboard.putNumber("Hood Command", hoodMotor.getAppliedOutput());
     SmartDashboard.putString("Shooter State", shooterState.toString());
     SmartDashboard.putBoolean("Shooter At Setpoint", isShooterAtSetPoint());
@@ -402,6 +404,7 @@ public class Shooter extends SubsystemBase {
   }
 
   private void updateShooterState(){
+    targetTranslation = calculateTargetPosition(drive);
     switch(shooterState){
       case OFF:
         //DO NOTHING
@@ -413,7 +416,6 @@ public class Shooter extends SubsystemBase {
         }else{
           if (autoHoodToggle){
             //hoodSetAngle = lookupHoodAngle(targetTranslation);
-            hoodSetAngle = Math.toRadians(15);
           }else{
             //DO NOT UPDATE
           }
@@ -431,7 +433,6 @@ public class Shooter extends SubsystemBase {
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
           if (autoHoodToggle){
-            hoodSetAngle = lookupHoodAngle(targetTranslation);
           }else{
             //DO NOT UPDATE
           }

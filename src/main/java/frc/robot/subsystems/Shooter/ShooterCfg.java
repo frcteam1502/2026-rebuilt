@@ -19,7 +19,7 @@ public class ShooterCfg {
     public static final int INDEXER_MOTOR_ID = 12;
 
     //CAN encoder IDs
-    public static final int HOOD_ABS_ENCODER_ID = 14;
+    public static final int HOOD_ABS_ENCODER_ID = 13;
 
     public static final SparkFlex LEAD_SHOOTER_MOTOR = new SparkFlex(LEAD_SHOOTER_MOTOR_ID, SparkLowLevel.MotorType.kBrushless);
     public static final SparkFlex FOLLOWER_SHOOTER_1_MOTOR = new SparkFlex(FOLLOWER_SHOOTER_MOTOR_1_ID, SparkLowLevel.MotorType.kBrushless);
@@ -31,8 +31,8 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double HOOD_ABS_ENCODER_OFFSET = -0.203;
-    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.CounterClockwise_Positive;
+    public static final double HOOD_ABS_ENCODER_OFFSET = 0;
+    public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionVClockwise_Positive;
     public static final double DISCONTINUITY_POINT = 1;
 
     //PIDF Gains
@@ -41,7 +41,7 @@ public class ShooterCfg {
     public static final double SHOOTER_D_GAIN = 0.0;
     public static final double SHOOTER_ALLOWED_ERROR = 100;
 
-    public static final double HOOD_P_GAIN = 0;
+    public static final double HOOD_P_GAIN = 70;
     public static final double HOOD_I_GAIN = 0;
     public static final double HOOD_D_GAIN = 0;
 
@@ -76,7 +76,7 @@ public class ShooterCfg {
     public static final int INDEXER_CURRENT_LIMIT = 60;
    
     //Hood
-    public static final boolean HOOD_INVERTED = false;
+    public static final boolean HOOD_INVERTED = true;
     public static final IdleMode HOOD_IDLE_MODE = IdleMode.kCoast;
     public static final int HOOD_CURRENT_LIMIT = 20;
     public static final double HOOD_ENC_POS_CONFIG = 1;
@@ -103,9 +103,9 @@ public class ShooterCfg {
     public static final double LOW_BLUE_TRENCHES = 3.9;
     public static final double HIGH_BLUE_TRENCHES = 5.3;
 
-    public static final double HOOD_MAX_ANGLE = Math.toRadians(34);
-    public static final double HOOD_MIN_ANGLE = Math.toRadians(12);
-    public static final double HOOD_ROT_TO_RADIANS = 0.340339204348;
+    public static final double HOOD_MAX_ANGLE = Math.toRadians(33);
+    public static final double HOOD_MIN_ANGLE = Math.toRadians(14);
+    public static final double HOOD_ROT_TO_RADIANS = ((22.7/180)*Math.PI);
     public static final double TARGET_FEED_SPEED = 1;
     public static final double TARGET_INDEXER_SPEED = 0.75;
     public static final double INTAKE_AGITATION_SPEED = 0.5;
