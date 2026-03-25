@@ -11,6 +11,7 @@ import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.config.SparkFlexConfig;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
@@ -25,6 +26,8 @@ public class Intake extends SubsystemBase {
   private boolean isCntrlRequestIn = false;
   private boolean isCntrlRequestOut = false;
   private boolean isShooterRequestSlow = false;
+
+  private Timer intakeTimer;
   
     public Intake() {
       intakeMotorConfig.inverted(IntakeCfg.INTAKE_MOTOR_REVERSED);
@@ -73,8 +76,9 @@ public class Intake extends SubsystemBase {
   
     public void setHopperOut(){
       hopperSolenoid.set(true);
+      isCntrlRequestIn = true;
+      isCntrlRequestOut = false;
     }
-  
      public void setHopperIn(){
       hopperSolenoid.set(false);
     }
