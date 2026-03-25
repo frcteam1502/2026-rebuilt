@@ -31,7 +31,7 @@ public class ShooterCfg {
     public static final CANcoder HOOD_ABS_ENCODER = new CANcoder(HOOD_ABS_ENCODER_ID);
 
     //CanCoder Configuration 
-    public static final double HOOD_ABS_ENCODER_OFFSET = -0.82;
+    public static final double HOOD_ABS_ENCODER_OFFSET = 0.033;
     public static final SensorDirectionValue HOOD_CAN_CODER_DIRECTION = SensorDirectionValue.Clockwise_Positive;
     public static final double DISCONTINUITY_POINT = 1;
 
