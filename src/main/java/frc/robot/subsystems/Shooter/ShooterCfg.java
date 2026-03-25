@@ -103,7 +103,7 @@ public class ShooterCfg {
     public static final double LOW_BLUE_TRENCHES = 3.9;
     public static final double HIGH_BLUE_TRENCHES = 5.3;
 
-    public static final double HOOD_MAX_ANGLE = Math.toRadians(30);
+    public static final double HOOD_MAX_ANGLE = Math.toRadians(33);
     public static final double HOOD_MIN_ANGLE = Math.toRadians(14);
     public static final double HOOD_ROT_TO_RADIANS = ((22.7/180)*Math.PI);
     public static final double TARGET_FEED_SPEED = 1;

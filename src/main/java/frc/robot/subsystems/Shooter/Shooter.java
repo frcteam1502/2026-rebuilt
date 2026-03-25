@@ -28,6 +28,7 @@ import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -355,8 +356,8 @@ public class Shooter extends SubsystemBase {
 
   public double getHoodAbsPositionZeroed() {
     //CANcoders in Phoenix return rotations 0 to 1
-    var angle = hoodAbsEncoder.getAbsolutePosition();
-    return (angle.getValueAsDouble()*ShooterCfg.HOOD_ROT_TO_RADIANS)+ShooterCfg.HOOD_ANGLE_OFFSET;
+    var angle = hoodAbsEncoder.getAbsolutePosition().getValueAsDouble();
+    return (angle*ShooterCfg.HOOD_ROT_TO_RADIANS)+ShooterCfg.HOOD_ANGLE_OFFSET;
   }
 
   public void setShooterSpeed(double speed){
@@ -619,7 +620,7 @@ public class Shooter extends SubsystemBase {
     //TODO Look UP Hood Angle and set the hoodAngle to the lookup value
     var distance = calculateTargetDistance(targetPose);
     double hoodangle=  ShooterLookup.Lookup(distance).m_hoodAngle;
-    SmartDashboard.putNumber("lookup hood angle", hoodangle);
+    SmartDashboard.putNumber("lookup hood angle", Math.toDegrees(hoodangle));
     SmartDashboard.putNumber("lookup shooter speed", ShooterLookup.Lookup(distance).m_velocity);
     SmartDashboard.putNumber("lookup distance", distance);
     return hoodangle;
@@ -652,7 +653,9 @@ public class Shooter extends SubsystemBase {
     //   }
   }
 
+  double sim_distance = 2.39 - 1.0;
   private double calculateTargetDistance(Translation2d targetPose){
+    if (RobotBase.isSimulation()) {return sim_distance += 0.25;}
     return drive.getDistanceAngleToPoint(targetPose).getX();
   }
 
