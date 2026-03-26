@@ -61,7 +61,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "RightTwoPassGrab",
+  "folder": "RightHubGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -134.14490260373336

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.806144578313253,
-        "y": 6.450024096385542
+        "x": 2.7117179487179497,
+        "y": 5.139679487179487
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.149945073334116,
-        "y": 5.458240212136911
+        "x": 2.0555184437388125,
+        "y": 4.147895602930856
       },
       "isLocked": false,
       "linkedName": "LeftShootPose"
@@ -45,10 +45,10 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "LeftTwoPassGrab",
+  "folder": "LeftHubGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 125.65532809790037
+    "rotation": 142.04576912486752
   },
   "useDefaultConstraints": true
 }

@@ -8,52 +8,52 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.769935897435898,
-        "y": 6.069935897435897
+        "x": 5.793192307692309,
+        "y": 5.569923076923077
       },
       "isLocked": false,
       "linkedName": "LeftTwoPassGrab3"
     },
     {
       "anchor": {
-        "x": 5.746679487179488,
-        "y": 7.325782051282051
+        "x": 5.5838846153846164,
+        "y": 5.721089743589744
       },
       "prevControl": {
-        "x": 6.104051866777393,
-        "y": 7.284939493613718
+        "x": 5.941256994982521,
+        "y": 5.680247185921411
       },
       "nextControl": {
-        "x": 5.339692307692308,
-        "y": 7.372294871794872
+        "x": 5.176897435897437,
+        "y": 5.767602564102565
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.153615384615386,
-        "y": 7.535089743589744
+        "x": 3.8861666666666688,
+        "y": 5.721089743589744
       },
       "prevControl": {
-        "x": 4.403615384615386,
-        "y": 7.535089743589744
+        "x": 4.133467532255136,
+        "y": 5.757726908862109
       },
       "nextControl": {
-        "x": 3.130333333333334,
-        "y": 7.535089743589744
+        "x": 2.9442820512820527,
+        "y": 5.581551282051282
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.806144578313253,
-        "y": 6.450024096385542
+        "x": 2.7117179487179497,
+        "y": 5.139679487179487
       },
       "prevControl": {
-        "x": 2.708507475859495,
-        "y": 7.047652297079962
+        "x": 2.874512820512821,
+        "y": 5.569923076923076
       },
       "nextControl": null,
       "isLocked": false,
@@ -62,12 +62,8 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.1526315789473789,
-      "rotationDegrees": 0.0
-    },
-    {
-      "waypointRelativePos": 2.2736842105263353,
-      "rotationDegrees": 0.0
+      "waypointRelativePos": 2.147368421052636,
+      "rotationDegrees": -90.0
     }
   ],
   "constraintZones": [],
@@ -83,10 +79,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 125.65532809790037
+    "rotation": 142.04576912486752
   },
   "reversed": false,
-  "folder": "LeftTwoPassGrab",
+  "folder": "LeftHubGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0

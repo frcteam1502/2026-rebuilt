@@ -140,7 +140,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "CenterGrabRight",
+  "folder": "RightCenterGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -134.14490260373336

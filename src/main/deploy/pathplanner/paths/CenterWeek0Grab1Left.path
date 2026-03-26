@@ -33,11 +33,11 @@
     {
       "anchor": {
         "x": 7.583935897435898,
-        "y": 5.084700274892775
+        "y": 5.011769230769231
       },
       "prevControl": {
         "x": 7.698137587137703,
-        "y": 6.266627704024417
+        "y": 6.193696659900874
       },
       "nextControl": null,
       "isLocked": false,
@@ -85,10 +85,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": "LeftWeek0CenterGrab",
+  "folder": "LeftOnePassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0

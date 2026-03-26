@@ -20,12 +20,12 @@
         "y": 1.6855421686692384
       },
       "prevControl": {
-        "x": 1.763286849188846,
-        "y": 1.5628230894675599
+        "x": 1.7622419753810377,
+        "y": 1.5571377914103028
       },
       "nextControl": {
-        "x": 0.2272048192820697,
-        "y": 1.8385301204764664
+        "x": 0.025602564102565672,
+        "y": 1.8837820512820518
       },
       "isLocked": false,
       "linkedName": null
@@ -44,7 +44,12 @@
       "linkedName": "RightClimbPose"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.410526315789489,
+      "rotationDegrees": 0.0
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
@@ -75,7 +80,7 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "RightWeek0CenterGrab",
+  "folder": "RightOnePassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -134.14490260373336
