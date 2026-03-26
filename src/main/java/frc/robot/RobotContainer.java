@@ -30,6 +30,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
@@ -131,7 +133,6 @@ public class RobotContainer {
     Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
     Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
-
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     //Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
@@ -139,7 +140,7 @@ public class RobotContainer {
     Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
     Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
-    Operator.Controller.a().onTrue(new InstantCommand(intake::toggleHopper));
+    Operator.Controller.a().onTrue(new SequentialCommandGroup(new InstantCommand(intake :: setIntakeOn), new WaitCommand(0.15), new InstantCommand(intake::toggleHopper)));
     Operator.Controller.x().onTrue(new InstantCommand(shooter::setIndexerOn));
     Operator.Controller.b().onTrue(new InstantCommand(shooter::setIndexerOff));
     //Operator.Controller.rightBumper().onTrue(new InstantCommand(shooter::setFeedOn));

@@ -29,9 +29,12 @@ import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.Logger;
 import frc.robot.subsystems.Intake.Intake;
@@ -99,6 +102,8 @@ public class Shooter extends SubsystemBase {
   private double angleToTarget;
   private double hoodSetAngle = Math.toRadians(16);
   private Translation2d targetTranslation = new Translation2d(0,0);
+
+  private Timer shooterTimer;
 
   private boolean isTestMode = false;
 
@@ -429,7 +434,7 @@ public class Shooter extends SubsystemBase {
             //DO NOT UPDATE
           }
         }
-
+        intake.setHopperOut();
         if(hoodPIDController.atSetpoint()){
            shooterState = ShooterState.READY;
         }else{
@@ -483,6 +488,7 @@ public class Shooter extends SubsystemBase {
       break;
 
       case SHOOTING:
+        shooterTimer.start();
         if(isTestMode){
           shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
@@ -498,10 +504,16 @@ public class Shooter extends SubsystemBase {
           }
         }
 
+        drive.setSwerveXLock();
+
         if(intake.isHopperIn()){
           intake.shooterRequestIntakeOnSlow();
         }else{
           intake.shooterRequestIntakeOn();
+          if(shooterTimer.get() >= 2){
+            shooterTimer.reset();
+            intake.setHopperIn();
+          }
         }
         
         if(!isShooterAtSetPoint()||
