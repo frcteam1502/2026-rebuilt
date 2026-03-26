@@ -102,8 +102,12 @@ public class RobotContainer {
     //new PathPlannerAuto("GetOutOfTheWay");
     //new PathPlannerAuto("CenterStartGround");
     new PathPlannerAuto("CenterStartHp");
-    new PathPlannerAuto("LeftWeek0CenterGrab");
-    new PathPlannerAuto("RightTwoPassGrab");
+    new PathPlannerAuto("LeftOnePassGrab");
+    new PathPlannerAuto("LeftHubGrab");
+    new PathPlannerAuto("LeftCenterGrab");
+    new PathPlannerAuto("RightHubGrab");
+    new PathPlannerAuto("RightCenterGrab");
+    new PathPlannerAuto("RightOnePassGrab");
     //new PathPlannerAuto("TestAuto");
      // new PathPlannerAuto("StrafeTestAuto");
    
@@ -111,6 +115,17 @@ public class RobotContainer {
 
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
+    SmartDashboard.putBoolean("Shift Active?", SmartDashbordData.isHubActive());
+    SmartDashboard.putBoolean("Did Win Auto?", SmartDashbordData.didWinAuto());
+   // SmartDashboard.putNumber("ShiftTimer", SmartDashbordData.ShiftTimer.getTimeStamp());
+     
+    
+    
+  /*   SmartDashboard.putBoolean("Is Our Shift", );
+    SmartDashboard.putBoolean("Win Auto?",)
+    SmartDashboard.*/
+
+  
   }
 
   /**

@@ -85,10 +85,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.75384833307075
+    "rotation": 119.99999999999999
   },
   "reversed": false,
-  "folder": "RightWeek0CenterGrab",
+  "folder": "RightOnePassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0

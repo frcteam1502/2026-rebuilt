@@ -153,12 +153,6 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "CenterGrab5Left"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "Stop Drive Motors"

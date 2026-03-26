@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.806144578313253,
-        "y": 6.450024096385542
+        "x": 2.7117179487179497,
+        "y": 5.139679487179487
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.924831705546938,
-        "y": 5.491040173080348
+        "x": 1.2763100319591545,
+        "y": 4.62358703897792
       },
       "isLocked": false,
       "linkedName": "LeftShootPose"
@@ -20,8 +20,8 @@
         "y": 4.330048192771085
       },
       "prevControl": {
-        "x": 1.7028224973316595,
-        "y": 6.158445645807163
+        "x": 1.7121287610394997,
+        "y": 4.93403325695296
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,10 +59,10 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "LeftWeek0CenterGrab",
+  "folder": "LeftOnePassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 125.65532809790037
+    "rotation": 142.04576912486752
   },
   "useDefaultConstraints": true
 }
