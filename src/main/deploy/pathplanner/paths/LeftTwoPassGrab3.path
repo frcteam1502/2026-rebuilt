@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.7117179487179497,
-        "y": 5.139679487179487
+        "x": 1.5397157539575925,
+        "y": 5.011769230769231
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.8512564102564117,
-        "y": 6.139705128205128
+        "x": 1.6792542154960546,
+        "y": 6.011794871794872
       },
       "isLocked": false,
       "linkedName": "LeftShootPose"
@@ -71,14 +71,14 @@
     },
     {
       "waypointRelativePos": 2.1859649122807108,
-      "rotationDegrees": -93.15764213669279
+      "rotationDegrees": -93.1576421366928
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
+    "maxVelocity": 5.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -93,7 +93,7 @@
   "folder": "LeftHubGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 142.04576912486752
+    "rotation": 179.37040139158972
   },
   "useDefaultConstraints": true
 }

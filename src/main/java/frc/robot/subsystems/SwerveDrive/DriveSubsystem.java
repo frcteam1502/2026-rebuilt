@@ -304,7 +304,10 @@ public class DriveSubsystem extends SubsystemBase{
     if (toggleAim){
       //rotation of robot to target
       var targetPose = Shooter.calculateTargetPosition(this);
-      return getOmega(targetPose);
+      var aimCommand = getOmega(targetPose);
+      SmartDashboard.putNumber("aimCommand", aimCommand);
+      m_atSetPoint = Math.abs(aimCommand) < 0.05;
+      return aimCommand;
     }
     return rot;
   }

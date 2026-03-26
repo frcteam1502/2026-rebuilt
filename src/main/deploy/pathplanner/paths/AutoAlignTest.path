@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
+    "maxVelocity": 5.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -45,7 +45,7 @@
     "rotation": -90.93919094573565
   },
   "reversed": false,
-  "folder": null,
+  "folder": "TestPaths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.28361315570805

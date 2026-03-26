@@ -18,6 +18,7 @@ import frc.robot.commands.ExtendAndAlignRight;
 import frc.robot.commands.OperatorCommands;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
+import frc.robot.commands.TurnToTarget;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -83,7 +84,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("alignToClimbRight", new AlignToTowerRight(driveSubsystem));
     NamedCommands.registerCommand("alignToClimbLeft", new ExtendAndAlignLeft(driveSubsystem, climber));
    NamedCommands.registerCommand("EVIL", new EVIL(driveSubsystem));
-
+   NamedCommands.registerCommand("turnToTarget", new TurnToTarget(driveSubsystem));
     
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
@@ -143,8 +144,8 @@ public class RobotContainer {
 
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
-    Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
-    Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
+   //Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
+    //Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
     Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
