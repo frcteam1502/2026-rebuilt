@@ -8,52 +8,36 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.351371794871795,
-        "y": 2.011692307692308
+        "x": 6.649765048785025,
+        "y": 2.435637170822346
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab1Right"
     },
     {
       "anchor": {
-        "x": 5.7019879518072285,
-        "y": 0.5381325301204822
+        "x": 4.42028859412767,
+        "y": 2.4247083646720657
       },
       "prevControl": {
-        "x": 6.525543683764574,
-        "y": 0.6309275421720155
+        "x": 5.243844326085015,
+        "y": 2.517503376723599
       },
       "nextControl": {
-        "x": 4.876385387704664,
-        "y": 0.44510688909483986
+        "x": 3.5946860300251053,
+        "y": 2.3316827236464235
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.5164457831283915,
-        "y": 0.7457590361451845
+        "x": 1.7099446688579447,
+        "y": 1.9438408940596945
       },
       "prevControl": {
-        "x": 3.9815739882565975,
-        "y": 0.6759898053759537
-      },
-      "nextControl": {
-        "x": 2.7127099887658885,
-        "y": 0.8663194052995599
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 2.150481927710843,
-        "y": 1.532554216867469
-      },
-      "prevControl": {
-        "x": 2.220084491813408,
-        "y": 1.962797806611058
+        "x": 1.77954723296051,
+        "y": 2.3740844838032835
       },
       "nextControl": null,
       "isLocked": false,
@@ -62,16 +46,8 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 0.0
-    },
-    {
-      "waypointRelativePos": 1.0,
-      "rotationDegrees": 0.0
-    },
-    {
-      "waypointRelativePos": 2.15,
-      "rotationDegrees": -14.689097777197658
+      "waypointRelativePos": 0.5540897097625336,
+      "rotationDegrees": 90.0
     }
   ],
   "constraintZones": [],
@@ -93,7 +69,7 @@
   "folder": "RightCenterGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 114.88134623585691
   },
   "useDefaultConstraints": true
 }

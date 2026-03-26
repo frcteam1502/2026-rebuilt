@@ -59,22 +59,18 @@ public class SmartDashbordData {
     remainingTime = matchTime - 145;
     return true;
   } else if (matchTime > 105) {
-    ShiftTimer.start();
     // Shift 1
     remainingTime = matchTime - 105;
     return shift1Active;
   } else if (matchTime > 80) {
-    ShiftTimer.reset();
     // Shift 2
     remainingTime = matchTime - 80;
     return !shift1Active;
   } else if (matchTime > 55) {
-    ShiftTimer.reset();
     // Shift 3
     remainingTime = matchTime - 55;
     return shift1Active;
   } else if (matchTime > 30) {
-    ShiftTimer.reset();
     // Shift 4
     remainingTime = matchTime - 30;
     return !shift1Active;

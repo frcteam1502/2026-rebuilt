@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 1.0686385542168677,
-        "y": 3.051506024096385
+        "x": 7.560679487179488,
+        "y": 1.4535384615384623
       },
       "prevControl": {
-        "x": 1.5378813701196863,
-        "y": 2.672863473372114
+        "x": 8.029922303082307,
+        "y": 1.0748959108141911
       },
       "nextControl": null,
       "isLocked": false,
@@ -56,7 +56,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 90.0
   },
   "reversed": false,
   "folder": "CenterStartHp(RC)",

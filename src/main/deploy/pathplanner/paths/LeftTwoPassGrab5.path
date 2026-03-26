@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 1.04,
-        "y": 4.330048192771085
+        "x": 7.269974358974359,
+        "y": 7.395551282051282
       },
       "prevControl": {
-        "x": 1.483169584837725,
-        "y": 4.603924172034221
+        "x": 7.713143943812085,
+        "y": 7.669427261314418
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -91.76239102366051
   },
   "reversed": false,
   "folder": "LeftHubGrab",

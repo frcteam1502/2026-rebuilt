@@ -8,27 +8,68 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.2875235841092052,
-        "y": 4.762094017787565
+        "x": 2.3977564102564113,
+        "y": 5.558294871794872
       },
       "isLocked": false,
       "linkedName": "LeftShootPose"
     },
     {
       "anchor": {
-        "x": 1.045,
-        "y": 4.330048192771085
+        "x": 2.0859625581644696,
+        "y": 6.817344312102842
       },
       "prevControl": {
-        "x": 1.7121287610394997,
-        "y": 4.93403325695296
+        "x": 2.0627061479080595,
+        "y": 5.8754596967182255
+      },
+      "nextControl": {
+        "x": 2.107922886710914,
+        "y": 7.706737618233841
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.641173736882112,
+        "y": 7.557639139581784
+      },
+      "prevControl": {
+        "x": 2.8693203215620597,
+        "y": 7.612665643163153
+      },
+      "nextControl": {
+        "x": 6.513314762523137,
+        "y": 7.499498113940758
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.269974358974359,
+        "y": 7.395551282051282
+      },
+      "prevControl": {
+        "x": 6.176923076923075,
+        "y": 7.651371794871795
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "LeftClimbEnd"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.45,
+      "rotationDegrees": -90.0
+    },
+    {
+      "waypointRelativePos": 2.0807017543859687,
+      "rotationDegrees": -90.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -42,7 +83,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -91.76239102366051
   },
   "reversed": false,
   "folder": "LeftOnePassGrab",

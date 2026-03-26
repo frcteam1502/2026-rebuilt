@@ -85,6 +85,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "CenterWeek0Grab3Left"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Stop Drive Motors"
