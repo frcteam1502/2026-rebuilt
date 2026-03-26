@@ -76,10 +76,12 @@ public class Intake extends SubsystemBase {
   
     public void setHopperOut(){
       hopperSolenoid.set(true);
+      hopperIn = false;
       isCntrlRequestIn = true;
       isCntrlRequestOut = false;
     }
      public void setHopperIn(){
+      hopperIn = true;
       hopperSolenoid.set(false);
     }
     public void setIntakeSpeed(double speed){
@@ -114,10 +116,8 @@ public class Intake extends SubsystemBase {
   public void toggleHopper(){
     if(hopperIn == false){
       setHopperIn();
-      hopperIn = true;
     }else{
       setHopperOut();
-      hopperIn = false;
     }
   }
   public boolean isHopperIn(){

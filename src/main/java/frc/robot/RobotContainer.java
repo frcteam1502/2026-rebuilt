@@ -116,7 +116,7 @@ public class RobotContainer {
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
     SmartDashboard.putBoolean("Shift Active?", SmartDashbordData.isHubActive());
-    SmartDashboard.putBoolean("Did Win Auto?", SmartDashbordData.didWinAuto());
+    // SmartDashboard.putBoolean("Did Win Auto?", SmartDashbordData.didWinAuto());
    // SmartDashboard.putNumber("ShiftTimer", SmartDashbordData.ShiftTimer.getTimeStamp());
      
     

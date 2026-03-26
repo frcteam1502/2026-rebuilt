@@ -443,6 +443,8 @@ public class Shooter extends SubsystemBase {
         break;
 
       case READY:
+       shooterTimer.reset();
+          shooterTimer.stop();
         if(isTestMode){
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
@@ -461,6 +463,8 @@ public class Shooter extends SubsystemBase {
         break;
 
       case STARTFEED:
+       shooterTimer.reset();
+          shooterTimer.stop();
         if(isTestMode){
           shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
@@ -512,6 +516,7 @@ public class Shooter extends SubsystemBase {
           intake.shooterRequestIntakeOn();
           if(shooterTimer.get() >= 2){
             shooterTimer.reset();
+            shooterTimer.stop();
             intake.setHopperIn();
           }
         }
@@ -528,7 +533,10 @@ public class Shooter extends SubsystemBase {
         break;
 
       case SPIN_UP:
+        shooterTimer.reset();
+        shooterTimer.stop();
         if(isTestMode){
+         
           shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
