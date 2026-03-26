@@ -30,18 +30,6 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.25
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "RightTwoPassGrab2"
@@ -51,6 +39,18 @@
           "type": "sequential",
           "data": {
             "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "turnToTarget"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.5
+                }
+              },
               {
                 "type": "named",
                 "data": {
@@ -103,18 +103,6 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.25
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "RightTwoPassGrab4"
@@ -124,6 +112,18 @@
           "type": "sequential",
           "data": {
             "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "turnToTarget"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.5
+                }
+              },
               {
                 "type": "named",
                 "data": {

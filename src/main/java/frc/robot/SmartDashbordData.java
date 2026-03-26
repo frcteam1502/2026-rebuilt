@@ -3,27 +3,36 @@ import java.util.Optional;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.Timer;
+
 
 public class SmartDashbordData {
 
+public static Timer ShiftTimer;
+
     public static boolean isHubActive() {
+
   Optional<Alliance> alliance = DriverStation.getAlliance();
   // If we have no alliance, we cannot be enabled, therefore no hub.
   if (alliance.isEmpty()) {
+    //IGNORE
     return false;
   }
   // Hub is always enabled in autonomous.
   if (DriverStation.isAutonomousEnabled()) {
+    //IGNORE
     return true;
   }
   // At this point, if we're not teleop enabled, there is no hub.
   if (!DriverStation.isTeleopEnabled()) {
+    //IGNORE
     return false;
   }
 
   // We're teleop enabled, compute.
   double matchTime = DriverStation.getMatchTime();
   String gameData = DriverStation.getGameSpecificMessage();
+    
   // If we have no game data, we cannot compute, assume hub is active, as its likely early in teleop.
   if (gameData.isEmpty()) {
     return true;
@@ -40,30 +49,79 @@ public class SmartDashbordData {
 
   // Shift was is active for blue if red won auto, or red if blue won auto.
   boolean shift1Active = switch (alliance.get()) {
-    case Red -> !redInactiveFirst;
-    case Blue -> redInactiveFirst;
+    case Red -> !redInactiveFirst;//Red lose auto
+    case Blue -> redInactiveFirst;//Red win auto
   };
 
   if (matchTime > 130) {
     // Transition shift, hub is active.
     return true;
   } else if (matchTime > 105) {
+    ShiftTimer.start();
     // Shift 1
     return shift1Active;
   } else if (matchTime > 80) {
+    ShiftTimer.reset();
     // Shift 2
     return !shift1Active;
   } else if (matchTime > 55) {
+    ShiftTimer.reset();
     // Shift 3
     return shift1Active;
   } else if (matchTime > 30) {
+    ShiftTimer.reset();
     // Shift 4
     return !shift1Active;
   } else {
     // End game, hub always active.
     return true;
   }
+
+  
+    }
+
+    public static boolean didWinAuto(){
+        String gameData;
+gameData = DriverStation.getGameSpecificMessage();
+Optional<Alliance> alliance = DriverStation.getAlliance();
+if(gameData.length() > 0)
+{
+  switch (gameData.charAt(0))
+  {
+    case 'B' :
+      //Blue case code
+      if(alliance.isPresent()) {
+          if(alliance.get() == Alliance.Red){
+
+            return false;
+          }
+          else{
+            return true;
+          }
+      }
+      break;
+    case 'R' :
+      //Red case code
+      if(alliance.isPresent()) {
+          if(alliance.get() == Alliance.Red){
+            return true;
+          }
+          else{
+            return false;
+          }
+      }
+      break;
+    default :
+      //This is corrupt data
+      break;
+  }
+} else {
+  //Code for no data received yet
+  return false;
 }
-    
+
+  return false;
+    }
 
 }
+
