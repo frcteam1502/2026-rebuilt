@@ -158,31 +158,6 @@
           }
         },
         {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "RightTwoPassGrab5"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "climberExtend"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "Stop Drive Motors"
