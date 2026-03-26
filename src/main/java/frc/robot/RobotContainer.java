@@ -10,8 +10,6 @@ import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.commands.AlignToTowerLeft;
 import frc.robot.commands.AlignToTowerRight;
-import frc.robot.commands.AlignToTowerLeft;
-import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.EVIL;
@@ -21,7 +19,6 @@ import frc.robot.commands.OperatorCommands;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
-
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -116,6 +113,7 @@ public class RobotContainer {
     autoChooser = AutoBuilder.buildAutoChooser();
     SmartDashboard.putData("Auto Chooser", autoChooser);
     SmartDashboard.putBoolean("Shift Active?", SmartDashbordData.isHubActive());
+    SmartDashboard.putNumber("Time Left In Shift", SmartDashbordData.remainingTime);
     // SmartDashboard.putBoolean("Did Win Auto?", SmartDashbordData.didWinAuto());
    // SmartDashboard.putNumber("ShiftTimer", SmartDashbordData.ShiftTimer.getTimeStamp());
      

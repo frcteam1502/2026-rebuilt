@@ -3,8 +3,11 @@ import java.util.Optional;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.Timer;
 
 public class SmartDashbordData {
+
+    public static double remainingTime;
 
     public static boolean isHubActive() {
   Optional<Alliance> alliance = DriverStation.getAlliance();
@@ -24,6 +27,7 @@ public class SmartDashbordData {
   // We're teleop enabled, compute.
   double matchTime = DriverStation.getMatchTime();
   String gameData = DriverStation.getGameSpecificMessage();
+  remainingTime = matchTime;
   // If we have no game data, we cannot compute, assume hub is active, as its likely early in teleop.
   if (gameData.isEmpty()) {
     return true;
@@ -46,18 +50,23 @@ public class SmartDashbordData {
 
   if (matchTime > 130) {
     // Transition shift, hub is active.
+    remainingTime = matchTime - 145;
     return true;
   } else if (matchTime > 105) {
     // Shift 1
+    remainingTime = matchTime - 105;
     return shift1Active;
   } else if (matchTime > 80) {
     // Shift 2
+    remainingTime = matchTime - 80;
     return !shift1Active;
   } else if (matchTime > 55) {
     // Shift 3
+    remainingTime = matchTime - 55;
     return shift1Active;
   } else if (matchTime > 30) {
     // Shift 4
+    remainingTime = matchTime - 30;
     return !shift1Active;
   } else {
     // End game, hub always active.
