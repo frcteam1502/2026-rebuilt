@@ -351,9 +351,22 @@ public class DriveSubsystem extends SubsystemBase{
     loggerSwerveCommands = swerveModuleStates;
 
     //Set the speed and angle of each module
-    setDesiredModuleStates(swerveModuleStates);
+    if (m_isXLocked){
+      setDesiredModuleStates(new SwerveModuleState[]{
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(45)),
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(-45)),
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(-45)),
+      new SwerveModuleState(0.0, Rotation2d.fromDegrees(45))
+      });
+    }else{
+      setDesiredModuleStates(swerveModuleStates);
+    }
   }
-
+  
+  boolean m_isXLocked=false;
+  public void setLock(boolean isLocked){
+    m_isXLocked = isLocked;
+  }
   //Interface with swerve modules
   private void setDesiredModuleStates(SwerveModuleState[] swerveModuleStates) {
     frontLeft.setDesiredState(swerveModuleStates[0]);
@@ -414,10 +427,11 @@ public class DriveSubsystem extends SubsystemBase{
     //Pose Info
     m_field.setRobotPose(estimatedPose);
     var robotPose = getEstimatedPose2d();
-    var calculatedTargetPosition = new Pose2d(Shooter.calculateTargetPosition(this), Rotation2d.kZero);
+    var targetPose = new Pose2d(Shooter.calculateTargetPosition(this), Rotation2d.kZero);
     robotPublisher.set(robotPose);
-    targetPublisher.set(calculatedTargetPosition);
-    var distance = calculatedTargetPosition.getTranslation().getNorm();
+    targetPublisher.set(targetPose);
+    var aimPose = targetPose.relativeTo(robotPose);
+    var distance = aimPose.getTranslation().getNorm();
     var aimPosition = (new Translation2d(distance,0)).rotateBy(robotPose.getRotation().plus(Rotation2d.k180deg));
     var aimField = robotPose.getTranslation().plus(aimPosition);
     aimPublisher.set(new Pose2d(aimField, Rotation2d.kZero));

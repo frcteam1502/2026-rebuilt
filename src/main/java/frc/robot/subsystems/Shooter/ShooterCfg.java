@@ -39,7 +39,7 @@ public class ShooterCfg {
     public static final double SHOOTER_P_GAIN = 0.0;
     public static final double SHOOTER_I_GAIN = 0;
     public static final double SHOOTER_D_GAIN = 0.0;
-    public static final double SHOOTER_ALLOWED_ERROR = 100;
+    public static final double SHOOTER_ALLOWED_ERROR = 500;
 
     public static final double HOOD_P_GAIN = 30;
     public static final double HOOD_I_GAIN = 0;
@@ -71,7 +71,7 @@ public class ShooterCfg {
     //Indexer
     public static final double INDEXER_ENC_VEL_CONFIG = 1;
     public static final double INDEXER_ENC_POS_CONFIG = 1;
-    public static final boolean INDEXER_INVERTED = true;
+    public static final boolean INDEXER_INVERTED = false;
     public static final IdleMode INDEXER_IDLE_MODE = IdleMode.kCoast;
     public static final int INDEXER_CURRENT_LIMIT = 60;
    
@@ -92,10 +92,10 @@ public class ShooterCfg {
     //Target Translations
     public static final Translation2d RED_HUB_TARGET_POSE = new Translation2d(11.91,4);
     public static final Translation2d BLUE_HUB_TARGET_POSE = new Translation2d(4.54,4);
-    public static final Translation2d RED_LEFT = new Translation2d(12.5,6.5);
-    public static final Translation2d RED_RIGHT = new Translation2d(12.5,1.5);
-    public static final Translation2d BLUE_LEFT = new Translation2d(4,6.5);
-    public static final Translation2d BLUE_RIGHT = new Translation2d(4,1.5);
+    public static final Translation2d RED_LEFT = new Translation2d(14.5,6.5);
+    public static final Translation2d RED_RIGHT = new Translation2d(14.5,1.5);
+    public static final Translation2d BLUE_LEFT = new Translation2d(2,6.5);
+    public static final Translation2d BLUE_RIGHT = new Translation2d(2,1.5);
     public static final double MIDDLE_RED_TRENCHES = 11.9;
     public static final double MIDDLE_BLUE_TRENCHES = 5.8;
     public static final double LOW_RED_TRENCHES = 11.3;
@@ -116,7 +116,7 @@ public class ShooterCfg {
     public static final double PIVOT_CHANGE = 2;
 
     public static final double HOOD_TRENCH_ANG = 12;
-    public static final double FEED_ON_THRESHOLD = 2500;
+    public static final double FEED_ON_THRESHOLD = -2500;
     public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
     public static final double HOOD_ANGLE_OFFSET = Math.toRadians(14);
 }

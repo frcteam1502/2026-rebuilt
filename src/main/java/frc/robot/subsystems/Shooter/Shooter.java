@@ -103,7 +103,7 @@ public class Shooter extends SubsystemBase {
   private double hoodSetAngle = Math.toRadians(16);
   private Translation2d targetTranslation = new Translation2d(0,0);
 
-  private Timer shooterTimer;
+  private Timer shooterTimer = new Timer();
 
   private boolean isTestMode = false;
 
@@ -434,7 +434,7 @@ public class Shooter extends SubsystemBase {
             //DO NOT UPDATE
           }
         }
-        intake.setHopperOut();
+        
         if(hoodPIDController.atSetpoint()){
            shooterState = ShooterState.READY;
         }else{
@@ -478,7 +478,7 @@ public class Shooter extends SubsystemBase {
 
         if(isShooterAtSetPoint()                    &&
            hoodPIDController.atSetpoint()           &&
-           getFeedVel() >= ShooterCfg.FEED_ON_THRESHOLD){
+           getFeedVel() <= ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(ShooterCfg.INDEX_SPEED);
             intake.shooterRequestIntakeOn();
             shooterState = ShooterState.SHOOTING;
@@ -518,7 +518,7 @@ public class Shooter extends SubsystemBase {
         
         if(!isShooterAtSetPoint()||
            !hoodPIDController.atSetpoint()     ||
-           getFeedVel() < ShooterCfg.FEED_ON_THRESHOLD){
+           getFeedVel() > ShooterCfg.FEED_ON_THRESHOLD){
             setIndexSpeed(0);
             intake.shooterRequestIntakeOff();
             shooterState = ShooterState.SPIN_UP;
@@ -801,7 +801,7 @@ private void updateIndexerState(){
     setFeedSpeed(0);
   }
   public void setIndexerOn(){
-    setIndexSpeed(-1);
+    setIndexSpeed(ShooterCfg.INDEX_SPEED);
   }
   public void setIndexerOff(){
     setIndexSpeed(0);
