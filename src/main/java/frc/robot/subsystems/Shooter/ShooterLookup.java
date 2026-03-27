@@ -22,9 +22,11 @@ public class ShooterLookup {
 
     public static final List<LookupTablePoint> LookupTable = List.of(
         new LookupTablePoint(0, 1500, 14.5),
-        new LookupTablePoint(2.42, 2250, 18),
-        new LookupTablePoint(2.72, 2250, 19),
-        new LookupTablePoint(3, 2100, 26),
+        new LookupTablePoint(1.32, 1500, 15),
+        new LookupTablePoint(2, 2100, 17),
+        new LookupTablePoint(2.42, 2200, 20),
+        new LookupTablePoint(2.72, 2200, 22),
+        new LookupTablePoint(3, 2200, 26),
         new LookupTablePoint(3.9, 2300, 28),
         new LookupTablePoint(4.6, 2450, 31),
         new LookupTablePoint(9.6, 4000, 33)
