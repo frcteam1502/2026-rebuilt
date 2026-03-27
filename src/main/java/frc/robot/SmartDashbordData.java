@@ -56,7 +56,7 @@ public class SmartDashbordData {
 
   if (matchTime > 130) {
     // Transition shift, hub is active.
-    remainingTime = matchTime - 145;
+    remainingTime = matchTime - 130;
     return true;
   } else if (matchTime > 105) {
     // Shift 1
@@ -76,6 +76,7 @@ public class SmartDashbordData {
     return !shift1Active;
   } else {
     // End game, hub always active.
+    remainingTime = matchTime;
     return true;
   }
 
