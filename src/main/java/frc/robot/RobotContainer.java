@@ -10,6 +10,8 @@ import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.commands.AlignToTowerLeft;
 import frc.robot.commands.AlignToTowerRight;
+import frc.robot.commands.AlignToTowerLeft;
+import frc.robot.commands.AlignToTowerRight;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriverCommands;
 import frc.robot.commands.EVIL;
@@ -144,7 +146,7 @@ public class RobotContainer {
 
     Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
-   //Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
+    //Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
     //Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
     Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));
