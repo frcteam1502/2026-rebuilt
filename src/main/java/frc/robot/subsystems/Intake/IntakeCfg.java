@@ -28,7 +28,7 @@ public static final boolean INTAKE_MOTOR_REVERSED = true;
 
 public static final IdleMode INTAKE_MOTOR_IDLE_MODE = SparkBaseConfig.IdleMode.kCoast;
 
-public static final int INTAKE_MOTOR_CURRENT_LIMIT = 70;
+public static final int INTAKE_MOTOR_CURRENT_LIMIT = 80;
 
 
 }
