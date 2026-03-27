@@ -46,12 +46,6 @@
                 }
               },
               {
-                "type": "wait",
-                "data": {
-                  "waitTime": 1.5
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "shootOn"
@@ -126,12 +120,6 @@
                 }
               },
               {
-                "type": "wait",
-                "data": {
-                  "waitTime": 1.5
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "shootOn"
@@ -174,6 +162,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Right Start",
+  "folder": "NFBC",
   "choreoAuto": false
 }

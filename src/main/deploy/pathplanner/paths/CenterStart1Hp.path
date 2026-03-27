@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.5928786612914516,
-        "y": 3.5903600965363998
+        "x": 3.6487872968694797,
+        "y": 3.6609499386994138
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.357206472404197,
-        "y": 2.980896097420135
+        "x": 3.413115107982225,
+        "y": 3.051485939583149
       },
       "isLocked": false,
       "linkedName": "CenterStartRight"
@@ -72,7 +72,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterStartHp(RC)",
+  "folder": "DEAD",
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": 180.0

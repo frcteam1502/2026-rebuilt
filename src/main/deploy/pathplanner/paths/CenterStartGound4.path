@@ -3,48 +3,57 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.305,
-        "y": 0.407
+        "x": 2.4791538461538476,
+        "y": 5.348987179487179
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.6217338966884975,
-        "y": 0.43799740539362464
+        "x": 3.417115693543407,
+        "y": 5.601585418597467
       },
       "isLocked": false,
-      "linkedName": "RightStart"
+      "linkedName": "CenterStartGround3End"
     },
     {
       "anchor": {
-        "x": 6.821538017347746,
-        "y": 0.6296327857766995
+        "x": 4.804794871794872,
+        "y": 5.348987179487179
       },
       "prevControl": {
-        "x": 6.498314879463788,
-        "y": 0.4290851151107693
+        "x": 3.6773739086717363,
+        "y": 5.338351132665262
       },
       "nextControl": {
-        "x": 7.144761155231704,
-        "y": 0.8301804564426296
+        "x": 6.037384615384616,
+        "y": 5.360615384615385
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.816676697750223,
-        "y": 2.5153669318330185
+        "x": 7.863012820512822,
+        "y": 7.604858974358974
       },
       "prevControl": {
-        "x": 7.835643554882804,
-        "y": 1.5335714950807402
+        "x": 7.642076923076923,
+        "y": 5.511782051282052
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "EndRightTwoPassGrab1"
+      "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.533333333333333,
+      "rotationDegrees": 90.0
+    },
+    {
+      "waypointRelativePos": 1.2842105263158048,
+      "rotationDegrees": 90.0
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -58,13 +67,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "RightHubGrabNFBC",
+  "folder": "CenterStartGround",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

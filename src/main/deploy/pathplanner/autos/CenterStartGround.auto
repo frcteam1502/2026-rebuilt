@@ -25,20 +25,8 @@
                 "data": {
                   "name": "intakeOn"
                 }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "climberExtend"
-                }
               }
             ]
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
           }
         },
         {
@@ -48,39 +36,58 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "CenterStartGround3"
           }
         },
         {
-          "type": "named",
+          "type": "sequential",
           "data": {
-            "name": "shootOn"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 8.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "retractIntake"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "turnToTarget"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.5
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOn"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "retractIntake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 3.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "shootOff"
+                }
+              }
+            ]
           }
         },
         {
@@ -90,39 +97,15 @@
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "shootOff"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "intakeOff"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "alignToClimbLeft"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Stop Drive Motors"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "climberRetract"
+            "pathName": "CenterStartGound4"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "DEADAUTOS",
+  "folder": "Center Start",
   "choreoAuto": false
 }

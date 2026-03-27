@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "RightTwoPassGrab1"
+                  "pathName": "LeftTwoPassGrab1"
                 }
               },
               {
@@ -32,7 +32,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RightTwoPassGrab2"
+            "pathName": "LeftTwoPassGrab2"
           }
         },
         {
@@ -43,12 +43,6 @@
                 "type": "named",
                 "data": {
                   "name": "turnToTarget"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 1.5
                 }
               },
               {
@@ -72,7 +66,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 3.0
                 }
               },
               {
@@ -82,12 +76,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "extendIntake"
           }
         },
         {
@@ -97,15 +85,21 @@
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "RightTwoPassGrab3"
+            "name": "extendIntake"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RightTwoPassGrab4"
+            "pathName": "LeftTwoPassGrab3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LeftTwoPassGrab4"
           }
         },
         {
@@ -116,12 +110,6 @@
                 "type": "named",
                 "data": {
                   "name": "turnToTarget"
-                }
-              },
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 1.5
                 }
               },
               {
@@ -145,7 +133,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 3.0
                 }
               },
               {
@@ -156,17 +144,11 @@
               }
             ]
           }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Stop Drive Motors"
-          }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Right Start",
+  "folder": "NFBC",
   "choreoAuto": false
 }

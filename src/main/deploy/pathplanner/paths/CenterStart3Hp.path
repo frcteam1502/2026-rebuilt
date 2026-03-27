@@ -59,7 +59,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "CenterStartHp(RC)",
+  "folder": "DEAD",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -144.83356396420712

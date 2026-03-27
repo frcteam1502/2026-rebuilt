@@ -93,18 +93,18 @@ public class RobotContainer {
     //new PathPlannerAuto("LeftCenterGrab");
     //new PathPlannerAuto("LeftCenterShoot");
     //Right Start
-    new PathPlannerAuto("RightCenterGrab");
+    //new PathPlannerAuto("RightCenterGrab");
     //new PathPlannerAuto("RightCenterShoot");
     //Center Start
     //new PathPlannerAuto("CenterStartGHP");
     //new PathPlannerAuto("GetOutOfTheWay");
     //new PathPlannerAuto("CenterStartGround");
-    new PathPlannerAuto("CenterStartHp");
+    new PathPlannerAuto("CenterStartGround");
     new PathPlannerAuto("LeftOnePassGrab");
-    new PathPlannerAuto("LeftHubGrab");
-    new PathPlannerAuto("LeftCenterGrab");
-    new PathPlannerAuto("RightHubGrab");
-    new PathPlannerAuto("RightCenterGrab");
+    //new PathPlannerAuto("LeftHubGrab");
+    //new PathPlannerAuto("LeftCenterGrab");
+    //new PathPlannerAuto("RightHubGrab");
+    //new PathPlannerAuto("RightCenterGrab");
     new PathPlannerAuto("RightOnePassGrab");
     //new PathPlannerAuto("TestAuto");
      // new PathPlannerAuto("StrafeTestAuto");
@@ -156,6 +156,7 @@ public class RobotContainer {
     Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     Operator.Controller.a().onTrue(new SequentialCommandGroup(new InstantCommand(intake :: setIntakeOn), new WaitCommand(0.15), new InstantCommand(intake::toggleHopper), new WaitCommand(0.2), new InstantCommand(intake :: setIntakeOff)));
+
     Operator.Controller.x().onTrue(new InstantCommand(shooter::setIndexerOn));
     Operator.Controller.b().onTrue(new InstantCommand(shooter::setIndexerOff));
     //Operator.Controller.rightBumper().onTrue(new InstantCommand(shooter::setFeedOn));

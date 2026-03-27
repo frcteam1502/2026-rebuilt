@@ -59,7 +59,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "DEad",
+  "folder": "CenterStartGround",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

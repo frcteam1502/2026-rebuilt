@@ -91,7 +91,7 @@
     "rotation": 114.88134623585691
   },
   "reversed": false,
-  "folder": "RightCenterGrab",
+  "folder": "RightCenterGrabNFBC",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0

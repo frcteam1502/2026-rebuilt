@@ -511,14 +511,15 @@ public class Shooter extends SubsystemBase {
         drive.setSwerveXLock();
 
         if(intake.isHopperIn()){
-          intake.shooterRequestIntakeOnSlow();
+         intake.shooterRequestIntakeOnSlow();
         }else{
-          intake.shooterRequestIntakeOn();
+          /*intake.shooterRequestIntakeOn();
           if(shooterTimer.get() >= 2){
             shooterTimer.reset();
             shooterTimer.stop();
             intake.setHopperIn();
-          }
+            
+          }*/
         }
         
         if(!isShooterAtSetPoint()||

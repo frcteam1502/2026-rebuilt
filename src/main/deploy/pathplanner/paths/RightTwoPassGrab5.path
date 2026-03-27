@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.698374167542319,
+        "x": 0.6983741675423192,
         "y": 2.355549586529323
       },
       "isLocked": false,
@@ -37,7 +37,7 @@
       },
       "prevControl": {
         "x": 7.173237599934959,
-        "y": 1.1220271091614518
+        "y": 1.1220271091614515
       },
       "nextControl": null,
       "isLocked": false,
@@ -61,7 +61,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "RightHubGrab",
+  "folder": "RightHubGrabNFBC",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -134.14490260373336
