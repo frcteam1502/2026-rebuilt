@@ -542,7 +542,7 @@ public class Shooter extends SubsystemBase {
           hoodSetAngle = Math.toRadians(SmartDashboard.getNumber("Hood Test Angle", ShooterCfg.HOOD_MIN_ANGLE));
         }else{
           shooterSetSpeed = lookupShooterSpeed(targetTranslation);
-          setFeedSpeed(ShooterCfg.FEED_SPEED);
+          //setFeedSpeed(ShooterCfg.FEED_SPEED);
           
           if (autoHoodToggle){
             hoodSetAngle = lookupHoodAngle(targetTranslation);
