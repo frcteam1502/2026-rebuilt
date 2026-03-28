@@ -508,7 +508,7 @@ public class Shooter extends SubsystemBase {
           }
         }
 
-        drive.setSwerveXLock();
+        //drive.setSwerveXLock();
 
         if(intake.isHopperIn()){
          intake.shooterRequestIntakeOnSlow();
