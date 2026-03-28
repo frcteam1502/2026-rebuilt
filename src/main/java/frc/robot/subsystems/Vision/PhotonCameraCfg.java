@@ -12,6 +12,7 @@ import edu.wpi.first.math.numbers.N3;
 public class PhotonCameraCfg{
 	public static final String LEFT_APRILTAG_CAM = "leftAprilTagCam";
 	public static final String RIGHT_APRILTAG_CAM = "rightAprilTagCam";
+	public static final String HOPPER_APRILTAG_CAM = "turretAprilTagCam";
 
 	//Left AprilTag Cam Pose Config wrt robot center
 	public static final double LEFT_APRILTAG_CAM_XPOS_METERS = -0.276;//"Forward" from center, in meters
@@ -29,6 +30,26 @@ public class PhotonCameraCfg{
 					new Rotation3d(Math.toRadians(LEFT_APRILTAG_CAM_ROLL_DEG),
 								   Math.toRadians(LEFT_APRILTAG_CAM_PITCH_DEG), 
 								   Math.toRadians(LEFT_APRILTAG_CAM_YAW_DEG)));
+
+								   //Hopper AprilTag Cam Pose Config wrt robot center
+	/*public static final double HOPPER_APRILTAG_CAM_XPOS_METERS = 0.365125;//"Forward" from center, in meters
+	public static final double HOPPER_APRILTAG_CAM_YPOS_METERS = 0.3175;//"Left" from center, in meters
+	public static final double HOPPER_APRILTAG_CAM_ZPOS_METERS = 0.517525;//"Up" from center, in meters
+	
+	public static final double HOPPER_APRILTAG_CAM_ROLL_DEG	= 0;
+	public static final double HOPPER_APRILTAG_CAM_PITCH_DEG	= 6;
+	public static final double HOPPER_APRILTAG_CAM_YAW_DEG	= 0;
+	
+	public static final Transform3d HOPPER_APRILTAG_CAM_TRANSFORM = new Transform3d(
+					new Translation3d(HOPPER_APRILTAG_CAM_XPOS_METERS,
+								      HOPPER_APRILTAG_CAM_YPOS_METERS, 
+									  HOPPER_APRILTAG_CAM_ZPOS_METERS), 
+					new Rotation3d(Math.toRadians(HOPPER_APRILTAG_CAM_ROLL_DEG),
+								   Math.toRadians(HOPPER_APRILTAG_CAM_PITCH_DEG), 
+								   Math.toRadians(HOPPER_APRILTAG_CAM_YAW_DEG)));*/
+
+
+						
 
 	
 	//Right AprilTag Cam Pose Config wrt robot center

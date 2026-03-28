@@ -108,6 +108,7 @@ public class RobotContainer {
     //new PathPlannerAuto("RightHubGrab");
     //new PathPlannerAuto("RightCenterGrab");
     new PathPlannerAuto("RightOnePassGrab");
+    new PathPlannerAuto("BumpTest");
     //new PathPlannerAuto("TestAuto");
      // new PathPlannerAuto("StrafeTestAuto");
    
