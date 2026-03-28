@@ -6,6 +6,9 @@ package frc.robot;
 
 import frc.robot.Logger;
 import frc.robot.subsystems.Climber.Climber;
+
+import com.pathplanner.lib.auto.AutoBuilder;
+
 import au.grapplerobotics.CanBridge;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -16,6 +19,7 @@ import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.testmode.swerve.AbsoluteEncoderAlignment;
@@ -177,8 +181,11 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    String gameData;
-   gameData = DriverStation.getGameSpecificMessage();
+    SmartDashboard.putBoolean("Shift Active?", SmartDashbordData.isHubActive());
+    SmartDashboard.putString("Time Left In Shift", String.format("%.0f", SmartDashbordData.remainingTime));
+    SmartDashboard.putBoolean("Did Win Auto?", SmartDashbordData.didWinAuto());
+    SmartDashboard.putNumber("Match time", SmartDashbordData.matchTime);
+    SmartDashboard.putNumber("Get match time", DriverStation.getMatchTime());
   }
 
   AbsoluteEncoderAlignment m_swerveTests;

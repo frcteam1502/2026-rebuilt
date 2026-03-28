@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.723843373493976,
+        "x": 5.9423975903614465,
         "y": 2.4832650602409636
       },
       "prevControl": null,
       "nextControl": {
         "x": 4.82777108433735,
-        "y": 2.406771084337349
+        "y": 2.4614096385542164
       },
       "isLocked": false,
       "linkedName": "RightWeek0CenterGrab2"
@@ -20,12 +20,12 @@
         "y": 2.4832650602409636
       },
       "prevControl": {
-        "x": 6.138853844020218,
-        "y": 2.5554941167613747
+        "x": 6.106313253012048,
+        "y": 2.4832650602409636
       },
       "nextControl": {
-        "x": 2.806144578313253,
-        "y": 2.3958433734939764
+        "x": 2.8040518456153603,
+        "y": 2.483265060240964
       },
       "isLocked": false,
       "linkedName": null
@@ -54,7 +54,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
+    "maxVelocity": 4.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,

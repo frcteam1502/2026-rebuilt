@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class SmartDashbordData {
 
     public static double remainingTime;
+    public static double matchTime = DriverStation.getMatchTime();
 
     public static boolean isHubActive() {
 
@@ -31,8 +32,9 @@ public class SmartDashbordData {
   }
 
   // We're teleop enabled, compute.
-  double matchTime = DriverStation.getMatchTime();
+  
   String gameData = DriverStation.getGameSpecificMessage();
+  matchTime = DriverStation.getMatchTime();
   remainingTime = matchTime;
   // If we have no game data, we cannot compute, assume hub is active, as its likely early in teleop.
   if (gameData.isEmpty()) {
