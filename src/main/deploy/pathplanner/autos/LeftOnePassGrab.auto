@@ -36,6 +36,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "CenterWeek0Grab2.5Left"
+          }
+        },
+        {
           "type": "sequential",
           "data": {
             "commands": [
