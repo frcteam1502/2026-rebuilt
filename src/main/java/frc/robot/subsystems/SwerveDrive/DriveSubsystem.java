@@ -306,7 +306,7 @@ public class DriveSubsystem extends SubsystemBase{
       var targetPose = Shooter.calculateTargetPosition(this);
       var aimCommand = getOmega(targetPose);
       SmartDashboard.putNumber("aimCommand", aimCommand);
-      m_atSetPoint = Math.abs(aimCommand) < 0.05;
+      m_atSetPoint = Math.abs(aimCommand) < 0.07;
       return aimCommand;
     }
     return rot;
