@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.215590361445784,
-        "y": 5.313542168674698
+        "x": 6.095385542168674,
+        "y": 7.324240963855422
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.133746987951808,
-        "y": 5.280759036144579
+        "x": 5.0135421686746975,
+        "y": 7.291457831325302
       },
       "isLocked": false,
       "linkedName": "LeftCenterGrab2"
@@ -48,7 +48,7 @@
   "folder": "LeftOnePassGrab",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": -179.55238582913947
   },
   "useDefaultConstraints": false
 }

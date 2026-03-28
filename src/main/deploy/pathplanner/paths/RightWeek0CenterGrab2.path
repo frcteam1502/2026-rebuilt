@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 5.9423975903614465,
-        "y": 2.4832650602409636
+        "x": 6.171879518072289,
+        "y": 0.6583373493975899
       },
       "prevControl": {
-        "x": 6.19172717979155,
-        "y": 2.5015613941528807
+        "x": 6.421209107502392,
+        "y": 0.676633683309507
       },
       "nextControl": null,
       "isLocked": false,
@@ -47,7 +47,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 89.83255080844333
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "RightOnePassGrab",
