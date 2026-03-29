@@ -22,13 +22,17 @@ public class ShooterLookup {
 
     public static final List<LookupTablePoint> LookupTable = List.of(
         new LookupTablePoint(0, 1500, 14.5),
-        new LookupTablePoint(1.32, 1500, 15),
-        new LookupTablePoint(2, 2100, 17),
-        new LookupTablePoint(2.42, 2200, 20),
-        new LookupTablePoint(2.72, 2200, 22),
-        new LookupTablePoint(3, 2200, 26),
-        new LookupTablePoint(3.9, 2300, 28),
-        new LookupTablePoint(4.6, 2450, 31),
+        new LookupTablePoint(1.8, 1750, 22),
+        new LookupTablePoint(2.1, 1800, 26),
+        new LookupTablePoint(2.5, 1800, 30),
+        new LookupTablePoint(2.71, 1815, 30),
+        new LookupTablePoint(2.82, 1825, 30),
+        new LookupTablePoint(2.95, 1834, 30),
+        new LookupTablePoint(3.15, 1900, 30),
+        new LookupTablePoint(3.4, 1950, 30),
+        new LookupTablePoint(3.8, 2100, 30),
+        new LookupTablePoint(4.28, 2200, 33),
+        new LookupTablePoint(4.6, 2350, 33),
         new LookupTablePoint(9.6, 4000, 33)
     );
 
