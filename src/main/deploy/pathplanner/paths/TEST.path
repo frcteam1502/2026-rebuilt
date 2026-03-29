@@ -45,7 +45,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "LeftOnePassGrab",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 161.565051177078
