@@ -150,7 +150,7 @@ public class RobotContainer {
     Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
-    //Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
+    Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
 
     Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
     Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
