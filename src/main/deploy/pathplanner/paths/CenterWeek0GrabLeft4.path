@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.029819277108434,
-        "y": 7.389807228915663
+        "x": 2.3581084337349396,
+        "y": 6.799710843373493
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.9479759036144575,
-        "y": 7.357024096385543
+        "x": 2.3628717948717957,
+        "y": 5.75597435897436
       },
       "isLocked": false,
-      "linkedName": "LeftCenterGrab2"
+      "linkedName": "LeftShootPose"
     },
     {
       "anchor": {
-        "x": 1.8772891566265058,
-        "y": 5.313542168674698
+        "x": 2.5372948717948725,
+        "y": 5.0001410256410255
       },
       "prevControl": {
-        "x": 2.718722891566263,
-        "y": 5.400963855421687
+        "x": 2.5489230769230784,
+        "y": 5.651320512820514
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.5,
+    "maxVelocity": 6.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "LeftOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 161.565051177078
+    "rotation": 138.21548399174824
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

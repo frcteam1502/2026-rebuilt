@@ -92,26 +92,19 @@ public class RobotContainer {
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
     //e.g new PathPlannerAuto("MiddleAutoAMPFinal");
     //Left Start
-    //new PathPlannerAuto("LeftCenterGrab");
-    //new PathPlannerAuto("LeftCenterShoot");
-    //Right Start
-    //new PathPlannerAuto("RightCenterGrab");
-    //new PathPlannerAuto("RightCenterShoot");
-    //Center Start
-    //new PathPlannerAuto("CenterStartGHP");
-    //new PathPlannerAuto("GetOutOfTheWay");
-    //new PathPlannerAuto("CenterStartGround");
-    new PathPlannerAuto("CenterStartGround");
     new PathPlannerAuto("LeftOnePassGrab");
-    //new PathPlannerAuto("LeftHubGrab");
-    //new PathPlannerAuto("LeftCenterGrab");
-    //new PathPlannerAuto("RightHubGrab");
-    //new PathPlannerAuto("RightCenterGrab");
+    new PathPlannerAuto("LeftOnePassClimb");
+
+    //Right Start
     new PathPlannerAuto("RightOnePassGrab");
+
+    //Center Start
+    new PathPlannerAuto("CenterStartGround");
+    
+    //Test Autos
     new PathPlannerAuto("BumpTest");
     //new PathPlannerAuto("TestAuto");
-     // new PathPlannerAuto("StrafeTestAuto");
-   
+    // new PathPlannerAuto("StrafeTestAuto");
     // new PathPlannerAuto("Test1");
 
     autoChooser = AutoBuilder.buildAutoChooser();

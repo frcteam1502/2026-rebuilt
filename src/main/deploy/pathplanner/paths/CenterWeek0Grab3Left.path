@@ -41,7 +41,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftClimbEnd"
+      "linkedName": "CenterWeekGrab3"
     }
   ],
   "rotationTargets": [
@@ -70,7 +70,7 @@
     "rotation": -91.76239102366051
   },
   "reversed": false,
-  "folder": "LeftOnePassGrab",
+  "folder": "LeftOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 138.21548399174824

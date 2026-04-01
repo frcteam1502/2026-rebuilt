@@ -88,7 +88,7 @@
     "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": "LeftOnePassGrab",
+  "folder": "LeftOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0
