@@ -3,37 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.734542168679539,
-        "y": 3.226349397584887
+        "x": 2.3396153846153855,
+        "y": 6.732743589743589
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.929271304378741,
-        "y": 2.560323029201758
+        "x": 3.3396153846153855,
+        "y": 6.732743589743589
       },
       "isLocked": false,
-      "linkedName": "EndRightWeek0CenterGrab1"
+      "linkedName": "LeftShootPose"
     },
     {
       "anchor": {
-        "x": 6.193734939759036,
-        "y": 0.6583373493975899
+        "x": 1.8744871794871805,
+        "y": 4.779205128205128
       },
       "prevControl": {
-        "x": 6.443064529189139,
-        "y": 0.676633683309507
+        "x": 3.6652307692307695,
+        "y": 5.197820512820512
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightWeek0CenterGrab2"
+      "linkedName": "LeftClimbEnd"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.3,
-      "rotationDegrees": 90.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -50,10 +45,10 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "RightOnePassGrab.Climb",
+  "folder": "CenterStartGround.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": 138.21548399174824
   },
   "useDefaultConstraints": true
 }

@@ -84,10 +84,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -96,7 +96,7 @@
     "rotation": 138.21548399174824
   },
   "reversed": false,
-  "folder": "LeftHubGrabNFBC",
+  "folder": "DEad",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0
