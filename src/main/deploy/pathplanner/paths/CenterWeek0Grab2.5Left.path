@@ -3,41 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.029819277108434,
-        "y": 7.389807228915663
+        "x": 6.0257564102564105,
+        "y": 7.174615384615384
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.068180722891567,
-        "y": 7.4553734939759035
+        "x": 5.064117856039544,
+        "y": 7.240181649675625
       },
       "isLocked": false,
       "linkedName": "LeftCenterGrab2"
     },
     {
       "anchor": {
-        "x": 4.270457831325301,
-        "y": 7.520939759036144
+        "x": 4.176871794871795,
+        "y": 7.174615384615384
       },
       "prevControl": {
-        "x": 5.363228915662651,
-        "y": 7.586506024096385
+        "x": 5.269642879209145,
+        "y": 7.240181649675625
       },
       "nextControl": {
-        "x": 3.4688859767795073,
-        "y": 7.4728454477633965
+        "x": 3.375299940326001,
+        "y": 7.126521073342636
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.3581084337349396,
-        "y": 6.799710843373493
+        "x": 2.3396153846153855,
+        "y": 6.732743589743589
       },
       "prevControl": {
-        "x": 3.1765011135122867,
-        "y": 7.134266913809081
+        "x": 3.1580080643927326,
+        "y": 7.067299660179177
       },
       "nextControl": null,
       "isLocked": false,
@@ -45,6 +45,10 @@
     }
   ],
   "rotationTargets": [
+    {
+      "waypointRelativePos": 0.23859649122806476,
+      "rotationDegrees": 180.0
+    },
     {
       "waypointRelativePos": 1.0,
       "rotationDegrees": 180.0
@@ -54,7 +58,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.0,
     "maxAcceleration": 4.5,
     "maxAngularVelocity": 1060.0,
     "maxAngularAcceleration": 1397.0,

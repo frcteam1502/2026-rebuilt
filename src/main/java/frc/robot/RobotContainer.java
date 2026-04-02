@@ -135,7 +135,7 @@ public class RobotContainer {
                                                         new MockDetector(),
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
 
-    Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
+   Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
     //Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
     //Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
@@ -157,7 +157,7 @@ public class RobotContainer {
     //Operator.Controller.b().whileTrue(new InstantCommand(shooter::setIndexerOn)).whileFalse(new InstantCommand(shooter::setIndexerOff));
     
     //Drive SysID stuff - comment out on competition build!
-    /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
+  /*   Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
     Driver.Controller.a().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kReverse));
     Driver.Controller.b().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kForward));
     Driver.Controller.x().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kReverse));*/
