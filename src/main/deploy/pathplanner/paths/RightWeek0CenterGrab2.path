@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.929271304378741,
-        "y": 2.560323029201758
+        "x": 5.735051282051284,
+        "y": 4.907115384615384
       },
       "isLocked": false,
       "linkedName": "EndRightWeek0CenterGrab1"
@@ -31,7 +31,11 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.3,
-      "rotationDegrees": 90.0
+      "rotationDegrees": -123.24176498161721
+    },
+    {
+      "waypointRelativePos": 0.6298245614035173,
+      "rotationDegrees": -90.80594283074925
     }
   ],
   "constraintZones": [],
