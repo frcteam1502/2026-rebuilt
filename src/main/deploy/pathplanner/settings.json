@@ -7,15 +7,15 @@
     "DEAD",
     "DEAd",
     "DEaD",
-    "LeftTwoPassGrab",
     "DeAD",
     "DeAd",
     "LeftOnePassGrab.Climb",
+    "LeftTwoPassGrab.Climb",
     "RightOnePassGrab.Climb",
+    "RightTwoPassGrab.Climb",
     "TestPaths",
     "dEAD",
-    "dEAd",
-    "RightTwoPassGrab"
+    "dEAd"
   ],
   "autoFolders": [
     "Center Start",
@@ -29,7 +29,7 @@
   "defaultMaxAngVel": 150.0,
   "defaultMaxAngAccel": 90.0,
   "defaultNominalVoltage": 12.0,
-  "robotMass": 60.736389,
+  "robotMass": 60.736,
   "robotMOI": 11.617,
   "robotTrackwidth": 0.591,
   "driveWheelRadius": 0.0508,
