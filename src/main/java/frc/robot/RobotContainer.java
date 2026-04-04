@@ -4,24 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.subsystems.Climber.Climber;
-import frc.robot.subsystems.Intake.Intake;
-import frc.robot.subsystems.PowerManagement.MockDetector;
-import frc.robot.subsystems.Shooter.Shooter;
-import frc.robot.commands.AlignToTowerLeft;
-import frc.robot.commands.AlignToTowerRight;
-import frc.robot.commands.AlignToTowerLeft;
-import frc.robot.commands.AlignToTowerRight;
-import frc.robot.commands.AutoShoot;
-import frc.robot.commands.DriverCommands;
-import frc.robot.commands.EVIL;
-import frc.robot.commands.ExtendAndAlignLeft;
-import frc.robot.commands.ExtendAndAlignRight;
-import frc.robot.commands.OperatorCommands;
-import frc.robot.commands.ResetGyro;
-import frc.robot.commands.StopDriveMotors;
-import frc.robot.commands.TurnToTarget;
-import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -34,7 +16,27 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AlignToTowerRight;
+import frc.robot.commands.AutoShoot;
+import frc.robot.commands.DriverCommands;
+import frc.robot.commands.EVIL;
+import frc.robot.commands.ExtendAndAlignLeft;
+import frc.robot.commands.ResetGyro;
+import frc.robot.commands.StopDriveMotors;
+import frc.robot.commands.TurnToTarget;
+import frc.robot.subsystems.Climber.Climber;
+import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.PowerManagement.MockDetector;
+import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.LEFT_APRILTAG_CAM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.RIGHT_APRILTAG_CAM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera0;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera1;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera2;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera3;
+import frc.robot.subsystems.Vision.PhotonVision;
+import frc.robot.subsystems.Vision.Vision;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -50,6 +52,7 @@ public class RobotContainer {
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Climber climber = new Climber(driveSubsystem);
 
+  private final Vision vision;
 
   private final SendableChooser<Command> autoChooser; 
 
@@ -63,6 +66,14 @@ public class RobotContainer {
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+     vision = new Vision(driveSubsystem::addVisionMeasurement,
+                new PhotonVision(LEFT_APRILTAG_CAM, robotToCamera0),
+                new PhotonVision(RIGHT_APRILTAG_CAM, robotToCamera1),
+                new PhotonVision("Camera2", robotToCamera2),
+                new PhotonVision("Camera3", robotToCamera3)
+              );
+
     // Configure the trigger bindings
     configureBindings();
 

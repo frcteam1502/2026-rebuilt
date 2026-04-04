@@ -20,7 +20,7 @@ import com.pathplanner.lib.config.PIDConstants;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.controller.PIDController;
@@ -34,6 +34,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -392,31 +393,37 @@ public class DriveSubsystem extends SubsystemBase{
   private void updateEstimatedPose(){
     estimatedPose = poseEstimator.update(getGyroRotation2d(), getModulePositions());
   }
+  
+  /** Adds a new timestamped vision measurement. */
+  public void addVisionMeasurement(
+      Pose2d visionRobotPoseMeters,
+      double timestampSeconds,
+      Matrix<N3, N1> visionMeasurementStdDevs) {
+
+      poseEstimator.addVisionMeasurement(visionRobotPoseMeters, timestampSeconds, visionMeasurementStdDevs);
+  }
 
   private void updatePhotonVisionPose(){
     var leftPoseEstimate = leftPhotonCamera.processCamera(getEstimatedPose2d());
 
     if(leftPoseEstimate.isPresent()){
-      photonLeftPose = leftPoseEstimate.get().estimatedPose.toPose2d();
-      var timestampLeft = leftPoseEstimate.get().timestampSeconds;
-
-      poseEstimator.addVisionMeasurement(photonLeftPose,
-                                         timestampLeft,
-                                         VecBuilder.fill(10,10,9999999));
+      addVisionMeasurement(leftPoseEstimate.get().estimatedPose.toPose2d(),
+                           leftPoseEstimate.get().timestampSeconds,
+                           VecBuilder.fill(10,10,9999999));
 
     }
 
     var rightPoseEstimate = rightPhotonCamera.processCamera(getEstimatedPose2d());
 
     if(rightPoseEstimate.isPresent()){
-      photonRightPose = rightPoseEstimate.get().estimatedPose.toPose2d();
-      var timestampRight = rightPoseEstimate.get().timestampSeconds;
-      poseEstimator.addVisionMeasurement(photonRightPose,
-                                         timestampRight,
-                                         VecBuilder.fill(10,10,9999999));
+      addVisionMeasurement(rightPoseEstimate.get().estimatedPose.toPose2d(),
+                           rightPoseEstimate.get().timestampSeconds,
+                           VecBuilder.fill(10,10,9999999));
     }
   }
+  private void updatePhotonVisionPoseNew(){
 
+  }
   private void updateDashboard(){
 
     //Field Oriented inputs

@@ -31,26 +31,6 @@ public class PhotonCameraCfg{
 								   Math.toRadians(LEFT_APRILTAG_CAM_PITCH_DEG), 
 								   Math.toRadians(LEFT_APRILTAG_CAM_YAW_DEG)));
 
-								   //Hopper AprilTag Cam Pose Config wrt robot center
-	/*public static final double HOPPER_APRILTAG_CAM_XPOS_METERS = 0.365125;//"Forward" from center, in meters
-	public static final double HOPPER_APRILTAG_CAM_YPOS_METERS = 0.3175;//"Left" from center, in meters
-	public static final double HOPPER_APRILTAG_CAM_ZPOS_METERS = 0.517525;//"Up" from center, in meters
-	
-	public static final double HOPPER_APRILTAG_CAM_ROLL_DEG	= 0;
-	public static final double HOPPER_APRILTAG_CAM_PITCH_DEG	= 6;
-	public static final double HOPPER_APRILTAG_CAM_YAW_DEG	= 0;
-	
-	public static final Transform3d HOPPER_APRILTAG_CAM_TRANSFORM = new Transform3d(
-					new Translation3d(HOPPER_APRILTAG_CAM_XPOS_METERS,
-								      HOPPER_APRILTAG_CAM_YPOS_METERS, 
-									  HOPPER_APRILTAG_CAM_ZPOS_METERS), 
-					new Rotation3d(Math.toRadians(HOPPER_APRILTAG_CAM_ROLL_DEG),
-								   Math.toRadians(HOPPER_APRILTAG_CAM_PITCH_DEG), 
-								   Math.toRadians(HOPPER_APRILTAG_CAM_YAW_DEG)));*/
-
-
-						
-
 	
 	//Right AprilTag Cam Pose Config wrt robot center
 	public static final double RIGHT_APRILTAG_CAM_XPOS_METERS = -0.276;//"Forward" from center, in meters
@@ -82,5 +62,35 @@ public class PhotonCameraCfg{
 	public static final AprilTagFieldLayout FIELD_TAG_LAYOUT = AprilTagFieldLayout.loadField(FIELD_VERSION);
 	public static final double DISTANCE_THRESHOLD_M = 20;
 
+  public static Transform3d robotToCamera0 = new Transform3d(-0.276, 0.254, 0.207,
+   new Rotation3d(0.0, Math.toRadians(15), Math.toRadians(155)));
+  public static Transform3d robotToCamera1 = new Transform3d(-0.276, -0.254, 0.207,
+   new Rotation3d(0.0, Math.toRadians(15), Math.toRadians(-155)));
+
+  public static Transform3d robotToCamera2 = new Transform3d(-0.250, 0.254, 0.207, new Rotation3d(0.0, Math.PI/12.0, Math.PI * 3.0 /4.0));
+  public static Transform3d robotToCamera3 = new Transform3d(-0.250, -0.254, 0.207, new Rotation3d(0.0, Math.PI/12.0, -Math.PI* 3.0 /4.0));
+
+  // Basic filtering thresholds
+  public static double maxAmbiguity = 0.25; // nee MINIMUM_TARGET_AMBIGUITY
+  public static double maxZError = 0.75;
+
+  // Standard deviation baselines, for 1 meter distance and 1 tag
+  // (Adjusted automatically based on distance and # of tags)
+  public static double linearStdDevBaseline = 0.02; // Meters
+  public static double angularStdDevBaseline = 0.06; // Radians
+
+  // Standard deviation multipliers for each camera
+  // (Adjust to trust some cameras more than others)
+  public static double[] cameraStdDevFactors =
+      new double[] {
+        1.0, // Camera 0
+        1.0, // Camera 1
+        1.0, // Camera 2
+        1.0, // Camera 3
+      };
+
+  // Multipliers to apply for MegaTag 2 observations
+  public static double linearStdDevMegatag2Factor = 0.5; // More stable than full 3D solve
+  public static double angularStdDevMegatag2Factor = Double.POSITIVE_INFINITY; // No rotation data available
 
 }
