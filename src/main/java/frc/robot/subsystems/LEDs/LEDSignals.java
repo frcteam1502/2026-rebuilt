@@ -8,21 +8,31 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.revrobotics.spark.SparkFlex;
 
 public class LEDSignals extends SubsystemBase {
-
-  /** Creates a new LEDSignals. */
-  private final Spark signalLED = LEDSignalCfg.SIGNAL_LED;
+    public static final SparkFlex signalLED = LEDSignalCfg.SIGNAL_LED;
 
   public LEDSignals() {}
-  
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
 
-  public void setLEDOutput(double output){
-    signalLED.set(output);
+  public static void hopperInColor(){
+  signalLED.set(0.67); //Gold
+  }
+
+  public static void hopperOutColor(){
+    signalLED.set(0.89); //Blue violet
+  }
+
+  public static void intakeOnOutColor(){
+    signalLED.set(0.15); //Blinking Blue Violet
+  }
+
+  public static void intakeOnInColor(){
+    signalLED.set(0.35); //Blinking Gold
   }
 }
