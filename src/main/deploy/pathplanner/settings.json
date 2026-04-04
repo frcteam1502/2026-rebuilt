@@ -6,16 +6,16 @@
     "CenterStartGround.Climb",
     "DEAD",
     "DEAd",
+    "DEaD",
+    "LeftTwoPassGrab",
     "DeAD",
     "DeAd",
-    "dEAd",
-    "DEad",
     "LeftOnePassGrab.Climb",
-    "dEaD",
-    "DEaD",
     "RightOnePassGrab.Climb",
     "TestPaths",
-    "dEAD"
+    "dEAD",
+    "dEAd",
+    "RightTwoPassGrab"
   ],
   "autoFolders": [
     "Center Start",

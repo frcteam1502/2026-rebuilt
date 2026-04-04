@@ -8,24 +8,56 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.649765048785025,
-        "y": 2.435637170822346
+        "x": 7.130435897435898,
+        "y": 3.2442820512820516
       },
       "isLocked": false,
       "linkedName": "EndCenterGrab1Right"
     },
     {
       "anchor": {
-        "x": 4.42028859412767,
-        "y": 2.4247083646720657
+        "x": 6.432743589743589,
+        "y": 3.139628205128206
       },
       "prevControl": {
-        "x": 5.243844326085015,
-        "y": 2.517503376723599
+        "x": 6.761127666464856,
+        "y": 3.577394602404373
       },
       "nextControl": {
-        "x": 3.5946860300251053,
-        "y": 2.3316827236464235
+        "x": 6.104359513022323,
+        "y": 2.701861807852039
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.002500000000001,
+        "y": 1.2326025641025649
+      },
+      "prevControl": {
+        "x": 6.23675494294927,
+        "y": 1.7237668848094854
+      },
+      "nextControl": {
+        "x": 5.768245057050732,
+        "y": 0.7414382433956443
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.4675769230769244,
+        "y": 0.558166666666666
+      },
+      "prevControl": {
+        "x": 5.29113265503427,
+        "y": 0.6509616787181993
+      },
+      "nextControl": {
+        "x": 3.64197435897436,
+        "y": 0.46514102564102366
       },
       "isLocked": false,
       "linkedName": null
@@ -36,8 +68,8 @@
         "y": 1.3467831325301212
       },
       "prevControl": {
-        "x": 2.28565075687365,
-        "y": 1.7770267222737102
+        "x": 2.560551282051284,
+        "y": 0.7558461538461541
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,8 +78,16 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5540897097625336,
-      "rotationDegrees": 90.0
+      "waypointRelativePos": 0.7315789473684202,
+      "rotationDegrees": -90.35122391854213
+    },
+    {
+      "waypointRelativePos": 2.6,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 3.7403508771929928,
+      "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [],
@@ -66,7 +106,7 @@
     "rotation": -134.14490260373336
   },
   "reversed": false,
-  "folder": "dEaD",
+  "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 114.88134623585691

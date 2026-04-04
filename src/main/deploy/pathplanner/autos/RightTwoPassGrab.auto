@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "LeftTwoPassGrab1"
+                  "pathName": "CenterGrab1Right"
                 }
               },
               {
@@ -32,7 +32,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "LeftTwoPassGrab2"
+            "pathName": "CenterGrab2Right"
           }
         },
         {
@@ -72,7 +72,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 2.0
                 }
               },
               {
@@ -85,27 +85,34 @@
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "intakeOn"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "extendIntake"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "CenterGrab3Right"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "extendIntake"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "intakeOn"
+                }
+              }
+            ]
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "LeftTwoPassGrab3"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "LeftTwoPassGrab4"
+            "pathName": "CenterGrab4Right"
           }
         },
         {
@@ -139,7 +146,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 2.0
                 }
               },
               {
@@ -149,12 +156,18 @@
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop Drive Motors"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "DEADAUTOS",
+  "folder": "Right Start",
   "choreoAuto": false
 }

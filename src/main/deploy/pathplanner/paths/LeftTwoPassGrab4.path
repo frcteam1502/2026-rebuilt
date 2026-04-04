@@ -3,45 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.746679487179488,
-        "y": 4.953628205128206
+        "x": 7.537423076923078,
+        "y": 5.395499999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.793192307692309,
-        "y": 5.569923076923077
+        "x": 7.583935897435899,
+        "y": 6.01179487179487
       },
       "isLocked": false,
       "linkedName": "LeftTwoPassGrab3"
     },
     {
       "anchor": {
-        "x": 5.5838846153846164,
-        "y": 5.721089743589744
+        "x": 5.711794871794873,
+        "y": 7.383923076923077
       },
       "prevControl": {
-        "x": 5.941256994982521,
-        "y": 5.680247185921411
+        "x": 6.069167251392778,
+        "y": 7.343080519254745
       },
       "nextControl": {
-        "x": 5.176897435897437,
-        "y": 5.767602564102565
+        "x": 5.304807692307693,
+        "y": 7.430435897435898
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.8861666666666688,
-        "y": 5.721089743589744
+        "x": 3.665230769230771,
+        "y": 7.383923076923077
       },
       "prevControl": {
-        "x": 4.133467532255136,
-        "y": 5.757726908862109
+        "x": 3.9125316348192385,
+        "y": 7.420560242195442
       },
       "nextControl": {
-        "x": 2.9442820512820527,
-        "y": 5.581551282051282
+        "x": 2.7233461538461547,
+        "y": 7.244384615384615
       },
       "isLocked": false,
       "linkedName": null
@@ -62,8 +62,12 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 2.147368421052636,
-      "rotationDegrees": -90.0
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 2.057894736842109,
+      "rotationDegrees": 0.07716416454703752
     }
   ],
   "constraintZones": [
@@ -96,7 +100,7 @@
     "rotation": 138.21548399174824
   },
   "reversed": false,
-  "folder": "DEad",
+  "folder": "LeftTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0
