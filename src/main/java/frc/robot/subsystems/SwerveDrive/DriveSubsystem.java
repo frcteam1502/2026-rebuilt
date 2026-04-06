@@ -275,7 +275,7 @@ public class DriveSubsystem extends SubsystemBase{
   public void periodic() {
     updateOdometry();
     updateEstimatedPose();
-    updatePhotonVisionPose();
+    //updatePhotonVisionPose();
 
     //Update SmartDashboard 
     updateDashboard();
@@ -395,11 +395,7 @@ public class DriveSubsystem extends SubsystemBase{
   }
   
   /** Adds a new timestamped vision measurement. */
-  public void addVisionMeasurement(
-      Pose2d visionRobotPoseMeters,
-      double timestampSeconds,
-      Matrix<N3, N1> visionMeasurementStdDevs) {
-
+  public void addVisionMeasurement(Pose2d visionRobotPoseMeters, double timestampSeconds, Matrix<N3, N1> visionMeasurementStdDevs) {
       poseEstimator.addVisionMeasurement(visionRobotPoseMeters, timestampSeconds, visionMeasurementStdDevs);
   }
 
@@ -421,9 +417,7 @@ public class DriveSubsystem extends SubsystemBase{
                            VecBuilder.fill(10,10,9999999));
     }
   }
-  private void updatePhotonVisionPoseNew(){
 
-  }
   private void updateDashboard(){
 
     //Field Oriented inputs

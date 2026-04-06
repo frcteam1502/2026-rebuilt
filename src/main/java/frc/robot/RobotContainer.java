@@ -11,6 +11,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -33,8 +34,6 @@ import static frc.robot.subsystems.Vision.PhotonCameraCfg.LEFT_APRILTAG_CAM;
 import static frc.robot.subsystems.Vision.PhotonCameraCfg.RIGHT_APRILTAG_CAM;
 import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera0;
 import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera1;
-import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera2;
-import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera3;
 import frc.robot.subsystems.Vision.PhotonVision;
 import frc.robot.subsystems.Vision.Vision;
 
@@ -66,12 +65,15 @@ public class RobotContainer {
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-
+    climber.removeDefaultCommand();
+    intake.removeDefaultCommand();
+    shooter.removeDefaultCommand();
+    CommandScheduler.getInstance().unregisterSubsystem(climber, intake, shooter);
      vision = new Vision(driveSubsystem::addVisionMeasurement,
                 new PhotonVision(LEFT_APRILTAG_CAM, robotToCamera0),
-                new PhotonVision(RIGHT_APRILTAG_CAM, robotToCamera1),
-                new PhotonVision("Camera2", robotToCamera2),
-                new PhotonVision("Camera3", robotToCamera3)
+                new PhotonVision(RIGHT_APRILTAG_CAM, robotToCamera1) //,
+                //new PhotonVision("Camera2", robotToCamera2),
+                //new PhotonVision("Camera3", robotToCamera3)
               );
 
     // Configure the trigger bindings
