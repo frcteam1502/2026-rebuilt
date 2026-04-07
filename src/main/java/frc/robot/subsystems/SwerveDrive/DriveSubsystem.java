@@ -1,15 +1,8 @@
 package frc.robot.subsystems.SwerveDrive;
 
-import frc.robot.Driver;
 import frc.robot.Logger;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterCfg;
-import frc.robot.subsystems.Shooter.ShooterLookup;
-import frc.robot.subsystems.Vision.PhotonCameraCfg;
-import frc.robot.subsystems.Vision.PhotonVisionCamera;
-
-import org.ejml.simple.SimpleMatrix;
-import org.photonvision.EstimatedRobotPose;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -27,7 +20,6 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
@@ -101,12 +93,7 @@ public class DriveSubsystem extends SubsystemBase{
 
   public final SwerveDrivePoseEstimator poseEstimator;
 
-  private final PhotonVisionCamera leftPhotonCamera;
-  private final PhotonVisionCamera rightPhotonCamera;
-
   private Pose2d pose = new Pose2d();
-  private Pose2d photonLeftPose = new Pose2d();
-  private Pose2d photonRightPose = new Pose2d();
   private Pose2d estimatedPose = new Pose2d();
 
   SwerveModuleState[] loggerSwerveCommands;
@@ -230,14 +217,6 @@ public class DriveSubsystem extends SubsystemBase{
                                             DrivebaseCfg.ROBOT_AIM_D_GAIN);
 
     robotAimPIDController.enableContinuousInput(-Math.PI, Math.PI);
-
-
-    
-    leftPhotonCamera = new PhotonVisionCamera(PhotonCameraCfg.LEFT_APRILTAG_CAM, 
-          PhotonCameraCfg.LEFT_APRILTAG_CAM_TRANSFORM);
-
-    rightPhotonCamera = new PhotonVisionCamera(PhotonCameraCfg.RIGHT_APRILTAG_CAM, 
-          PhotonCameraCfg.RIGHT_APRILTAG_CAM_TRANSFORM);
 
     reset();
     registerLoggerObjects();
@@ -399,24 +378,6 @@ public class DriveSubsystem extends SubsystemBase{
       poseEstimator.addVisionMeasurement(visionRobotPoseMeters, timestampSeconds, visionMeasurementStdDevs);
   }
 
-  private void updatePhotonVisionPose(){
-    var leftPoseEstimate = leftPhotonCamera.processCamera(getEstimatedPose2d());
-
-    if(leftPoseEstimate.isPresent()){
-      addVisionMeasurement(leftPoseEstimate.get().estimatedPose.toPose2d(),
-                           leftPoseEstimate.get().timestampSeconds,
-                           VecBuilder.fill(10,10,9999999));
-
-    }
-
-    var rightPoseEstimate = rightPhotonCamera.processCamera(getEstimatedPose2d());
-
-    if(rightPoseEstimate.isPresent()){
-      addVisionMeasurement(rightPoseEstimate.get().estimatedPose.toPose2d(),
-                           rightPoseEstimate.get().timestampSeconds,
-                           VecBuilder.fill(10,10,9999999));
-    }
-  }
 
   private void updateDashboard(){
 

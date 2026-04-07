@@ -2,14 +2,11 @@ package frc.robot.subsystems.Vision;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
-import edu.wpi.first.math.Matrix;
-import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
-import edu.wpi.first.math.numbers.N1;
-import edu.wpi.first.math.numbers.N3;
-public class PhotonCameraCfg{
+
+public class PhotonCameraCfg{	
 	public static final String LEFT_APRILTAG_CAM = "leftAprilTagCam";
 	public static final String RIGHT_APRILTAG_CAM = "rightAprilTagCam";
 	public static final String HOPPER_APRILTAG_CAM = "turretAprilTagCam";
@@ -50,28 +47,26 @@ public class PhotonCameraCfg{
 								   Math.toRadians(RIGHT_APRILTAG_CAM_YAW_DEG)));
 
 	//Minimum abiguity to trust the pose (i.e. anything greater than this number discard)
-	public static final double MINIMUM_TARGET_AMBIGUITY = 0.25; 
+	//public static final double MINIMUM_TARGET_AMBIGUITY = 0.25; 
 
 	// The standard deviations of our vision estimated poses, which affect correction rate
     // (Fake values. Experiment and determine estimation noise on an actual robot.)
-    public static final Matrix<N3, N1> SINGLE_TAG_STD_DEV = VecBuilder.fill(4, 4, 8);
-    public static final Matrix<N3, N1> MULTI_TAG_STD_DEV = VecBuilder.fill(0.5, 0.5, 1);
+    // public static final Matrix<N3, N1> SINGLE_TAG_STD_DEV = VecBuilder.fill(4, 4, 8);
+    // public static final Matrix<N3, N1> MULTI_TAG_STD_DEV = VecBuilder.fill(0.5, 0.5, 1);
 	
 	public static final AprilTagFields FIELD_VERSION = AprilTagFields.k2026RebuiltAndymark;
 	//public static final AprilTagFields FIELD_VERSION = AprilTagFields.k2026RebuiltWelded;
 	public static final AprilTagFieldLayout FIELD_TAG_LAYOUT = AprilTagFieldLayout.loadField(FIELD_VERSION);
 	public static final double DISTANCE_THRESHOLD_M = 20;
 
-  public static Transform3d robotToCamera0 = new Transform3d(-0.276, 0.254, 0.207,
-   new Rotation3d(0.0, Math.toRadians(15), Math.toRadians(155)));
-  public static Transform3d robotToCamera1 = new Transform3d(-0.276, -0.254, 0.207,
-   new Rotation3d(0.0, Math.toRadians(15), Math.toRadians(-155)));
+  public static Transform3d robotToCamera0 = new Transform3d(-0.276, 0.254, 0.207, new Rotation3d(0.0, Math.toRadians(15), Math.toRadians(155)));
+  public static Transform3d robotToCamera1 = new Transform3d(-0.276, -0.254, 0.207, new Rotation3d(0.0, Math.toRadians(15), Math.toRadians(-155)));
 
   public static Transform3d robotToCamera2 = new Transform3d(-0.250, 0.254, 0.207, new Rotation3d(0.0, Math.PI/12.0, Math.PI * 3.0 /4.0));
   public static Transform3d robotToCamera3 = new Transform3d(-0.250, -0.254, 0.207, new Rotation3d(0.0, Math.PI/12.0, -Math.PI* 3.0 /4.0));
 
   // Basic filtering thresholds
-  public static double maxAmbiguity = 0.25; // nee MINIMUM_TARGET_AMBIGUITY
+  public static double maxAmbiguity = 0.25;
   public static double maxZError = 1.12396;
 
   // Standard deviation baselines, for 1 meter distance and 1 tag
