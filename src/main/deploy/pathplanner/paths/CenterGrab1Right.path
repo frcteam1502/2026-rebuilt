@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.3921019677996425,
-        "y": 0.4069999999999965
+        "x": 5.530187621964126,
+        "y": 0.5126268558626587
       },
       "isLocked": false,
       "linkedName": "RightStart"
@@ -20,12 +20,12 @@
         "y": 0.5349102564102577
       },
       "prevControl": {
-        "x": 5.932730769230772,
-        "y": 0.4070000000000003
+        "x": 6.296596928516445,
+        "y": 0.43501002678010403
       },
       "nextControl": {
-        "x": 7.1500133628144775,
-        "y": 0.6695511476357042
+        "x": 6.754941533022018,
+        "y": 0.6348104860404115
       },
       "isLocked": false,
       "linkedName": null
@@ -36,12 +36,12 @@
         "y": 1.7209871794871798
       },
       "prevControl": {
-        "x": 7.63263909426616,
-        "y": 1.183803314043475
+        "x": 7.538634414497365,
+        "y": 1.4990440992914098
       },
       "nextControl": {
-        "x": 7.676961538461539,
-        "y": 2.3140256410256415
+        "x": 7.768775841912892,
+        "y": 1.9429302596829499
       },
       "isLocked": false,
       "linkedName": null
@@ -52,8 +52,8 @@
         "y": 2.662871794871795
       },
       "prevControl": {
-        "x": 7.653705128205129,
-        "y": 3.6363959451401313
+        "x": 7.613337007665523,
+        "y": 2.954900243857121
       },
       "nextControl": null,
       "isLocked": false,
@@ -61,21 +61,7 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 1.9,
-      "maxWaypointRelativePos": 3.0,
-      "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 11.8,
-        "maxAngularVelocity": 1060.0,
-        "maxAngularAcceleration": 2043.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -91,7 +77,7 @@
     "rotation": 114.88134623585691
   },
   "reversed": false,
-  "folder": "dEaD",
+  "folder": "RightTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0

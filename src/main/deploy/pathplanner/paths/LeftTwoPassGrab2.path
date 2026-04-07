@@ -8,24 +8,56 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.723474358974359,
-        "y": 5.465269230769231
+        "x": 7.644686668019684,
+        "y": 4.39246579653439
       },
       "isLocked": false,
       "linkedName": "LeftTwoPassGrab1"
     },
     {
       "anchor": {
-        "x": 5.839705128205129,
-        "y": 5.32573076923077
+        "x": 7.200205128205129,
+        "y": 4.267564102564102
       },
       "prevControl": {
-        "x": 6.853813905736761,
-        "y": 5.287701690073334
+        "x": 7.427761719276733,
+        "y": 4.127974159909885
       },
       "nextControl": {
-        "x": 4.909448717948719,
-        "y": 5.360615384615385
+        "x": 6.2156061354414,
+        "y": 4.871546242962935
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.315575960248341,
+        "y": 7.295837984557654
+      },
+      "prevControl": {
+        "x": 6.989629949896841,
+        "y": 6.872559496591696
+      },
+      "nextControl": {
+        "x": 5.931327757059499,
+        "y": 7.537130226643816
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.8212512614722103,
+        "y": 7.435897857233413
+      },
+      "prevControl": {
+        "x": 4.314189713902221,
+        "y": 7.453492964551943
+      },
+      "nextControl": {
+        "x": 3.57141037009062,
+        "y": 7.426979954248272
       },
       "isLocked": false,
       "linkedName": null
@@ -36,8 +68,8 @@
         "y": 6.732743589743589
       },
       "prevControl": {
-        "x": 2.2814743589743594,
-        "y": 7.0234487179487175
+        "x": 3.0582870231883628,
+        "y": 7.032210519674842
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,18 +78,22 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.0842105263157935,
+      "waypointRelativePos": 1.2701754385964834,
       "rotationDegrees": 90.0
     },
     {
-      "waypointRelativePos": 1.6842105263157936,
-      "rotationDegrees": 90.0
+      "waypointRelativePos": 2.3087719298245593,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 3.1929824561403595,
+      "rotationDegrees": 180.0
     }
   ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 1.4662236987818331,
+      "minWaypointRelativePos": 2.9,
       "maxWaypointRelativePos": 0.8194905869324473,
       "constraints": {
         "maxVelocity": 0.8,
@@ -84,7 +120,7 @@
     "rotation": 138.21548399174824
   },
   "reversed": false,
-  "folder": "DEad",
+  "folder": "LeftTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -119.99999999999999
