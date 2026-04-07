@@ -9,7 +9,8 @@ import edu.wpi.first.math.geometry.Translation3d;
 public class PhotonCameraCfg{	
 	public static final String LEFT_APRILTAG_CAM = "leftAprilTagCam";
 	public static final String RIGHT_APRILTAG_CAM = "rightAprilTagCam";
-	public static final String HOPPER_APRILTAG_CAM = "turretAprilTagCam";
+	public static final String RIGHT_HAMMER_APRILTAG_CAM = "rightHammerAprilTagCam";
+	public static final String LEFT_HAMMER_APRILTAG_CAM = "leftHammerAprilTagCam";
 
 	//Left AprilTag Cam Pose Config wrt robot center
 	public static final double LEFT_APRILTAG_CAM_XPOS_METERS = -0.276;//"Forward" from center, in meters
@@ -17,7 +18,7 @@ public class PhotonCameraCfg{
 	public static final double LEFT_APRILTAG_CAM_ZPOS_METERS = 0.207;//"Up" from center, in meters
 	
 	public static final double LEFT_APRILTAG_CAM_ROLL_DEG	= 0;
-	public static final double LEFT_APRILTAG_CAM_PITCH_DEG	= 15;
+	public static final double LEFT_APRILTAG_CAM_PITCH_DEG	= -15;
 	public static final double LEFT_APRILTAG_CAM_YAW_DEG	= 155;
 	
 	public static final Transform3d LEFT_APRILTAG_CAM_TRANSFORM = new Transform3d(
@@ -28,6 +29,23 @@ public class PhotonCameraCfg{
 								   Math.toRadians(LEFT_APRILTAG_CAM_PITCH_DEG), 
 								   Math.toRadians(LEFT_APRILTAG_CAM_YAW_DEG)));
 
+	//Left Hammer AprilTag Cam Pose Config wrt robot center
+	public static final double LEFT_HAMMER_APRILTAG_CAM_XPOS_METERS = 0.314579;//"Forward" from center, in meters
+	public static final double LEFT_HAMMER_APRILTAG_CAM_YPOS_METERS = 0.0417576;//"Left" from center, in meters
+	public static final double LEFT_HAMMER_APRILTAG_CAM_ZPOS_METERS = 0.1813306;//"Up" from center, in meters
+	
+	public static final double LEFT_HAMMER_APRILTAG_CAM_ROLL_DEG	= 9.847;//Clockwise
+	public static final double LEFT_HAMMER_APRILTAG_CAM_PITCH_DEG	= -110;
+	public static final double LEFT_HAMMER_APRILTAG_CAM_YAW_DEG	= 118.024;
+	
+	public static final Transform3d LEFT_HAMMER_APRILTAG_CAM_TRANSFORM = new Transform3d(
+					new Translation3d(LEFT_HAMMER_APRILTAG_CAM_XPOS_METERS,
+								      LEFT_HAMMER_APRILTAG_CAM_YPOS_METERS, 
+									  LEFT_HAMMER_APRILTAG_CAM_ZPOS_METERS), 
+					new Rotation3d(Math.toRadians(LEFT_HAMMER_APRILTAG_CAM_ROLL_DEG),
+								   Math.toRadians(LEFT_HAMMER_APRILTAG_CAM_PITCH_DEG), 
+								   Math.toRadians(LEFT_HAMMER_APRILTAG_CAM_YAW_DEG)));
+
 	
 	//Right AprilTag Cam Pose Config wrt robot center
 	public static final double RIGHT_APRILTAG_CAM_XPOS_METERS = -0.276;//"Forward" from center, in meters
@@ -35,7 +53,7 @@ public class PhotonCameraCfg{
 	public static final double RIGHT_APRILTAG_CAM_ZPOS_METERS = 0.207;//"Up" from center, in meters
 	
 	public static final double RIGHT_APRILTAG_CAM_ROLL_DEG	= 0;
-	public static final double RIGHT_APRILTAG_CAM_PITCH_DEG	= 15;
+	public static final double RIGHT_APRILTAG_CAM_PITCH_DEG	= -15;
 	public static final double RIGHT_APRILTAG_CAM_YAW_DEG	= -155;
 
 	public static final Transform3d RIGHT_APRILTAG_CAM_TRANSFORM = new Transform3d(
@@ -45,6 +63,24 @@ public class PhotonCameraCfg{
 					new Rotation3d(Math.toRadians(RIGHT_APRILTAG_CAM_ROLL_DEG),
 								   Math.toRadians(RIGHT_APRILTAG_CAM_PITCH_DEG), 
 								   Math.toRadians(RIGHT_APRILTAG_CAM_YAW_DEG)));
+
+	//Right AprilTag Cam Pose Config wrt robot center
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS = -0.314579;//"Forward" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_YPOS_METERS = -0.0417576;//"Left" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_ZPOS_METERS = 0.1813306;//"Up" from center, in meters
+	
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_ROLL_DEG	= -9.847;//CounterClockwise
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_PITCH_DEG	= -110;
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_YAW_DEG	= -118.024;
+
+	public static final Transform3d RIGHT_HAMMER_APRILTAG_CAM_TRANSFORM = new Transform3d(
+					new Translation3d(RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS,
+								      RIGHT_HAMMER_APRILTAG_CAM_YPOS_METERS, 
+									  RIGHT_HAMMER_APRILTAG_CAM_ZPOS_METERS), 
+					new Rotation3d(Math.toRadians(RIGHT_HAMMER_APRILTAG_CAM_ROLL_DEG),
+								   Math.toRadians(RIGHT_HAMMER_APRILTAG_CAM_PITCH_DEG), 
+								   Math.toRadians(RIGHT_HAMMER_APRILTAG_CAM_YAW_DEG)));
+
 
 	//Minimum abiguity to trust the pose (i.e. anything greater than this number discard)
 	//public static final double MINIMUM_TARGET_AMBIGUITY = 0.25; 
