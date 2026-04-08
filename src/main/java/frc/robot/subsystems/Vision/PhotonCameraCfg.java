@@ -30,13 +30,13 @@ public class PhotonCameraCfg{
 								   Math.toRadians(LEFT_APRILTAG_CAM_YAW_DEG)));
 
 	//Left Hammer AprilTag Cam Pose Config wrt robot center
-	public static final double LEFT_HAMMER_APRILTAG_CAM_XPOS_METERS = 0.314579;//"Forward" from center, in meters
-	public static final double LEFT_HAMMER_APRILTAG_CAM_YPOS_METERS = 0.0417576;//"Left" from center, in meters
-	public static final double LEFT_HAMMER_APRILTAG_CAM_ZPOS_METERS = 0.1813306;//"Up" from center, in meters
+	public static final double LEFT_HAMMER_APRILTAG_CAM_XPOS_METERS = -0.316479;//"Forward" from center, in meters
+	public static final double LEFT_HAMMER_APRILTAG_CAM_YPOS_METERS = 0.041262;//"Left" from center, in meters
+	public static final double LEFT_HAMMER_APRILTAG_CAM_ZPOS_METERS = 0.175681;//"Up" from center, in meters
 	
-	public static final double LEFT_HAMMER_APRILTAG_CAM_ROLL_DEG	= 9.847;//Clockwise
-	public static final double LEFT_HAMMER_APRILTAG_CAM_PITCH_DEG	= -110;
-	public static final double LEFT_HAMMER_APRILTAG_CAM_YAW_DEG	= 118.024;
+	public static final double LEFT_HAMMER_APRILTAG_CAM_ROLL_DEG	= 0;//Clockwise
+	public static final double LEFT_HAMMER_APRILTAG_CAM_PITCH_DEG	= -20;
+	public static final double LEFT_HAMMER_APRILTAG_CAM_YAW_DEG	= 110;
 	
 	public static final Transform3d LEFT_HAMMER_APRILTAG_CAM_TRANSFORM = new Transform3d(
 					new Translation3d(LEFT_HAMMER_APRILTAG_CAM_XPOS_METERS,
@@ -65,13 +65,13 @@ public class PhotonCameraCfg{
 								   Math.toRadians(RIGHT_APRILTAG_CAM_YAW_DEG)));
 
 	//Right AprilTag Cam Pose Config wrt robot center
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS = -0.314579;//"Forward" from center, in meters
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_YPOS_METERS = -0.0417576;//"Left" from center, in meters
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_ZPOS_METERS = 0.1813306;//"Up" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS = -0.316479;//"Forward" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_YPOS_METERS = -0.041262;//"Left" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_ZPOS_METERS = 0.175681;//"Up" from center, in meters
 	
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_ROLL_DEG	= -9.847;//CounterClockwise
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_PITCH_DEG	= -110;
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_YAW_DEG	= -118.024;
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_ROLL_DEG	= 0;//CounterClockwise
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_PITCH_DEG	= -20;
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_YAW_DEG	= -110;
 
 	public static final Transform3d RIGHT_HAMMER_APRILTAG_CAM_TRANSFORM = new Transform3d(
 					new Translation3d(RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS,
