@@ -57,19 +57,19 @@ public class Intake extends SubsystemBase {
     private void arbitrateIntake(){
       if(isCntrlRequestIn){
         leadIntakeMotor.set(1.0);
-       // LEDSignals.hopperInColor();
+        LEDSignals.hopperInColor();
       }else if(isCntrlRequestOut){
         leadIntakeMotor.set(-1.0);
-       // LEDSignals.hopperOutColor();
+        LEDSignals.hopperOutColor();
       }else if(isShooterRequestIn){
         leadIntakeMotor.set(1.0);
-        //LEDSignals.intakeOnInColor();
+        LEDSignals.intakeOnInColor();
       }else if(isShooterRequestSlow){
         leadIntakeMotor.set(0.5);
-       // LEDSignals.intakeOnInColor();
+        LEDSignals.intakeOnInColor();
       }else if(isShooterRequestOut){
         leadIntakeMotor.set(-1.0);
-        //LEDSignals.intakeOnOutColor();
+        LEDSignals.intakeOnOutColor();
       }else{
         leadIntakeMotor.set(0);
       }

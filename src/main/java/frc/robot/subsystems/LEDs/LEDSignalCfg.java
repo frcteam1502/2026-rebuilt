@@ -6,12 +6,14 @@ package frc.robot.subsystems.LEDs;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.PWM;
+
 /** Add your docs here. */
 public class LEDSignalCfg {
 
     public static final int LED_PWM_PORT = 9;
     public static final int LED_LENGTH = 60;
-    public static final SparkFlex SIGNAL_LED = new SparkFlex(LED_PWM_PORT, MotorType.kBrushless);
+    public static final PWM SIGNAL_LED = new PWM (LED_PWM_PORT);
 
 
 }

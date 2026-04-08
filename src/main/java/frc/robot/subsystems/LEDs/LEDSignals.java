@@ -6,12 +6,13 @@ package frc.robot.subsystems.LEDs;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.spark.SparkFlex;
 
 public class LEDSignals extends SubsystemBase {
-    public static final SparkFlex signalLED = LEDSignalCfg.SIGNAL_LED;
+    public static final PWM signalLED = LEDSignalCfg.SIGNAL_LED;
 
   public LEDSignals() {}
 
@@ -21,18 +22,18 @@ public class LEDSignals extends SubsystemBase {
   }
 
   public static void hopperInColor(){
-  signalLED.set(0.67); //Gold
+  signalLED.setSpeed(0.67); //Gold
   }
 
   public static void hopperOutColor(){
-    signalLED.set(0.89); //Blue violet
+    signalLED.setSpeed(0.89); //Blue violet
   }
 
   public static void intakeOnOutColor(){
-    signalLED.set(0.15); //Blinking Blue Violet
+    signalLED.setSpeed(0.15); //Blinking Blue Violet
   }
 
   public static void intakeOnInColor(){
-    signalLED.set(0.35); //Blinking Gold
+    signalLED.setSpeed(0.35); //Blinking Gold
   }
 }
