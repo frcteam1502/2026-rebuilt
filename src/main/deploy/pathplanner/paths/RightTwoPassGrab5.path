@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.2044776914554594,
-        "y": 1.7584918249997494
+        "x": 1.20447769145546,
+        "y": 1.7584918249997492
       },
       "isLocked": false,
       "linkedName": "RightShootPose"
@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 7.560679487179488,
-        "y": 1.4535384615384623
+        "x": 0.5488717948717963,
+        "y": 2.5582179487179486
       },
       "prevControl": {
-        "x": 7.173237599934959,
-        "y": 1.1220271091614515
+        "x": 0.16142990762726706,
+        "y": 2.226706596340938
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,19 +49,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "RightHubGrabNFBC",
+  "folder": "DEaD",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -134.14490260373336

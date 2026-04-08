@@ -1,15 +1,8 @@
 package frc.robot.subsystems.SwerveDrive;
 
-import frc.robot.Driver;
 import frc.robot.Logger;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterCfg;
-import frc.robot.subsystems.Shooter.ShooterLookup;
-import frc.robot.subsystems.Vision.PhotonCameraCfg;
-import frc.robot.subsystems.Vision.PhotonVisionCamera;
-
-import org.ejml.simple.SimpleMatrix;
-import org.photonvision.EstimatedRobotPose;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -20,20 +13,20 @@ import com.pathplanner.lib.config.PIDConstants;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.numbers.N1;
 import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -100,12 +93,7 @@ public class DriveSubsystem extends SubsystemBase{
 
   public final SwerveDrivePoseEstimator poseEstimator;
 
-  private final PhotonVisionCamera leftPhotonCamera;
-  private final PhotonVisionCamera rightPhotonCamera;
-
   private Pose2d pose = new Pose2d();
-  private Pose2d photonLeftPose = new Pose2d();
-  private Pose2d photonRightPose = new Pose2d();
   private Pose2d estimatedPose = new Pose2d();
 
   SwerveModuleState[] loggerSwerveCommands;
@@ -230,14 +218,6 @@ public class DriveSubsystem extends SubsystemBase{
 
     robotAimPIDController.enableContinuousInput(-Math.PI, Math.PI);
 
-
-    
-    leftPhotonCamera = new PhotonVisionCamera(PhotonCameraCfg.LEFT_APRILTAG_CAM, 
-          PhotonCameraCfg.LEFT_APRILTAG_CAM_TRANSFORM);
-
-    rightPhotonCamera = new PhotonVisionCamera(PhotonCameraCfg.RIGHT_APRILTAG_CAM, 
-          PhotonCameraCfg.RIGHT_APRILTAG_CAM_TRANSFORM);
-
     reset();
     registerLoggerObjects();
 
@@ -274,7 +254,7 @@ public class DriveSubsystem extends SubsystemBase{
   public void periodic() {
     updateOdometry();
     updateEstimatedPose();
-    updatePhotonVisionPose();
+    //updatePhotonVisionPose();
 
     //Update SmartDashboard 
     updateDashboard();
@@ -392,30 +372,12 @@ public class DriveSubsystem extends SubsystemBase{
   private void updateEstimatedPose(){
     estimatedPose = poseEstimator.update(getGyroRotation2d(), getModulePositions());
   }
-
-  private void updatePhotonVisionPose(){
-    var leftPoseEstimate = leftPhotonCamera.processCamera(getEstimatedPose2d());
-
-    if(leftPoseEstimate.isPresent()){
-      photonLeftPose = leftPoseEstimate.get().estimatedPose.toPose2d();
-      var timestampLeft = leftPoseEstimate.get().timestampSeconds;
-
-      poseEstimator.addVisionMeasurement(photonLeftPose,
-                                         timestampLeft,
-                                         VecBuilder.fill(10,10,9999999));
-
-    }
-
-    var rightPoseEstimate = rightPhotonCamera.processCamera(getEstimatedPose2d());
-
-    if(rightPoseEstimate.isPresent()){
-      photonRightPose = rightPoseEstimate.get().estimatedPose.toPose2d();
-      var timestampRight = rightPoseEstimate.get().timestampSeconds;
-      poseEstimator.addVisionMeasurement(photonRightPose,
-                                         timestampRight,
-                                         VecBuilder.fill(10,10,9999999));
-    }
+  
+  /** Adds a new timestamped vision measurement. */
+  public void addVisionMeasurement(Pose2d visionRobotPoseMeters, double timestampSeconds, Matrix<N3, N1> visionMeasurementStdDevs) {
+      poseEstimator.addVisionMeasurement(visionRobotPoseMeters, timestampSeconds, visionMeasurementStdDevs);
   }
+
 
   private void updateDashboard(){
 

@@ -4,24 +4,6 @@
 
 package frc.robot;
 
-import frc.robot.subsystems.Climber.Climber;
-import frc.robot.subsystems.Intake.Intake;
-import frc.robot.subsystems.PowerManagement.MockDetector;
-import frc.robot.subsystems.Shooter.Shooter;
-import frc.robot.commands.AlignToTowerLeft;
-import frc.robot.commands.AlignToTowerRight;
-import frc.robot.commands.AlignToTowerLeft;
-import frc.robot.commands.AlignToTowerRight;
-import frc.robot.commands.AutoShoot;
-import frc.robot.commands.DriverCommands;
-import frc.robot.commands.EVIL;
-import frc.robot.commands.ExtendAndAlignLeft;
-import frc.robot.commands.ExtendAndAlignRight;
-import frc.robot.commands.OperatorCommands;
-import frc.robot.commands.ResetGyro;
-import frc.robot.commands.StopDriveMotors;
-import frc.robot.commands.TurnToTarget;
-import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
@@ -30,11 +12,32 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AlignToTowerRight;
+import frc.robot.commands.AutoShoot;
+import frc.robot.commands.DriverCommands;
+import frc.robot.commands.EVIL;
+import frc.robot.commands.ExtendAndAlignLeft;
+import frc.robot.commands.ResetGyro;
+import frc.robot.commands.StopDriveMotors;
+import frc.robot.commands.TurnToTarget;
+import frc.robot.subsystems.Climber.Climber;
+import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.PowerManagement.MockDetector;
+import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.LEFT_APRILTAG_CAM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.RIGHT_APRILTAG_CAM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera0;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera1;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera2;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera3;
+import frc.robot.subsystems.Vision.PhotonVision;
+import frc.robot.subsystems.Vision.Vision;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -50,6 +53,7 @@ public class RobotContainer {
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Climber climber = new Climber(driveSubsystem);
 
+  private final Vision vision;
 
   private final SendableChooser<Command> autoChooser; 
 
@@ -63,6 +67,13 @@ public class RobotContainer {
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+     vision = new Vision(driveSubsystem::addVisionMeasurement,
+                new PhotonVision(LEFT_APRILTAG_CAM, robotToCamera0),
+                new PhotonVision(RIGHT_APRILTAG_CAM, robotToCamera1),
+                new PhotonVision("Camera2", robotToCamera2),
+                new PhotonVision("Camera3", robotToCamera3)
+              );
+
     // Configure the trigger bindings
     configureBindings();
 
@@ -92,26 +103,20 @@ public class RobotContainer {
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
     //e.g new PathPlannerAuto("MiddleAutoAMPFinal");
     //Left Start
-    //new PathPlannerAuto("LeftCenterGrab");
-    //new PathPlannerAuto("LeftCenterShoot");
-    //Right Start
-    //new PathPlannerAuto("RightCenterGrab");
-    //new PathPlannerAuto("RightCenterShoot");
-    //Center Start
-    //new PathPlannerAuto("CenterStartGHP");
-    //new PathPlannerAuto("GetOutOfTheWay");
-    //new PathPlannerAuto("CenterStartGround");
-    new PathPlannerAuto("CenterStartGround");
     new PathPlannerAuto("LeftOnePassGrab");
-    //new PathPlannerAuto("LeftHubGrab");
-    //new PathPlannerAuto("LeftCenterGrab");
-    //new PathPlannerAuto("RightHubGrab");
-    //new PathPlannerAuto("RightCenterGrab");
+    new PathPlannerAuto("LeftOnePassClimb");
+
+    //Right Start
     new PathPlannerAuto("RightOnePassGrab");
-    new PathPlannerAuto("BumpTest");
+    new PathPlannerAuto("RightOnePassClimb");
+
+    //Center Start
+    new PathPlannerAuto("CenterStartGround");
+    
+    //Test Autos
+    //new PathPlannerAuto("BumpTest");
     //new PathPlannerAuto("TestAuto");
-     // new PathPlannerAuto("StrafeTestAuto");
-   
+    // new PathPlannerAuto("StrafeTestAuto");
     // new PathPlannerAuto("Test1");
 
     autoChooser = AutoBuilder.buildAutoChooser();
@@ -142,21 +147,21 @@ public class RobotContainer {
                                                         new MockDetector(),
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
 
-    Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
+   Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
     //Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
     //Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
-    Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));
+    Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));//
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
 
     Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
-    Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));;
+   //INTAKE WITHOUT RUNNING INDEX MOTORS NEXT LINE IS WITH RUNNIG INDEX Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));
+    Operator.Controller.leftBumper().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     Operator.Controller.a().onTrue(new SequentialCommandGroup(new InstantCommand(intake :: setIntakeOn), new WaitCommand(0.15), new InstantCommand(intake::toggleHopper), new WaitCommand(0.2), new InstantCommand(intake :: setIntakeOff)));
-
     Operator.Controller.x().whileTrue(new InstantCommand(shooter::setIndexerOn)).onFalse(new InstantCommand(shooter :: setIndexerOff));
     //Operator.Controller.rightBumper().onTrue(new InstantCommand(shooter::setFeedOn));
 
@@ -164,7 +169,7 @@ public class RobotContainer {
     //Operator.Controller.b().whileTrue(new InstantCommand(shooter::setIndexerOn)).whileFalse(new InstantCommand(shooter::setIndexerOff));
     
     //Drive SysID stuff - comment out on competition build!
-    /*Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
+  /*   Driver.Controller.y().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kForward));
     Driver.Controller.a().whileTrue(driveSubsystem.sysIdLinearQuasistatic(Direction.kReverse));
     Driver.Controller.b().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kForward));
     Driver.Controller.x().whileTrue(driveSubsystem.sysIdLinearDynamic(Direction.kReverse));*/

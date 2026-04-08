@@ -9,12 +9,6 @@
           "data": {
             "commands": [
               {
-                "type": "path",
-                "data": {
-                  "pathName": "CenterGrab1Right"
-                }
-              },
-              {
                 "type": "named",
                 "data": {
                   "name": "extendIntake"
@@ -25,6 +19,12 @@
                 "data": {
                   "name": "intakeOn"
                 }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "CenterGrab1Left"
+                }
               }
             ]
           }
@@ -32,7 +32,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterGrab2Right"
+            "pathName": "CenterGrab2Left"
           }
         },
         {
@@ -72,7 +72,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 3.0
                 }
               },
               {
@@ -91,19 +91,19 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterGrab3Right"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "extendIntake"
+                  "pathName": "CenterGrab3Left"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "intakeOn"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "extendIntake"
                 }
               }
             ]
@@ -112,7 +112,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterGrab4Right"
+            "pathName": "CenterGrab4Left"
           }
         },
         {
@@ -146,7 +146,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 3.0
                 }
               },
               {
@@ -168,6 +168,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "NFBC",
+  "folder": "DEADAUTOS",
   "choreoAuto": false
 }

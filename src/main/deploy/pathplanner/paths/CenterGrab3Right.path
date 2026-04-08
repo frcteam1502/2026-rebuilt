@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9248315376994913,
-        "y": 1.0905080508911709
+        "x": 2.033000403732634,
+        "y": 1.176508334253527
       },
       "isLocked": false,
       "linkedName": "RightShootPose"
@@ -20,12 +20,12 @@
         "y": 0.7348313253012042
       },
       "prevControl": {
-        "x": 2.7747201661922642,
-        "y": 0.8760885396921833
+        "x": 2.7586323326127693,
+        "y": 0.849102837992025
       },
       "nextControl": {
-        "x": 3.2113542085124314,
-        "y": 0.5770708896867089
+        "x": 3.2033435710016884,
+        "y": 0.6205598126103834
       },
       "isLocked": false,
       "linkedName": null
@@ -36,12 +36,12 @@
         "y": 0.5697948717948724
       },
       "prevControl": {
-        "x": 3.9341757300372926,
-        "y": 0.6035186416951807
+        "x": 4.07365243003119,
+        "y": 0.5509709332694052
       },
       "nextControl": {
-        "x": 5.395002521236435,
-        "y": 0.5293376590524702
+        "x": 5.348326179526854,
+        "y": 0.5967061612551531
       },
       "isLocked": false,
       "linkedName": null
@@ -52,28 +52,28 @@
         "y": 0.7348313253012042
       },
       "prevControl": {
-        "x": 5.975942778167386,
-        "y": 0.6611733041627526
+        "x": 5.6560280102259055,
+        "y": 0.5308877801142569
       },
       "nextControl": {
-        "x": 6.944616122462979,
-        "y": 0.8132646989674079
+        "x": 6.687117910378273,
+        "y": 0.7973926332113446
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.689,
-        "y": 1.128228915662652
+        "x": 7.223461538461539,
+        "y": 1.4651666666666676
       },
       "prevControl": {
-        "x": 7.656256593712182,
-        "y": 0.8745156913435581
+        "x": 7.131292969520496,
+        "y": 1.2327770048928266
       },
       "nextControl": {
-        "x": 7.809096265749407,
-        "y": 2.058798281113813
+        "x": 7.699691105413704,
+        "y": 2.665910361206496
       },
       "isLocked": false,
       "linkedName": null
@@ -84,8 +84,8 @@
         "y": 3.0117179487179486
       },
       "prevControl": {
-        "x": 7.657243166463648,
-        "y": 3.259692752929474
+        "x": 7.711315548672658,
+        "y": 3.2607199894474137
       },
       "nextControl": null,
       "isLocked": false,
@@ -100,14 +100,6 @@
     {
       "waypointRelativePos": 2.0,
       "rotationDegrees": 0.0
-    },
-    {
-      "waypointRelativePos": 2.85,
-      "rotationDegrees": 0.0
-    },
-    {
-      "waypointRelativePos": 3.85,
-      "rotationDegrees": 90.0
     }
   ],
   "constraintZones": [
@@ -128,10 +120,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -140,7 +132,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "RightCenterGrabNFBC",
+  "folder": "RightTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -134.14490260373336

@@ -68,10 +68,15 @@ public class DriverCommands extends Command {
     }else if((isSpeedLimited.getAsBoolean())){
       teleopSpeedGain = DrivebaseCfg.SPEED_LIMITED_TRANSLATION_GAIN;
       teleopRotationGain = DrivebaseCfg.SPEED_LIMITED_ROTATION_GAIN;
+    }
+    else if(Driver.Controller.getHID().getLeftBumperButton()){
+      teleopSpeedGain = DrivebaseCfg.FAST_TRANSLATION_GAIN;
+      teleopRotationGain = DrivebaseCfg.ROTATION_GAIN;
     }else{
       teleopSpeedGain = driver_gain;
       teleopRotationGain = DrivebaseCfg.ROTATION_GAIN;
     }
+  
     //Need to convert joystick input (-1 to 1) into m/s!!! 100% == MAX Attainable Speed
     forwardSpeed = forwardLimiter.calculate(((MathUtil.applyDeadband(Driver.getLeftY(), 0.1)) * teleopSpeedGain) *
         DrivebaseCfg.MAX_SPEED_METERS_PER_SECOND);

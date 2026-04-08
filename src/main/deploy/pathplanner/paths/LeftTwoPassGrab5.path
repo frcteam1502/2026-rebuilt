@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.3581084337349396,
-        "y": 6.799710843373493
+        "x": 2.3396153846153855,
+        "y": 6.732743589743589
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7019089287558025,
-        "y": 5.8079269591248615
+        "x": 1.9400887978724959,
+        "y": 5.18183824141873
       },
       "isLocked": false,
       "linkedName": "LeftShootPose"
     },
     {
       "anchor": {
-        "x": 7.269974358974359,
-        "y": 7.395551282051282
+        "x": 1.8744871794871805,
+        "y": 4.779205128205128
       },
       "prevControl": {
-        "x": 7.713143943812085,
-        "y": 7.669427261314418
+        "x": 2.0733927678537474,
+        "y": 5.646877928434913
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,19 +33,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -91.76239102366051
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "LeftHubGrabNFBC",
+  "folder": "LeftTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 138.21548399174824

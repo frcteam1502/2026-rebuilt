@@ -53,20 +53,20 @@ final class ChassisMotorCfg {
     ANGLE_BACK_RIGHT_REVERSED
   };
 
-  public static final double DRIVE_FRONT_LEFT_KV  = 2.0651;
-  public static final double DRIVE_FRONT_RIGHT_KV = 2.0251;
-  public static final double DRIVE_BACK_LEFT_KV   = 2.1051;
-  public static final double DRIVE_BACK_RIGHT_KV  = 2.0701;
+  public static final double DRIVE_FRONT_LEFT_KV  = 2.0711;
+  public static final double DRIVE_FRONT_RIGHT_KV = 1.9948;
+  public static final double DRIVE_BACK_LEFT_KV   = 2.1282;
+  public static final double DRIVE_BACK_RIGHT_KV  = 2.0671;
 
-  public static final double DRIVE_FRONT_LEFT_KS  = 0.14125;
-  public static final double DRIVE_FRONT_RIGHT_KS = 0.18659;
-  public static final double DRIVE_BACK_LEFT_KS   = 0.21339;
-  public static final double DRIVE_BACK_RIGHT_KS  = 0.057185;
+  public static final double DRIVE_FRONT_LEFT_KS  = 0.10778;
+  public static final double DRIVE_FRONT_RIGHT_KS = 0.13723;
+  public static final double DRIVE_BACK_LEFT_KS   = 0.08170;
+  public static final double DRIVE_BACK_RIGHT_KS  = 0.10605;
 
-  public static final double DRIVE_FRONT_LEFT_KA  = 0.40053;
-  public static final double DRIVE_FRONT_RIGHT_KA = 0.29891;
-  public static final double DRIVE_BACK_LEFT_KA   = 0.18495;
-  public static final double DRIVE_BACK_RIGHT_KA  = 0.48293;
+  public static final double DRIVE_FRONT_LEFT_KA  = 0.36806;
+  public static final double DRIVE_FRONT_RIGHT_KA = 0.33103;
+  public static final double DRIVE_BACK_LEFT_KA   = 0.32636;
+  public static final double DRIVE_BACK_RIGHT_KA  = 0.35903;
 
   public static final double DRIVE_MOTOR_KV[] = { 
     DRIVE_FRONT_LEFT_KV,

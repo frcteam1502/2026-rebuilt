@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.2160481927710847,
+        "y": 1.3467831325301212
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.0721410256410273,
+        "y": 1.6163333333333334
+      },
+      "isLocked": false,
+      "linkedName": "RightShootPose"
+    },
+    {
+      "anchor": {
+        "x": 0.5488717948717963,
+        "y": 2.5582179487179486
+      },
+      "prevControl": {
+        "x": 0.769807692307694,
+        "y": 2.2675128205128194
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "RightClimbPose"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 2.5,
+    "maxAcceleration": 4.5,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": "RightOnePassGrab.Climb",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -134.14490260373336
+  },
+  "useDefaultConstraints": true
+}

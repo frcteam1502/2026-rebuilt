@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6368795180772504,
-        "y": 1.3139999999945406
+        "x": 2.3469830168442023,
+        "y": 1.1338134824741994
       },
       "isLocked": false,
       "linkedName": "RightShootPose"
@@ -36,28 +36,28 @@
         "y": 0.7558461538461541
       },
       "prevControl": {
-        "x": 5.66040943634716,
-        "y": 0.415657209288777
+        "x": 5.652631795347739,
+        "y": 0.4297060752069687
       },
       "nextControl": {
-        "x": 6.856231589293867,
-        "y": 1.0960350984035312
+        "x": 6.862987179487181,
+        "y": 1.081435897435897
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.560679487179488,
-        "y": 1.4535384615384623
+        "x": 7.525794871794874,
+        "y": 1.1395769230769235
       },
       "prevControl": {
-        "x": 7.807602664268142,
-        "y": 1.4926401829384897
+        "x": 7.772718048883528,
+        "y": 1.1786786444769508
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightClimbPose"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
@@ -88,10 +88,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -100,7 +100,7 @@
     "rotation": 90.0
   },
   "reversed": false,
-  "folder": "RightOnePassGrab",
+  "folder": "RightOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -134.14490260373336

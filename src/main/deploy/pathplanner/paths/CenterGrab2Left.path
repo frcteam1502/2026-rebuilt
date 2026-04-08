@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 2.3581084337349396,
-        "y": 6.799710843373493
+        "x": 2.3396153846153855,
+        "y": 6.732743589743589
       },
       "prevControl": {
-        "x": 2.7767238183503244,
-        "y": 7.206698022860672
+        "x": 2.7582307692307704,
+        "y": 7.139730769230768
       },
       "nextControl": null,
       "isLocked": false,
@@ -72,10 +72,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -84,7 +84,7 @@
     "rotation": 138.21548399174824
   },
   "reversed": false,
-  "folder": "LeftCenterGrabNFBC",
+  "folder": "dEAd",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -119.99999999999999

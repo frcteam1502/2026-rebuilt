@@ -13,11 +13,16 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.LEDs.LEDSignals;
+import frc.robot.subsystems.Shooter.ShooterCfg;
+
 
 public class Intake extends SubsystemBase {
   /** Creates a new Intake. */
-  private final SparkFlex intakeMotor = IntakeCfg.INTAKE_MOTOR;
-  private final SparkFlexConfig intakeMotorConfig = new SparkFlexConfig();
+  private final SparkFlex leadIntakeMotor = IntakeCfg.LEAD_INTAKE_MOTOR;
+  private final SparkFlex followerIntakeMotor = IntakeCfg.FOLLOWER_INTAKE_MOTOR;
+  private final SparkFlexConfig leadIntakeMotorConfig = new SparkFlexConfig();
+  private final SparkFlexConfig followerIntakeMotorConfig = new SparkFlexConfig();
   private final Solenoid hopperSolenoid = IntakeCfg.INTAKE_SOLENOID;
 
   private boolean hopperIn = true;
@@ -30,11 +35,17 @@ public class Intake extends SubsystemBase {
   private Timer intakeTimer;
   
     public Intake() {
-      intakeMotorConfig.inverted(IntakeCfg.INTAKE_MOTOR_REVERSED);
-      intakeMotorConfig.idleMode(IntakeCfg.INTAKE_MOTOR_IDLE_MODE);
-      intakeMotorConfig.smartCurrentLimit(IntakeCfg.INTAKE_MOTOR_CURRENT_LIMIT);
+      leadIntakeMotorConfig.inverted(IntakeCfg.LEAD_INTAKE_MOTOR_REVERSED);
+      leadIntakeMotorConfig.idleMode(IntakeCfg.INTAKE_MOTOR_IDLE_MODE);
+      leadIntakeMotorConfig.smartCurrentLimit(IntakeCfg.INTAKE_MOTOR_CURRENT_LIMIT);
+
+      followerIntakeMotorConfig.follow(IntakeCfg.LEAD_INTAKE_MOTOR_ID, true);
+      followerIntakeMotorConfig.idleMode(IntakeCfg.INTAKE_MOTOR_IDLE_MODE);
+      followerIntakeMotorConfig.smartCurrentLimit(IntakeCfg.INTAKE_MOTOR_CURRENT_LIMIT);
   
-      intakeMotor.configure(intakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+
+      leadIntakeMotor.configure(leadIntakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+      followerIntakeMotor.configure(followerIntakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
   
     @Override
@@ -45,17 +56,22 @@ public class Intake extends SubsystemBase {
 
     private void arbitrateIntake(){
       if(isCntrlRequestIn){
-        intakeMotor.set(1.0);
+        leadIntakeMotor.set(1.0);
+        LEDSignals.hopperInColor();
       }else if(isCntrlRequestOut){
-        intakeMotor.set(-1.0);
+        leadIntakeMotor.set(-1.0);
+        LEDSignals.hopperOutColor();
       }else if(isShooterRequestIn){
-        intakeMotor.set(1.0);
+        leadIntakeMotor.set(1.0);
+        LEDSignals.intakeOnInColor();
       }else if(isShooterRequestSlow){
-        intakeMotor.set(0.5);
+        leadIntakeMotor.set(0.5);
+        LEDSignals.intakeOnInColor();
       }else if(isShooterRequestOut){
-        intakeMotor.set(-1.0);
+        leadIntakeMotor.set(-1.0);
+        LEDSignals.intakeOnOutColor();
       }else{
-        intakeMotor.set(0);
+        leadIntakeMotor.set(0);
       }
     }
   
@@ -85,7 +101,7 @@ public class Intake extends SubsystemBase {
       hopperSolenoid.set(false);
     }
     public void setIntakeSpeed(double speed){
-      intakeMotor.set(speed);
+      leadIntakeMotor.set(speed);
     }
   
   public void shooterRequestIntakeOn(){
@@ -122,5 +138,6 @@ public class Intake extends SubsystemBase {
   }
   public boolean isHopperIn(){
     return hopperIn;
+    
   }
 }

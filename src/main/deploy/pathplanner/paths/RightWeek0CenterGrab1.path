@@ -20,12 +20,12 @@
         "y": 1.1046923076923076
       },
       "prevControl": {
-        "x": 7.096636782453928,
-        "y": 0.36052952515509484
+        "x": 7.565690604471367,
+        "y": 0.20925147113326792
       },
       "nextControl": {
-        "x": 8.24029904232314,
-        "y": 2.066330861909174
+        "x": 7.641905684618102,
+        "y": 2.4937544413963533
       },
       "isLocked": false,
       "linkedName": null
@@ -36,8 +36,8 @@
         "y": 3.226349397584887
       },
       "prevControl": {
-        "x": 7.658048192775926,
-        "y": 1.9915180722836823
+        "x": 7.67185012784884,
+        "y": 2.1558100106494633
       },
       "nextControl": null,
       "isLocked": false,
@@ -76,10 +76,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -88,7 +88,7 @@
     "rotation": 119.99999999999999
   },
   "reversed": false,
-  "folder": "RightOnePassGrab",
+  "folder": "RightOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 90.0

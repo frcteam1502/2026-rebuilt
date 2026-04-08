@@ -9,6 +9,12 @@
           "data": {
             "commands": [
               {
+                "type": "path",
+                "data": {
+                  "pathName": "CenterGrab1Right"
+                }
+              },
+              {
                 "type": "named",
                 "data": {
                   "name": "extendIntake"
@@ -19,12 +25,6 @@
                 "data": {
                   "name": "intakeOn"
                 }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "CenterGrab1Left"
-                }
               }
             ]
           }
@@ -32,13 +32,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterGrab2Left"
+            "pathName": "CenterGrab2Right"
           }
         },
         {
           "type": "sequential",
           "data": {
             "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
               {
                 "type": "named",
                 "data": {
@@ -48,7 +54,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 1.0
                 }
               },
               {
@@ -60,7 +66,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 3.0
                 }
               },
               {
@@ -72,7 +78,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 4.0
                 }
               },
               {
@@ -91,19 +97,19 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "CenterGrab3Left"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "intakeOn"
+                  "pathName": "CenterGrab3Right"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "extendIntake"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "intakeOn"
                 }
               }
             ]
@@ -112,7 +118,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CenterGrab4Left"
+            "pathName": "CenterGrab4Right"
           }
         },
         {
@@ -120,9 +126,21 @@
           "data": {
             "commands": [
               {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
+              {
                 "type": "named",
                 "data": {
                   "name": "turnToTarget"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
                 }
               },
               {
@@ -134,7 +152,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 3.0
                 }
               },
               {
@@ -146,7 +164,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 4.0
                 }
               },
               {
@@ -168,6 +186,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "NFBC",
+  "folder": "Right Start",
   "choreoAuto": false
 }

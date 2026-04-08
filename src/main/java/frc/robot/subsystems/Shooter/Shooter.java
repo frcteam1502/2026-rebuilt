@@ -723,7 +723,7 @@ private void updateIndexerState(){
         if (getFeedVel() != ShooterCfg.TARGET_FEED_SPEED){
           indexerState = IndexerState.WAIT; 
         }else{
-          setIndexSpeed(ShooterCfg.TARGET_INDEXER_SPEED);
+          //setIndexSpeed(ShooterCfg.TARGET_INDEXER_SPEED);
           intake.setIntakeSpeed(ShooterCfg.INTAKE_AGITATION_SPEED);
         }
        break;

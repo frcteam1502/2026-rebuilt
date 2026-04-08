@@ -9,7 +9,7 @@
       "prevControl": null,
       "nextControl": {
         "x": 5.079108433734939,
-        "y": 0.6364819277108427
+        "y": 0.6364819277108429
       },
       "isLocked": false,
       "linkedName": "RightWeek0CenterGrab2"
@@ -25,7 +25,7 @@
       },
       "nextControl": {
         "x": 2.4543650986274086,
-        "y": 0.6583373493975904
+        "y": 0.6583373493975901
       },
       "isLocked": false,
       "linkedName": null
@@ -36,8 +36,8 @@
         "y": 1.3467831325301212
       },
       "prevControl": {
-        "x": 2.5691637648769956,
-        "y": 1.6567253710005472
+        "x": 2.4076481384782626,
+        "y": 1.1861921589201252
       },
       "nextControl": null,
       "isLocked": false,
@@ -54,10 +54,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -66,7 +66,7 @@
     "rotation": -134.14490260373336
   },
   "reversed": false,
-  "folder": "RightOnePassGrab",
+  "folder": "RightOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

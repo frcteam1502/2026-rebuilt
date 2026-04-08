@@ -16,28 +16,28 @@
     },
     {
       "anchor": {
-        "x": 6.968625689233537,
-        "y": 3.9949601703927238
+        "x": 6.5141410256410275,
+        "y": 3.965230769230769
       },
       "prevControl": {
-        "x": 7.225460900031052,
-        "y": 3.9334602726577392
+        "x": 6.770976236438543,
+        "y": 3.9037308714957843
       },
       "nextControl": {
-        "x": 6.311394047639339,
-        "y": 4.152336094903734
+        "x": 5.856909384046829,
+        "y": 4.122606693741779
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 6.029819277108434,
-        "y": 7.389807228915663
+        "x": 6.0490128205128215,
+        "y": 7.360666666666666
       },
       "prevControl": {
-        "x": 7.647120481927712,
-        "y": 7.422590361445782
+        "x": 6.83973076923077,
+        "y": 7.68625641025641
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,35 +46,31 @@
   ],
   "rotationTargets": [
     {
+      "waypointRelativePos": 0.6070175438596488,
+      "rotationDegrees": 167.9806504606891
+    },
+    {
       "waypointRelativePos": 1.2,
       "rotationDegrees": 90.0
-    },
-    {
-      "waypointRelativePos": 1.531950207468876,
-      "rotationDegrees": 136.9843342745988
-    },
-    {
-      "waypointRelativePos": 1.85,
-      "rotationDegrees": 168.66622086322562
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 161.565051177078
+    "rotation": 180.0
   },
   "reversed": false,
-  "folder": "LeftOnePassGrab",
+  "folder": "LeftOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -119.99999999999999

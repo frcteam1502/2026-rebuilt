@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.1154075247960713,
-        "y": 5.819803676767864
+        "x": 0.9533403835576362,
+        "y": 5.798858939546746
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.48694969347077,
-        "y": 5.590321749057019
+        "x": 1.3248825522323349,
+        "y": 5.569377011835901
       },
       "isLocked": false,
       "linkedName": "CenterStartGround1End"
     },
     {
       "anchor": {
-        "x": 1.1154075247960713,
-        "y": 6.320637650097269
+        "x": 0.9533403835576362,
+        "y": 6.33219705676659
       },
       "prevControl": {
-        "x": 1.8694195729888428,
-        "y": 6.2878545175671485
+        "x": 1.7073524317504076,
+        "y": 6.29941392423647
       },
       "nextControl": null,
       "isLocked": false,
@@ -29,28 +29,14 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.0,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 1.5,
-        "maxAngularVelocity": 1060.0,
-        "maxAngularAcceleration": 2043.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 6.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 1060.0,
-    "maxAngularAcceleration": 1397.0,
+    "maxAngularVelocity": 150.0,
+    "maxAngularAcceleration": 90.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -59,7 +45,7 @@
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "CenterStartGround",
+  "folder": "CenterStartGround.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 180.0

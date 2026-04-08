@@ -40,6 +40,7 @@ public class TurnToTarget extends Command {
   public void end(boolean interrupted) {
     drive.setAutoTargetOff();
     System.out.println("TurnAlignEnd");
+    drive.drive(0, 0, 0, true);
   }
 
   // Returns true when the command should end.
