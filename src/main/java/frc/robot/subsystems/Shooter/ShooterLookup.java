@@ -29,8 +29,8 @@ public class ShooterLookup {
         new LookupTablePoint(2.82, 1900, 30),
         new LookupTablePoint(2.95, 1909, 30),
         new LookupTablePoint(3.15, 2100, 33),
-        new LookupTablePoint(3.4, 2075, 32),
-        new LookupTablePoint(3.8, 2175, 32),
+        new LookupTablePoint(3.4, 2075, 33),
+        new LookupTablePoint(3.8, 2175, 33),
         new LookupTablePoint(4.28, 2275, 33),
         new LookupTablePoint(4.6, 2425, 33),
         new LookupTablePoint(9.6, 4075, 33)
