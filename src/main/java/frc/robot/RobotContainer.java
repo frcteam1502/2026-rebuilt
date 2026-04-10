@@ -71,8 +71,8 @@ public class RobotContainer {
   public RobotContainer() {
      vision = new Vision(driveSubsystem::addVisionMeasurement,
                 new PhotonVision(LEFT_APRILTAG_CAM, LEFT_APRILTAG_CAM_TRANSFORM),
-                new PhotonVision(RIGHT_APRILTAG_CAM, RIGHT_HAMMER_APRILTAG_CAM_TRANSFORM),
-                new PhotonVision(RIGHT_HAMMER_APRILTAG_CAM, RIGHT_APRILTAG_CAM_TRANSFORM),
+                new PhotonVision(RIGHT_APRILTAG_CAM, RIGHT_APRILTAG_CAM_TRANSFORM),
+                new PhotonVision(RIGHT_HAMMER_APRILTAG_CAM, RIGHT_HAMMER_APRILTAG_CAM_TRANSFORM),
                 new PhotonVision(LEFT_HAMMER_APRILTAG_CAM, LEFT_HAMMER_APRILTAG_CAM_TRANSFORM)
               );
 
