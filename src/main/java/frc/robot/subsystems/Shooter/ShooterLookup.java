@@ -21,15 +21,19 @@ public class ShooterLookup {
     }
 
     public static final List<LookupTablePoint> LookupTable = List.of(
-        new LookupTablePoint(0, 1500, 14.5),
-        new LookupTablePoint(1.32, 1500, 15),
-        new LookupTablePoint(2, 2100, 17),
-        new LookupTablePoint(2.42, 2200, 20),
-        new LookupTablePoint(2.72, 2200, 22),
-        new LookupTablePoint(3, 2200, 26),
-        new LookupTablePoint(3.9, 2300, 28),
-        new LookupTablePoint(4.6, 2450, 31),
-        new LookupTablePoint(9.6, 4000, 33)
+        new LookupTablePoint(0, 1625, 14.5),
+        new LookupTablePoint(1.8, 1825, 22),
+        new LookupTablePoint(2.1, 1875, 26),
+        new LookupTablePoint(2.5, 1875, 30),
+        new LookupTablePoint(2.71, 1890, 30),
+        new LookupTablePoint(2.82, 1900, 30),
+        new LookupTablePoint(2.95, 1909, 30),
+        new LookupTablePoint(3.15, 2100, 33),
+        new LookupTablePoint(3.4, 2075, 33),
+        new LookupTablePoint(3.8, 2175, 33),
+        new LookupTablePoint(4.28, 2275, 33),
+        new LookupTablePoint(4.6, 2425, 33),
+        new LookupTablePoint(9.6, 4075, 33)
     );
 
     public static LookupTablePoint Lookup(double distance)

@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.spark.SparkFlex;
 
 public class LEDSignals extends SubsystemBase {
-    public static final PWM signalLED = LEDSignalCfg.SIGNAL_LED;
+    public static final Spark signalLED = LEDSignalCfg.SIGNAL_LED;
 
   public LEDSignals() {}
 
@@ -22,18 +22,18 @@ public class LEDSignals extends SubsystemBase {
   }
 
   public static void hopperInColor(){
-  signalLED.setSpeed(0.67); //Gold
+  signalLED.set(0.67); //Gold
   }
 
   public static void hopperOutColor(){
-    signalLED.setSpeed(0.89); //Blue violet
+    signalLED.set(0.89); //Blue violet
   }
 
   public static void intakeOnOutColor(){
-    signalLED.setSpeed(0.15); //Blinking Blue Violet
+    signalLED.set(0.15); //Blinking Blue Violet
   }
 
   public static void intakeOnInColor(){
-    signalLED.setSpeed(0.35); //Blinking Gold
+    signalLED.set(0.35); //Blinking Gold
   }
 }

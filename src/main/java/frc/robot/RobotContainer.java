@@ -31,11 +31,13 @@ import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import static frc.robot.subsystems.Vision.PhotonCameraCfg.LEFT_APRILTAG_CAM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.LEFT_APRILTAG_CAM_TRANSFORM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.LEFT_HAMMER_APRILTAG_CAM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.LEFT_HAMMER_APRILTAG_CAM_TRANSFORM;
 import static frc.robot.subsystems.Vision.PhotonCameraCfg.RIGHT_APRILTAG_CAM;
-import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera0;
-import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera1;
-import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera2;
-import static frc.robot.subsystems.Vision.PhotonCameraCfg.robotToCamera3;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.RIGHT_APRILTAG_CAM_TRANSFORM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.RIGHT_HAMMER_APRILTAG_CAM;
+import static frc.robot.subsystems.Vision.PhotonCameraCfg.RIGHT_HAMMER_APRILTAG_CAM_TRANSFORM;
 import frc.robot.subsystems.Vision.PhotonVision;
 import frc.robot.subsystems.Vision.Vision;
 
@@ -68,10 +70,10 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
      vision = new Vision(driveSubsystem::addVisionMeasurement,
-                new PhotonVision(LEFT_APRILTAG_CAM, robotToCamera0),
-                new PhotonVision(RIGHT_APRILTAG_CAM, robotToCamera1),
-                new PhotonVision("Camera2", robotToCamera2),
-                new PhotonVision("Camera3", robotToCamera3)
+                new PhotonVision(LEFT_APRILTAG_CAM, LEFT_APRILTAG_CAM_TRANSFORM),
+                new PhotonVision(RIGHT_APRILTAG_CAM, RIGHT_APRILTAG_CAM_TRANSFORM),
+                new PhotonVision(RIGHT_HAMMER_APRILTAG_CAM, RIGHT_HAMMER_APRILTAG_CAM_TRANSFORM),
+                new PhotonVision(LEFT_HAMMER_APRILTAG_CAM, LEFT_HAMMER_APRILTAG_CAM_TRANSFORM)
               );
 
     // Configure the trigger bindings
