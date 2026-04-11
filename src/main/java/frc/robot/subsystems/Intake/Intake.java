@@ -7,14 +7,13 @@ package frc.robot.subsystems.Intake;
 import com.revrobotics.PersistMode;
 import com.revrobotics.ResetMode;
 import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.config.SparkFlexConfig;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.LEDs.LEDSignals;
-import frc.robot.subsystems.Shooter.ShooterCfg;
 
 
 public class Intake extends SubsystemBase {
@@ -47,11 +46,12 @@ public class Intake extends SubsystemBase {
       leadIntakeMotor.configure(leadIntakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
       followerIntakeMotor.configure(followerIntakeMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
-  
+    
     @Override
     public void periodic() {
       // This method will be called once per scheduler run
       arbitrateIntake();
+      SmartDashboard.putData(LEDSignals.signalLED);
     }
 
     private void arbitrateIntake(){
