@@ -5,6 +5,8 @@ import edu.wpi.first.apriltag.AprilTagFields;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
+import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Meters;
 
 public class PhotonCameraCfg{	
 	public static final String LEFT_APRILTAG_CAM = "leftAprilTagCam";
@@ -48,9 +50,9 @@ public class PhotonCameraCfg{
 
 	
 	//Right AprilTag Cam Pose Config wrt robot center
-	public static final double RIGHT_APRILTAG_CAM_XPOS_METERS = -0.276;//"Forward" from center, in meters
-	public static final double RIGHT_APRILTAG_CAM_YPOS_METERS = -0.254;//"Left" from center, in meters
-	public static final double RIGHT_APRILTAG_CAM_ZPOS_METERS = 0.207;//"Up" from center, in meters
+	public static final double RIGHT_APRILTAG_CAM_XPOS_METERS = Meters.convertFrom(-11.5, Inches);// -0.276;// 11.5"Forward" from center, in meters
+	public static final double RIGHT_APRILTAG_CAM_YPOS_METERS = Meters.convertFrom(13.5 - 2.375, Inches); //-0.254;// 13.5 - 2 3/8 "Left" from center, in meters
+	public static final double RIGHT_APRILTAG_CAM_ZPOS_METERS = Meters.convertFrom(8, Inches); //0.207;// 8.0 "Up" from center, in meters
 	
 	public static final double RIGHT_APRILTAG_CAM_ROLL_DEG	= 0;
 	public static final double RIGHT_APRILTAG_CAM_PITCH_DEG	= -15;
@@ -65,13 +67,13 @@ public class PhotonCameraCfg{
 								   Math.toRadians(RIGHT_APRILTAG_CAM_YAW_DEG)));
 
 	//Right AprilTag Cam Pose Config wrt robot center
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS = -0.316479;//"Forward" from center, in meters
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_YPOS_METERS = -0.041262;//"Left" from center, in meters
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_ZPOS_METERS = 0.175681;//"Up" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS = Meters.convertFrom(-1.35, Inches); //-0.316479;//"Forward" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_YPOS_METERS = Meters.convertFrom(-12.5, Inches);;//"Left" from center, in meters
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_ZPOS_METERS = Meters.convertFrom(6.75, Inches); //;//"Up" from center, in meters
 	
 	public static final double RIGHT_HAMMER_APRILTAG_CAM_ROLL_DEG	= 0;//CounterClockwise
 	public static final double RIGHT_HAMMER_APRILTAG_CAM_PITCH_DEG	= -20;
-	public static final double RIGHT_HAMMER_APRILTAG_CAM_YAW_DEG	= -110;
+	public static final double RIGHT_HAMMER_APRILTAG_CAM_YAW_DEG	= -70;
 
 	public static final Transform3d RIGHT_HAMMER_APRILTAG_CAM_TRANSFORM = new Transform3d(
 					new Translation3d(RIGHT_HAMMER_APRILTAG_CAM_XPOS_METERS,
