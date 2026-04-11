@@ -159,9 +159,9 @@ public class RobotContainer {
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
 
-    Operator.Controller.leftTrigger().whileTrue(new InstantCommand(intake::setIntakeOn)).onFalse(new InstantCommand(intake::setIntakeOff));
-   //INTAKE WITHOUT RUNNING INDEX MOTORS NEXT LINE IS WITH RUNNIG INDEX Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));
-    Operator.Controller.leftBumper().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
+    Operator.Controller.leftTrigger().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
+   Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));
+    //Operator.Controller.leftBumper().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     Operator.Controller.a().onTrue(new SequentialCommandGroup(new InstantCommand(intake :: setIntakeOn), new WaitCommand(0.15), new InstantCommand(intake::toggleHopper), new WaitCommand(0.2), new InstantCommand(intake :: setIntakeOff)));
     Operator.Controller.x().whileTrue(new InstantCommand(shooter::setIndexerOn)).onFalse(new InstantCommand(shooter :: setIndexerOff));
