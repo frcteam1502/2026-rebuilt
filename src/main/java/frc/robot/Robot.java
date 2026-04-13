@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Logger;
 import frc.robot.subsystems.Climber.Climber;
+import frc.robot.subsystems.LEDs.LEDSignals;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -98,6 +99,8 @@ public class Robot extends TimedRobot {
       camera.setFPS(15);
     }*/
     
+    LEDSignals.intakeOnInColor();
+
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items
     
