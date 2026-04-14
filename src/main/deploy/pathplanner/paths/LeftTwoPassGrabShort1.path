@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.257,
-        "y": 7.674628205125028
+        "x": 4.391238694723572,
+        "y": 7.667978388883467
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.257,
-        "y": 6.755739356761266
+        "x": 5.383124147684488,
+        "y": 7.498549276958588
+      },
+      "isLocked": false,
+      "linkedName": "LeftStart"
+    },
+    {
+      "anchor": {
+        "x": 7.571849516688351,
+        "y": 7.344484341927569
+      },
+      "prevControl": {
+        "x": 7.1367292675799465,
+        "y": 7.776635888499555
+      },
+      "nextControl": {
+        "x": 7.9740326904615735,
+        "y": 6.945045150330613
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.257,
-        "y": 4.021
+        "x": 7.909385542168675,
+        "y": 4.705691489139724
       },
       "prevControl": {
-        "x": 8.257,
-        "y": 5.044333450263011
+        "x": 7.888985805901035,
+        "y": 5.075849746488905
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "LeftTwoPassShort1"
     }
   ],
   "rotationTargets": [],
@@ -41,11 +57,11 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": -90.0
+    "velocity": 0.0,
+    "rotation": -103.13402230639639
   },
   "reversed": false,
-  "folder": "TestPaths",
+  "folder": "LeftTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0

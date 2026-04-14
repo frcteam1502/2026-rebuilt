@@ -815,6 +815,9 @@ private void updateIndexerState(){
   public void setIndexerOff(){
     setIndexSpeed(0);
   }
+  public void setIndexerReverse(){
+    setIndexSpeed(-1*(ShooterCfg.INDEX_SPEED));
+  }
   public boolean isShootingReady(){
     if (isShooterAtSetPoint()                     &&
         hoodPIDController.atSetpoint()            &&

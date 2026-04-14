@@ -6,7 +6,10 @@ import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.math.geometry.Translation2d;
+import frc.robot.subsystems.Vision.PhotonCameraCfg;
+
 
 public class ShooterCfg {
     //Shooter Motor Config
@@ -66,7 +69,7 @@ public class ShooterCfg {
     public static final double FEED_ENC_VEL_CONFIG = 1;
     public static final boolean FEED_INVERTED = true;
     public static final IdleMode FEED_IDLE_MODE = IdleMode.kCoast;
-    public static final int FEED_CURRENT_LIMIT = 70;
+    public static final int FEED_CURRENT_LIMIT = 90;
 
     //Indexer
     public static final double INDEXER_ENC_VEL_CONFIG = 1;
@@ -87,11 +90,11 @@ public class ShooterCfg {
     
     public static final double SPEED_TOLERENCE = 100;
     public static final double FEED_SPEED = -1;
-    public static final double INDEX_SPEED = 0.85;
+    public static final double INDEX_SPEED = 1;
     
     //Target Translations
-    public static final Translation2d RED_HUB_TARGET_POSE = new Translation2d(11.91,4);
-    public static final Translation2d BLUE_HUB_TARGET_POSE = new Translation2d(4.54,4);
+    public static final Translation2d RED_HUB_TARGET_POSE = getHubRed(PhotonCameraCfg.FIELD_TAG_LAYOUT);
+    public static final Translation2d BLUE_HUB_TARGET_POSE = getHubBlue(PhotonCameraCfg.FIELD_TAG_LAYOUT);
     public static final Translation2d RED_LEFT = new Translation2d(14.5,6.5);
     public static final Translation2d RED_RIGHT = new Translation2d(14.5,1.5);
     public static final Translation2d BLUE_LEFT = new Translation2d(2,6.5);
@@ -106,8 +109,8 @@ public class ShooterCfg {
     public static final double HOOD_MAX_ANGLE = Math.toRadians(33);
     public static final double HOOD_MIN_ANGLE = Math.toRadians(14);
     public static final double HOOD_ROT_TO_RADIANS = ((22.7/180)*Math.PI);
-    public static final double TARGET_FEED_SPEED = 1;
-    public static final double TARGET_INDEXER_SPEED = 0.85;
+    public static final double TARGET_FEED_SPEED = 0.8;
+    public static final double TARGET_INDEXER_SPEED = 1;
     public static final double INTAKE_AGITATION_SPEED = 0.5;
     
     public static final double FEED_LASER_THRESHOLD = 0.5;
@@ -119,4 +122,17 @@ public class ShooterCfg {
     public static final double FEED_ON_THRESHOLD = -2500;
     public static final double HOOD_ENCODER_FULL_ROTATION = 9*(Math.PI)/40;
     public static final double HOOD_ANGLE_OFFSET = Math.toRadians(14);
+
+    static Translation2d getHubRed(AprilTagFieldLayout layout){
+        var x = layout.getTagPose(5).get().getX();
+        var y = layout.getTagPose(10).get().getY();
+        //var z = layout.getTagPose(10).get().getZ();
+        return new Translation2d(x,y);
+    }
+    static Translation2d getHubBlue(AprilTagFieldLayout layout){
+        var x = layout.getTagPose(18).get().getX();
+        var y = layout.getTagPose(26).get().getY();
+        //var z = layout.getTagPose(26).get().getZ();
+        return new Translation2d(x,y);
+    }
 }

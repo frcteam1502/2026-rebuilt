@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.3396153846153855,
-        "y": 6.732743589743589
+        "x": 3.139633007716504,
+        "y": 7.076615688358142
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.397756410256411,
-        "y": 7.7095128205128205
+        "x": 3.1977740333575295,
+        "y": 8.053384919127375
       },
       "isLocked": false,
       "linkedName": "LeftShootPose"
@@ -138,10 +138,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 4.5,
-    "maxAngularVelocity": 150.0,
-    "maxAngularAcceleration": 90.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.5,
+    "maxAngularVelocity": 70.0,
+    "maxAngularAcceleration": 35.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -153,7 +153,7 @@
   "folder": "dEAd",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 138.21548399174824
+    "rotation": 118.20911814044189
   },
   "useDefaultConstraints": true
 }

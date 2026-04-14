@@ -149,7 +149,7 @@ public class RobotContainer {
                                                         new MockDetector(),
                                                         ()->{ return false;})); //USES THE Right BUMPER TO SLOW DOWN
 
-   Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
+    Driver.Controller.start().onTrue(new ResetGyro(driveSubsystem));
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
     //Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
     //Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
@@ -160,7 +160,7 @@ public class RobotContainer {
     Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
 
     Operator.Controller.leftTrigger().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
-   Operator.Controller.leftBumper().whileTrue(new InstantCommand(intake::setIntakeReverse)).onFalse(new InstantCommand(intake::setIntakeOff));
+    Operator.Controller.leftBumper().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeReverse), new InstantCommand(shooter::setIndexerReverse))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
     //Operator.Controller.leftBumper().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
     Operator.Controller.a().onTrue(new SequentialCommandGroup(new InstantCommand(intake :: setIntakeOn), new WaitCommand(0.15), new InstantCommand(intake::toggleHopper), new WaitCommand(0.2), new InstantCommand(intake :: setIntakeOff)));

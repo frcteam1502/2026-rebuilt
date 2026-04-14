@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.2160481927710847,
-        "y": 1.3467831325301212
+        "x": 3.051702730550525,
+        "y": 1.0926078983795504
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.9670250103985045,
-        "y": 1.586620145522241
+        "x": 1.802679548177945,
+        "y": 1.3324449113716703
       },
       "isLocked": false,
       "linkedName": "RightShootPose"
@@ -24,7 +24,7 @@
         "y": 1.5406427216239784
       },
       "nextControl": {
-        "x": 0.4059281493639245,
+        "x": 0.40592814936392446,
         "y": 2.0246751184684797
       },
       "isLocked": false,
@@ -63,10 +63,10 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 4.5,
-    "maxAngularVelocity": 150.0,
-    "maxAngularAcceleration": 90.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.5,
+    "maxAngularVelocity": 70.0,
+    "maxAngularAcceleration": 35.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
@@ -78,7 +78,7 @@
   "folder": "RightTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -134.14490260373336
+    "rotation": -126.86989764584396
   },
   "useDefaultConstraints": true
 }
