@@ -93,11 +93,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-   /*  UsbCamera camera = CameraServer.startAutomaticCapture();
+     UsbCamera camera = CameraServer.startAutomaticCapture();
     if (RobotBase.isReal()){
       camera.setResolution(320,240);
       camera.setFPS(15);
-    }*/
+    }
     
     //LEDSignals.hopperInColor();
     LEDSignals.resetLEDs(); //experimental DO NOT TRUST
