@@ -99,7 +99,8 @@ public class Robot extends TimedRobot {
       camera.setFPS(15);
     }*/
     
-    LEDSignals.hopperInColor();
+    //LEDSignals.hopperInColor();
+    LEDSignals.resetLEDs(); //experimental DO NOT TRUST
 
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items
