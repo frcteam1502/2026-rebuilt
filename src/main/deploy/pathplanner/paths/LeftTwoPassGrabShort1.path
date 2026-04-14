@@ -3,57 +3,48 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.0490128205128215,
-        "y": 7.360666666666666
+        "x": 4.391238694723572,
+        "y": 7.667978388883467
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.9837229650819195,
-        "y": 7.6019905875237
+        "x": 5.455974358974361,
+        "y": 7.63974358974359
       },
       "isLocked": false,
-      "linkedName": "LeftCenterGrab2"
+      "linkedName": "LeftStart"
     },
     {
       "anchor": {
-        "x": 4.13996883374443,
-        "y": 7.432412770071148
+        "x": 7.909385542168675,
+        "y": 7.291457831325301
       },
       "prevControl": {
-        "x": 5.232739918081779,
-        "y": 7.497979035131389
+        "x": 7.549217100445961,
+        "y": 7.686591074956132
       },
       "nextControl": {
-        "x": 3.3383969791986354,
-        "y": 7.3843184587984005
+        "x": 8.284079490238293,
+        "y": 6.880388959323534
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.325096385542168,
-        "y": 7.182180722891567
+        "x": 8.095156626506025,
+        "y": 4.7453012048192775
       },
       "prevControl": {
-        "x": 4.507547429455134,
-        "y": 7.535582967785428
+        "x": 8.05362337861766,
+        "y": 5.11076442995513
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "LeftShootPose"
+      "linkedName": "LeftTwoPassShort1"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 1.0,
-      "rotationDegrees": 180.0
-    },
-    {
-      "waypointRelativePos": 1.5983402489626548,
-      "rotationDegrees": 168.13209367559713
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -66,14 +57,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": 101.73188549423396
+    "velocity": 0.0,
+    "rotation": -103.13402230639639
   },
   "reversed": false,
-  "folder": "LeftOnePassGrab.Climb",
+  "folder": "LeftTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -90.0
   },
   "useDefaultConstraints": true
 }

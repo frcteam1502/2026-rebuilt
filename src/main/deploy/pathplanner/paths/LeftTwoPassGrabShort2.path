@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.0490128205128215,
-        "y": 7.360666666666666
+        "x": 8.095156626506025,
+        "y": 4.7453012048192775
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.9837229650819195,
-        "y": 7.6019905875237
+        "x": 7.720252085264132,
+        "y": 3.8597363299351253
       },
       "isLocked": false,
-      "linkedName": "LeftCenterGrab2"
+      "linkedName": "LeftTwoPassShort1"
     },
     {
       "anchor": {
-        "x": 4.13996883374443,
-        "y": 7.432412770071148
+        "x": 6.117240963855421,
+        "y": 7.138469879518072
       },
       "prevControl": {
-        "x": 5.232739918081779,
-        "y": 7.497979035131389
+        "x": 6.980314912019745,
+        "y": 7.138469879518072
       },
       "nextControl": {
-        "x": 3.3383969791986354,
-        "y": 7.3843184587984005
+        "x": 4.172108433734939,
+        "y": 7.138469879518072
       },
       "isLocked": false,
       "linkedName": null
@@ -36,8 +36,8 @@
         "y": 7.182180722891567
       },
       "prevControl": {
-        "x": 4.507547429455134,
-        "y": 7.535582967785428
+        "x": 5.155602409638553,
+        "y": 7.16032530120482
       },
       "nextControl": null,
       "isLocked": false,
@@ -47,11 +47,7 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 1.0,
-      "rotationDegrees": 180.0
-    },
-    {
-      "waypointRelativePos": 1.5983402489626548,
-      "rotationDegrees": 168.13209367559713
+      "rotationDegrees": 90.0
     }
   ],
   "constraintZones": [],
@@ -70,10 +66,10 @@
     "rotation": 101.73188549423396
   },
   "reversed": false,
-  "folder": "LeftOnePassGrab.Climb",
+  "folder": "LeftTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -103.13402230639639
   },
   "useDefaultConstraints": true
 }

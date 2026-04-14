@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 2.3396153846153855,
-        "y": 6.732743589743589
+        "x": 4.325096385542168,
+        "y": 7.182180722891567
       },
       "prevControl": {
-        "x": 2.1955334186125266,
-        "y": 6.937048232551214
+        "x": 4.181014419539309,
+        "y": 7.386485365699191
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,14 +35,14 @@
   "globalConstraints": {
     "maxVelocity": 2.5,
     "maxAcceleration": 4.5,
-    "maxAngularVelocity": 125.0,
-    "maxAngularAcceleration": 75.0,
+    "maxAngularVelocity": 90.0,
+    "maxAngularAcceleration": 35.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 138.21548399174824
+    "rotation": 101.73188549423396
   },
   "reversed": false,
   "folder": "CenterStartGround.Climb",
