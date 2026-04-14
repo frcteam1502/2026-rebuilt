@@ -26,10 +26,10 @@ public class LEDSignals extends SubsystemBase {
   }
 
   public static void intakeOnOutColor(){
-    signalLED.set(0.15); //Blinking Blue Violet
+    signalLED.set(-0.09); //Blinking Blue Violet
   }
 
   public static void intakeOnInColor(){
-    signalLED.set(0.35); //Blinking Gold
+    signalLED.set(-0.07); //Blinking Gold
   }
 }

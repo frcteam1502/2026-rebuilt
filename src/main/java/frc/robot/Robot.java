@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
       camera.setFPS(15);
     }*/
     
-    LEDSignals.intakeOnInColor();
+    LEDSignals.hopperInColor();
 
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items
