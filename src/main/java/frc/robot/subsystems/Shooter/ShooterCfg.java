@@ -58,7 +58,7 @@ public class ShooterCfg {
 
     public static final boolean SHOOTER_LEAD_INVERTED = true;
     public static final IdleMode SHOOTER_IDLE_MODE = IdleMode.kCoast;
-    public static final int SHOOTER_CURRENT_LIMIT = 70;
+    public static final int SHOOTER_CURRENT_LIMIT = 65;
     public static final boolean SHOOTER_FOLLOW_INVERTED = !SHOOTER_LEAD_INVERTED;
     
     //Feed
@@ -87,7 +87,7 @@ public class ShooterCfg {
     
     public static final double SPEED_TOLERENCE = 100;
     public static final double FEED_SPEED = -1;
-    public static final double INDEX_SPEED = 0.85;
+    public static final double INDEX_SPEED = 1;
     
     //Target Translations
     public static final Translation2d RED_HUB_TARGET_POSE = new Translation2d(11.91,4);
@@ -107,7 +107,7 @@ public class ShooterCfg {
     public static final double HOOD_MIN_ANGLE = Math.toRadians(14);
     public static final double HOOD_ROT_TO_RADIANS = ((22.7/180)*Math.PI);
     public static final double TARGET_FEED_SPEED = 0.8;
-    public static final double TARGET_INDEXER_SPEED = 0.85;
+    public static final double TARGET_INDEXER_SPEED = 1;
     public static final double INTAKE_AGITATION_SPEED = 0.5;
     
     public static final double FEED_LASER_THRESHOLD = 0.5;

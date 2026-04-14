@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.630843373493977,
-        "y": 3.3137710843373496
+        "x": 5.912197146544373,
+        "y": 3.8927625068515486
       },
       "isLocked": false,
       "linkedName": "LeftTwoPassGrab3"
@@ -20,40 +20,56 @@
         "y": 5.477457831325301
       },
       "prevControl": {
-        "x": 6.342295035180055,
-        "y": 5.227929863844583
+        "x": 6.255741651872527,
+        "y": 5.21504963863444
       },
       "nextControl": {
-        "x": 6.401361445783133,
-        "y": 6.187759036144579
+        "x": 6.529211958925557,
+        "y": 5.919215942479049
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 6.219688253012048,
-        "y": 6.991493302286575
+        "x": 6.357650602409638,
+        "y": 7.39089328868464
       },
       "prevControl": {
-        "x": 6.556398343373495,
-        "y": 6.933849060781842
+        "x": 6.852984479771214,
+        "y": 7.0178174477872615
       },
       "nextControl": {
-        "x": 5.882978162650602,
-        "y": 7.049137543791307
+        "x": 5.948246099012039,
+        "y": 7.699248796662019
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.325096385542168,
-        "y": 7.182180722891567
+        "x": 4.6559828865635895,
+        "y": 7.495290496685948
       },
       "prevControl": {
-        "x": 5.9970361445783125,
-        "y": 7.16687285881584
+        "x": 5.236582122372288,
+        "y": 7.509917110931143
+      },
+      "nextControl": {
+        "x": 4.3063123482133365,
+        "y": 7.486481501148372
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.139633007716504,
+        "y": 7.076615688358142
+      },
+      "prevControl": {
+        "x": 3.7873946640048213,
+        "y": 7.511771076740498
       },
       "nextControl": null,
       "isLocked": false,
@@ -62,32 +78,32 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.3136929460581011,
-      "rotationDegrees": 140.37143158803931
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 99.98017367081779
     },
     {
-      "waypointRelativePos": 1.1,
-      "rotationDegrees": 90.0
+      "waypointRelativePos": 1.9578947368421067,
+      "rotationDegrees": 178.6490276835668
     },
     {
-      "waypointRelativePos": 2.5,
-      "rotationDegrees": 90.0
+      "waypointRelativePos": 3.6070175438596337,
+      "rotationDegrees": 180.0
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 4.5,
-    "maxAngularVelocity": 90.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.5,
+    "maxAngularVelocity": 70.0,
     "maxAngularAcceleration": 35.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 101.73188549423396
+    "rotation": 118.20911814044189
   },
   "reversed": false,
   "folder": "LeftTwoPassGrab.Climb",
