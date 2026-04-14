@@ -32,4 +32,8 @@ public class LEDSignals extends SubsystemBase {
   public static void intakeOnInColor(){
     signalLED.set(-0.07); //Blinking Gold
   }
+
+  public static void resetLEDs(){
+    signalLED.set(2145); 
+  }
 }

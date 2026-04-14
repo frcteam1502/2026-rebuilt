@@ -57,21 +57,47 @@ public class Intake extends SubsystemBase {
     private void arbitrateIntake(){
       if(isCntrlRequestIn){
         leadIntakeMotor.set(1.0);
-        LEDSignals.hopperInColor();
+        if(hopperIn){
+          LEDSignals.intakeOnInColor();
+        }else if(hopperIn==false){
+          LEDSignals.intakeOnOutColor();
+        };
       }else if(isCntrlRequestOut){
         leadIntakeMotor.set(-1.0);
+        if(hopperIn){
+          LEDSignals.intakeOnInColor();
+        }else if(hopperIn==false){
+          LEDSignals.intakeOnOutColor();
+        };
         LEDSignals.hopperOutColor();
       }else if(isShooterRequestIn){
         leadIntakeMotor.set(1.0);
-        LEDSignals.intakeOnInColor();
+        if(hopperIn){
+          LEDSignals.intakeOnInColor();
+        }else if(hopperIn==false){
+          LEDSignals.intakeOnOutColor();
+        };
       }else if(isShooterRequestSlow){
         leadIntakeMotor.set(0.5);
-        LEDSignals.intakeOnInColor();
+        if(hopperIn){
+          LEDSignals.intakeOnInColor();
+        }else if(hopperIn==false){
+          LEDSignals.intakeOnOutColor();
+        };
       }else if(isShooterRequestOut){
         leadIntakeMotor.set(-1.0);
-        LEDSignals.intakeOnOutColor();
+        if(hopperIn){
+          LEDSignals.intakeOnInColor();
+        }else if(hopperIn==false){
+          LEDSignals.intakeOnOutColor();
+        };
       }else{
         leadIntakeMotor.set(0);
+        if(hopperIn){
+          LEDSignals.hopperInColor();
+        }else if(hopperIn==false){
+          LEDSignals.hopperOutColor();
+        };
       }
     }
   
