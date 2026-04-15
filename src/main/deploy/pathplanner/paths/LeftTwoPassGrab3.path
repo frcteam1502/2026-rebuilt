@@ -16,44 +16,60 @@
     },
     {
       "anchor": {
-        "x": 3.765645345358922,
-        "y": 7.497627015125186
+        "x": 4.336024096385542,
+        "y": 7.520939759036144
       },
       "prevControl": {
-        "x": 3.5157990969109805,
-        "y": 7.488860480091924
+        "x": 4.0861778479376,
+        "y": 7.512173224002883
       },
       "nextControl": {
-        "x": 4.015491593806868,
-        "y": 7.506393550158448
+        "x": 4.585870344833488,
+        "y": 7.529706294069406
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.384855421686748,
-        "y": 7.182180722891567
+        "x": 6.499710843373493,
+        "y": 7.400734939759036
       },
       "prevControl": {
-        "x": 5.8423559160786525,
-        "y": 7.538866872097524
+        "x": 4.957211337765398,
+        "y": 7.757421088964993
       },
       "nextControl": {
-        "x": 8.251817189191987,
-        "y": 6.981705291142028
+        "x": 7.366672610878731,
+        "y": 7.200259508009497
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.811036144578313,
-        "y": 5.324469879518071
+        "x": 6.062602409638554,
+        "y": 6.06755421686747
       },
       "prevControl": {
-        "x": 7.667142200956978,
-        "y": 5.528906992071296
+        "x": 6.293804340175901,
+        "y": 6.719123293836356
+      },
+      "nextControl": {
+        "x": 5.822192771084336,
+        "y": 5.390036144578313
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.062602409638554,
+        "y": 4.87643373493976
+      },
+      "prevControl": {
+        "x": 5.918708466017219,
+        "y": 5.080870847492985
       },
       "nextControl": null,
       "isLocked": false,
@@ -70,30 +86,30 @@
       "rotationDegrees": 180.0
     },
     {
-      "waypointRelativePos": 2.1859649122807108,
-      "rotationDegrees": -93.1576421366928
+      "waypointRelativePos": 2.35,
+      "rotationDegrees": -111.48439674222188
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 3.5,
-    "maxAngularVelocity": 70.0,
-    "maxAngularAcceleration": 35.0,
+    "maxVelocity": 4.75,
+    "maxAcceleration": 3.75,
+    "maxAngularVelocity": 90.0,
+    "maxAngularAcceleration": 40.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": -100.20397372173186
   },
   "reversed": false,
   "folder": "LeftTwoPassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 118.20911814044189
+    "rotation": 127.78091933038296
   },
   "useDefaultConstraints": true
 }
