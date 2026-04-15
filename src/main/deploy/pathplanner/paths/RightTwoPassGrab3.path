@@ -8,24 +8,40 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.5215942968155853,
-        "y": -0.1531511377650272
+        "x": 4.368807228915662,
+        "y": 0.4288554216867476
       },
       "isLocked": false,
       "linkedName": "RightShootPose"
     },
     {
       "anchor": {
-        "x": 6.200179487179489,
+        "x": 4.696638554216866,
         "y": 0.6163076923076927
       },
       "prevControl": {
-        "x": 5.786520842987335,
-        "y": 0.4361930993203592
+        "x": 4.161180722891566,
+        "y": 0.6255542168674696
       },
       "nextControl": {
-        "x": 6.613838131371643,
-        "y": 0.7964222852950262
+        "x": 5.429064201962278,
+        "y": 0.6036598396778668
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.018891566265061,
+        "y": 1.204722891566264
+      },
+      "prevControl": {
+        "x": 5.712915662650602,
+        "y": 0.8878192771084343
+      },
+      "nextControl": {
+        "x": 6.3322720590742465,
+        "y": 1.529295544832918
       },
       "isLocked": false,
       "linkedName": null
@@ -46,20 +62,16 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.3607705779334502,
-      "rotationDegrees": -15.592150305753776
-    },
-    {
-      "waypointRelativePos": 0.519298245614036,
+      "waypointRelativePos": 0.17178423236515844,
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 0.8385964912280676,
+      "waypointRelativePos": 1.3717842323651375,
       "rotationDegrees": 0.0
     },
     {
-      "waypointRelativePos": 1.3228070175438638,
-      "rotationDegrees": 90.0
+      "waypointRelativePos": 2.2331950207468982,
+      "rotationDegrees": 102.34896519631234
     }
   ],
   "constraintZones": [],
@@ -75,10 +87,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 91.21887523513139
+    "rotation": 102.5288077091516
   },
   "reversed": false,
-  "folder": "DEaD",
+  "folder": "RightTwoPassGrab",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -126.86989764584396
