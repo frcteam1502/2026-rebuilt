@@ -22,7 +22,7 @@ public class LEDSignals extends SubsystemBase {
   }
 
   public static void hopperOutColor(){
-    signalLED.set(0.89); //Blue violet
+    signalLED.set(0.87); //Blue violet
   }
 
   public static void intakeOnOutColor(){

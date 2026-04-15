@@ -61,7 +61,7 @@ public class ShooterCfg {
 
     public static final boolean SHOOTER_LEAD_INVERTED = true;
     public static final IdleMode SHOOTER_IDLE_MODE = IdleMode.kCoast;
-    public static final int SHOOTER_CURRENT_LIMIT = 65;
+    public static final int SHOOTER_CURRENT_LIMIT = 62;
     public static final boolean SHOOTER_FOLLOW_INVERTED = !SHOOTER_LEAD_INVERTED;
     
     //Feed

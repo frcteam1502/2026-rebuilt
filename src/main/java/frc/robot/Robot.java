@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
      UsbCamera camera = CameraServer.startAutomaticCapture();
     if (RobotBase.isReal()){
       camera.setResolution(320,240);
-      camera.setFPS(60);
+      camera.setFPS(30);
     }
     
     //LEDSignals.hopperInColor();
