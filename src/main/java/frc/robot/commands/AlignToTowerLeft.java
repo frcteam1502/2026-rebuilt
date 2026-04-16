@@ -24,8 +24,7 @@ public class AlignToTowerLeft extends Command {
   private Pose2d targetPose;
 
   private Pose2d redTowerLeftPose = new Pose2d(15.4,3.5,new Rotation2d(0));
-  private Pose2d blueTowerLeftPose = new Pose2d(1.05,4.6,new Rotation2d(Math.toRadians(180)));
-
+  private Pose2d blueTowerLeftPose = new Pose2d(1.075,4.634,new Rotation2d(Math.toRadians(180)));
   public AlignToTowerLeft(DriveSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.drive = drive;

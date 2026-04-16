@@ -21,7 +21,7 @@ public class SwerveModuleCfg {
   public static final double MODULE_TURN_PID_CONTROLLER_I = 0;
   public static final double MODULE_TURN_PID_CONTROLLER_D = 0;
   
-  public static final double MODULE_DRIVE_PID_CONTROLLER_P = 0.1;
+  public static final double MODULE_DRIVE_PID_CONTROLLER_P = .1;
   public static final double MODULE_DRIVE_PID_CONTROLLER_I = 0;
   public static final double MODULE_DRIVE_PID_CONTROLLER_D = 0;
 

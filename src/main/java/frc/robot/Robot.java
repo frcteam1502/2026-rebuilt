@@ -12,7 +12,11 @@ import com.pathplanner.lib.auto.AutoBuilder;
 
 import au.grapplerobotics.CanBridge;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.MjpegServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.util.PixelFormat;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PowerDistribution;
@@ -87,18 +91,32 @@ public class Robot extends TimedRobot {
     CanBridge.runTCP();
   }
 
+  void StartCamera() {
+    var camera = CameraServer.startAutomaticCapture();
+    camera.setResolution(320,240);
+    camera.setFPS(30);
+    
+
+  }
+   void startMjpeg() {
+     UsbCamera camera = new UsbCamera("Usb Camera 0", 0);
+    //if (RobotBase.isReal()){
+      MjpegServer mjpegServer = new MjpegServer("Usb Camera 0 Server", 1200);
+      mjpegServer.setSource(camera);
+      CvSink cvSink = new CvSink("opencv_Usb_Camera");
+      cvSink.setSource(camera);
+      CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 20);
+      MjpegServer mjpegServer2 = new MjpegServer("Server Blur", 1201);
+      mjpegServer2.setSource(outputStream);
+    
+   }
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
-     UsbCamera camera = CameraServer.startAutomaticCapture();
-    if (RobotBase.isReal()){
-      camera.setResolution(320,240);
-      camera.setFPS(30);
-    }
-    
+    StartCamera();
     //LEDSignals.hopperInColor();
     LEDSignals.resetLEDs(); //experimental DO NOT TRUST
 

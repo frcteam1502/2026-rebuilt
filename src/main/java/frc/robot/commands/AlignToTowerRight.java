@@ -23,7 +23,7 @@ public class AlignToTowerRight extends Command {
   private double lastHeading;
   private Pose2d targetPose;
 
-  private Pose2d redTowerRightPose = new Pose2d(15.60,5.15,new Rotation2d(Math.toRadians(180)));
+  private Pose2d redTowerRightPose = new Pose2d(15.43,3.44,new Rotation2d(Math.toRadians(180)));
   private Pose2d blueTowerRightPose = new Pose2d(0.91,2.91,new Rotation2d(0));
 
   public AlignToTowerRight(DriveSubsystem drive) {
