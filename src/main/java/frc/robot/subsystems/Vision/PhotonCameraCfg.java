@@ -84,8 +84,8 @@ public class PhotonCameraCfg{
 								   Math.toRadians(RIGHT_HAMMER_APRILTAG_CAM_YAW_DEG)));
 
 	
-	public static final AprilTagFields FIELD_VERSION = AprilTagFields.k2026RebuiltAndymark;
-	//public static final AprilTagFields FIELD_VERSION = AprilTagFields.k2026RebuiltWelded;
+	//public static final AprilTagFields FIELD_VERSION = AprilTagFields.k2026RebuiltAndymark;
+	public static final AprilTagFields FIELD_VERSION = AprilTagFields.k2026RebuiltWelded;
 	public static final AprilTagFieldLayout FIELD_TAG_LAYOUT = AprilTagFieldLayout.loadField(FIELD_VERSION);
 	public static final double DISTANCE_THRESHOLD_M = 20;
 
