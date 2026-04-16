@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 1.8744871794871805,
-        "y": 4.779205128205128
+        "x": 1.6040963855421686,
+        "y": 5.171481927710842
       },
       "prevControl": {
-        "x": 2.3587391423474044,
-        "y": 5.584813509649163
+        "x": 2.0883483484023926,
+        "y": 5.977090309154877
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,7 +42,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 167.98852161363442
   },
   "reversed": false,
   "folder": "LeftTwoPassGrab",

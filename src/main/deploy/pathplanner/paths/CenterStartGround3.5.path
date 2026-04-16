@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.139633007716504,
-        "y": 7.076615688358142
+        "x": 2.0630602409638557,
+        "y": 4.679734939759036
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.139633007716504,
-        "y": 7.076615688358142
+        "x": 2.401819277108434,
+        "y": 6.439096385542168
       },
       "isLocked": false,
-      "linkedName": "LeftShootPose"
+      "linkedName": "EndCenterStartGround3"
     },
     {
       "anchor": {
-        "x": 1.8744871794871805,
-        "y": 4.779205128205128
+        "x": 1.6040963855421686,
+        "y": 5.171481927710842
       },
       "prevControl": {
-        "x": 3.6652307692307695,
-        "y": 5.197820512820512
+        "x": 2.1723373493975906,
+        "y": 6.417240963855421
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,22 +33,22 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.75,
-    "maxAcceleration": 3.75,
-    "maxAngularVelocity": 90.0,
-    "maxAngularAcceleration": 40.0,
+    "maxVelocity": 2.0,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 75.0,
+    "maxAngularAcceleration": 25.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 167.98852161363442
   },
   "reversed": false,
   "folder": "CenterStartGround.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 127.78091933038296
+    "rotation": 175.6012946450045
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

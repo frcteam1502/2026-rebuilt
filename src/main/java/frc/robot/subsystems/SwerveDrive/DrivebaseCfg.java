@@ -28,12 +28,12 @@ public class DrivebaseCfg {
 
     public static final boolean IS_FIELD_MIRRORED = true;
 
-    public static final double AUTO_ALIGN_X_KP = 5;
+    public static final double AUTO_ALIGN_X_KP = 2;
     public static final double AUTO_ALIGN_X_KI = 0;
     public static final double AUTO_ALIGN_X_KD = 0;
     public static final double AUTO_ALIGN_X_ALLOWED_ERROR = .01;
 
-    public static final double AUTO_ALIGN_Y_KP = 5;
+    public static final double AUTO_ALIGN_Y_KP = 2;
     public static final double AUTO_ALIGN_Y_KI = 0;
     public static final double AUTO_ALIGN_Y_KD = 0;
     public static final double AUTO_ALIGN_Y_ALLOWED_ERROR = .01;
