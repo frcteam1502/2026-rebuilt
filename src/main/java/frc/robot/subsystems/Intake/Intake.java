@@ -50,8 +50,14 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
       // This method will be called once per scheduler run
+      updateSmartDashboard();
       arbitrateIntake();
       SmartDashboard.putData(LEDSignals.signalLED);
+    }
+
+    void updateSmartDashboard(){
+      SmartDashboard.putNumber("Intake Output Current", leadIntakeMotor.getOutputCurrent());
+      SmartDashboard.putNumber("Intake Velocity", leadIntakeMotor.get());
     }
 
     private void arbitrateIntake(){

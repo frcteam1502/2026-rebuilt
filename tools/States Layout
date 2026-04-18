@@ -149,8 +149,8 @@
             "title": "Shift Active?",
             "x": 2048.0,
             "y": 0.0,
-            "width": 256.0,
-            "height": 256.0,
+            "width": 128.0,
+            "height": 384.0,
             "type": "Boolean Box",
             "properties": {
               "topic": "/SmartDashboard/Shift Active?",
@@ -178,9 +178,9 @@
           {
             "title": "Did Win Auto?",
             "x": 2176.0,
-            "y": 256.0,
+            "y": 0.0,
             "width": 128.0,
-            "height": 128.0,
+            "height": 384.0,
             "type": "Boolean Box",
             "properties": {
               "topic": "/SmartDashboard/Did Win Auto?",

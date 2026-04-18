@@ -12,7 +12,7 @@ public class CANCoderCfg {
  
   //Front Right CANCoder
   public static final int FRONT_RIGHT_CAN_CODER_ID = 10;
-  public static final double FRONT_RIGHT_CAN_CODER_OFFSET = 0.3469;
+  public static final double FRONT_RIGHT_CAN_CODER_OFFSET = 0.463+0.0776;
   //public static final double FRONT_RIGHT_CAN_CODER_OFFSET = 0.2654; // testboard
   
   //Back Left CANCoder

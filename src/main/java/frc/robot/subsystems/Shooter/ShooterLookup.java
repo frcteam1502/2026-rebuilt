@@ -33,7 +33,8 @@ public class ShooterLookup {
         new LookupTablePoint(3.8, 2175, 33),
         new LookupTablePoint(4.28, 2275, 33),
         new LookupTablePoint(4.6, 2425, 33),
-        new LookupTablePoint(9.6, 4075, 33)
+        new LookupTablePoint(9.6, 4075, 33),
+        new LookupTablePoint(14, 4575, 33)
     );
 
     public static LookupTablePoint Lookup(double distance)

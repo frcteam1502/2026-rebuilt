@@ -93,7 +93,7 @@ public class AlignToTowerRight extends Command {
     if(!atSetPoint){
       var alliance = DriverStation.getAlliance();
       if((alliance.isPresent()) && (alliance.get() == DriverStation.Alliance.Red)){
-        drive.drive(-xSpeed,-ySpeed,rotValue,true);
+        drive.drive(xSpeed,ySpeed,rotValue,true);
       }else{
         drive.drive(xSpeed,ySpeed,rotValue,true);   
       }
