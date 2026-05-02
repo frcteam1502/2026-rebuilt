@@ -52,6 +52,10 @@ public class DriveSubsystem extends SubsystemBase{
         .getDefault()
         .getStructTopic("aimPose", Pose2d.struct)
         .publish();
+  StructPublisher<Pose2d> aimTargetPublisher = NetworkTableInstance
+        .getDefault()
+        .getStructTopic("aimTarget", Pose2d.struct)
+        .publish();
  
   public static boolean isTeleOp = false;
 
@@ -393,6 +397,7 @@ public class DriveSubsystem extends SubsystemBase{
     m_field.setRobotPose(estimatedPose);
     var robotPose = getEstimatedPose2d();
     var targetPose = new Pose2d(Shooter.calculateTargetPosition(this), Rotation2d.kZero);
+    m_field.getObject("aim target").setPose(targetPose);
     robotPublisher.set(robotPose);
     targetPublisher.set(targetPose);
     var aimPose = targetPose.relativeTo(robotPose);
