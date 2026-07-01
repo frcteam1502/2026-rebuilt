@@ -696,13 +696,13 @@ public class Shooter extends SubsystemBase {
         if(robotPose.getX() <= 4.54){
           return ShooterCfg.BLUE_HUB_TARGET_POSE;
         }else if(robotPose.getY() >= 4.03){
-          return ShooterCfg.BLUE_LEFT;
+          return ShooterCfg.BLUE_HUB_TARGET_POSE;
         }else{
-          return ShooterCfg.BLUE_RIGHT;
+          return ShooterCfg.BLUE_HUB_TARGET_POSE;
         }
       }
     }else{
-      return ShooterCfg.BLUE_LEFT;
+      return ShooterCfg.BLUE_HUB_TARGET_POSE;
     }
   }
 private void updateIndexerState(){

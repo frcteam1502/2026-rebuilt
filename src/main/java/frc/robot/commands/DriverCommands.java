@@ -33,9 +33,9 @@ public class DriverCommands extends Command {
     addRequirements(drive);
     this.isSpeedLimited = isSpeedLimited;
 
-    driverChooser.setDefaultOption("Default Driver", kDriver1);
-    driverChooser.addOption("Driver 1", kDriver1);
-    driverChooser.addOption("Driver 2", kDriver2);
+    driverChooser.setDefaultOption("Default Driver", kDriver2);
+    driverChooser.addOption("Driver", kDriver1);
+    driverChooser.addOption("Child", kDriver2);
     SmartDashboard.putData("Driver Chooser", driverChooser);
   }
 
@@ -63,15 +63,14 @@ public class DriverCommands extends Command {
     }
 
     if(Driver.Controller.getHID().getRightBumperButton()){
-      teleopSpeedGain = DrivebaseCfg.FINESSE_TRANSLATION_GAIN;
-      teleopRotationGain = DrivebaseCfg.FINESSE_ROTATION_GAIN;
+      teleopSpeedGain = DrivebaseCfg.TRANSLATION_GAIN_2;
+      teleopRotationGain = DrivebaseCfg.ROTATION_GAIN;
     }else if((isSpeedLimited.getAsBoolean())){
       teleopSpeedGain = DrivebaseCfg.SPEED_LIMITED_TRANSLATION_GAIN;
       teleopRotationGain = DrivebaseCfg.SPEED_LIMITED_ROTATION_GAIN;
-    }
-    else if(Driver.Controller.getHID().getLeftBumperButton()){
+    /*}else if(Driver.Controller.getHID().getLeftBumperButton()){
       teleopSpeedGain = DrivebaseCfg.FAST_TRANSLATION_GAIN;
-      teleopRotationGain = DrivebaseCfg.ROTATION_GAIN;
+      teleopRotationGain = DrivebaseCfg.ROTATION_GAIN;*/
     }else{
       teleopSpeedGain = driver_gain;
       teleopRotationGain = DrivebaseCfg.ROTATION_GAIN;
