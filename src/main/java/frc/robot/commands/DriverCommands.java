@@ -33,9 +33,9 @@ public class DriverCommands extends Command {
     addRequirements(drive);
     this.isSpeedLimited = isSpeedLimited;
 
-    driverChooser.setDefaultOption("Default Driver", kDriver2);
-    driverChooser.addOption("Driver", kDriver1);
-    driverChooser.addOption("Child", kDriver2);
+    driverChooser.setDefaultOption("Child", kDriver1);
+    driverChooser.addOption("Child", kDriver1);
+    driverChooser.addOption("Driver", kDriver2);
     SmartDashboard.putData("Driver Chooser", driverChooser);
   }
 

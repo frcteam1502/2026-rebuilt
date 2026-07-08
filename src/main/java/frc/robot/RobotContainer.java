@@ -153,7 +153,7 @@ public class RobotContainer {
     Driver.Controller.y().onTrue(new InstantCommand(climber::toggleClimber));
     //Driver.Controller.x().whileTrue(new ExtendAndAlignLeft(driveSubsystem, climber));
     //Driver.Controller.b().whileTrue(new ExtendAndAlignRight(driveSubsystem, climber));
-    Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn));
+    Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
     Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));//
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
