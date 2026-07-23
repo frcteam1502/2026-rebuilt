@@ -24,6 +24,7 @@ import frc.robot.commands.EVIL;
 import frc.robot.commands.ExtendAndAlignLeft;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
+//import frc.robot.commands.SystemsCheck;
 import frc.robot.commands.TurnToTarget;
 import frc.robot.subsystems.Climber.Climber;
 import frc.robot.subsystems.Intake.Intake;
@@ -100,6 +101,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("alignToClimbLeft", new ExtendAndAlignLeft(driveSubsystem, climber));
    NamedCommands.registerCommand("EVIL", new EVIL(driveSubsystem));
    NamedCommands.registerCommand("turnToTarget", new TurnToTarget(driveSubsystem));
+  
     
 
     //Build an Autochooser from SmartDashboard selection.  Default will be Commands.none()
@@ -157,6 +159,8 @@ public class RobotContainer {
     Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));//
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
+    //Driver.Controller.leftBumper().whileTrue(new SystemsCheck(driveSubsystem, intake, shooter));
+
     Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));
 
     Operator.Controller.leftTrigger().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
