@@ -120,6 +120,7 @@ public class Intake extends SubsystemBase {
     public void setIntakeOff(){
       isCntrlRequestIn = false;
       isCntrlRequestOut = false;
+      setIntakeSpeed(0);
     }
   
     public void setHopperOut(){
