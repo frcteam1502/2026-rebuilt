@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 
 public class IntakeCfg {
 //Intake Motor Config
-public static final int LEAD_INTAKE_MOTOR_ID = 62;
-public static final int FOLLOWER_INTAKE_MOTOR_ID = 3;
+public static final int LEAD_INTAKE_MOTOR_ID = 3;
+public static final int FOLLOWER_INTAKE_MOTOR_ID = 62;
 
 public static final int INTAKE_SOLENOID_ID = 0;
 
