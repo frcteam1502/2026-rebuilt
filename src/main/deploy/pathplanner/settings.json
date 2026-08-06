@@ -24,8 +24,8 @@
     "Right Start",
     "TestAutos"
   ],
-  "defaultMaxVel": 4.75,
-  "defaultMaxAccel": 3.75,
+  "defaultMaxVel": 3.75,
+  "defaultMaxAccel": 3.0,
   "defaultMaxAngVel": 90.0,
   "defaultMaxAngAccel": 40.0,
   "defaultNominalVoltage": 12.0,
