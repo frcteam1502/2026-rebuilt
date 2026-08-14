@@ -163,7 +163,8 @@ public class RobotContainer {
     Operator.Controller.leftBumper().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeReverse), new InstantCommand(shooter::setIndexerReverse))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
     //Operator.Controller.leftBumper().whileTrue(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOn), new InstantCommand(shooter::setIndexerOn))).onFalse(new ParallelCommandGroup(new InstantCommand(intake::setIntakeOff), new InstantCommand(shooter::setIndexerOff)));
     Operator.Controller.rightTrigger().whileTrue(new InstantCommand(shooter::setShooterOn)).onFalse(new InstantCommand(shooter::setShooterToWait));
-    Operator.Controller.a().onTrue(new SequentialCommandGroup(new InstantCommand(intake :: setIntakeOn), new WaitCommand(0.15), new InstantCommand(intake::toggleHopper), new WaitCommand(0.2), new InstantCommand(intake :: setIntakeOff)));
+    Operator.Controller.a().onTrue(new InstantCommand(intake :: toggleHopper));
+    //Operator.Controller.a().onTrue(new SequentialCommandGroup(new InstantCommand(intake :: setIntakeOn), new WaitCommand(0.15), new InstantCommand(intake::toggleHopper), new WaitCommand(0.2), new InstantCommand(intake :: setIntakeOff)));
     Operator.Controller.x().whileTrue(new InstantCommand(shooter::setIndexerOn)).onFalse(new InstantCommand(shooter :: setIndexerOff));
     //Operator.Controller.rightBumper().onTrue(new InstantCommand(shooter::setFeedOn));
 

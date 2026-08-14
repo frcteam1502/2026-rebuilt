@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.LEDs.LEDSignals;
 
 
@@ -64,7 +65,7 @@ public class Intake extends SubsystemBase {
       if(isCntrlRequestIn){
         leadIntakeMotor.set(1.0);
         if(hopperIn){
-          LEDSignals.intakeOnInColor();
+          LEDSignals.();
         }else if(hopperIn==false){
           LEDSignals.intakeOnOutColor();
         };
@@ -106,7 +107,8 @@ public class Intake extends SubsystemBase {
         };
       }
     }
-  
+    
+    
     public void setIntakeOn(){
       isCntrlRequestIn = true;
       isCntrlRequestOut = false;
@@ -126,12 +128,11 @@ public class Intake extends SubsystemBase {
     public void setHopperOut(){
       hopperSolenoid.set(true);
       hopperIn = false;
-      isCntrlRequestIn = true;
-      isCntrlRequestOut = false;
     }
      public void setHopperIn(){
       hopperIn = true;
       hopperSolenoid.set(false);
+      isCntrlRequestOut = false;
     }
     public void setIntakeSpeed(double speed){
       leadIntakeMotor.set(speed);
