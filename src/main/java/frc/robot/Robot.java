@@ -6,7 +6,7 @@ package frc.robot;
 
 import frc.robot.Logger;
 import frc.robot.subsystems.Climber.Climber;
-import frc.robot.subsystems.LEDs.LEDSignals;
+//import frc.robot.subsystems.LEDs.LEDSignals;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -118,7 +118,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     StartCamera();
     //LEDSignals.hopperInColor();
-    LEDSignals.resetLEDs(); //experimental DO NOT TRUST
+    //LEDSignals.resetLEDs(); //experimental DO NOT TRUST
 
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items
