@@ -105,7 +105,7 @@ public class LEDSignals extends SubsystemBase {
     };
 
     public LEDSignals() {
-        setDefaultCommand(updateLEDs());
+       // setDefaultCommand(updateLEDs());
     }
 
     /**
@@ -113,7 +113,7 @@ public class LEDSignals extends SubsystemBase {
      *
      * @return Command to run
      */
-    public Command updateLEDs() {
+   /*public Command updateLEDs() {
         return run(() -> {
             for (var solidColor : m_colors) {
                 m_candle.setControl(solidColor);
@@ -121,5 +121,5 @@ public class LEDSignals extends SubsystemBase {
             m_candle.setControl(m_slot0Animation);
             if //put some logic here to detirmine led state and set control to correct animation
         }).ignoringDisable(true);
-    }
+    }*/
 }

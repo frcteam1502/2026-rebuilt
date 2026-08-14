@@ -53,7 +53,7 @@ public class Intake extends SubsystemBase {
       // This method will be called once per scheduler run
       updateSmartDashboard();
       arbitrateIntake();
-      SmartDashboard.putData(LEDSignals.signalLED);
+      //SmartDashboard.putData(LEDSignals.signalLED);
     }
 
     void updateSmartDashboard(){
@@ -65,7 +65,7 @@ public class Intake extends SubsystemBase {
       if(isCntrlRequestIn){
         leadIntakeMotor.set(1.0);
         if(hopperIn){
-          LEDSignals.();
+         // LEDSignals.();
         }else if(hopperIn==false){
           LEDSignals.intakeOnOutColor();
         };

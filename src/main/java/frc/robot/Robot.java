@@ -118,7 +118,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     StartCamera();
     //LEDSignals.hopperInColor();
-    LEDSignals.resetLEDs(); //experimental DO NOT TRUST
+    //LEDSignals.resetLEDs(); //experimental DO NOT TRUST
 
     RobotController.setBrownoutVoltage(3);
     //Register PDP and PH Logger items
