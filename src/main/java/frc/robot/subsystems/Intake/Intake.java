@@ -174,4 +174,10 @@ public class Intake extends SubsystemBase {
     return hopperIn;
     
   }
+
+  public void systemsCheckIntake(){
+    leadIntakeMotor.set(-0.5);
+    
+  }
+
 }
