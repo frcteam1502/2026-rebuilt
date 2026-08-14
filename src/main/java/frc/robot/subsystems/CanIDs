@@ -1,0 +1,29 @@
+/* 
+CAN IDs:
+    1: LEAD_SHOOTER_MOTOR
+    2: FOLLOWER_SHOOTER_MOTOR_1
+    3: LEAD_INTAKE_MOTOR
+    4: Back Left Turn
+    5: Back Left Drive
+    6: HOOD_MOTOR
+    7: FEED_MOTOR
+    8: Back Right Turn
+    9: Back Right Drive
+    10: Front Right Turn
+    11: Front Right Drive
+    12: INDEXER_MOTOR
+    13: FOLLOWER_SHOOTER_MOTOR_2
+    14: Allegedly Doesnt Exist
+    15: FOLLOWER_SHOOTER_MOTOR_3
+    16: Front Left Turn
+    17: Front Left Drive
+    62: FOLLOWER_INTAKE_MOTOR
+
+CANCODER & Solinoid & Other Sensor IDs:
+    0: INTAKE_SOLINOID  
+    1: CLIMBER_SOLINOID1_CHAN
+    2: CLIMBER_SOLINOID2_CHAN
+    1: FRONT_HOPPER_SENSOR
+    2: REAR_HOPPER_SENSOR  
+    3: HOOD_ABS_ENCODER
+*/

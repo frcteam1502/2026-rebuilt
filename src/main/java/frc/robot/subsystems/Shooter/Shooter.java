@@ -829,4 +829,11 @@ private void updateIndexerState(){
         }
   }
 
+  public void systemsCheckShooter(){
+    setIndexSpeed(0.5);
+    setShooterSpeed(0.25);
+    setFeedSpeed(0.5);
+    setHoodAngle(20);
+  }
+
 }
