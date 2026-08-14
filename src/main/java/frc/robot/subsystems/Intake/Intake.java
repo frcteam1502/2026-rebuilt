@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-//import frc.robot.subsystems.LEDs.LEDSignals;
+import frc.robot.subsystems.LEDs.LEDSignals;
 
 
 public class Intake extends SubsystemBase {
@@ -65,45 +65,45 @@ public class Intake extends SubsystemBase {
       if(isCntrlRequestIn){
         leadIntakeMotor.set(1.0);
         if(hopperIn){
-          //LEDSignals.();
+         // LEDSignals.();
         }else if(hopperIn==false){
-          //LEDSignals.intakeOnOutColor();
+          LEDSignals.intakeOnOutColor();
         };
       }else if(isCntrlRequestOut){
         leadIntakeMotor.set(-1.0);
         if(hopperIn){
-          //LEDSignals.intakeOnInColor();
+          LEDSignals.intakeOnInColor();
         }else if(hopperIn==false){
-          //LEDSignals.intakeOnOutColor();
+          LEDSignals.intakeOnOutColor();
         };
-        //LEDSignals.hopperOutColor();
+        LEDSignals.hopperOutColor();
       }else if(isShooterRequestIn){
         leadIntakeMotor.set(1.0);
         if(hopperIn){
-          //LEDSignals.intakeOnInColor();
+          LEDSignals.intakeOnInColor();
         }else if(hopperIn==false){
-          //LEDSignals.intakeOnOutColor();
+          LEDSignals.intakeOnOutColor();
         };
       }else if(isShooterRequestSlow){
         leadIntakeMotor.set(0.5);
         if(hopperIn){
-          //LEDSignals.intakeOnInColor();
+          LEDSignals.intakeOnInColor();
         }else if(hopperIn==false){
-         // LEDSignals.intakeOnOutColor();
+          LEDSignals.intakeOnOutColor();
         };
       }else if(isShooterRequestOut){
         leadIntakeMotor.set(-1.0);
         if(hopperIn){
-          //LEDSignals.intakeOnInColor();
+          LEDSignals.intakeOnInColor();
         }else if(hopperIn==false){
-          //LEDSignals.intakeOnOutColor();
+          LEDSignals.intakeOnOutColor();
         };
       }else{
         leadIntakeMotor.set(0);
         if(hopperIn){
-          //LEDSignals.hopperInColor();
+          LEDSignals.hopperInColor();
         }else if(hopperIn==false){
-          //LEDSignals.hopperOutColor();
+          LEDSignals.hopperOutColor();
         };
       }
     }
@@ -174,10 +174,4 @@ public class Intake extends SubsystemBase {
     return hopperIn;
     
   }
-
-  public void systemsCheckIntake(){
-    leadIntakeMotor.set(-0.5);
-    
-  }
-
 }
