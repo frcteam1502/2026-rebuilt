@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.305,
-        "y": 0.407
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 5.3921019677996425,
-        "y": 0.4069999999999965
-      },
-      "isLocked": false,
-      "linkedName": "RightStart"
-    },
-    {
-      "anchor": {
         "x": 3.0948279952550424,
         "y": 1.2967852906287078
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.3387034855097353,
+        "y": 1.2225140042624718
+      },
+      "isLocked": false,
+      "linkedName": "RightShootPose"
+    },
+    {
+      "anchor": {
+        "x": 3.514436536180309,
+        "y": 0.7695848161328582
+      },
       "prevControl": {
-        "x": 3.0948279952550424,
-        "y": 2.270309440897043
+        "x": 3.127105575326217,
+        "y": 0.8126215895610904
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightShootPose"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -126.86989764584396
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "DEAd",
+  "folder": "RightOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": -126.86989764584396
   },
   "useDefaultConstraints": true
 }

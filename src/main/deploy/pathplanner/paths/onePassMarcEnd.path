@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.305,
-        "y": 0.407
+        "x": 7.269974358974359,
+        "y": 7.395551282051282
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.3921019677996425,
-        "y": 0.4069999999999965
+        "x": 8.269974358974359,
+        "y": 7.395551282051282
       },
       "isLocked": false,
-      "linkedName": "RightStart"
+      "linkedName": "CenterWeekGrab3"
     },
     {
       "anchor": {
-        "x": 3.0948279952550424,
-        "y": 1.2967852906287078
+        "x": 4.0,
+        "y": 6.0
       },
       "prevControl": {
-        "x": 3.0948279952550424,
-        "y": 2.270309440897043
+        "x": 3.0,
+        "y": 6.0
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightShootPose"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -126.86989764584396
+    "rotation": 0.0
   },
   "reversed": false,
-  "folder": "DEAd",
+  "folder": "LeftOnePassGrab.Climb",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": -91.76239102366051
   },
   "useDefaultConstraints": true
 }
