@@ -25,6 +25,7 @@ import frc.robot.commands.ExtendAndAlignLeft;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
 import frc.robot.commands.SystemsCheck;
+import frc.robot.commands.SystemsCheck2;
 import frc.robot.commands.TurnToTarget;
 import frc.robot.subsystems.Climber.Climber;
 import frc.robot.subsystems.Intake.Intake;
@@ -157,7 +158,7 @@ public class RobotContainer {
     Driver.Controller.rightTrigger().onTrue(new InstantCommand(driveSubsystem::setAutoTargetOn)).onFalse(new InstantCommand(driveSubsystem::setAutoTargetOff));
     Driver.Controller.a().whileTrue(new InstantCommand(()->driveSubsystem.setLock(true))).onFalse(new InstantCommand(()->driveSubsystem.setLock(false)));//
 
-    Driver.Controller.leftBumper().whileTrue(new SystemsCheck(driveSubsystem, intake, shooter));
+    Driver.Controller.leftBumper().onTrue(SystemsCheck2.startSystemCheck(driveSubsystem, intake, shooter));
     //shooter.setDefaultCommand(new OperatorCommands(shooter));
     //Operator.Controller.leftStick().onTrue(new InstantCommand(shooter::toggleHoodAim));
     Operator.Controller.start().onTrue(new InstantCommand(shooter::toggleTestMode));

@@ -12,6 +12,8 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.LEDs.LEDSignals;
@@ -174,4 +176,25 @@ public class Intake extends SubsystemBase {
     return hopperIn;
     
   }
-}
+
+  public Command systemsCheckIntakeCommand() {
+      return Commands.sequence(
+        setHopperOutCommand(),
+        setIntakeOnCommand()
+        ); 
+  }
+
+  public Command setHopperOutCommand(){
+    System.out.println("setingHopperOut");
+    return this.runOnce(
+      ()->setHopperOut()
+    );
+  }
+
+  public Command setIntakeOnCommand(){
+    System.out.println("setingIntakeOn");
+    return this.runOnce(
+      ()->setIntakeOn()
+    );
+  }
+ }

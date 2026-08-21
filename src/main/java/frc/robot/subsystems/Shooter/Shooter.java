@@ -32,6 +32,8 @@ import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -835,5 +837,14 @@ private void updateIndexerState(){
     setFeedSpeed(0.5);
     setHoodAngle(20);
   }
-  
+ 
+  public Command systemsCheckShooterCommand(){
+    return Commands.sequence(
+      new InstantCommand(()->setIndexSpeed(0.5)).withTimeout(4),
+      new InstantCommand(()->setShooterSpeed(0.25)).withTimeout(4),
+      new InstantCommand(()->setFeedSpeed(0.5)).withTimeout(4),
+      new InstantCommand(()->setHoodAngle(20)).withTimeout(4)
+    );
+    
+  }
 }

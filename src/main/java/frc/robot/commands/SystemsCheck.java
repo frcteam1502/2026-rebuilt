@@ -10,6 +10,7 @@ import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.Shooter.Shooter;
@@ -101,7 +102,7 @@ public class SystemsCheck extends Command {
     //systemsCheckShooter controlls index, shooter, feed, and hood
     shooter.systemsCheckShooter();
     //systemsCheckIntake just turns on the intake (nothing else)
-    intake.systemsCheckIntake();
+    //intake.systemsCheckIntake();
   
     setDriveSpeed(0.25);
     setTurnSpeed(0.25);
@@ -125,6 +126,13 @@ public class SystemsCheck extends Command {
   @Override
   public boolean isFinished() {
     return false;
+  }
+
+  public static Command startSystemCheck(DriveSubsystem driveSubsystem, Intake intake, Shooter shooter) {
+   return Commands.sequence(
+    intake.systemsCheckIntakeCommand(),
+    shooter.systemsCheckShooterCommand()
+   );
   }
 }
 
