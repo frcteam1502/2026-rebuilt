@@ -33,10 +33,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.Logger;
 import frc.robot.subsystems.Intake.Intake;
@@ -348,6 +345,7 @@ public class Shooter extends SubsystemBase {
     return indexerEncoder.getVelocity();
   }
   public void setIndexSpeed(double speed){
+    System.out.println("Index speed: " + speed);
     indexerMotor.set(speed);
   }
 
@@ -358,6 +356,7 @@ public class Shooter extends SubsystemBase {
     return feedEncoder.getVelocity();
   }
   public void setFeedSpeed(double speed){
+    System.out.println("Feed speed: " + speed);
     shooterFeedPIDController.setSetpoint(speed, ControlType.kDutyCycle);
   }
 
@@ -368,10 +367,12 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double speed){
+    System.out.println("Shooter speed: " + speed);
     shooterSetSpeed = speed;
   }
 
   public void setHoodAngle(double angleDeg){
+    System.out.println("Hood deg: " + angleDeg);
     hoodSetAngle = Math.toRadians(angleDeg);
   }
 
@@ -840,11 +841,10 @@ private void updateIndexerState(){
  
   public Command systemsCheckShooterCommand(){
     return Commands.sequence(
-      new InstantCommand(()->setIndexSpeed(0.5)).withTimeout(4),
-      new InstantCommand(()->setShooterSpeed(0.25)).withTimeout(4),
-      new InstantCommand(()->setFeedSpeed(0.5)).withTimeout(4),
-      new InstantCommand(()->setHoodAngle(20)).withTimeout(4)
-    );
-    
+      this.startEnd(()->setIndexSpeed(0.5),()->setIndexSpeed(0)).withTimeout(4),
+      this.startEnd(()->setShooterSpeed(0.25),()->setShooterSpeed(0)).withTimeout(4),
+      this.startEnd(()->setFeedSpeed(0.5),()->setFeedSpeed(0)).withTimeout(4),
+      this.startEnd(()->setHoodAngle(20),()->setHoodAngle(13)).withTimeout(4)
+    );    
   }
 }

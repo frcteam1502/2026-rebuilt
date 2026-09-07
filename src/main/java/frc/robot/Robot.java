@@ -100,7 +100,6 @@ public class Robot extends TimedRobot {
   }
    void startMjpeg() {
      UsbCamera camera = new UsbCamera("Usb Camera 0", 0);
-    //if (RobotBase.isReal()){
       MjpegServer mjpegServer = new MjpegServer("Usb Camera 0 Server", 1200);
       mjpegServer.setSource(camera);
       CvSink cvSink = new CvSink("opencv_Usb_Camera");
@@ -116,7 +115,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    StartCamera();
+    if (RobotBase.isReal()){
+      StartCamera();
+    }
     //LEDSignals.hopperInColor();
     //LEDSignals.resetLEDs(); //experimental DO NOT TRUST
 

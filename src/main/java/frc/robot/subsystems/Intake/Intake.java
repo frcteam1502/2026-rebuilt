@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.LEDs.LEDSignals;
 
 
@@ -112,6 +111,7 @@ public class Intake extends SubsystemBase {
     
     
     public void setIntakeOn(){
+      System.out.println("Intake ON");
       isCntrlRequestIn = true;
       isCntrlRequestOut = false;
     }
@@ -120,18 +120,21 @@ public class Intake extends SubsystemBase {
       isCntrlRequestIn = false;
       isCntrlRequestOut = true;
     }
-  
+    
     public void setIntakeOff(){
+      System.out.println("Intake OFF");
       isCntrlRequestIn = false;
       isCntrlRequestOut = false;
       setIntakeSpeed(0);
     }
   
     public void setHopperOut(){
+      System.out.println("Hopper OUT");
       hopperSolenoid.set(true);
       hopperIn = false;
     }
-     public void setHopperIn(){
+    public void setHopperIn(){
+      System.out.println("Hopper IN");
       hopperIn = true;
       hopperSolenoid.set(false);
       isCntrlRequestOut = false;
@@ -141,24 +144,26 @@ public class Intake extends SubsystemBase {
     }
   
   public void shooterRequestIntakeOn(){
+    System.out.println("Intake ON");
     isShooterRequestIn = true;
     isShooterRequestSlow = false;
     isShooterRequestOut = false;
   }
-
+  
   public void shooterRequestIntakeOnSlow(){
     isShooterRequestIn = false;
     isShooterRequestSlow = true;
     isShooterRequestOut = false;
   }
-
+  
   public void shooterRequestIntakeReverse(){
     isShooterRequestIn = false;
     isShooterRequestSlow = false;
     isShooterRequestOut = true;
   }
-
+  
   public void shooterRequestIntakeOff(){
+    System.out.println("Intake OFF");
     isShooterRequestIn = false;
     isShooterRequestSlow = false;
     isShooterRequestOut = false;
@@ -180,21 +185,27 @@ public class Intake extends SubsystemBase {
   public Command systemsCheckIntakeCommand() {
       return Commands.sequence(
         setHopperOutCommand(),
-        setIntakeOnCommand()
-        ); 
+        Commands.waitSeconds(2),
+        setIntakeOnCommand(),
+        Commands.waitSeconds(4),
+        setHopperInCommand(),
+        Commands.waitSeconds(2),
+        setIntakeOffCommand(),
+        Commands.waitSeconds(2)
+      ); 
   }
 
   public Command setHopperOutCommand(){
-    System.out.println("setingHopperOut");
-    return this.runOnce(
-      ()->setHopperOut()
-    );
+    return this.runOnce(this::setHopperOut);
+  }
+  public Command setHopperInCommand(){
+    return this.runOnce(this::setHopperIn);
   }
 
   public Command setIntakeOnCommand(){
-    System.out.println("setingIntakeOn");
-    return this.runOnce(
-      ()->setIntakeOn()
-    );
+    return this.runOnce(this::setIntakeOn);
+  }
+  public Command setIntakeOffCommand(){
+    return this.runOnce(this::setIntakeOff);
   }
  }

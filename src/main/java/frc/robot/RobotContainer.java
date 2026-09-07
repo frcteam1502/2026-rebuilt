@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.AlignToTowerRight;
@@ -24,7 +22,6 @@ import frc.robot.commands.EVIL;
 import frc.robot.commands.ExtendAndAlignLeft;
 import frc.robot.commands.ResetGyro;
 import frc.robot.commands.StopDriveMotors;
-import frc.robot.commands.SystemsCheck;
 import frc.robot.commands.SystemsCheck2;
 import frc.robot.commands.TurnToTarget;
 import frc.robot.subsystems.Climber.Climber;
@@ -124,6 +121,7 @@ public class RobotContainer {
     // new PathPlannerAuto("Test1");
 
     autoChooser = AutoBuilder.buildAutoChooser();
+    autoChooser.addOption("System Check", SystemsCheck2.startSystemCheck(driveSubsystem, intake, shooter));
     SmartDashboard.putData("Auto Chooser", autoChooser);
    // SmartDashboard.putNumber("ShiftTimer", SmartDashbordData.ShiftTimer.getTimeStamp());
      
