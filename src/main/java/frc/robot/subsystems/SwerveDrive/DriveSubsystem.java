@@ -8,6 +8,7 @@ import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import com.revrobotics.spark.SparkFlex;
 import com.pathplanner.lib.config.PIDConstants;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -63,6 +64,18 @@ public class DriveSubsystem extends SubsystemBase{
 
   ChassisSpeeds speedCommands = new ChassisSpeeds(0, 0, 0);
   ChassisSpeeds relativeCommands = new ChassisSpeeds(0,0,0);
+
+  private final SparkFlex frontLeftDrive = ChassisMotorCfg.DRIVE_FRONT_LEFT;
+  private final SparkFlex frontLeftTurn = ChassisMotorCfg.ANGLE_FRONT_LEFT;
+
+  private final SparkFlex frontRightDrive = ChassisMotorCfg.DRIVE_FRONT_RIGHT;
+  private final SparkFlex frontRightTurn = ChassisMotorCfg.ANGLE_FRONT_RIGHT;
+
+  private final SparkFlex backLeftDrive = ChassisMotorCfg.DRIVE_BACK_LEFT;
+  private final SparkFlex backLeftTurn = ChassisMotorCfg.ANGLE_BACK_LEFT;
+
+  private final SparkFlex backRightDrive = ChassisMotorCfg.DRIVE_BACK_RIGHT;
+  private final SparkFlex backRightTurn = ChassisMotorCfg.ANGLE_BACK_RIGHT;
 
   private final SwerveModule frontLeft = new SwerveModule(
     DrivebaseCfg.FRONT_LEFT_MOD_ID,
@@ -697,5 +710,37 @@ public class DriveSubsystem extends SubsystemBase{
     }else{
         return false;
     }
+  }
+
+  public void systemsCheckDrive(){
+    frontLeftDrive.set(0.25);
+    frontRightDrive.set(0.25);
+    backLeftDrive.set(0.25);
+    backRightDrive.set(0.25);
+
+  }
+
+  public void systemsCheckTurn(){
+    frontLeftTurn.set(0.25);
+    frontRightTurn.set(0.25);
+    backLeftTurn.set(0.25);
+    backRightTurn.set(0.25);
+
+  }
+
+  public void systemsCheckDriveOff(){
+    frontLeftDrive.set(0);
+    frontRightDrive.set(0);
+    backLeftDrive.set(0);
+    backRightDrive.set(0);
+
+  }
+
+  public void systemsCheckTurnOff(){
+    frontLeftTurn.set(0);
+    frontRightTurn.set(0);
+    backLeftTurn.set(0);
+    backRightTurn.set(0);
+
   }
 }
