@@ -4,6 +4,9 @@ import frc.robot.Logger;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterCfg;
 
+import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.InchesPerSecond;
+
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.config.RobotConfig;
@@ -34,6 +37,7 @@ import edu.wpi.first.networktables.StructPublisher;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 
@@ -367,6 +371,37 @@ public class DriveSubsystem extends SubsystemBase{
           backLeft.getPosition(),
           backRight.getPosition()
         });
+  }
+
+  public Command stopCommand(){
+   return Commands.sequence(
+      this.runOnce(()->frontLeft.setDesiredState(new SwerveModuleState())),
+      this.runOnce(()->frontRight.setDesiredState(new SwerveModuleState())),
+      this.runOnce(()->backLeft.setDesiredState(new SwerveModuleState())),
+      this.runOnce(()->backRight.setDesiredState(new SwerveModuleState())));
+  }
+
+  public Command systemsCheckSwerveCommand(){
+    return Commands.sequence(
+      stopCommand(),
+      this.startEnd(
+        ()->frontLeft.setDesiredState(new SwerveModuleState(InchesPerSecond.of(12), Rotation2d.fromDegrees(45))),
+        ()->frontLeft.setDesiredState(new SwerveModuleState()))
+        .withTimeout(4),
+      this.startEnd(
+        ()->frontRight.setDesiredState(new SwerveModuleState(InchesPerSecond.of(12), Rotation2d.fromDegrees(45))),
+        ()->frontRight.setDesiredState(new SwerveModuleState()))
+        .withTimeout(4),
+      this.startEnd(
+        ()->backLeft.setDesiredState(new SwerveModuleState(InchesPerSecond.of(12), Rotation2d.fromDegrees(45))),
+        ()->backLeft.setDesiredState(new SwerveModuleState()))
+        .withTimeout(4),
+      this.startEnd(
+        ()->backRight.setDesiredState(new SwerveModuleState(InchesPerSecond.of(12), Rotation2d.fromDegrees(45))),
+        ()->backRight.setDesiredState(new SwerveModuleState()))
+        .withTimeout(4),
+       stopCommand() 
+    );    
   }
 
   private void updateEstimatedPose(){

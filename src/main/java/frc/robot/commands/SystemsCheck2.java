@@ -11,9 +11,23 @@ public class SystemsCheck2 {
   public static Command startSystemCheck(DriveSubsystem driveSubsystem, Intake intake, Shooter shooter) {
     return Commands.sequence(
         Commands.print("SYSTEM CHECK START"),
+        
+        Commands.print("- Start Intake check"),
         intake.systemsCheckIntakeCommand(),
+        Commands.print("- End Intake check"),
+
         new WaitCommand(3),
+        
+        Commands.print("- Start Shooter check"),
         shooter.systemsCheckShooterCommand(),
+        Commands.print("- End Shooter check"),
+        
+        new WaitCommand(3),
+
+        Commands.print("- Start Swerve check"),
+        driveSubsystem.systemsCheckSwerveCommand(),
+        Commands.print("- End Swerve check"),
+        
         Commands.print("SYSTEM CHECK COMPLETE")
     );
   }
