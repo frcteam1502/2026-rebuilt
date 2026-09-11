@@ -842,9 +842,9 @@ private void updateIndexerState(){
   public Command systemsCheckShooterCommand(){
     return Commands.sequence(
       this.startEnd(()->setIndexSpeed(0.5),()->setIndexSpeed(0)).withTimeout(4),
-      this.startEnd(()->setShooterSpeed(0.25),()->setShooterSpeed(0)).withTimeout(4),
+      this.startEnd(()->{setShooterSpeed(0.75); updateShooterSetPoint();},()->{setShooterSpeed(0); updateShooterSetPoint();}).withTimeout(4),
       this.startEnd(()->setFeedSpeed(0.5),()->setFeedSpeed(0)).withTimeout(4),
-      this.startEnd(()->setHoodAngle(20),()->setHoodAngle(13)).withTimeout(4)
+      this.startEnd(()->setHoodAngle(30),()->setHoodAngle(13)).withTimeout(4)
     );    
   }
 }
