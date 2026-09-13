@@ -26,6 +26,7 @@ import frc.robot.commands.SystemsCheck2;
 import frc.robot.commands.TurnToTarget;
 import frc.robot.subsystems.Climber.Climber;
 import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.LEDs.LEDSignals;
 import frc.robot.subsystems.PowerManagement.MockDetector;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
@@ -53,6 +54,7 @@ public class RobotContainer {
   public final Shooter shooter = new Shooter(driveSubsystem, intake);
   //private final PdpSubsystem pdpSubsystem = new PdpSubsystem();
   public final Climber climber = new Climber(driveSubsystem);
+  public final LEDSignals leds = new LEDSignals();
 
   private final Vision vision;
 

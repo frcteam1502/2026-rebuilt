@@ -63,6 +63,7 @@ public class LEDSignals extends SubsystemBase {
     
     private final CANBus kCANBus = new CANBus("rio");
     private final CANdle m_candle = new CANdle(14, kCANBus);
+    public static String LEDstate = "idle";
 
     private final ColorFlowAnimation m_slot0Animation = new ColorFlowAnimation(0, 7)
         .withSlot(0)
@@ -70,7 +71,7 @@ public class LEDSignals extends SubsystemBase {
         .withDirection(AnimationDirectionValue.Forward)
         .withFrameRate(Hertz.of(25));
     
-    private final FireAnimation firingAnimation = new FireAnimation(8, 22)
+    private final FireAnimation firingAnimation = new FireAnimation(8, 23)
         .withSlot(1)
         .withBrightness(0.411)
         .withDirection(AnimationDirectionValue.Forward)
@@ -78,34 +79,49 @@ public class LEDSignals extends SubsystemBase {
         .withCooling(0.127)
         .withFrameRate(Hertz.of(20.58));
 
-    private final LarsonAnimation intakeOnAnimation = new LarsonAnimation(8, 22)
+    private final LarsonAnimation intakeOnAnimation = new LarsonAnimation(8, 23)
         .withSlot(1)
         .withColor(new RGBWColor(47, 255, 2, 0))
         .withSize(5)
         .withBounceMode(LarsonBounceValue.Front)
         .withFrameRate(Hertz.of(27.93));
 
+
+    private final ColorFlowAnimation idleAnimation = new ColorFlowAnimation(8, 23)
+        .withSlot(0)
+        .withColor(new RGBWColor(4, 163, 255, 0))
+        .withDirection(AnimationDirectionValue.Forward)
+        .withFrameRate(Hertz.of(25));
+
+
+    private final ColorFlowAnimation hopperInAnimation = new ColorFlowAnimation(8, 22)
+        .withSlot(0)
+        .withColor(new RGBWColor(255, 177, 5, 0))
+        .withDirection(AnimationDirectionValue.Forward)
+        .withFrameRate(Hertz.of(25));
+
     public static void hopperInColor(){
-      
+      LEDstate = "hopperIn";
   }
 
     public static void hopperOutColor(){
-    
+      LEDstate = "idle";
   }
 
     public static void intakeOnOutColor(){
-    
+      LEDstate = "intakeOn";
   }
 
     public static void intakeOnInColor(){
-    
+      LEDstate = "intakeOn";
   }
 
-    private final SolidColor[] m_colors = new SolidColor[] {
-    };
+  public static void shootingColor(){
+      LEDstate = "shooting";
+  }
 
     public LEDSignals() {
-       // setDefaultCommand(updateLEDs());
+       setDefaultCommand(updateLEDs());
     }
 
     /**
@@ -113,13 +129,17 @@ public class LEDSignals extends SubsystemBase {
      *
      * @return Command to run
      */
-   /*public Command updateLEDs() {
+   public Command updateLEDs() {
         return run(() -> {
-            for (var solidColor : m_colors) {
-                m_candle.setControl(solidColor);
+            if (LEDstate == "intakeOn"){
+              m_candle.setControl(intakeOnAnimation);
+            }else if (LEDstate == "idle"){
+              m_candle.setControl(idleAnimation);
+            }else if (LEDstate == "shooting"){
+              m_candle.setControl(firingAnimation);
+            }else if (LEDstate =="hopperIn"){
+              m_candle.setControl(hopperInAnimation);
             }
-            m_candle.setControl(m_slot0Animation);
-            if //put some logic here to detirmine led state and set control to correct animation
-        }).ignoringDisable(true);
-    }*/
+          }).ignoringDisable(true);
+    }
 }

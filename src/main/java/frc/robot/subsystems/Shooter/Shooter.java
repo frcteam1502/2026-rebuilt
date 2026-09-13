@@ -38,6 +38,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.Logger;
 import frc.robot.subsystems.Intake.Intake;
 import frc.robot.subsystems.SwerveDrive.DriveSubsystem;
+import frc.robot.subsystems.LEDs.LEDSignals;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
@@ -495,6 +496,7 @@ public class Shooter extends SubsystemBase {
       break;
 
       case SHOOTING:
+        LEDSignals.shootingColor();
         shooterTimer.start();
         if(isTestMode){
           shooterSetSpeed = SmartDashboard.getNumber("Shooter Test Speed", 0.0);
@@ -841,6 +843,7 @@ private void updateIndexerState(){
  
   public Command systemsCheckShooterCommand(){
     return Commands.sequence(
+      this.runOnce(this::setShooterOff),
       this.startEnd(()->setIndexSpeed(0.5),()->setIndexSpeed(0)).withTimeout(4),
       this.startEnd(()->{setShooterSpeed(0.75); updateShooterSetPoint();},()->{setShooterSpeed(0); updateShooterSetPoint();}).withTimeout(4),
       this.startEnd(()->setFeedSpeed(0.5),()->setFeedSpeed(0)).withTimeout(4),
